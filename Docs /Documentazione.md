@@ -1,6 +1,4 @@
-<p align="center">
-  <img style="max-width: 800px;" src="resources/Logo.jpeg">
-</p>
+
 
 # Progetto di ingegneria del software (rev. 4.2)
 ### Anno accademico 2023-2024
