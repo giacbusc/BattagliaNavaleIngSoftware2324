@@ -1,5 +1,5 @@
 <p align="center">
-  <img style="max-width: 800px;" src="resources/logo.jpeg">
+  <img style="max-width: 800px;" src="../resources/logo.jpeg">
 </p>
 
 # Progetto di ingegneria del software (rev. 4.2)
