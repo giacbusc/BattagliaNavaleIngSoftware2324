@@ -1,6 +1,8 @@
+<p align="center">
+  <img style="max-width: 400px;" src="resources/Logo.jpeg">
+</p>
 
-
-# Progetto di ingegneria del software (rev. 4.2)
+# Progetto di ingegneria del software
 ### Anno accademico 2023-2024
 
 ### Membri del team
