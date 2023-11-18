@@ -1,41 +1,102 @@
 package BattagliaNavaleProject.client;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-//schermata per selezionare partita,visualizzazione classifica e selezione lingua
 public class MenuPrincipale extends JFrame {
-
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
+	private JPanel panel = new JPanel();
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+			public void run()
+			{
+				try 
+				{
 					MenuPrincipale frame = new MenuPrincipale();
-					frame.setVisible(true);
-				} catch (Exception e) {
+				    frame.setVisible(true);
+				}
+				catch(Exception e)
+				{
 					e.printStackTrace();
 				}
 			}
 		});
+		
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public MenuPrincipale() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+	
+	public MenuPrincipale() 
+	{
+	   
+	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    setSize(771, 600);
+	    
+	    
+        panel.setBounds(10, 21, 757, 85);
+        setContentPane(panel);
+	    
+	    ImageIcon icon = new ImageIcon("imm.png");
+        JLabel lblNewLabel = new JLabel("LOGO");
+        lblNewLabel.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        lblNewLabel.setBounds(0, 0, 119, 85);
+        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(lblNewLabel);
+        
+        ImageIcon icon2 = new ImageIcon("2.png");
+        JLabel lblNewLabel_1 = new JLabel("foto profilo");
+        lblNewLabel_1.setPreferredSize(new Dimension(icon2.getIconWidth(), icon2.getIconHeight()));
+        lblNewLabel_1.setBounds(638, 0, 119, 85);
+        panel.add(lblNewLabel_1);
+        
+        JLabel lblNewLabel_2 = new JLabel("BATTAGLIA NAVALE ");
+        lblNewLabel_2.setForeground(new Color(0, 0, 255));
+        lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 42));
+        lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+        lblNewLabel_2.setBounds(129, 0, 499, 85);
+        panel.add(lblNewLabel_2);
+        
+	    JPanel buttonPanel = new JPanel();
+	    
+        
+   
 
-		setContentPane(contentPane);
+	    JButton multiplayerbutton = new JButton("Multiplayer");
+	    multiplayerbutton.setBackground(new Color(0, 0, 255));
+	    multiplayerbutton.setForeground(new Color(0, 0, 255));
+	    multiplayerbutton.setPreferredSize(new Dimension(170, 50));
+	    multiplayerbutton.setBounds(258, 139, 275, 70);
+	    buttonPanel.add(multiplayerbutton);
+	    
+	    JButton singleplayer = new JButton("Singleplayer");
+	    singleplayer.setBackground(new Color(0, 0, 255));
+	    singleplayer.setForeground(new Color(0, 0, 255));
+	    singleplayer.setPreferredSize(new Dimension(170, 50));
+	    singleplayer.setBounds(258, 237, 275, 70);
+	    buttonPanel.add(singleplayer);
+	    
+	    JButton tutorialbutton = new JButton("Tutorial");
+	    tutorialbutton.setForeground(new Color(0, 0, 255));
+	    tutorialbutton.setBackground(new Color(0, 0, 255));
+	    tutorialbutton.setBounds(258, 340, 275, 70);
+	    tutorialbutton.setPreferredSize(new Dimension(170, 50)); // Set the button size in pixels
+	    buttonPanel.add(tutorialbutton);
+	    
+	    panel.add(buttonPanel, BorderLayout.CENTER);
+	    
+	    
+	    ButtonGroup languageGroup = new ButtonGroup();
+	    JPanel radioButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+	    radioButtonPanel.setBounds(0, 461, 757, 31);
+	    buttonPanel.add(radioButtonPanel);
+	    JRadioButton itaRadioButton = new JRadioButton("ITA");
+	    languageGroup.add(itaRadioButton);
+	    radioButtonPanel.add(itaRadioButton);
+	    
+        JRadioButton engRadioButton = new JRadioButton("ENG");
+        languageGroup.add(engRadioButton);
+        radioButtonPanel.add(engRadioButton);
+	            
+        
+	    
 	}
-
 }
