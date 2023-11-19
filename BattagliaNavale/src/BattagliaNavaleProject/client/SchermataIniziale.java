@@ -5,17 +5,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import java.awt.Color;
 //pagina per loggarsi/registrarsi
 public class SchermataIniziale extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
+	
 	JButton loginButton = new JButton("LOGIN");
 	JButton registerButton = new JButton("REGISTER");
 
@@ -72,6 +77,8 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		titleLabel.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 26));
 		titleLabel.setBounds(62, 6, 354, 75);
 		contentPane.add(titleLabel);
+
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) 
@@ -82,4 +89,5 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 			//gestisci registrazione
 		}
 	}
+	
 }

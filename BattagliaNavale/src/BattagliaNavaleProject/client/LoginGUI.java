@@ -1,7 +1,10 @@
 package BattagliaNavaleProject.client;
 
 import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 public class LoginGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private Image background;
 	private JPanel contentPane;
 
 	/**
@@ -37,6 +41,19 @@ public class LoginGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
+		
+		//vogliamo inserire un'immagine di sfondo
+		
+		ImageIcon backgroundImageIcon = new ImageIcon("../docs/resources/SfondoTest.jpeg");
+        background = backgroundImageIcon.getImage();
+        
 	}
+	
+	@Override
+    public void paint(Graphics g) {
+        super.paint(g);
 
+        // Disegna l'immagine di sfondo
+        g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+    }
 }

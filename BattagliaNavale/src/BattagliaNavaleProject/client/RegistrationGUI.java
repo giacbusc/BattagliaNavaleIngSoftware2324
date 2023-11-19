@@ -1,7 +1,10 @@
 package BattagliaNavaleProject.client;
 
 import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,6 +13,7 @@ public class RegistrationGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private Image background;
 
 	/**
 	 * Launch the application.
@@ -38,6 +42,17 @@ public class RegistrationGUI extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		ImageIcon backgroundImageIcon = new ImageIcon("../docs/resources/SfondoTest.jpeg");
+        background = backgroundImageIcon.getImage();
+        
 	}
+	@Override
+    public void paint(Graphics g) {
+        super.paint(g);
+
+        // Disegna l'immagine di sfondo
+        g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+    }
 
 }

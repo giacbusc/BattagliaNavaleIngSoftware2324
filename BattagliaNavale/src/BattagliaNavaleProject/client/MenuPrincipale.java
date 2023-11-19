@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 
 public class MenuPrincipale extends JFrame {
 	private JPanel panel = new JPanel();
+	
+	private Image background;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run()
@@ -49,6 +51,8 @@ public class MenuPrincipale extends JFrame {
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         JLabel lblNewLabel = new JLabel(scaledIcon);
         
+        
+        
         lblNewLabel.setPreferredSize(new Dimension(60,60));
         lblNewLabel.setBounds(0, 0, 119, 85);
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -78,6 +82,9 @@ public class MenuPrincipale extends JFrame {
 	    buttonPanel.add(multiplayerbutton);
 	    
 	    JButton singleplayer = new JButton("Singleplayer");
+	    JLayeredPane layeredPane = new JLayeredPane();
+	    layeredPane.add(singleplayer, JLayeredPane.POPUP_LAYER);
+        
 	    singleplayer.setBackground(new Color(0, 0, 255));
 	    //singleplayer.setForeground(new Color(0, 0, 255));
 	    singleplayer.setPreferredSize(new Dimension(170, 50));
@@ -107,6 +114,16 @@ public class MenuPrincipale extends JFrame {
         radioButtonPanel.add(engRadioButton);
 	            
         
+	/*ImageIcon backgroundImageIcon = new ImageIcon("../docs/resources/SfondoTest.jpeg");
+    background = backgroundImageIcon.getImage();
+    */
 	    
 	}
+	/*@Override
+    public void paint(Graphics g) {
+        super.paint(g);
+
+        // Disegna l'immagine di sfondo
+        g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+    }*/
 }
