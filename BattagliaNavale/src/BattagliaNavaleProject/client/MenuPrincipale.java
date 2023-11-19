@@ -1,7 +1,12 @@
 package BattagliaNavaleProject.client;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 
 public class MenuPrincipale extends JFrame {
@@ -25,7 +30,7 @@ public class MenuPrincipale extends JFrame {
 	}
 
 	
-	public MenuPrincipale() 
+	public MenuPrincipale() throws IOException 
 	{
 	   
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,10 +39,17 @@ public class MenuPrincipale extends JFrame {
 	    
         panel.setBounds(10, 21, 757, 85);
         setContentPane(panel);
-	    
-	    ImageIcon icon = new ImageIcon("imm.png");
-        JLabel lblNewLabel = new JLabel("LOGO");
-        lblNewLabel.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        
+        
+        ImageIcon icon = new ImageIcon("../docs/resources/Logo.jpeg");
+        Image image = icon.getImage();
+        Image scaledImage = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+
+        // scaled icon
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        JLabel lblNewLabel = new JLabel(scaledIcon);
+        
+        lblNewLabel.setPreferredSize(new Dimension(60,60));
         lblNewLabel.setBounds(0, 0, 119, 85);
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(lblNewLabel);
@@ -57,25 +69,23 @@ public class MenuPrincipale extends JFrame {
         
 	    JPanel buttonPanel = new JPanel();
 	    
-        
-   
 
 	    JButton multiplayerbutton = new JButton("Multiplayer");
 	    multiplayerbutton.setBackground(new Color(0, 0, 255));
-	    multiplayerbutton.setForeground(new Color(0, 0, 255));
+	   // multiplayerbutton.setForeground(new Color(0, 0, 255)); senza questa linea leggiamo la scritta sul bottone
 	    multiplayerbutton.setPreferredSize(new Dimension(170, 50));
 	    multiplayerbutton.setBounds(258, 139, 275, 70);
 	    buttonPanel.add(multiplayerbutton);
 	    
 	    JButton singleplayer = new JButton("Singleplayer");
 	    singleplayer.setBackground(new Color(0, 0, 255));
-	    singleplayer.setForeground(new Color(0, 0, 255));
+	    //singleplayer.setForeground(new Color(0, 0, 255));
 	    singleplayer.setPreferredSize(new Dimension(170, 50));
 	    singleplayer.setBounds(258, 237, 275, 70);
 	    buttonPanel.add(singleplayer);
 	    
 	    JButton tutorialbutton = new JButton("Tutorial");
-	    tutorialbutton.setForeground(new Color(0, 0, 255));
+	    //tutorialbutton.setForeground(new Color(0, 0, 255));
 	    tutorialbutton.setBackground(new Color(0, 0, 255));
 	    tutorialbutton.setBounds(258, 340, 275, 70);
 	    tutorialbutton.setPreferredSize(new Dimension(170, 50)); // Set the button size in pixels
