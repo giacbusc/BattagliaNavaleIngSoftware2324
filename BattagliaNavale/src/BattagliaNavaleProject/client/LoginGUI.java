@@ -24,7 +24,6 @@ import javax.swing.border.EmptyBorder;
 public class LoginGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private Image background;
 	private JPanel contentPane;
 	 private JLabel usernameLabel, passwordLabel;
 	    private JTextField usernameField;
@@ -54,16 +53,18 @@ public class LoginGUI extends JFrame {
 	public LoginGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
 		
-		//vogliamo inserire un'immagine di sfondo
+		final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		
-		ImageIcon backgroundImageIcon = new ImageIcon("../docs/resources/SfondoTest.jpeg");
-        background = backgroundImageIcon.getImage();
-        contentPane.setLayout(null);
+		JPanel backgroundPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(sfondo.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        getContentPane().add(backgroundPanel);
+		backgroundPanel.setLayout(null);
         
         
         JLabel lblNewLabel_2 = new JLabel("Welcome Back");
@@ -72,7 +73,7 @@ public class LoginGUI extends JFrame {
         lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 30));
         lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
         
-		contentPane.add(lblNewLabel_2);
+		backgroundPanel.add(lblNewLabel_2);
 		
 		
 		setTitle("Login");
@@ -82,24 +83,24 @@ public class LoginGUI extends JFrame {
 
         usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds(30, 90, 80, 25);
-        getContentPane().add(usernameLabel);
+        backgroundPanel.add(usernameLabel);
 
         usernameField = new JTextField();
         usernameField.setBounds(110, 90, 150, 25);
-        getContentPane().add(usernameField);
+        backgroundPanel.add(usernameField);
 
         passwordLabel = new JLabel("Password:");
         passwordLabel.setBounds(30, 130, 80, 25);
-        getContentPane().add(passwordLabel);
+        backgroundPanel.add(passwordLabel);
 
         passwordField = new JPasswordField();
         passwordField.setBounds(110, 130, 150, 25);
-        getContentPane().add(passwordField);
+        backgroundPanel.add(passwordField);
 
         loginButton = new JButton("Login");
         loginButton.setBounds(110, 180, 80, 25);
         //loginButton.addActionListener(this);
-        getContentPane().add(loginButton);
+        backgroundPanel.add(loginButton);
     	
 		loginButton.addActionListener(new ActionListener() {
 		    @Override
@@ -121,7 +122,7 @@ public class LoginGUI extends JFrame {
         
         JButton backButton = new JButton("Back");
         backButton.setBounds(391, 232, 85, 21);
-        contentPane.add(backButton);
+        backgroundPanel.add(backButton);
         backButton.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
