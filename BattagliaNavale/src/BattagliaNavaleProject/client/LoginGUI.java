@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -61,13 +63,14 @@ public class LoginGUI extends JFrame {
 		
 		ImageIcon backgroundImageIcon = new ImageIcon("../docs/resources/SfondoTest.jpeg");
         background = backgroundImageIcon.getImage();
+        contentPane.setLayout(null);
         
         
         JLabel lblNewLabel_2 = new JLabel("Welcome Back");
+        lblNewLabel_2.setBounds(0, 0, 499, 85);
         lblNewLabel_2.setForeground(new Color(0, 0, 255));
         lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 30));
         lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_2.setBounds(0, 0, 499, 85);
         
 		contentPane.add(lblNewLabel_2);
 		
@@ -76,7 +79,6 @@ public class LoginGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 300);
         setLocationRelativeTo(null);
-        getContentPane().setLayout(null);
 
         usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds(30, 90, 80, 25);
@@ -98,6 +100,38 @@ public class LoginGUI extends JFrame {
         loginButton.setBounds(110, 180, 80, 25);
         //loginButton.addActionListener(this);
         getContentPane().add(loginButton);
+    	
+		loginButton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        // action to perform when the button is used
+		    	MenuPrincipale menu;
+				try {
+					menu = new MenuPrincipale(); 
+					menu.setVisible(true);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	           
+	             
+	             dispose(); 
+		    }
+		});
+        
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(391, 232, 85, 21);
+        contentPane.add(backButton);
+        backButton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        // Azioni da eseguire quando il pulsante viene premuto
+		    	SchermataIniziale back = new SchermataIniziale();
+	             back.setVisible(true);
+	             
+	             dispose(); 
+		    }
+		});
     }
 
     public void actionPerformed(ActionEvent e) {

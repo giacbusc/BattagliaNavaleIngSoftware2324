@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
@@ -80,13 +81,27 @@ public class RegistrationGUI extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnNewButton = new JButton("save");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		JButton saveButton = new JButton("save");
+		saveButton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        // action to perform when the button is used
+		    	MenuPrincipale menu;
+				try {
+					menu = new MenuPrincipale(); 
+					menu.setVisible(true);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	           
+	             
+	             dispose(); 
+		    }
 		});
-		btnNewButton.setBounds(313, 221, 85, 21);
-		contentPane.add(btnNewButton);
+		
+		saveButton.setBounds(313, 221, 85, 21);
+		contentPane.add(saveButton);
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(119, 187, 163, 19);
@@ -105,6 +120,21 @@ public class RegistrationGUI extends JFrame {
 		textField_3.setBounds(119, 101, 163, 19);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
+		
+		JButton backbutton = new JButton("Back");
+        backbutton.setBounds(391, 232, 85, 21);
+        contentPane.add(backbutton);
+        backbutton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        // Azioni da eseguire quando il pulsante viene premuto
+		    	SchermataIniziale back = new SchermataIniziale();
+	             back.setVisible(true);
+	             
+	             dispose(); 
+		    }
+		});
+       
 		
 		ImageIcon backgroundImageIcon = new ImageIcon("../docs/resources/SfondoTest.jpeg");
         background = backgroundImageIcon.getImage();

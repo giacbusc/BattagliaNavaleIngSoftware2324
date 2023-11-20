@@ -46,7 +46,7 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 	public SchermataIniziale() 
 	{	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		setBounds(100,100,450,300);
 		
 		
 		contentPane = new JPanel();
@@ -61,12 +61,32 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		loginButton.addActionListener(this);
 		loginButton.setBounds(144, 82, 166, 70);
 		contentPane.add(loginButton);
+		loginButton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        // Azioni da eseguire quando il pulsante viene premuto
+		    	LoginGUI login = new LoginGUI();
+	             login.setVisible(true);
+	             
+	             dispose(); 
+		    }
+		});
+       
 		
 		
 		registerButton.addActionListener(this);
 		registerButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		registerButton.setBounds(144, 181, 166, 70);
 		contentPane.add(registerButton);
+		registerButton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        // Azioni da eseguire quando il pulsante viene premuto
+		    	RegistrationGUI registrationGUI = new RegistrationGUI();
+	            registrationGUI.setVisible(true);
+	             dispose(); 
+		    }
+		});
 		
 		JLabel infoLabel = new JLabel("New player? Start here!");
 		infoLabel.setFont(new Font("Shree Devanagari 714", Font.ITALIC, 11));
@@ -77,17 +97,18 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		titleLabel.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 26));
 		titleLabel.setBounds(62, 6, 354, 75);
 		contentPane.add(titleLabel);
+		
 
 		
 	}
-	
-	public void actionPerformed(ActionEvent e) 
-	{
-		if (e.getSource() == loginButton) {
-			//gestisci login
-		} else if (e.getSource() == registerButton) {
-			//gestisci registrazione
-		}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
-	
 }
+
+	
+	
+	
