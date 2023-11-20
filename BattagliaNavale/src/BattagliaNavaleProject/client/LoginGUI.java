@@ -9,6 +9,11 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,6 +25,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import BattagliaNavaleProject.server.ConnectionDb;
 
 public class LoginGUI extends JFrame {
 
@@ -105,7 +112,9 @@ public class LoginGUI extends JFrame {
 		loginButton.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
-		        // action to perform when the button is used
+		    	 String user = usernameField.getText();
+		    	 String pw = passwordField.getText();
+	              VerificaUtente(user,pw);
 		    	MenuPrincipale menu;
 				try {
 					menu = new MenuPrincipale(); 
@@ -117,6 +126,29 @@ public class LoginGUI extends JFrame {
 	           
 	             
 	             dispose(); 
+		    }
+
+		    private void VerificaUtente(String nickname,String password) {
+		         // Prepara la query SQL
+		        
+		            try {
+		                String sql = "SELECT * FROM utente WHERE nickname = ? AND password = ?";
+		                Connection conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "1234");
+		                PreparedStatement pstmt = conn.prepareStatement(sql);
+		                pstmt.setString(1, nickname);
+		                pstmt.setString(2, password);
+
+		                ResultSet rs = pstmt.executeQuery();
+		                if (rs.next()) {
+		                    // Utente trovato
+		                    System.out.println("Utente trovato!");
+		                } else {
+		                    // Utente non trovato
+		                    System.out.println("Utente non trovato!");
+		                }
+		            } catch (SQLException e) {
+		                e.printStackTrace();
+		            }
 		    }
 		});
         
