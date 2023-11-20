@@ -100,7 +100,7 @@ public class RegistrationGUI extends JFrame {
 		    }
 		});
 		
-		saveButton.setBounds(313, 221, 85, 21);
+		saveButton.setBounds(38, 232, 85, 21);
 		contentPane.add(saveButton);
 		
 		textField_2 = new JTextField();
@@ -122,7 +122,7 @@ public class RegistrationGUI extends JFrame {
 		textField_3.setColumns(10);
 		
 		JButton backbutton = new JButton("Back");
-        backbutton.setBounds(391, 232, 85, 21);
+        backbutton.setBounds(341, 232, 85, 21);
         contentPane.add(backbutton);
         backbutton.addActionListener(new ActionListener() {
 		    @Override
