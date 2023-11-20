@@ -55,20 +55,21 @@ final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 
         // scaled icon
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
-        JLabel lblNewLabel = new JLabel(scaledIcon);
+        JLabel logoLabel = new JLabel(scaledIcon);
         
         
         
-        lblNewLabel.setPreferredSize(new Dimension(60,60));
-        lblNewLabel.setBounds(0, 0, 119, 85);
-        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        backgroundPanel.add(lblNewLabel);
+        logoLabel.setPreferredSize(new Dimension(60,60));
+        logoLabel.setBounds(0, 0, 119, 85);
+        logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        backgroundPanel.add(logoLabel);
+        
         
         ImageIcon icon2 = new ImageIcon("2.png");
-        JLabel lblNewLabel_1 = new JLabel("foto profilo");
-        lblNewLabel_1.setPreferredSize(new Dimension(icon2.getIconWidth(), icon2.getIconHeight()));
-        lblNewLabel_1.setBounds(638, 0, 119, 85);
-        backgroundPanel.add(lblNewLabel_1);
+        JLabel infoPlayerLabel = new JLabel("");
+        infoPlayerLabel.setPreferredSize(new Dimension(icon2.getIconWidth(), icon2.getIconHeight()));
+        infoPlayerLabel.setBounds(638, 0, 119, 85);
+        backgroundPanel.add(infoPlayerLabel);
         
         JLabel lblNewLabel_2 = new JLabel("BATTAGLIA NAVALE ");
         lblNewLabel_2.setForeground(new Color(0, 128, 255));
