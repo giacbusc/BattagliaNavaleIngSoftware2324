@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
@@ -105,9 +106,9 @@ public class RegistrationGUI extends JFrame {
 					if(verificaCampi() && verificaNomeCognome() && verificaNickname()){
 						if(salvaDati()) {
 							JOptionPane.showMessageDialog(null, "Registration complete!");
-							MenuPrincipale menu;
-							menu = new MenuPrincipale(); 
-							menu.setVisible(true);
+							LoginGUI login;
+							login = new LoginGUI(); 
+							login.setVisible(true);
 							dispose(); 
 						}
 						else 
@@ -128,10 +129,7 @@ public class RegistrationGUI extends JFrame {
 				} catch (SQLException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
-				} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+				}
 	             
 	             
 		    }
@@ -193,17 +191,20 @@ public class RegistrationGUI extends JFrame {
 	private boolean verificaNickname() throws SQLException
 	{
 		ConnectionDb conn = new ConnectionDb();
-		String nickname = nicknameField.getText();
-		String sql = "SELECT nickname FROM UTENTE WHERE nickname = "+"'"+nickname+"'";
-		boolean resultSet = conn.insertQuery(sql);
 		
-		if(resultSet==false) {
-			return true; //true se il nickname non è stato trovato
-		}
-		else 
-		{
-			return false;
-		}
+		String nickname = nicknameField.getText();
+		String sql = "SELECT nickname FROM UTENTE WHERE nickname = ?";
+		PreparedStatement pstmt = conn.getConnection().prepareStatement(sql);
+		pstmt.setString(1, nickname);
+
+		ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+       	 return false;
+         }
+         else 
+ 		{
+ 			return true;
+ 		}
 		
 	}
 	
