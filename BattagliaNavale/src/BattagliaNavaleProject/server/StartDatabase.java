@@ -6,8 +6,8 @@ import org.h2.tools.Server;
 
 public class StartDatabase 
 {
-	public static void main(String[] args) throws SQLException
+	public StartDatabase() throws SQLException
 	{
-		Server server = Server.createTcpServer(args).start();
+		Server server = Server.createTcpServer().start();
 	}
 }
