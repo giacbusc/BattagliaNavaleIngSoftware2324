@@ -8,12 +8,24 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 public class RegistrationGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Image background;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -38,10 +50,61 @@ public class RegistrationGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(135, 206, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//PROVA
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("REGISTRAZIONE");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(143, 0, 163, 55);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("nickname:");
+		lblNewLabel_1.setBounds(38, 143, 76, 20);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("password:");
+		lblNewLabel_2.setBounds(38, 186, 76, 20);
+		contentPane.add(lblNewLabel_2);
+		
+		textField = new JTextField();
+		textField.setBounds(119, 54, 163, 19);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(119, 144, 163, 19);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnNewButton = new JButton("salva");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(313, 221, 85, 21);
+		contentPane.add(btnNewButton);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(119, 187, 163, 19);
+		contentPane.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("nome:");
+		lblNewLabel_3.setBounds(38, 57, 45, 13);
+		contentPane.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("cognome:");
+		lblNewLabel_4.setBounds(38, 104, 65, 13);
+		contentPane.add(lblNewLabel_4);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(119, 101, 163, 19);
+		contentPane.add(textField_3);
+		textField_3.setColumns(10);
 		
 		ImageIcon backgroundImageIcon = new ImageIcon("../docs/resources/SfondoTest.jpeg");
         background = backgroundImageIcon.getImage();
@@ -53,6 +116,6 @@ public class RegistrationGUI extends JFrame {
 
         // Disegna l'immagine di sfondo
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+        
     }
-
 }
