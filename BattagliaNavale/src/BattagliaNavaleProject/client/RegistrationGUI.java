@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
@@ -56,7 +57,7 @@ public class RegistrationGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("REGISTRAZIONE");
+		JLabel lblNewLabel = new JLabel("REGISTRATION");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(143, 0, 163, 55);
@@ -80,24 +81,38 @@ public class RegistrationGUI extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnNewButton = new JButton("salva");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		JButton saveButton = new JButton("save");
+		saveButton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        // action to perform when the button is used
+		    	MenuPrincipale menu;
+				try {
+					menu = new MenuPrincipale(); 
+					menu.setVisible(true);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	           
+	             
+	             dispose(); 
+		    }
 		});
-		btnNewButton.setBounds(313, 221, 85, 21);
-		contentPane.add(btnNewButton);
+		
+		saveButton.setBounds(38, 232, 85, 21);
+		contentPane.add(saveButton);
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(119, 187, 163, 19);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("nome:");
+		JLabel lblNewLabel_3 = new JLabel("Name:");
 		lblNewLabel_3.setBounds(38, 57, 45, 13);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("cognome:");
+		JLabel lblNewLabel_4 = new JLabel("Surname:");
 		lblNewLabel_4.setBounds(38, 104, 65, 13);
 		contentPane.add(lblNewLabel_4);
 		
@@ -105,6 +120,21 @@ public class RegistrationGUI extends JFrame {
 		textField_3.setBounds(119, 101, 163, 19);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
+		
+		JButton backbutton = new JButton("Back");
+        backbutton.setBounds(341, 232, 85, 21);
+        contentPane.add(backbutton);
+        backbutton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        // Azioni da eseguire quando il pulsante viene premuto
+		    	SchermataIniziale back = new SchermataIniziale();
+	             back.setVisible(true);
+	             
+	             dispose(); 
+		    }
+		});
+       
 		
 		ImageIcon backgroundImageIcon = new ImageIcon("../docs/resources/SfondoTest.jpeg");
         background = backgroundImageIcon.getImage();

@@ -82,8 +82,7 @@ public class MenuPrincipale extends JFrame {
 	    buttonPanel.add(multiplayerbutton);
 	    
 	    JButton singleplayer = new JButton("Singleplayer");
-	    JLayeredPane layeredPane = new JLayeredPane();
-	    layeredPane.add(singleplayer, JLayeredPane.POPUP_LAYER);
+	   
         
 	    singleplayer.setBackground(new Color(0, 0, 255));
 	    //singleplayer.setForeground(new Color(0, 0, 255));
