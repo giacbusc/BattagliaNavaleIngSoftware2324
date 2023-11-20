@@ -82,7 +82,7 @@ final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 	    multiplayerbutton.setBackground(new Color(0, 0, 255));
 	   // multiplayerbutton.setForeground(new Color(0, 0, 255)); senza questa linea leggiamo la scritta sul bottone
 	    multiplayerbutton.setPreferredSize(new Dimension(170, 50));
-	    multiplayerbutton.setBounds(258, 139, 275, 70);
+	    multiplayerbutton.setBounds(258, 124, 275, 70);
 	    backgroundPanel.add(multiplayerbutton);
 	    
 	    JButton singleplayer = new JButton("Singleplayer");
@@ -91,13 +91,13 @@ final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 	    singleplayer.setBackground(new Color(0, 0, 255));
 	    //singleplayer.setForeground(new Color(0, 0, 255));
 	    singleplayer.setPreferredSize(new Dimension(170, 50));
-	    singleplayer.setBounds(258, 237, 275, 70);
+	    singleplayer.setBounds(258, 247, 275, 70);
 	    backgroundPanel.add(singleplayer);
 	    
 	    JButton tutorialbutton = new JButton("Tutorial");
 	    //tutorialbutton.setForeground(new Color(0, 0, 255));
 	    tutorialbutton.setBackground(new Color(0, 0, 255));
-	    tutorialbutton.setBounds(258, 340, 275, 70);
+	    tutorialbutton.setBounds(258, 379, 275, 70);
 	    tutorialbutton.setPreferredSize(new Dimension(170, 50)); // Set the button size in pixels
 	    backgroundPanel.add(tutorialbutton);
 	    
@@ -111,6 +111,21 @@ final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
         JRadioButton engRadioButton = new JRadioButton("ENG");
         languageGroup.add(engRadioButton);
         backgroundPanel.add(engRadioButton);
+        
+        JLabel lblNewLabel_3 = new JLabel("Don't play alone, it's funnier with friends!");
+        lblNewLabel_3.setBounds(258, 193, 275, 19);
+        lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+        backgroundPanel.add(lblNewLabel_3);
+        
+        JLabel lblNewLabel_4 = new JLabel("Ready to play?");
+        lblNewLabel_4.setBounds(258, 315, 275, 19);
+        lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+        backgroundPanel.add(lblNewLabel_4);
+        
+        JLabel lblNewLabel_5 = new JLabel("Learn how to play with this tutorial");
+        lblNewLabel_5.setBounds(258, 447, 275, 19);
+        lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
+        backgroundPanel.add(lblNewLabel_5);
 	            
         
 	}
