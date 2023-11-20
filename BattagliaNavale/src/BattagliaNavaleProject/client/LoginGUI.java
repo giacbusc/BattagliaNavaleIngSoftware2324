@@ -1,12 +1,22 @@
 package BattagliaNavaleProject.client;
 
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class LoginGUI extends JFrame {
@@ -14,6 +24,11 @@ public class LoginGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private Image background;
 	private JPanel contentPane;
+	 private JLabel usernameLabel, passwordLabel;
+	    private JTextField usernameField;
+	    private JPasswordField passwordField;
+	    private JButton loginButton;
+
 
 	/**
 	 * Launch the application.
@@ -41,19 +56,70 @@ public class LoginGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		//PROVA
+		
 		//vogliamo inserire un'immagine di sfondo
 		
 		ImageIcon backgroundImageIcon = new ImageIcon("../docs/resources/SfondoTest.jpeg");
         background = backgroundImageIcon.getImage();
         
+        
+        JLabel lblNewLabel_2 = new JLabel("Welcome Back");
+        lblNewLabel_2.setForeground(new Color(0, 0, 255));
+        lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 30));
+        lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+        lblNewLabel_2.setBounds(0, 0, 499, 85);
+        
+		contentPane.add(lblNewLabel_2);
+		
+		
+		setTitle("Login");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(500, 300);
+        setLocationRelativeTo(null);
+        setLayout(null);
+
+        usernameLabel = new JLabel("Username:");
+        usernameLabel.setBounds(30, 90, 80, 25);
+        add(usernameLabel);
+
+        usernameField = new JTextField();
+        usernameField.setBounds(110, 90, 150, 25);
+        add(usernameField);
+
+        passwordLabel = new JLabel("Password:");
+        passwordLabel.setBounds(30, 130, 80, 25);
+        add(passwordLabel);
+
+        passwordField = new JPasswordField();
+        passwordField.setBounds(110, 130, 150, 25);
+        add(passwordField);
+
+        loginButton = new JButton("Login");
+        loginButton.setBounds(110, 180, 80, 25);
+        //loginButton.addActionListener(this);
+        add(loginButton);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String username = usernameField.getText();
+        String password = new String(passwordField.getPassword());
+
+        // Simulazione di credenziali corrette
+        if (username.equals("admin") && password.equals("password")) {
+            JOptionPane.showMessageDialog(this, "Accesso riuscito!");
+            // Puoi aggiungere qui la logica per aprire una nuova finestra o eseguire altre azioni dopo il login
+        } else {
+            JOptionPane.showMessageDialog(this, "Credenziali errate", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
 	}
 	
-	@Override
+	/*@Override
     public void paint(Graphics g) {
         super.paint(g);
 
         // Disegna l'immagine di sfondo
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
     }
+    */
+    
 }
