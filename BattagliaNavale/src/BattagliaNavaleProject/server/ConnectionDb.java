@@ -6,26 +6,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.h2.tools.Server;
+
 public class ConnectionDb 
 {
-	
-
-	public static void main(String[] args)
+	public ConnectionDb()
 	{
 		String jdbcURL = "jdbc:h2:tcp://localhost/~/test";
 		String username = "sa";
 		String password = "1234";
 		try {
+			Server server = Server.createTcpServer().start();
 			Connection connection = DriverManager.getConnection(jdbcURL, username, password);
-			System.out.println("Connected to H2 database");
-			String sql = "INSERT INTO UTENTE VALUES('Filippo','Ciancio','Pippo90','lemiebimbevittime')";
-			String sql2="INSERT INTO PARTITE (GIOCATORE1,GIOCATORE2,VINCITORE) VALUES ('Martin90','Pippo90','Martin90')";
-			
 			Statement statement = connection.createStatement();
-			boolean resultSet = statement.execute(sql2);
-			
-			
-			
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
