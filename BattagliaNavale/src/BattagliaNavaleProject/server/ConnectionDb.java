@@ -18,10 +18,11 @@ public class ConnectionDb
 		try {
 			Connection connection = DriverManager.getConnection(jdbcURL, username, password);
 			System.out.println("Connected to H2 database");
-			String sql = "INSERT INTO UTENTE VALUES('Martin','Espinosa','Martin90','lemiebimbevittime')";
+			String sql = "INSERT INTO UTENTE VALUES('Filippo','Ciancio','Pippo90','lemiebimbevittime')";
+			String sql2="INSERT INTO PARTITE (GIOCATORE1,GIOCATORE2,VINCITORE) VALUES ('Martin90','Pippo90','Martin90')";
 			
 			Statement statement = connection.createStatement();
-			boolean resultSet = statement.execute(sql);
+			boolean resultSet = statement.execute(sql2);
 			
 			
 			
