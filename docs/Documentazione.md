@@ -54,6 +54,9 @@ A vincere è il primo giocatore che affonda tutte le navi dell'avversario.
 
 ## 1. Project plan
 ### 1.1 Background e Introduzione
+Il nostro lavoro è iniziato con un'attenta analisi dei requisiti, che è stata il fulcro del primo incontro. I requisiti non sono dettati da un finanziatore o da utenti esterni, ma sono stati identificati dai membri del team. <br>
+Durante la prima riunione operativa si è deciso di sviluppare un softsware per un gioco, chiamato "Battaglia Navale", il quale verrà proposto agli utenti in duplice modalità: single player (contro la CPU) e multiplayer, con la connessione di più client tramite server. A seguito verrano illustrate nel dettaglio le funzionalità che verranno implementate e quelle che abbiamo considerato come possibili sviluppi futuri dell'app (1.2 modello MoSCoW) <br>
+Ci siamo posti come deadline per il primo prototipo il 30/12/2023 mentre per la versione finale il 18/01/2024.<br>
 
 ### 1.2 Modello di processo
 La fase iniziale dello sviluppo è stata dedicata alla definizione dei requisiti del software richiesti da parte del committente. Dal momento che la produzione del gioco non è stata commissionata bensì è stata un'idea spontanea, i requisiti sono stati definiti in base a quello che era ritenuto importante per il team e alla conoscenza del gioco di ruolo dal quale il software ha origine.<br>
@@ -174,6 +177,7 @@ Non vi è stata una componente di aiuto esterno nella progettazione e nello svil
 
 ### 1.8 Metodi e tecniche
 
+
 ### 1.9 Garanzie di qualità
 Si punta a sviluppare un software che rispetti i parametri di qualità indicati dal modello di McCall:
 - Correttezza
@@ -189,12 +193,15 @@ Oltre a rispettare i *quality assurance* indicati dal modello McCall, si vuole a
 
 ### 1.10 Package di lavoro
 
+
 ### 1.11 Risorse
 Per l'utente non è richiesta una particolare dotazione se non un computer ed una connessione ad Internet funzionante.
 
 ### 1.12 Budget e pianificazione
 
+
 ### 1.13 Cambiamenti
+I cambiamenti vengono discussi tra i membri del team e poi effettuati insieme, possono essere suggeriti anche dagli utenti finali attraverso i loro feedback, oltre che dai membri stessi. Ad ogni versione rilasciata verranno rilasciati i documenti relativi. 
 
 ### 1.14 Consegna
 Una volta pronta la versione finale, prima della pubblicazione, verrà inviata una segnalazione tramite issue a tutti i membri del team in modo tale da poter effettuare un'ultima revisione prima della pubblicazione.
