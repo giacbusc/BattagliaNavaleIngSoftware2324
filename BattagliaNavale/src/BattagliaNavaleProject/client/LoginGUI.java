@@ -133,17 +133,4 @@ public class LoginGUI extends JFrame {
 		    }
 		});
     }
-
-    public void actionPerformed(ActionEvent e) {
-        String username = usernameField.getText();
-        String password = new String(passwordField.getPassword());
-
-        // Simulazione di credenziali corrette
-        if (username.equals("admin") && password.equals("password")) {
-            JOptionPane.showMessageDialog(this, "Accesso riuscito!");
-            // Puoi aggiungere qui la logica per aprire una nuova finestra o eseguire altre azioni dopo il login
-        } else {
-            JOptionPane.showMessageDialog(this, "Credenziali errate", "Errore", JOptionPane.ERROR_MESSAGE);
-        }
-	}
 }
