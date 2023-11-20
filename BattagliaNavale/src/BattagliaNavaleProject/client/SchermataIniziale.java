@@ -4,22 +4,17 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
-
 import javax.swing.JLabel;
 import java.awt.Color;
+
 //pagina per loggarsi/registrarsi
 public class SchermataIniziale extends JFrame implements ActionListener {
-
-	private JPanel contentPane;
 	
 	JButton loginButton = new JButton("LOGIN");
 	JButton registerButton = new JButton("REGISTER");
@@ -58,12 +53,15 @@ public class SchermataIniziale extends JFrame implements ActionListener {
             }
         };
         getContentPane().add(backgroundPanel);
-		backgroundPanel.setLayout(null);
+        backgroundPanel.setLayout(null);
+        
+		loginButton.setBounds(128, 60, 166, 62);
 		
 		
-		loginButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		loginButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 		loginButton.addActionListener(this);
-		loginButton.setBounds(144, 82, 166, 70);
+		loginButton.setBackground(new Color(0, 0, 0, 0));
+		loginButton.setOpaque(false);
 		backgroundPanel.add(loginButton);
 		loginButton.addActionListener(new ActionListener() {
 		    @Override
@@ -75,12 +73,14 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 	             dispose(); 
 		    }
 		});
+		registerButton.setBounds(128, 163, 166, 62);
        
 		
 		
 		registerButton.addActionListener(this);
-		registerButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		registerButton.setBounds(144, 181, 166, 70);
+		registerButton.setFont(new Font("Tahoma", Font.BOLD, 18));
+		registerButton.setBackground(new Color(0, 0, 0, 0));
+		registerButton.setOpaque(false);
 		backgroundPanel.add(registerButton);
 		registerButton.addActionListener(new ActionListener() {
 		    @Override
@@ -93,13 +93,14 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		});
 		
 		JLabel infoLabel = new JLabel("New player? Start here!");
-		infoLabel.setFont(new Font("Shree Devanagari 714", Font.ITALIC, 11));
-		infoLabel.setBounds(165, 164, 132, 16);
+		infoLabel.setBounds(128, 146, 166, 16);
+		infoLabel.setFont(new Font("Tahoma", Font.ITALIC, 15));
 		backgroundPanel.add(infoLabel);
 		
 		JLabel titleLabel = new JLabel("Welcome in BattleShip game");
-		titleLabel.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 26));
-		titleLabel.setBounds(62, 6, 354, 75);
+		titleLabel.setBounds(55, 10, 354, 40);
+		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
+		titleLabel.setForeground(new Color(0, 128, 255));
 		backgroundPanel.add(titleLabel);
 		
 
