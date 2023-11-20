@@ -8,12 +8,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JOptionPane;
+
+import BattagliaNavaleProject.server.ConnectionDb;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
@@ -24,10 +30,10 @@ import javax.swing.SpringLayout;
 public class RegistrationGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField nameField;
+	private JTextField nicknameField;
+	private JTextField passwordField;
+	private JTextField surnameField;
 
 	/**
 	 * Launch the application.
@@ -64,70 +70,89 @@ public class RegistrationGUI extends JFrame {
         getContentPane().add(backgroundPanel);
 		backgroundPanel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Registration");
-		lblNewLabel.setForeground(new Color(0, 0, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(143, 0, 163, 55);
-		backgroundPanel.add(lblNewLabel);
+		JLabel titleLabel = new JLabel("Registration");
+		titleLabel.setForeground(new Color(0, 0, 255));
+		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setBounds(143, 0, 163, 55);
+		backgroundPanel.add(titleLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("nickname:");
-		lblNewLabel_1.setBounds(38, 143, 76, 20);
-		backgroundPanel.add(lblNewLabel_1);
+		JLabel nicknameLabel = new JLabel("nickname:");
+		nicknameLabel.setBounds(38, 143, 76, 20);
+		backgroundPanel.add(nicknameLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("password:");
-		lblNewLabel_2.setBounds(38, 186, 76, 20);
-		backgroundPanel.add(lblNewLabel_2);
+		JLabel passwordLabel = new JLabel("password:");
+		passwordLabel.setBounds(38, 186, 76, 20);
+		backgroundPanel.add(passwordLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(119, 54, 163, 19);
-		backgroundPanel.add(textField);
-		textField.setColumns(10);
+		nameField = new JTextField();
+		nameField.setBounds(119, 54, 163, 19);
+		backgroundPanel.add(nameField);
+		nameField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(119, 144, 163, 19);
-		backgroundPanel.add(textField_1);
-		textField_1.setColumns(10);
+		nicknameField = new JTextField();
+		nicknameField.setBounds(119, 144, 163, 19);
+		backgroundPanel.add(nicknameField);
+		nicknameField.setColumns(10);
 		
 		JButton saveButton = new JButton("save");
 		saveButton.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		        // action to perform when the button is used
-		    	MenuPrincipale menu;
-				try {
-					menu = new MenuPrincipale(); 
-					menu.setVisible(true);
-				} catch (IOException e1) {
+		    	
+		    	try {
+					if(verificaCampi() && verificaNomeCognome() && verificaNickname()){
+						if(salvaDati()) {
+							JOptionPane.showMessageDialog(null, "Registration complete!");
+							MenuPrincipale menu;
+							menu = new MenuPrincipale(); 
+							menu.setVisible(true);
+							dispose(); 
+						}
+						else 
+						{
+							JOptionPane.showMessageDialog(null, "Incorrect data entered, please re-enter it");
+						}
+					}
+					else {
+							JOptionPane.showMessageDialog(null, "Incorrect data entered, please re-enter it");
+					}
+						
+
+					
+				} catch (SQLException e2) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-	           
+					e2.printStackTrace();
+				} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	             
-	             dispose(); 
+	             
 		    }
 		});
 		
 		saveButton.setBounds(10, 232, 85, 21);
 		backgroundPanel.add(saveButton);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(119, 187, 163, 19);
-		backgroundPanel.add(textField_2);
-		textField_2.setColumns(10);
+		passwordField = new JTextField();
+		passwordField.setBounds(119, 187, 163, 19);
+		backgroundPanel.add(passwordField);
+		passwordField.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("Name:");
-		lblNewLabel_3.setBounds(38, 57, 45, 13);
-		backgroundPanel.add(lblNewLabel_3);
+		JLabel nameLabel = new JLabel("Name:");
+		nameLabel.setBounds(38, 57, 45, 13);
+		backgroundPanel.add(nameLabel);
 		
-		JLabel lblNewLabel_4 = new JLabel("Surname:");
-		lblNewLabel_4.setBounds(38, 104, 65, 13);
-		backgroundPanel.add(lblNewLabel_4);
+		JLabel surnameLabel = new JLabel("Surname:");
+		surnameLabel.setBounds(38, 104, 65, 13);
+		backgroundPanel.add(surnameLabel);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(119, 101, 163, 19);
-		backgroundPanel.add(textField_3);
-		textField_3.setColumns(10);
+		surnameField = new JTextField();
+		surnameField.setBounds(119, 101, 163, 19);
+		backgroundPanel.add(surnameField);
+		surnameField.setColumns(10);
 		
 		JButton backbutton = new JButton("Back");
         backbutton.setBounds(341, 232, 85, 21);
@@ -143,5 +168,47 @@ public class RegistrationGUI extends JFrame {
 		    }
 		});
         
+	}
+	
+	private boolean verificaCampi(){
+		if(nameField.getText().isEmpty() || surnameField.getText().isEmpty() || nicknameField.getText().isEmpty() || passwordField.getText().isEmpty()){
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private boolean verificaNomeCognome(){
+		if(!nameField.getText().matches("[a-zA-Z]+") || !surnameField.getText().matches("[a-zA-Z]+")) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private boolean verificaNickname() throws SQLException
+	{
+		ConnectionDb conn = new ConnectionDb();
+		String nickname = nicknameField.getText();
+		String sql = "SELECT nickname FROM UTENTI WHERE nickname = "+nickname;
+		ResultSet resultSet = conn.insertQuery(sql);
+		
+		boolean nicknameExists = resultSet.next(); //true se il nickname esiste
+		
+		return !nicknameExists; //ritorna true se il nickname non esiste nel database
+	}
+	
+	private boolean salvaDati() throws SQLException
+	{
+		String name = nameField.getText();
+		String surname = surnameField.getText();
+		String nickname = nicknameField.getText();
+		String password = passwordField.getText();
+		String sql = "INSERT INTO UTENTI VALUES ('"+name+"','"+surname+"','"+"','"+nickname+"','"+password+"'";
+	
+		ConnectionDb conn = new ConnectionDb();
+		ResultSet resultSet = conn.insertQuery(sql);
+		return true;
+		
 	}
 }

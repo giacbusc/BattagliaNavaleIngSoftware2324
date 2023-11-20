@@ -10,18 +10,29 @@ import org.h2.tools.Server;
 
 public class ConnectionDb 
 {
+	private String jdbcURL = "jdbc:h2:tcp://localhost/~/test";
+	private String username = "sa";
+	private String password = "1234";
 	public ConnectionDb()
 	{
-		String jdbcURL = "jdbc:h2:tcp://localhost/~/test";
-		String username = "sa";
-		String password = "1234";
+		
 		try {
 			Server server = Server.createTcpServer().start();
-			Connection connection = DriverManager.getConnection(jdbcURL, username, password);
-			Statement statement = connection.createStatement();
+			
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public ResultSet insertQuery(String sql) throws SQLException
+	{
+		Connection connection = DriverManager.getConnection(jdbcURL, username, password);
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(sql);
+		statement.close();
+		connection.close();
+		return resultSet;
+		
 	}
 }
