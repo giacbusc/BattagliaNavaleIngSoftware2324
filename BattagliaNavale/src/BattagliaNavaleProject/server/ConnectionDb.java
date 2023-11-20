@@ -24,14 +24,18 @@ public class ConnectionDb
 			e.printStackTrace();
 		}
 	}
-	
-	public ResultSet insertQuery(String sql) throws SQLException
+	public Connection getConnection() throws SQLException
+	 {
+	  Connection connection = DriverManager.getConnection(jdbcURL, username, password);
+	  return connection;
+	 }
+	public boolean insertQuery(String sql) throws SQLException
 	{
 		Connection connection = DriverManager.getConnection(jdbcURL, username, password);
 		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(sql);
-		statement.close();
-		connection.close();
+		boolean resultSet = statement.execute(sql);
+		//statement.close();
+		//connection.close();
 		return resultSet;
 		
 	}

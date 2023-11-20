@@ -1,11 +1,9 @@
 package BattagliaNavaleProject.client;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -24,8 +22,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-
 import BattagliaNavaleProject.server.ConnectionDb;
 
 public class LoginGUI extends JFrame {
@@ -114,44 +110,53 @@ public class LoginGUI extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		    	 String user = usernameField.getText();
 		    	 String pw = passwordField.getText();
-	              VerificaUtente(user,pw);
-		    	MenuPrincipale menu;
-				try {
-					menu = new MenuPrincipale(); 
-					menu.setVisible(true);
-				} catch (IOException e1) {
+	              try {
+					VerificaUtente(user,pw);
+				} catch (IOException e2) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e2.printStackTrace();
 				}
-	           
-	             
-	             dispose(); 
+
 		    }
 
-		    private void VerificaUtente(String nickname,String password) {
+		    private void VerificaUtente(String nickname,String password) throws IOException {
 		         // Prepara la query SQL
 		        
 		            try {
-		                String sql = "SELECT * FROM utente WHERE nickname = ? AND password = ?";
-		                Connection conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "1234");
-		                PreparedStatement pstmt = conn.prepareStatement(sql);
+		            	ConnectionDb conn1 = new ConnectionDb();
+		            	String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";
+		                PreparedStatement pstmt = conn1.getConnection().prepareStatement(sql);
 		                pstmt.setString(1, nickname);
 		                pstmt.setString(2, password);
 
 		                ResultSet rs = pstmt.executeQuery();
-		                if (rs.next()) {
-		                    // Utente trovato
-		                    System.out.println("Utente trovato!");
-		                } else {
-		                    // Utente non trovato
-		                    System.out.println("Utente non trovato!");
+		                if (rs.next() && verificaCampi()) 
+		                { 
+		                	JOptionPane.showMessageDialog(null, "Login complete!");
+							MenuPrincipale menu;
+							menu = new MenuPrincipale(); 
+							menu.setVisible(true);
+							dispose(); 
+		                } 
+		                else {
+		                	JOptionPane.showMessageDialog(null, "Incorrect data entered, please re-enter it");
+		                	usernameField.setText("");
+							passwordField.setText("");
 		                }
 		            } catch (SQLException e) {
 		                e.printStackTrace();
 		            }
 		    }
+		    private boolean verificaCampi(){
+			if(usernameField.getText().isEmpty() || passwordField.getText().isEmpty()){
+				return false;
+			}
+			
+			return true;
+		}
 		});
         
+		
         JButton backButton = new JButton("Back");
         backButton.setBounds(391, 232, 85, 21);
         backgroundPanel.add(backButton);

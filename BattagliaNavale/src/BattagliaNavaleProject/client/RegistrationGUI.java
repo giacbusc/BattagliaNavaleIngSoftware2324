@@ -112,7 +112,11 @@ public class RegistrationGUI extends JFrame {
 						}
 						else 
 						{
-							JOptionPane.showMessageDialog(null, "Incorrect data entered, please re-enter it");
+							JOptionPane.showMessageDialog(null, "Incorrect data entered, please re-enter it!!!");
+							nameField.setText("");
+							surnameField.setText("");
+							nicknameField.setText("");
+							passwordField.setText("");
 						}
 					}
 					else {
@@ -190,12 +194,17 @@ public class RegistrationGUI extends JFrame {
 	{
 		ConnectionDb conn = new ConnectionDb();
 		String nickname = nicknameField.getText();
-		String sql = "SELECT nickname FROM UTENTI WHERE nickname = "+nickname;
-		ResultSet resultSet = conn.insertQuery(sql);
+		String sql = "SELECT nickname FROM UTENTE WHERE nickname = "+"'"+nickname+"'";
+		boolean resultSet = conn.insertQuery(sql);
 		
-		boolean nicknameExists = resultSet.next(); //true se il nickname esiste
+		if(resultSet==false) {
+			return true; //true se il nickname non è stato trovato
+		}
+		else 
+		{
+			return false;
+		}
 		
-		return !nicknameExists; //ritorna true se il nickname non esiste nel database
 	}
 	
 	private boolean salvaDati() throws SQLException
@@ -204,10 +213,10 @@ public class RegistrationGUI extends JFrame {
 		String surname = surnameField.getText();
 		String nickname = nicknameField.getText();
 		String password = passwordField.getText();
-		String sql = "INSERT INTO UTENTI VALUES ('"+name+"','"+surname+"','"+"','"+nickname+"','"+password+"'";
+		String sql = "INSERT INTO UTENTE VALUES ('"+name+"','"+surname+"','"+nickname+"','"+password+"')";
 	
 		ConnectionDb conn = new ConnectionDb();
-		ResultSet resultSet = conn.insertQuery(sql);
+		boolean resultSet = conn.insertQuery(sql);
 		return true;
 		
 	}
