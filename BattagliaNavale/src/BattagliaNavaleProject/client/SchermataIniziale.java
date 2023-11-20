@@ -48,19 +48,23 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100,100,450,300);
 		
+		final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(224, 255, 255));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		JPanel backgroundPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(sfondo.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        getContentPane().add(backgroundPanel);
+		backgroundPanel.setLayout(null);
 		
 		
 		loginButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		loginButton.addActionListener(this);
 		loginButton.setBounds(144, 82, 166, 70);
-		contentPane.add(loginButton);
+		backgroundPanel.add(loginButton);
 		loginButton.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
@@ -77,7 +81,7 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		registerButton.addActionListener(this);
 		registerButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		registerButton.setBounds(144, 181, 166, 70);
-		contentPane.add(registerButton);
+		backgroundPanel.add(registerButton);
 		registerButton.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
@@ -91,12 +95,12 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		JLabel infoLabel = new JLabel("New player? Start here!");
 		infoLabel.setFont(new Font("Shree Devanagari 714", Font.ITALIC, 11));
 		infoLabel.setBounds(165, 164, 132, 16);
-		contentPane.add(infoLabel);
+		backgroundPanel.add(infoLabel);
 		
 		JLabel titleLabel = new JLabel("Welcome in BattleShip game");
 		titleLabel.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 26));
 		titleLabel.setBounds(62, 6, 354, 75);
-		contentPane.add(titleLabel);
+		backgroundPanel.add(titleLabel);
 		
 
 		
