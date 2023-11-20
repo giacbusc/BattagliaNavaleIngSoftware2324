@@ -29,8 +29,10 @@
   - 1.12 Budget e pianificazione
   - 1.13 Cambiamenti
   - 1.14 Consegna
+- __2. Struttura__
+- __3. Modelling__
 
-
+  
 ## Il progetto
 Realizzazione in Java del gioco Battaglia Navale, realizzato in due differenti modalità: multiplayer online e giocatore singolo contro la CPU. 
 
@@ -97,17 +99,20 @@ Abbiamo definito i requisiti sulla base del modello MoSCoW come segue:
 
 Per il processo di sviluppo del gioco si è deciso di sfruttare un approccio di tipo *agile*, infatti, si è ritenuto che questo fosse più adatto per un progetto di questo tipo in cui la documentazione non è essenziale per l'utente finale, ossia i giocatori, di fatto anche il database associato non è molto rigoroso. <br>
 Essendo un approccio agile: 
-- I lavori sono stati assegnati in base alle capacità personali, così da suddividersi al meglio il lavoro e risultare più rapidi nello sviluppo. 
 - L'organizzazione del team segue i principi della SWAT: i 4 membri hanno la stessa importanza e possono esprimere le loro opinioni. Le riunioni del gruppo sono brevi sessioni, prevalentemente di brain storming, o nelle quali si cerca una soluzione ad un problema rilevato durante i test, che sono stati svolti ripetutamente e a seguito di ogni cambiamento. Di queste riunioni la documentazione è minima, formata principalmente da appunti o da schemi sui quali basarci per le future implementazioni e modifiche da attuare. <br>
 Qualora non fosse stato possibile incontrarsi dal vivo, le riunioni sono state eseguite attraverso videochiamate da remoto, tramite applicazioni apposite quali *Google Meet* o *Discord*. 
 -	Abbiamo usato cicli di sviluppo piccoli ed incrementali; lo sviluppo viene pianificato man mano senza una pianificazione eccessivamente anticipata, data l'assenza di esperienze pregresse sulle quali basarci. Ogni volta che un membro apportava modifiche al progetto lo comunicava con gli altri, attraverso issues. 
 - Il team ha seguito la filosofia dell'*extreme programming*, basandosi sul concetto di voler creare un software funzionante e di qualità, dando importanza prima al portare a termine i punti di must have del progetto, poi al migliorarli fino all'ottenimento di un progetto che ritenessimon di buona qualità e infine abbiamo pensato a cosa implementare nel tempo rimasto.
 - Durante lo sviluppo, sopratttutto nei momenti iniziali, si è sfruttato spesso il *pair programming* come metodo di verifica: abbiamo lavorato in coppia  sullo stesso frammento di codice in modo tale da avere una verifica in tempo reale sul lavoro svolto. Questa pratica ha inoltre favorito lo scambio di idee e la ricerca di soluzioni migliori, fondamentale nei primi incontri.
-- Durante lo sviluppo abbiamo fruttato la tecnica del *timeboxing*: 
+- Durante lo sviluppo abbiamo fruttato la tecnica del *timeboxing* assegnando ad ogni compito una scadenza entro la quale doveva essere portato a termine. 
+
+Come piattaforma di Version Control System si è scelto di sfruttare GitHub, in quanto è la piattaforma più utilizzata per lo sviluppo software, inoltre permette di sfruttare le funzionalità di issue tracking, la quale è stata fondamentale per la comunicazione tra in membri del team.
 
 
 ### 1.3 Organizzazione del progetto
-
+Le persone coinvolte nella progettazione del gioco sono quelle che compongono il team. In seguito alla pubblicazione, i giocatori potranno prendere parte allo sviluppo suggerendo nuove funzionalità o segnalando bug. <br>
+Il team si incontrerà settimanalmente, o di persona o attraverso videoconferenza, per fare il punto sullo stato dei lavori e pianificare le attività da svolgere per la settimana successiva, nelle modalità spiegate al punto 1.2 . <br>
+I lavori sono stati assegnati in base alle capacità personali, così da suddividersi al meglio il lavoro e risultare più rapidi nello sviluppo, i diversi compiti sono stati così suddivisi: 
 <table>
     <tr>
         <th></th>
@@ -150,9 +155,14 @@ Qualora non fosse stato possibile incontrarsi dal vivo, le riunioni sono state e
     <td>✅</td>
     </tr>
 </table>
+
 ### 1.4 Standards, linee guida e procedure
 
 ### 1.5 Attività di gestione
+Si è deciso di organizzare lo sviluppo seguando i metodi agili, secondo la filosofia dell'*extreme programming* in quanto permette di migliorare la qualità del codice e approcciarsi al cambiamento dei requisiti in modo più responsivo.<br>
+Il team ha lavorato sempre a stretto contatto con scambio continuo di idee e con confronti giornalieri, così da proseguire coesi e coerenti nonostante il lavoro sia stato indivuale in diverse fasi del progetto. <br>
+Nonostante i primi incontri di stesura dei requisiti, e di avvio del lavoro siano state delle sessioni piuttosto lunghe, gli incontri settimanali successivi sono stati di breve durata, durante i quali possono essere effettuate delle sessioni di *brain storming* per trovare nuove idee o cercare soluzioni a problemi riscontrati. Nei meeting, organizzati solitamente nel momento in cui scadevano i timebox assegnati, ci si è occupati della verifica del lavoro eseguito. La fase di test infatti è stata costante e ci ha permesso di tener monitorati gli sviluppi e le modifiche che ogni membro ha apportato. <br>
+Durante i meeting abbiamo, dsi volta in volta, deciso i passi successivi e identificato in quanto tempo sarebbero dovuti essere presentati. 
 
 ### 1.6 Rischi
 I principali rischi che si possono incontrare durante lo sviluppo di questo gioco con le modalità sopra descritte sono principalmente 2:
@@ -165,8 +175,20 @@ Non vi è stata una componente di aiuto esterno nella progettazione e nello svil
 ### 1.8 Metodi e tecniche
 
 ### 1.9 Garanzie di qualità
+Si punta a sviluppare un software che rispetti i parametri di qualità indicati dal modello di McCall:
+- Correttezza
+- Affidabilità
+- Robustezza
+- Integrità
+- Usabilità
+
+
+Il software lato client è predisposto per essere aggiornato in maniera automatica in fase di avvio (o attraverso le piattaforme di redistribuzione) in modo da garantire che l'utente abbia sempre la versione più recente del software nella quale solitamente sono corretti i bug e rimosse eventuali falle nella sicurezza.<br>
+La separazione tra client e server permette di avere due sistemi aggiornabili separatamente, in modo da poter rendere più reattiva la fase di aggiornamento e miglioramento del software.
+Oltre a rispettare i *quality assurance* indicati dal modello McCall, si vuole avere un software sicuro che non metta a rischio la sicurezza e la privacy degli utenti. Per questo motivo si è deciso di non raccogliere e registrare alcuna informazione personale degli utenti (fatta eccezione per l'indirizzo IP necessario per la comunicazione che comunque non verrà mai salvato).<br>
 
 ### 1.10 Package di lavoro
+
 ### 1.11 Risorse
 Per l'utente non è richiesta una particolare dotazione se non un computer ed una connessione ad Internet funzionante.
 
@@ -175,3 +197,4 @@ Per l'utente non è richiesta una particolare dotazione se non un computer ed un
 ### 1.13 Cambiamenti
 
 ### 1.14 Consegna
+Una volta pronta la versione finale, prima della pubblicazione, verrà inviata una segnalazione tramite issue a tutti i membri del team in modo tale da poter effettuare un'ultima revisione prima della pubblicazione.
