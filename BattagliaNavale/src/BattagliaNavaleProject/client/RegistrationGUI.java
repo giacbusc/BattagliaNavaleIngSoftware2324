@@ -56,7 +56,7 @@ public class RegistrationGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("REGISTRAZIONE");
+		JLabel lblNewLabel = new JLabel("REGISTRATION");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(143, 0, 163, 55);
@@ -80,7 +80,7 @@ public class RegistrationGUI extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnNewButton = new JButton("salva");
+		JButton btnNewButton = new JButton("save");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -93,11 +93,11 @@ public class RegistrationGUI extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("nome:");
+		JLabel lblNewLabel_3 = new JLabel("Name:");
 		lblNewLabel_3.setBounds(38, 57, 45, 13);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("cognome:");
+		JLabel lblNewLabel_4 = new JLabel("Surname:");
 		lblNewLabel_4.setBounds(38, 104, 65, 13);
 		contentPane.add(lblNewLabel_4);
 		

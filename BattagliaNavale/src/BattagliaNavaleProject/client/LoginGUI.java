@@ -76,28 +76,28 @@ public class LoginGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 300);
         setLocationRelativeTo(null);
-        setLayout(null);
+        getContentPane().setLayout(null);
 
         usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds(30, 90, 80, 25);
-        add(usernameLabel);
+        getContentPane().add(usernameLabel);
 
         usernameField = new JTextField();
         usernameField.setBounds(110, 90, 150, 25);
-        add(usernameField);
+        getContentPane().add(usernameField);
 
         passwordLabel = new JLabel("Password:");
         passwordLabel.setBounds(30, 130, 80, 25);
-        add(passwordLabel);
+        getContentPane().add(passwordLabel);
 
         passwordField = new JPasswordField();
         passwordField.setBounds(110, 130, 150, 25);
-        add(passwordField);
+        getContentPane().add(passwordField);
 
         loginButton = new JButton("Login");
         loginButton.setBounds(110, 180, 80, 25);
         //loginButton.addActionListener(this);
-        add(loginButton);
+        getContentPane().add(loginButton);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -112,14 +112,4 @@ public class LoginGUI extends JFrame {
             JOptionPane.showMessageDialog(this, "Credenziali errate", "Errore", JOptionPane.ERROR_MESSAGE);
         }
 	}
-	
-	/*@Override
-    public void paint(Graphics g) {
-        super.paint(g);
-
-        // Disegna l'immagine di sfondo
-        g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-    }
-    */
-    
 }
