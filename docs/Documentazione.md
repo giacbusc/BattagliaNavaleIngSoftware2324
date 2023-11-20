@@ -54,7 +54,8 @@ A vincere è il primo giocatore che affonda tutte le navi dell'avversario.
 ### 1.1 Background e Introduzione
 
 ### 1.2 Modello di processo
-
+La fase iniziale dello sviluppo è stata dedicata alla definizione dei requisiti del software richiesti da parte del committente. Dal momento che la produzione del gioco non è stata commissionata bensì è stata un'idea spontanea, i requisiti sono stati definiti in base a quello che era ritenuto importante per il team e alla conoscenza del gioco di ruolo dal quale il software ha origine.<br>
+Abbiamo definito i requisiti sulla base del modello MoSCoW come segue:
 <table>
     <tr>
         <th>MUST HAVE</th>
@@ -93,6 +94,17 @@ A vincere è il primo giocatore che affonda tutte le navi dell'avversario.
     <td></td>
     </tr>
 </table>
+
+Per il processo di sviluppo del gioco si è deciso di sfruttare un approccio di tipo *agile*, infatti, si è ritenuto che questo fosse più adatto per un progetto di questo tipo in cui la documentazione non è essenziale per l'utente finale, ossia i giocatori, di fatto anche il database associato non è molto rigoroso. <br>
+Essendo un approccio agile: 
+- I lavori sono stati assegnati in base alle capacità personali, così da suddividersi al meglio il lavoro e risultare più rapidi nello sviluppo. 
+- L'organizzazione del team segue i principi della SWAT: i 4 membri hanno la stessa importanza e possono esprimere le loro opinioni. Le riunioni del gruppo sono brevi sessioni, prevalentemente di brain storming, o nelle quali si cerca una soluzione ad un problema rilevato durante i test, che sono stati svolti ripetutamente e a seguito di ogni cambiamento. Di queste riunioni la documentazione è minima, formata principalmente da appunti o da schemi sui quali basarci per le future implementazioni e modifiche da attuare. <br>
+Qualora non fosse stato possibile incontrarsi dal vivo, le riunioni sono state eseguite attraverso videochiamate da remoto, tramite applicazioni apposite quali *Google Meet* o *Discord*. 
+-	Abbiamo usato cicli di sviluppo piccoli ed incrementali; lo sviluppo viene pianificato man mano senza una pianificazione eccessivamente anticipata, data l'assenza di esperienze pregresse sulle quali basarci. Ogni volta che un membro apportava modifiche al progetto lo comunicava con gli altri, attraverso issues. 
+- Il team ha seguito la filosofia dell'*extreme programming*, basandosi sul concetto di voler creare un software funzionante e di qualità, dando importanza prima al portare a termine i punti di must have del progetto, poi al migliorarli fino all'ottenimento di un progetto che ritenessimon di buona qualità e infine abbiamo pensato a cosa implementare nel tempo rimasto.
+- Durante lo sviluppo, sopratttutto nei momenti iniziali, si è sfruttato spesso il *pair programming* come metodo di verifica: abbiamo lavorato in coppia  sullo stesso frammento di codice in modo tale da avere una verifica in tempo reale sul lavoro svolto. Questa pratica ha inoltre favorito lo scambio di idee e la ricerca di soluzioni migliori, fondamentale nei primi incontri.
+- Durante lo sviluppo abbiamo fruttato la tecnica del *timeboxing*: 
+
 
 ### 1.3 Organizzazione del progetto
 
