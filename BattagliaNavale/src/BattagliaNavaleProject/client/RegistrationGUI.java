@@ -78,11 +78,11 @@ public class RegistrationGUI extends JFrame {
 		titleLabel.setBounds(143, 0, 163, 55);
 		backgroundPanel.add(titleLabel);
 		
-		JLabel nicknameLabel = new JLabel("nickname:");
+		JLabel nicknameLabel = new JLabel("Nickname:");
 		nicknameLabel.setBounds(38, 143, 76, 20);
 		backgroundPanel.add(nicknameLabel);
 		
-		JLabel passwordLabel = new JLabel("password:");
+		JLabel passwordLabel = new JLabel("Password:");
 		passwordLabel.setBounds(38, 186, 76, 20);
 		backgroundPanel.add(passwordLabel);
 		
@@ -96,7 +96,7 @@ public class RegistrationGUI extends JFrame {
 		backgroundPanel.add(nicknameField);
 		nicknameField.setColumns(10);
 		
-		JButton saveButton = new JButton("save");
+		JButton saveButton = new JButton("Save");
 		saveButton.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
