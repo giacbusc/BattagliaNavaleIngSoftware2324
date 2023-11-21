@@ -64,9 +64,9 @@ public class MenuPrincipale extends JFrame {
         lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundPanel.add(lblNewLabel_5);
 		
-        ImageIcon icon = new ImageIcon("../docs/resources/Logo.jpeg");
+        ImageIcon icon = new ImageIcon("../docs/resources/Logo.png");
         Image image = icon.getImage();
-        Image scaledImage = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        Image scaledImage = image.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
         // scaled icon
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
@@ -78,10 +78,7 @@ public class MenuPrincipale extends JFrame {
         backgroundPanel.add(multiplayerTextLabel);
        
         JLabel logoLabel = new JLabel(scaledIcon);
-        
-        
-        
-        logoLabel.setPreferredSize(new Dimension(60,60));
+        logoLabel.setPreferredSize(new Dimension(80,80));
         logoLabel.setBounds(0, 0, 119, 85);
         logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundPanel.add(logoLabel);
