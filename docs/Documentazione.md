@@ -1,6 +1,6 @@
 <p align="center">
   <img style="width: 200px;" src="resources/Logo.jpeg">
-   <img style="width: 550px;" src="resources/BATTAGLIA_NAVALE.jpeg">
+   <img style="width: 550px;" src="resources/BATTAGLIA_NAVALE.png">
 </p>
 
 # Progetto di ingegneria del software
