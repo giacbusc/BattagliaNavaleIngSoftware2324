@@ -1,5 +1,5 @@
 <p align="center">
-  <img style="width: 200px;" src="resources/Logo.jpeg">
+  <img style="width: 200px;" src="resources/Logo.png">
    <img style="width: 550px;" src="resources/BATTAGLIA_NAVALE.png">
 </p>
 
