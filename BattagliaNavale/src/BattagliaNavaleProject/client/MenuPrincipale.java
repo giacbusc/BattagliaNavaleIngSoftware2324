@@ -84,9 +84,15 @@ public class MenuPrincipale extends JFrame {
         backgroundPanel.add(logoLabel);
         
         
-        ImageIcon icon2 = new ImageIcon("2.png");
-        JLabel infoPlayerLabel = new JLabel("");
-        infoPlayerLabel.setPreferredSize(new Dimension(icon2.getIconWidth(), icon2.getIconHeight()));
+        //ImageIcon icon2 = new ImageIcon("2.png");
+        JLabel infoPlayerLabel = null;
+		try {
+			infoPlayerLabel = new JLabel(LoginGUI.getUser());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        //infoPlayerLabel.setPreferredSize(new Dimension(icon2.getIconWidth(), icon2.getIconHeight()));
         infoPlayerLabel.setBounds(638, 0, 119, 85);
         backgroundPanel.add(infoPlayerLabel);
         
@@ -309,6 +315,10 @@ public class MenuPrincipale extends JFrame {
         radioPanel.add(engRadioButton);
         
         backgroundPanel.add(radioPanel);
+        
+        JPanel panel = new JPanel();
+        panel.setBounds(618, 26, 109, 30);
+        backgroundPanel.add(panel);
 	                    
 	}
 }

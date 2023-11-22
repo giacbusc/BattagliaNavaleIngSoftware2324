@@ -29,7 +29,7 @@ public class LoginGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	 private JLabel usernameLabel, passwordLabel;
-	    private JTextField usernameField;
+	    private static JTextField usernameField;
 	    private JPasswordField passwordField;
 	    private JButton loginButton;
 
@@ -118,6 +118,7 @@ public class LoginGUI extends JFrame {
 				}
 
 		    }
+		    
 
 		    private void VerificaUtente(String nickname,String password) throws IOException {
 		         // Prepara la query SQL
@@ -171,4 +172,10 @@ public class LoginGUI extends JFrame {
 		    }
 		});
     }
+
+	public static String getUser() {
+		
+			return usernameField.getText();
+		
+}
 }
