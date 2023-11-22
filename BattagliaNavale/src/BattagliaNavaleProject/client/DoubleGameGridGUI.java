@@ -47,9 +47,17 @@ public class DoubleGameGridGUI extends JFrame{
 	}
 	
 	private void createGrid(final JLabel[][] grid)
-	{
-		JPanel panel = new JPanel(new GridLayout(GRID_DIMENSION + 1, GRID_DIMENSION + 1));
-				
+	{	
+		 final ImageIcon sfondo = new ImageIcon("../docs/resources/Griglia.png");
+			
+			JPanel panel = new JPanel(new GridLayout(GRID_DIMENSION + 1, GRID_DIMENSION + 1)) {
+	            @Override
+	            protected void paintComponent(Graphics g) {
+	                super.paintComponent(g);
+	                g.drawImage(sfondo.getImage(), 0, 0, getWidth(), getHeight(), this);
+	            }
+	        };
+	        
 		for(int i = 0; i < GRID_DIMENSION + 1; i++)
 		{
 			for(int j = 0; j < GRID_DIMENSION + 1; j++)
@@ -64,14 +72,14 @@ public class DoubleGameGridGUI extends JFrame{
 				{
 					final JLabel label = new JLabel();
 					label.setPreferredSize(new Dimension(40, 40));
-					label.setOpaque(true);
+					label.setOpaque(false);
 					label.addMouseListener(new MouseListener()
 					{
 
 						@Override
 						public void mouseClicked(MouseEvent e) {
 							// TODO Auto-generated method stub
-							
+							label.setOpaque(true);
 							label.setBackground(Color.BLUE);
 							Point coordinate = getCoordinate(label, grid);
 							int riga = coordinate.y;
