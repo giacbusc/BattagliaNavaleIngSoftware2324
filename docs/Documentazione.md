@@ -180,16 +180,15 @@ Non vi è stata una componente di aiuto esterno nella progettazione e nello svil
 
 ### 1.9 Garanzie di qualità
 Si punta a sviluppare un software che rispetti i parametri di qualità indicati dal modello di McCall:
-- Correttezza
-- Affidabilità
-- Robustezza
-- Integrità
-- Usabilità
-
-
-Il software lato client è predisposto per essere aggiornato in maniera automatica in fase di avvio (o attraverso le piattaforme di redistribuzione) in modo da garantire che l'utente abbia sempre la versione più recente del software nella quale solitamente sono corretti i bug e rimosse eventuali falle nella sicurezza.<br>
-La separazione tra client e server permette di avere due sistemi aggiornabili separatamente, in modo da poter rendere più reattiva la fase di aggiornamento e miglioramento del software.
-Oltre a rispettare i *quality assurance* indicati dal modello McCall, si vuole avere un software sicuro che non metta a rischio la sicurezza e la privacy degli utenti. Per questo motivo si è deciso di non raccogliere e registrare alcuna informazione personale degli utenti (fatta eccezione per l'indirizzo IP necessario per la comunicazione che comunque non verrà mai salvato).<br>
+- Efficienza : per il funzionamento del software non è necessario l'uso di particolari risorse
+- Correttezza : il software consegnato soddisfa i requisiti (identificati come i must have del progetto)
+- Affidabilità : abbiamo testato più e più volte la nostra applicazione presentandola col minor numero di bug possibili
+- Integrità : il software è reso quanto più sicuro possibile in quanto è prevalentemente autonomo 
+- Usabilità : il prodotto è semplice da utilizzare infatti non sono richieste, oltre che a risorse avanzate, nemmeno competenze e conoscenze particolari
+- Testabilità: Tutte le funzionalità incluse sono testabili in qualunque momento tramite test manuali 
+- Flessibilità: il software si presenza incline all'implementazione di nuove funzionalità rendendolo molto flessibile.
+- Portabilità: Il gioco è eseguibile sui più diffusi sistemi operativi desktop (Windows, Linux, MacOS) dotati di una connessione internet.
+- Riusabilità: Sono state sfruttate e scritte librerie che possono essere riutilizzate in altri ambiti in quanto sono state sviluppate in modo indipendente dal contesto del gioco.
 
 ### 1.10 Package di lavoro
 
