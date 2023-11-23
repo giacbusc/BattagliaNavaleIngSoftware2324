@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class MenuPrincipale extends JFrame {
+	private JLabel infoPlayerLabel_1;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -84,18 +85,14 @@ public class MenuPrincipale extends JFrame {
         backgroundPanel.add(logoLabel);
         
         
-        //ImageIcon icon2 = new ImageIcon("2.png");
+       //ImageIcon icon2 = new ImageIcon("2.png");
         JLabel infoPlayerLabel = null;
 		try {
-			infoPlayerLabel = new JLabel(LoginGUI.getUser());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        //infoPlayerLabel.setPreferredSize(new Dimension(icon2.getIconWidth(), icon2.getIconHeight()));
-        infoPlayerLabel.setBounds(638, 0, 119, 85);
-        backgroundPanel.add(infoPlayerLabel);
-        
+       
         JLabel lblNewLabel_2 = new JLabel("BATTAGLIA NAVALE ");
         lblNewLabel_2.setForeground(new Color(0, 128, 255));
         lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 42));
@@ -317,8 +314,12 @@ public class MenuPrincipale extends JFrame {
         backgroundPanel.add(radioPanel);
         
         JPanel panel = new JPanel();
-        panel.setBounds(618, 26, 109, 30);
+        panel.setBounds(629, 26, 109, 30);
         backgroundPanel.add(panel);
+        infoPlayerLabel_1 = 
+        		new JLabel(LoginGUI.getUsername());
+        panel.add(infoPlayerLabel_1);
+        infoPlayerLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 	                    
 	}
 }

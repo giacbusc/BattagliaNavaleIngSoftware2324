@@ -34,9 +34,9 @@ public class DoubleGameGridGUI extends JFrame{
 	public DoubleGameGridGUI() throws IOException 
 	{
 		setTitle("Battaglia Navale");
-		setSize(1450,816);
+		setSize(596,408);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLayout(new GridLayout(1, 2));
+		getContentPane().setLayout(new GridLayout(1, 2));
 		
 		createGrid(grid1);
 		createGrid(grid2);
@@ -65,6 +65,7 @@ public class DoubleGameGridGUI extends JFrame{
 				if(i == 0 && j > 0)
 				{
 					panel.add( new JLabel(String.valueOf((char) ('A' + j - 1)), SwingConstants.CENTER));
+				
 				} else if(j == 0 && i > 0)
 				{
 					panel.add( new JLabel(String.valueOf(i), SwingConstants.CENTER));

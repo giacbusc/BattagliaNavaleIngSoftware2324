@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JOptionPane;
 
 import BattagliaNavaleProject.server.ConnectionDb;
+import GestioneGUI.Registration;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -31,10 +32,13 @@ import javax.swing.SpringLayout;
 public class RegistrationGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField nameField;
-	private JTextField nicknameField;
-	private JTextField passwordField;
-	private JTextField surnameField;
+	private static final JLabel NicknameField = null;
+	public JTextField nameField;
+	public JTextField nicknameField;
+	public JTextField passwordField;
+	public JTextField surnameField;
+	private Registration reg = new Registration();
+	ActionListener actionlistener=reg.getActionListener();
 
 	/**
 	 * Launch the application.
@@ -97,43 +101,9 @@ public class RegistrationGUI extends JFrame {
 		nicknameField.setColumns(10);
 		
 		JButton saveButton = new JButton("Save");
-		saveButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        // action to perform when the button is used
-		    	
-		    	try {
-					if(verificaCampi() && verificaNomeCognome() && verificaNickname()){
-						if(salvaDati()) {
-							JOptionPane.showMessageDialog(null, "Registration complete!");
-							LoginGUI login;
-							login = new LoginGUI(); 
-							login.setVisible(true);
-							dispose(); 
-						}
-						else 
-						{
-							JOptionPane.showMessageDialog(null, "Incorrect data entered, please re-enter it!!!");
-							nameField.setText("");
-							surnameField.setText("");
-							nicknameField.setText("");
-							passwordField.setText("");
-						}
-					}
-					else {
-							JOptionPane.showMessageDialog(null, "Incorrect data entered, please re-enter it");
-					}
-						
-
-					
-				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-	             
-	             
-		    }
-		});
+		
+		saveButton.addActionListener(actionlistener);
+		    
 		
 		saveButton.setBounds(10, 232, 85, 21);
 		backgroundPanel.add(saveButton);
@@ -171,54 +141,28 @@ public class RegistrationGUI extends JFrame {
 		});
         
 	}
-	
-	private boolean verificaCampi(){
-		if(nameField.getText().isEmpty() || surnameField.getText().isEmpty() || nicknameField.getText().isEmpty() || passwordField.getText().isEmpty()){
-			return false;
-		}
-		
-		return true;
-	}
-	
-	private boolean verificaNomeCognome(){
-		if(!nameField.getText().matches("[a-zA-Z]+") || !surnameField.getText().matches("[a-zA-Z]+")) {
-			return false;
-		}
-		
-		return true;
-	}
-	
-	private boolean verificaNickname() throws SQLException
-	{
-		ConnectionDb conn = new ConnectionDb();
-		
-		String nickname = nicknameField.getText();
-		String sql = "SELECT nickname FROM UTENTE WHERE nickname = ?";
-		PreparedStatement pstmt = conn.getConnection().prepareStatement(sql);
-		pstmt.setString(1, nickname);
 
-		ResultSet rs = pstmt.executeQuery();
-        if (rs.next()) {
-       	 return false;
-         }
-         else 
- 		{
- 			return true;
- 		}
-		
+	public String getNameField() {
+		return nameField.getText();
 	}
-	
-	private boolean salvaDati() throws SQLException
-	{
-		String name = nameField.getText();
-		String surname = surnameField.getText();
-		String nickname = nicknameField.getText();
-		String password = passwordField.getText();
-		String sql = "INSERT INTO UTENTE VALUES ('"+name+"','"+surname+"','"+nickname+"','"+password+"')";
-	
-		ConnectionDb conn = new ConnectionDb();
-		boolean resultSet = conn.insertQuery(sql);
-		return true;
-		
+
+	public String getNicknameField() {
+		return NicknameField.getText();
 	}
+
+	public String getPasswordField() {
+		return passwordField.getText();
+	}
+
+	public String getSurnameField() {
+		return surnameField.getText();
+	}
+
+	
+
+	
+	
+	
+	
+	
 }

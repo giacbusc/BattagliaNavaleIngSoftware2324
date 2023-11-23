@@ -23,6 +23,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import BattagliaNavaleProject.server.ConnectionDb;
+import GestioneGUI.Login;
 
 public class LoginGUI extends JFrame {
 
@@ -32,7 +33,7 @@ public class LoginGUI extends JFrame {
 	    private static JTextField usernameField;
 	    private JPasswordField passwordField;
 	    private JButton loginButton;
-
+	    private Login log= new Login();
 
 	/**
 	 * Launch the application.
@@ -111,51 +112,16 @@ public class LoginGUI extends JFrame {
 		    	 String user = usernameField.getText();
 		    	 String pw = passwordField.getText();
 	              try {
-					VerificaUtente(user,pw);
+					log.VerificaUtente(user,pw);
 				} catch (IOException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
 
 		    }
-		    
-
-		    private void VerificaUtente(String nickname,String password) throws IOException {
-		         // Prepara la query SQL
-		        
-		            try {
-		            	ConnectionDb conn1 = new ConnectionDb();
-		            	String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";
-		                PreparedStatement pstmt = conn1.getConnection().prepareStatement(sql);
-		                pstmt.setString(1, nickname);
-		                pstmt.setString(2, password);
-
-		                ResultSet rs = pstmt.executeQuery();
-		                if (rs.next() && verificaCampi()) 
-		                { 
-		                	JOptionPane.showMessageDialog(null, "Login complete!");
-							MenuPrincipale menu;
-							menu = new MenuPrincipale(); 
-							menu.setVisible(true);
-							dispose(); 
-		                } 
-		                else {
-		                	JOptionPane.showMessageDialog(null, "Incorrect data entered, please re-enter it");
-		                	usernameField.setText("");
-							passwordField.setText("");
-		                }
-		            } catch (SQLException e) {
-		                e.printStackTrace();
-		            }
-		    }
-		    private boolean verificaCampi(){
-			if(usernameField.getText().isEmpty() || passwordField.getText().isEmpty()){
-				return false;
-			}
-			
-			return true;
-		}
 		});
+
+		   
         
 		
         JButton backButton = new JButton("Back");
@@ -173,9 +139,27 @@ public class LoginGUI extends JFrame {
 		});
     }
 
-	public static String getUser() {
-		
+	public static String getUsername() {
+		try{
 			return usernameField.getText();
-		
-}
+			
+		}
+		catch (NullPointerException e){
+			return "DEFAULTUSER";
+		}
+	}
+
+	public static void setUsername(String username) {
+		usernameField.setText(username);
+	}
+
+	public String getPassword() {
+		return passwordField.getText();
+	}
+
+	public void setPassword(String password) {
+		passwordField.setText(password);;
+	}
+
+	
 }
