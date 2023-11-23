@@ -102,7 +102,11 @@ public class RegistrationGUI extends JFrame {
 		
 		JButton saveButton = new JButton("Save");
 		
-		saveButton.addActionListener(actionlistener);
+		saveButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                reg.actionPerformed(e); // Invoking method in ClassB
+            }
+        });
 		    
 		
 		saveButton.setBounds(10, 232, 85, 21);
