@@ -68,8 +68,6 @@ public class MenuPrincipale extends JFrame {
         ImageIcon icon = new ImageIcon("../docs/resources/Logo.png");
         Image image = icon.getImage();
         Image scaledImage = image.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-
-        // scaled icon
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         
         final JLabel multiplayerTextLabel= new JLabel("Multiplayer");
