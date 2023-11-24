@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.client;
+package BattagliaNavaleProject.form;
 
 import java.awt.EventQueue;
 

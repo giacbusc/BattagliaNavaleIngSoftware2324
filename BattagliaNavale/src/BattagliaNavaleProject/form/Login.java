@@ -1,4 +1,4 @@
-package GestioneGUI;
+package BattagliaNavaleProject.form;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -7,8 +7,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import BattagliaNavaleProject.client.LoginGUI;
 import BattagliaNavaleProject.client.MenuPrincipale;
+import BattagliaNavaleProject.formGui.LoginGUI;
 import BattagliaNavaleProject.server.ConnectionDb;
 
 public class Login {

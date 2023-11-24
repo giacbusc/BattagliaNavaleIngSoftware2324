@@ -36,11 +36,7 @@ public class DoubleGameGridGUI extends JFrame{
 	public DoubleGameGridGUI() throws IOException 
 	{
 		setTitle("Battaglia Navale");
-<<<<<<< Updated upstream
-		setSize(596,408);
-=======
 		setSize(1090,581);
->>>>>>> Stashed changes
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new GridLayout(1, 2));
 		
@@ -75,14 +71,12 @@ public class DoubleGameGridGUI extends JFrame{
 			{
 				if(i == 0 && j > 0)
 				{
-<<<<<<< Updated upstream
+
 					panel.add( new JLabel(String.valueOf((char) ('A' + j - 1)), SwingConstants.CENTER));
-				
-=======
-					 JLabel label = new JLabel(String.valueOf((char) ('A' + j - 1)), SwingConstants.CENTER);
-					 label.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));  // Bordo inferiore per le lettere
-			         panel.add(label);
->>>>>>> Stashed changes
+					JLabel label = new JLabel(String.valueOf((char) ('A' + j - 1)), SwingConstants.CENTER);
+					label.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));  // Bordo inferiore per le lettere
+			        panel.add(label);
+
 				} else if(j == 0 && i > 0)
 				{
 					 JLabel label = new JLabel(String.valueOf(i), SwingConstants.CENTER);

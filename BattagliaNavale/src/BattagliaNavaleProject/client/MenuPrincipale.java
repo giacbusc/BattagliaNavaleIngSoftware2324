@@ -1,6 +1,9 @@
 package BattagliaNavaleProject.client;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import BattagliaNavaleProject.formGui.LoginGUI;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;

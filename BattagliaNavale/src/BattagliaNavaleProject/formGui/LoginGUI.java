@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.client;
+package BattagliaNavaleProject.formGui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -22,8 +22,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import BattagliaNavaleProject.form.Login;
+import BattagliaNavaleProject.form.SchermataIniziale;
 import BattagliaNavaleProject.server.ConnectionDb;
-import GestioneGUI.Login;
 
 public class LoginGUI extends JFrame {
 

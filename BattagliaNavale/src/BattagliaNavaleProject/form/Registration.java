@@ -1,4 +1,4 @@
-package GestioneGUI;
+package BattagliaNavaleProject.form;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import BattagliaNavaleProject.client.LoginGUI;
-import BattagliaNavaleProject.client.RegistrationGUI;
+import BattagliaNavaleProject.formGui.LoginGUI;
+import BattagliaNavaleProject.formGui.RegistrationGUI;
 import BattagliaNavaleProject.server.ConnectionDb;
 
 public class Registration {
