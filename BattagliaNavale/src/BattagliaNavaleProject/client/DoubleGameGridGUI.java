@@ -1,19 +1,28 @@
 package BattagliaNavaleProject.client;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
+import javax.swing.border.Border;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 
 
-public class DoubleGameGridGUI extends JFrame{
+public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMotionListener{
 	private static final int GRID_DIMENSION = 10;
-	private JLabel[][] grid1 = new JLabel[GRID_DIMENSION][GRID_DIMENSION];
-	private JLabel[][] grid2 = new JLabel[GRID_DIMENSION][GRID_DIMENSION];
+	public final JFrame frame;
+	private JPanel yourBoardPanel;
+	private JPanel opponentBoardPanel;
+	private Square[][] yourBoard;
+	private Square[][] opponentBoard;
+	//private int dim; -> se vogliamo far sì che il giocatore all'inizio scelga la dimensione
+	private final Border topLeftBorder = BorderFactory.createMatteBorder(1, 1, 0, 0, Color.black);
+	private final Border topLeftBottomBorder = BorderFactory.createMatteBorder(1, 1, 1, 0, Color.black);
+	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
+	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	
 	
 	public static void main(String[] args) {
@@ -35,12 +44,13 @@ public class DoubleGameGridGUI extends JFrame{
 	}
 	public DoubleGameGridGUI() throws IOException 
 	{
-		setTitle("Battaglia Navale");
-		setSize(1090,581);
+		this.frame = new JFrame("Battaglia Navale");
+		setSize(1024,490);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new GridLayout(1, 2));
 		
-		final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoGriglia.jpg");
+		JPanel backgroundPanel = new JPanel();
+		/*final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoGriglia.jpg");
 		Image image = sfondo.getImage();
         final Image scaledImage = image.getScaledInstance(1450, 816, Image.SCALE_SMOOTH);
         
@@ -50,104 +60,130 @@ public class DoubleGameGridGUI extends JFrame{
                 super.paintComponent(g);
                 g.drawImage(scaledImage, 0, 0, getWidth(), getHeight(), this);
             }
-        };
-        getContentPane().add(backgroundPanel);
-		createGrid(grid1, backgroundPanel);
-		createGrid(grid2, backgroundPanel);
+        };*/
+        //getContentPane().add(backgroundPanel);
+		createGrid();
 		
 		setLocationRelativeTo(null);
-		backgroundPanel.setVisible(true);
 		setVisible(true);
 	}
 	
-	private void createGrid(final JLabel[][] grid, JPanel backgroundPanel)
-	{		        
-		JPanel panel = new JPanel(new GridLayout(GRID_DIMENSION + 1, GRID_DIMENSION + 1));
-		panel.setOpaque(false);
+	private void createGrid()
+	{	
+		yourBoardPanel = new JPanel();
+		opponentBoardPanel = new JPanel();
+		yourBoard = new Square[GRID_DIMENSION][GRID_DIMENSION];
+		opponentBoard = new Square[GRID_DIMENSION][GRID_DIMENSION];
+		yourBoardPanel.setLayout(new GridLayout(GRID_DIMENSION+2, GRID_DIMENSION+2, 0, 0));
+		opponentBoardPanel.setLayout(new GridLayout(GRID_DIMENSION+2, GRID_DIMENSION+2, 0, 0));
 		
-		for(int i = 0; i < GRID_DIMENSION + 1; i++)
+		for(int i = -1; i < GRID_DIMENSION + 1; i++)
 		{
-			for(int j = 0; j < GRID_DIMENSION + 1; j++)
+			for(int j = -1; j < GRID_DIMENSION + 1; j++)
 			{
-				if(i == 0 && j > 0)
+				
+				if((i == -1 && j == -1) || (i == -1 && j == GRID_DIMENSION) || (i == GRID_DIMENSION && j == -1) || (i == GRID_DIMENSION && j == GRID_DIMENSION))
 				{
-
-					panel.add( new JLabel(String.valueOf((char) ('A' + j - 1)), SwingConstants.CENTER));
-					JLabel label = new JLabel(String.valueOf((char) ('A' + j - 1)), SwingConstants.CENTER);
-					label.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));  // Bordo inferiore per le lettere
-			        panel.add(label);
-
-				} else if(j == 0 && i > 0)
+					 yourBoardPanel.add(new JLabel(" "));
+	                 opponentBoardPanel.add(new JLabel(" "));
+				}
+				
+				else if(i==-1)
 				{
-					 JLabel label = new JLabel(String.valueOf(i), SwingConstants.CENTER);
-			         label.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK));  // Bordo destro per i numeri
-			         panel.add(label);
-				} else if(i > 0 && j > 0)
+					yourBoardPanel.add(new JLabel(""+(char)(j+'A'), JLabel.CENTER));
+                    opponentBoardPanel.add(new JLabel(""+(char)(j+'A'), JLabel.CENTER));
+				}
+				else if(j==-1)
 				{
-					final JLabel label = new JLabel();
-					label.setPreferredSize(new Dimension(42, 42));
-					label.setOpaque(false);
-					label.setBorder(new LineBorder(Color.BLACK, 2));
-					label.addMouseListener(new MouseListener()
-					{
-
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							// TODO Auto-generated method stub
-							label.setOpaque(true);
-							label.setBackground(Color.RED);
-							Point coordinate = getCoordinate(label, grid);
-							int riga = coordinate.y;
-							int colonna = coordinate.x;
-						}
-
-						@Override
-						public void mousePressed(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-
-						@Override
-						public void mouseEntered(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-
-						@Override
-						public void mouseExited(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-						
-					});
+					  yourBoardPanel.add(new JLabel((i+1)+"", JLabel.CENTER));
+	                  opponentBoardPanel.add(new JLabel((i+1)+"", JLabel.CENTER));
+				}
+				else if (i == GRID_DIMENSION)
+				{
+					yourBoardPanel.add(new JLabel(" "));
+                    opponentBoardPanel.add(new JLabel(" "));
+				}
+				else if(j == GRID_DIMENSION)
+				{
+					yourBoardPanel.add(new JLabel(" "));
+                    opponentBoardPanel.add(new JLabel(" "));
+				}
+				else
+				{
+					yourBoard[i][j]= new Square(i,j);
+					yourBoard[i][j].addMouseListener(this);
+					yourBoard[i][j].addMouseMotionListener(this);
+					yourBoardPanel.add(yourBoard[i][j]);
+					opponentBoard[i][j]= new Square(i,j);
+					opponentBoard[i][j].addMouseListener(this);
+					opponentBoard[i][j].addMouseMotionListener(this);
+					opponentBoardPanel.add(opponentBoard[i][j]);
 					
-					grid[i-1][j-1]= label;
-					panel.add(label);
-				} else 
-				{
-					panel.add(new JLabel(""));
+					if(i == GRID_DIMENSION-1 && j == GRID_DIMENSION -1 )
+					{
+						yourBoard[i][j].setBorder(topLeftBottomRightBorder);
+						opponentBoard[i][j].setBorder(topLeftBottomRightBorder);
+					}
+					/*else if(j == GRID_DIMENSION -1)
+					{
+						yourBoard[i][j].setBorder(topLeftRightBorder);
+						opponentBoard[i][j].setBorder(topLeftRightBorder);
+					}*/
+					else if(i == GRID_DIMENSION-1)
+					{
+						yourBoard[i][j].setBorder(topLeftBottomBorder);
+						opponentBoard[i][j].setBorder(topLeftBottomBorder);
+					}
+					else
+					{
+						yourBoard[i][j].setBorder(topLeftBorder);
+						opponentBoard[i][j].setBorder(topLeftBorder);
+					}
 				}
 			}
 		}
-		backgroundPanel.add(panel);
-	}
-	private Point getCoordinate(JLabel label, JLabel[][]grid)
-	{
-		for(int i = 0; i < GRID_DIMENSION; i++)
-		{
-			for(int j = 0; j < GRID_DIMENSION; j++)
-			{
-				if(grid[i][j] == label)
-					return new Point(j, i);
-			}
-		}
-		return null;
+		
+		yourBoardPanel.setPreferredSize(new Dimension(432,432));
+		opponentBoardPanel.setPreferredSize(new Dimension(432,432));
+		getContentPane().add(yourBoardPanel, BorderLayout.WEST);
+		getContentPane().add(opponentBoardPanel, BorderLayout.EAST);
+		frame.pack();
+		
 	}
 	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
