@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.client;
+package BattagliaNavaleProject.formGui;
 
 import java.awt.EventQueue;
 import java.awt.Graphics;
@@ -10,8 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JOptionPane;
 
+import BattagliaNavaleProject.form.Registration;
+import BattagliaNavaleProject.form.SchermataIniziale;
 import BattagliaNavaleProject.server.ConnectionDb;
-import GestioneGUI.Registration;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;

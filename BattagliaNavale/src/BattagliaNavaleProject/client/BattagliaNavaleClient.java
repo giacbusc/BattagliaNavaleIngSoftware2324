@@ -8,7 +8,15 @@ import javax.swing.border.EmptyBorder;
 
 public class BattagliaNavaleClient extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel yourBoardPanel;
+	private JPanel oppenentBoardPanel;
+	private JPanel shipsPanel;
+	private Square[][] yourBoard;
+	private Square[][] opponentBoard;
+	private Square mouseOverSquare;
+	private Square selectedSquare;
+	private String status;
+	
 
 	/**
 	 * Launch the application.
