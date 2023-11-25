@@ -19,9 +19,9 @@ import BattagliaNavaleProject.formGui.LoginGUI;
 import BattagliaNavaleProject.server.ConnectionDb;
 
 public class LoginControl implements ActionListener  {
-	private LoginModel model;
-    private LoginGUI gui;
- public void actionPerformed(ActionEvent e) {
+	private static LoginModel model;
+    private static LoginGUI gui;
+/* public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 		
 			if(e.getSource() instanceof JButton ) {
@@ -55,13 +55,13 @@ public class LoginControl implements ActionListener  {
                              
             
         }
+*/
 
 
 
 
 
-
-	public boolean checkUser(LoginModel user) throws SQLException, IOException  {
+	public static boolean checkUser(LoginModel user) throws SQLException, IOException  {
     	ConnectionDb conn1 = new ConnectionDb();
     	String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";
         PreparedStatement pstmt = conn1.getConnection().prepareStatement(sql);
@@ -72,7 +72,12 @@ public class LoginControl implements ActionListener  {
         
         if (rs.next() && verificaCampi()) 
         { 
-        	gui.showMessage("Login complete!");
+        	try {
+				gui.showMessage("Login complete!");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			MenuPrincipale menu;
 			menu = new MenuPrincipale(); 
 			menu.setVisible(true);
@@ -88,12 +93,18 @@ public class LoginControl implements ActionListener  {
         }
         }
     
-    private boolean verificaCampi(){
+    private static boolean verificaCampi(){
 		if(model.getUserName()==""|| model.getPassword()==""){
 			return false;
 		}
 		
 		return true;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

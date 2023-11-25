@@ -122,7 +122,8 @@ public class LoginGUI extends JFrame implements ActionListener{
         backgroundPanel.add(backButton);
        
 		loginButton.addActionListener(this);
-	 backButton.addActionListener(this);
+		
+		backButton.addActionListener(this);
 
        
         
@@ -202,10 +203,41 @@ public class LoginGUI extends JFrame implements ActionListener{
 
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	 public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+	
+		if(e.getSource() instanceof JButton ) {
+			JButton clickedButton= ( JButton) e.getSource();
+			if(clickedButton.getText().equals("Login")) {
+				String user = getName();
+		    	 String pw = getPassword();
+	              LoginModel model=new LoginModel(user,pw);
+            try {
+				if(LoginControl.checkUser(model)){
+				    showMessage("Login succesfully!");
+				}else{
+				    showMessage("Invalid username and/or password!");
+				}
+			} catch (SQLException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+            
+			}
+			if(clickedButton.getText().equals("Back")) {
+				
+				SchermataIniziale inizio;
+				inizio = new SchermataIniziale(); 
+				inizio.setVisible(true);
+				dispose();
+			}
+		}
 		
-	}
+                         
+        
+    }
+
+
 
 	
 }

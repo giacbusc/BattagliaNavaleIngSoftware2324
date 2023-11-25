@@ -110,7 +110,7 @@ public class RegistrationGUI extends JFrame {
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} // Invoking method in ClassB
+				}
             }
         });
 		    
