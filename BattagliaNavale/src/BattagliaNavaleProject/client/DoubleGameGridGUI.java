@@ -16,9 +16,12 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	public final JFrame frame;
 	private JPanel yourBoardPanel;
 	private JPanel opponentBoardPanel;
+	private JPanel centralPanel;
 	private Square[][] yourBoard;
 	private Square[][] opponentBoard;
+	private JPanel shipsPanel;
 	//private int dim; -> se vogliamo far sì che il giocatore all'inizio scelga la dimensione
+	private int selectedShip;
 	private final Border topLeftBorder = BorderFactory.createMatteBorder(1, 1, 0, 0, Color.black);
 	private final Border topLeftBottomBorder = BorderFactory.createMatteBorder(1, 1, 1, 0, Color.black);
 	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
@@ -47,7 +50,7 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		this.frame = new JFrame("Battaglia Navale");
 		setSize(1024,490);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(new GridLayout(1, 2));
+		centralPanel = new JPanel(new BorderLayout());
 		
 		JPanel backgroundPanel = new JPanel();
 		/*final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoGriglia.jpg");
@@ -62,12 +65,28 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
             }
         };*/
         //getContentPane().add(backgroundPanel);
+		getContentPane().add(centralPanel, BorderLayout.CENTER);
+		frame.pack();
+
 		createGrid();
 		
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
+
+	private void boatList()
+	{
+		selectedShip = 0;
+		shipsPanel = new JPanel();
+		shipsPanel.setLayout(new GridLayout(7,6,0,3));
+		JLabel selectorLabel;
+		int boatLength;
+		shipsPanel.setBackground(Color.blue);
+		centralPanel.add(shipsPanel);
+		frame.pack();
+	}
 	
+
 	private void createGrid()
 	{	
 		yourBoardPanel = new JPanel();
@@ -124,11 +143,19 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 						yourBoard[i][j].setBorder(topLeftBottomRightBorder);
 						opponentBoard[i][j].setBorder(topLeftBottomRightBorder);
 					}
-					/*else if(j == GRID_DIMENSION -1)
+
+					else if(j == GRID_DIMENSION -1)
 					{
 						yourBoard[i][j].setBorder(topLeftRightBorder);
 						opponentBoard[i][j].setBorder(topLeftRightBorder);
-					}*/
+					}
+
+					else if(j == GRID_DIMENSION -1)
+					{
+						yourBoard[i][j].setBorder(topLeftRightBorder);
+						opponentBoard[i][j].setBorder(topLeftRightBorder);
+					}
+
 					else if(i == GRID_DIMENSION-1)
 					{
 						yourBoard[i][j].setBorder(topLeftBottomBorder);
@@ -147,6 +174,7 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		opponentBoardPanel.setPreferredSize(new Dimension(432,432));
 		getContentPane().add(yourBoardPanel, BorderLayout.WEST);
 		getContentPane().add(opponentBoardPanel, BorderLayout.EAST);
+		boatList();
 		frame.pack();
 		
 	}
@@ -159,7 +187,7 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
