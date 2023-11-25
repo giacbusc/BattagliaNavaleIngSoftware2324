@@ -124,7 +124,7 @@ public class LoginGUI extends JFrame implements ActionListener{
 		loginButton.addActionListener(this);
 		
 		backButton.addActionListener(this);
-
+		
        
         
 		/*{
@@ -179,7 +179,7 @@ public class LoginGUI extends JFrame implements ActionListener{
 		*/
     
 
-	public static String getUser() {
+	public String getUser() {
 		try{
 			return usernameField.getText();
 			
@@ -202,6 +202,10 @@ public class LoginGUI extends JFrame implements ActionListener{
 	}
 
 
+	
+
+
+
 	@Override
 	 public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -209,7 +213,8 @@ public class LoginGUI extends JFrame implements ActionListener{
 		if(e.getSource() instanceof JButton ) {
 			JButton clickedButton= ( JButton) e.getSource();
 			if(clickedButton.getText().equals("Login")) {
-				String user = getName();
+				String user = getUser();
+				System.out.println(user);
 		    	 String pw = getPassword();
 	              LoginModel model=new LoginModel(user,pw);
             try {
@@ -233,10 +238,9 @@ public class LoginGUI extends JFrame implements ActionListener{
 			}
 		}
 		
-                         
+                       
         
     }
-
 
 
 	

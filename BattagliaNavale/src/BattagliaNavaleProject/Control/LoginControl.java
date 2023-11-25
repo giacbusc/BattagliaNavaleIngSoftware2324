@@ -21,13 +21,17 @@ import BattagliaNavaleProject.server.ConnectionDb;
 public class LoginControl implements ActionListener  {
 	private static LoginModel model;
     private static LoginGUI gui;
-/* public void actionPerformed(ActionEvent e) {
+/*    
+ public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-		
+		LoginGUI gui;
+		try {
+			gui = new LoginGUI ();
 			if(e.getSource() instanceof JButton ) {
 				JButton clickedButton= ( JButton) e.getSource();
 				if(clickedButton.getText().equals("Login")) {
-					String user = gui.getName();
+					String user = gui.getUser();
+					System.out.println(user);
 			    	 String pw = gui.getPassword();
 		              LoginModel model=new LoginModel(user,pw);
                 try {
@@ -46,22 +50,32 @@ public class LoginControl implements ActionListener  {
 					
 					SchermataIniziale inizio;
 					inizio = new SchermataIniziale(); 
-					inizio.setVisible(true);
-					System.exit(0);
 					
+					
+					inizio.setVisible(true);
+					gui.setVisible(false);
+			
 				}
 			}
 			
-                             
-            
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+			
+		
         }
+
+
 */
 
 
 
-
-
 	public static boolean checkUser(LoginModel user) throws SQLException, IOException  {
+	
     	ConnectionDb conn1 = new ConnectionDb();
     	String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";
         PreparedStatement pstmt = conn1.getConnection().prepareStatement(sql);
@@ -106,6 +120,8 @@ public class LoginControl implements ActionListener  {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 	
 
