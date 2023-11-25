@@ -11,12 +11,34 @@ import BattagliaNavaleProject.client.MenuPrincipale;
 import BattagliaNavaleProject.formGui.LoginGUI;
 import BattagliaNavaleProject.server.ConnectionDb;
 
-public class Login {
-	private LoginGUI log;
+public class LoginModel {
 	
-	public Login() {
-	}
-	   public void VerificaUtente(String nickname,String password) throws IOException {
+	private static String userName;
+    private static String password;
+ 
+  
+    public LoginModel() {
+    }
+    
+    public LoginModel(String username, String password){
+        this.userName = username;
+        this.password = password;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+	
+	   /*public void VerificaUtente(String nickname,String password) throws IOException {
 	         // Prepara la query SQL
 	        
 	            try {
@@ -37,21 +59,21 @@ public class Login {
 	                } 
 	                else {
 	                	JOptionPane.showMessageDialog(null, "Incorrect data entered, please re-enter it");
-	                	log.setUsername("");
-						log.setPassword("");
+	                	logGUI.setUsername("");
+						logGUI.setPassword("");
 	                }
 	            } catch (SQLException e) {
 	                e.printStackTrace();
 	            }
 	    }
 	    private boolean verificaCampi(){
-		if(log.getUsername()==""|| log.getPassword()==""){
+		if(logGUI.getUsername()==""|| logGUI.getPassword()==""){
 			return false;
 		}
 		
 		return true;
 	}
 	;
-	
+	*/
 	
 }

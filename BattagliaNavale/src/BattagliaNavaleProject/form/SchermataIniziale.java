@@ -5,11 +5,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import BattagliaNavaleProject.formGui.LoginGUI;
+import BattagliaNavaleProject.formGui.RegistrationGUI;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -89,13 +97,27 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		loginButton.setOpaque(false);
 		backgroundPanel.add(loginButton);
         
+		loginButton.addActionListener(this);
+		setVisible(true);
+		
+		
         
 		loginButton.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		        // Azioni da eseguire quando il pulsante viene premuto
-		    	LoginGUI login = new LoginGUI();
-	             login.setVisible(true);
+		    	LoginGUI login;
+				try {
+					login = new LoginGUI();
+					login.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	             
 	             
 	             dispose(); 
 		    }

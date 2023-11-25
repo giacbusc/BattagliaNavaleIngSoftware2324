@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,11 +25,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import BattagliaNavaleProject.form.Login;
+import BattagliaNavaleProject.Control.LoginControl;
+import BattagliaNavaleProject.form.LoginModel;
 import BattagliaNavaleProject.form.SchermataIniziale;
 import BattagliaNavaleProject.server.ConnectionDb;
 
-public class LoginGUI extends JFrame {
+public class LoginGUI extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -35,8 +38,8 @@ public class LoginGUI extends JFrame {
 	    private static JTextField usernameField;
 	    private JPasswordField passwordField;
 	    private JButton loginButton;
-	    private Login log= new Login();
-
+	    LoginModel model= new LoginModel();
+	    
 	/**
 	 * Launch the application.
 	 */
@@ -52,18 +55,24 @@ public class LoginGUI extends JFrame {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the frame.
+	 * @throws IOException 
+	 * @throws SQLException 
 	 */
-	public LoginGUI() {
+	public LoginGUI() throws SQLException, IOException {
+		LoginModel model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
 		final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		
 		JPanel backgroundPanel = new JPanel() {
-            @Override
+            
+
+			@Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(sfondo.getImage(), 0, 0, getWidth(), getHeight(), this);
@@ -108,7 +117,16 @@ public class LoginGUI extends JFrame {
         //loginButton.addActionListener(this);
         backgroundPanel.add(loginButton);
     	
-		loginButton.addActionListener(new ActionListener() {
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(391, 232, 85, 21);
+        backgroundPanel.add(backButton);
+       
+		loginButton.addActionListener(this);
+	 backButton.addActionListener(this);
+
+       
+        
+		/*{
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		    	 String user = usernameField.getText();
@@ -122,14 +140,31 @@ public class LoginGUI extends JFrame {
 
 		    }
 		});
+		
+		*/
+	}
+        
+        public LoginModel getUserModel(){
+            model = new LoginModel(usernameField.getText(), passwordField.getText());
+            return model;       
+        }
+     
+        public void showMessage(String msg){
+            JOptionPane.showMessageDialog(this, msg);
+        }
+     
+        public void addLoginListener(ActionListener log) {
+              loginButton.addActionListener(log);
+            }
+	
+    
+        
 
 		   
         
 		
-        JButton backButton = new JButton("Back");
-        backButton.setBounds(391, 232, 85, 21);
-        backgroundPanel.add(backButton);
-        backButton.addActionListener(new ActionListener() {
+        		
+        		/*new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		        // Azioni da eseguire quando il pulsante viene premuto
@@ -138,10 +173,12 @@ public class LoginGUI extends JFrame {
 	             
 	             dispose(); 
 		    }
+        
 		});
-    }
+		*/
+    
 
-	public static String getUsername() {
+	public static String getUser() {
 		try{
 			return usernameField.getText();
 			
@@ -161,6 +198,13 @@ public class LoginGUI extends JFrame {
 
 	public void setPassword(String password) {
 		passwordField.setText(password);;
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

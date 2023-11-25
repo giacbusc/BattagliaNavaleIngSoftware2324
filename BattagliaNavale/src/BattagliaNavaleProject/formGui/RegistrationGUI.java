@@ -105,7 +105,12 @@ public class RegistrationGUI extends JFrame {
 		
 		saveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                reg.actionPerformed(e); // Invoking method in ClassB
+                try {
+					reg.actionPerformed(e);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} // Invoking method in ClassB
             }
         });
 		    

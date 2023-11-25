@@ -318,7 +318,7 @@ public class MenuPrincipale extends JFrame {
         panel.setBounds(629, 26, 109, 30);
         backgroundPanel.add(panel);
         infoPlayerLabel_1 = 
-        		new JLabel(LoginGUI.getUsername());
+        		new JLabel(LoginGUI.getUser());
         panel.add(infoPlayerLabel_1);
         infoPlayerLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 	                    
