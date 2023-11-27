@@ -20,6 +20,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import BattagliaNavaleProject.formGui.LoginGUI;
+
 
 
 public class RegistrationView extends JFrame implements ActionListener {
@@ -157,5 +159,14 @@ public class RegistrationView extends JFrame implements ActionListener {
             }
         });
     }
+
+	public void openLogin() {
+			  
+        LoginGUI login;
+        login = new LoginGUI(); 
+        login.setVisible(true);
+        dispose(); 
+		
+	}
 }
 	

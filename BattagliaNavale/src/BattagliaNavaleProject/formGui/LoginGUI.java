@@ -145,6 +145,7 @@ public class LoginGUI extends JFrame implements ActionListener{
 			return "DEFAULTUSER";
 		}
 	}
+	
 	public void close() {
 		SchermataIniziale inizio;
 		inizio = new SchermataIniziale(); 

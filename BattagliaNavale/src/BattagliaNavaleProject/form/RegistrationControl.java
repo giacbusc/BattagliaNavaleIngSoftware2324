@@ -79,13 +79,8 @@ public class RegistrationControl implements ActionListener {
                         if(checkUser(model)) 
                         {
                             view.showMessage("Registration complete!");
-                            //nuova classe della fede 
-                            /*
-                            LoginGUI login;
-                            login = new LoginGUI(); 
-                            login.setVisible(true);
-                            login.dispose(); 
-                            */
+                           view.openLogin();
+                            
                         } 
                         else 
                         {
