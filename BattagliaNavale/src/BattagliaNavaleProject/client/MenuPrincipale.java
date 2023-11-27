@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class MenuPrincipale extends JFrame {
@@ -33,7 +34,7 @@ public class MenuPrincipale extends JFrame {
 	}
 
 	
-	public MenuPrincipale() throws IOException 
+	public MenuPrincipale() throws IOException, SQLException 
 	{
 	   
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -317,8 +318,9 @@ public class MenuPrincipale extends JFrame {
         JPanel panel = new JPanel();
         panel.setBounds(629, 26, 109, 30);
         backgroundPanel.add(panel);
+        LoginGUI gui= new LoginGUI();
         infoPlayerLabel_1 = 
-        		new JLabel(LoginGUI.getUsername());
+        		new JLabel(gui.getUser());
         panel.add(infoPlayerLabel_1);
         infoPlayerLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 	                    

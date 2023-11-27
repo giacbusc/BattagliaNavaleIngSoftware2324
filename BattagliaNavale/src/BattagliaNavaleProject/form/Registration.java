@@ -2,6 +2,7 @@ package BattagliaNavaleProject.form;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,7 +70,7 @@ public class Registration {
     		
     		return true;
     	}
-    	 public void actionPerformed(ActionEvent e) {
+    	 public void actionPerformed(ActionEvent e) throws IOException {
 		        // action to perform when the button is used
 		    	
 		    	try {

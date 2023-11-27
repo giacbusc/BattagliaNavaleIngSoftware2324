@@ -7,10 +7,6 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
@@ -23,20 +19,21 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import BattagliaNavaleProject.form.Login;
+import BattagliaNavaleProject.Control.LoginControl;
+import BattagliaNavaleProject.client.MenuPrincipale;
+import BattagliaNavaleProject.form.LoginModel;
 import BattagliaNavaleProject.form.SchermataIniziale;
-import BattagliaNavaleProject.server.ConnectionDb;
 
-public class LoginGUI extends JFrame {
+public class LoginGUI extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	 private JLabel usernameLabel, passwordLabel;
-	    private static JTextField usernameField;
-	    private JPasswordField passwordField;
-	    private JButton loginButton;
-	    private Login log= new Login();
-
+	private JLabel usernameLabel, passwordLabel;
+	private JTextField usernameField;
+	private JPasswordField passwordField;
+	private JButton loginButton;
+	private LoginModel model;
+	private JButton backButton;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -45,6 +42,7 @@ public class LoginGUI extends JFrame {
 			public void run() {
 				try {
 					LoginGUI frame = new LoginGUI();
+					//LoginControl cont = new LoginControl(frame);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,18 +50,21 @@ public class LoginGUI extends JFrame {
 			}
 		});
 	}
+	
 
-	/**
-	 * Create the frame.
-	 */
-	public LoginGUI() {
+	
+	public LoginGUI() 
+	{
+		//LoginModel model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		
+		LoginControl cont;
 		final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		
 		JPanel backgroundPanel = new JPanel() {
-            @Override
+            
+
+			@Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(sfondo.getImage(), 0, 0, getWidth(), getHeight(), this);
@@ -85,13 +86,13 @@ public class LoginGUI extends JFrame {
 		setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 300);
-        setLocationRelativeTo(null);
+        //setLocationRelativeTo(null);
 
         usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds(30, 90, 80, 25);
         backgroundPanel.add(usernameLabel);
 
-        usernameField = new JTextField();
+        usernameField = new JTextField(15);
         usernameField.setBounds(110, 90, 150, 25);
         backgroundPanel.add(usernameField);
 
@@ -99,7 +100,7 @@ public class LoginGUI extends JFrame {
         passwordLabel.setBounds(30, 130, 80, 25);
         backgroundPanel.add(passwordLabel);
 
-        passwordField = new JPasswordField();
+        passwordField = new JPasswordField(15);
         passwordField.setBounds(110, 130, 150, 25);
         backgroundPanel.add(passwordField);
 
@@ -108,40 +109,34 @@ public class LoginGUI extends JFrame {
         //loginButton.addActionListener(this);
         backgroundPanel.add(loginButton);
     	
-		loginButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		    	 String user = usernameField.getText();
-		    	 String pw = passwordField.getText();
-	              try {
-					log.VerificaUtente(user,pw);
-				} catch (IOException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-
-		    }
-		});
-
-		   
-        
-		
-        JButton backButton = new JButton("Back");
+        backButton = new JButton("Back");
         backButton.setBounds(391, 232, 85, 21);
         backgroundPanel.add(backButton);
-        backButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        // Azioni da eseguire quando il pulsante viene premuto
-		    	SchermataIniziale back = new SchermataIniziale();
-	             back.setVisible(true);
-	             
-	             dispose(); 
-		    }
-		});
-    }
+       
+		loginButton.addActionListener(new LoginControl(this));
+		backButton.addActionListener(new LoginControl(this));
+        
+       
+       
+	}
+        
+        
+		public LoginModel getUserModel(){
+            model = new LoginModel(usernameField.getText(), passwordField.getText());
+            return model;       
+        }
+     
+        public void showMessage(String msg){
+            JOptionPane.showMessageDialog(this, msg);
+        }
+     
+        public void addLoginListener(ActionListener log) 
+        {
+              loginButton.addActionListener(log);
+        }
+    
 
-	public static String getUsername() {
+	public String getUser() {
 		try{
 			return usernameField.getText();
 			
@@ -150,18 +145,28 @@ public class LoginGUI extends JFrame {
 			return "DEFAULTUSER";
 		}
 	}
-
-	public static void setUsername(String username) {
-		usernameField.setText(username);
+	public void close() {
+		SchermataIniziale inizio;
+		inizio = new SchermataIniziale(); 
+		dispose();
+		inizio.setVisible(true);
 	}
 
-	public String getPassword() {
-		return passwordField.getText();
-	}
 
-	public void setPassword(String password) {
-		passwordField.setText(password);;
-	}
+@Override
+public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+public void openMenu() throws IOException, SQLException {
+
+    MenuPrincipale menu = new MenuPrincipale(); 
+	menu.setVisible(true);
+	dispose(); 
+}
 
 	
 }
