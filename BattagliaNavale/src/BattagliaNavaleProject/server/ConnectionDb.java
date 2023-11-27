@@ -9,7 +9,7 @@ import org.h2.tools.Server;
 
 public class ConnectionDb 
 {
-	private String jdbcURL = "jdbc:h2:tcp://172.16.130.81:9092/~/test";
+	private String jdbcURL = "jdbc:h2:tcp://172.16.131.215:9092/~/test";
 	private String username = "sa";
 	private String password = "1234";
 	public ConnectionDb()
