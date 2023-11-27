@@ -177,9 +177,9 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		        // Azioni da eseguire quando il pulsante viene premuto
-		    	RegistrationGUI registrationGUI = new RegistrationGUI();
-	            registrationGUI.setVisible(true);
-	             dispose(); 
+		    	RegistrationView view       = new RegistrationView();
+		          RegistrationControl controller = new RegistrationControl(view);        
+		            view.setVisible(true);
 		    }
 		});
 		
