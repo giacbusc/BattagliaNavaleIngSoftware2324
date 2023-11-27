@@ -18,27 +18,37 @@ import BattagliaNavaleProject.form.SchermataIniziale;
 import BattagliaNavaleProject.formGui.LoginGUI;
 import BattagliaNavaleProject.server.ConnectionDb;
 
-public class LoginControl implements ActionListener  {
-    
+public class LoginControl implements ActionListener  
+{
 	
- public void actionPerformed(ActionEvent e) {
+	private LoginGUI gui;
+	public LoginModel model;
+	
+	
+	public LoginControl(LoginGUI gui)
+	{	
+		this.gui = gui;
+		
+	}
+	
+	public void actionPerformed(ActionEvent e) 
+	{
 			// TODO Auto-generated method stub
-		LoginGUI gui;
+		
 		try {
-			gui = new LoginGUI();
+			
+			model = gui.getUserModel();
 			if(e.getSource() instanceof JButton ) {
 				JButton clickedButton= (JButton) e.getSource();
 				
 				if(clickedButton.getText().equals("Login")) 
-				{
-					String user = gui.getUser();
-					System.out.println("ciao");
-			    	String pw = gui.getPassword();
-		            LoginModel model=new LoginModel(user,pw);
-		            
+				{   
 	                try {
 						if(checkUser(model)){
 						    gui.showMessage("Login succesfully!");
+						    gui.openMenu();
+						    
+							
 						}else{
 						    gui.showMessage("Invalid username and/or password!");
 						}
@@ -49,38 +59,23 @@ public class LoginControl implements ActionListener  {
                 
 				}
 				if(clickedButton.getText().equals("Back")) {
-					
-					SchermataIniziale inizio;
-					inizio = new SchermataIniziale(); 
-					
-					
-					inizio.setVisible(true);
-					System.out.println("ciao");
-					gui.dispose();
+					gui.close();
 				}
 			}
 			
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		}catch(Exception e3) {
+			e3.printStackTrace();	
 		}
 			
 		
         }
 
-
-
-
-
-
-	public static boolean checkUser(LoginModel user) throws SQLException, IOException  
+	public static boolean checkUser(LoginModel model) throws SQLException, IOException  
 	{
-		LoginModel model = new LoginModel();
+		
 		LoginGUI gui = new LoginGUI();
     	ConnectionDb conn1 = new ConnectionDb();
+    	
     	String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";
         PreparedStatement pstmt = conn1.getConnection().prepareStatement(sql);
         pstmt.setString(1, model.getUserName());
@@ -88,33 +83,22 @@ public class LoginControl implements ActionListener  {
 
         ResultSet rs = pstmt.executeQuery();
         
-        if (rs.next() && verificaCampi()) 
+        if (rs.next() && verificaCampi(model)) 
         { 
-        	try {
-				gui.showMessage("Login complete!");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			MenuPrincipale menu;
-			menu = new MenuPrincipale(); 
-			menu.setVisible(true);
-			gui.dispose(); 
+			
 			return true;
 			
         } 
         else {
-        	gui.showMessage( "Incorrect data entered, please re-enter it");
         	model.setUserName("");
 			model.setPassword("");
 			return false;
         }
         }
     
-    private static boolean verificaCampi()
+    private static boolean verificaCampi(LoginModel model)
     {
-    	LoginModel model = new LoginModel();
-		if(model.getUserName()==""|| model.getPassword()==""){
+		if(model.getUserName()=="" || model.getPassword()==""){
 			return false;
 		}
 		

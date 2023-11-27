@@ -107,19 +107,11 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		    public void actionPerformed(ActionEvent e) {
 		        // Azioni da eseguire quando il pulsante viene premuto
 		    	LoginGUI login;
-				try {
-					login = new LoginGUI();
-					login.setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-	             
-	             
-	             dispose(); 
+				
+				login = new LoginGUI();
+				login.setVisible(true);
+				             
+	            dispose(); 
 		    }
 		});
 		
