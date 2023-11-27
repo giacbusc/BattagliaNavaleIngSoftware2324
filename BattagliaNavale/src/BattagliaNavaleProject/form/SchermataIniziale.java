@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import BattagliaNavaleProject.formGui.LoginGUI;
-import BattagliaNavaleProject.formGui.RegistrationGUI;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

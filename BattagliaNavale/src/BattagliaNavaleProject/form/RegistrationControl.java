@@ -7,9 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
-import BattagliaNavaleProject.formGui.LoginGUI;
 import BattagliaNavaleProject.server.ConnectionDb;
 
 public class RegistrationControl implements ActionListener {
