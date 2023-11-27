@@ -19,31 +19,33 @@ import BattagliaNavaleProject.formGui.LoginGUI;
 import BattagliaNavaleProject.server.ConnectionDb;
 
 public class LoginControl implements ActionListener  {
-	private static LoginModel model;
-    private static LoginGUI gui;
-/*    
+    
+	
  public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 		LoginGUI gui;
 		try {
-			gui = new LoginGUI ();
+			gui = new LoginGUI();
 			if(e.getSource() instanceof JButton ) {
-				JButton clickedButton= ( JButton) e.getSource();
-				if(clickedButton.getText().equals("Login")) {
+				JButton clickedButton= (JButton) e.getSource();
+				
+				if(clickedButton.getText().equals("Login")) 
+				{
 					String user = gui.getUser();
-					System.out.println(user);
-			    	 String pw = gui.getPassword();
-		              LoginModel model=new LoginModel(user,pw);
-                try {
-					if(checkUser(model)){
-					    gui.showMessage("Login succesfully!");
-					}else{
-					    gui.showMessage("Invalid username and/or password!");
-					}
-				} catch (SQLException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} 
+					System.out.println("ciao");
+			    	String pw = gui.getPassword();
+		            LoginModel model=new LoginModel(user,pw);
+		            
+	                try {
+						if(checkUser(model)){
+						    gui.showMessage("Login succesfully!");
+						}else{
+						    gui.showMessage("Invalid username and/or password!");
+						}
+					} catch (SQLException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} 
                 
 				}
 				if(clickedButton.getText().equals("Back")) {
@@ -53,8 +55,8 @@ public class LoginControl implements ActionListener  {
 					
 					
 					inizio.setVisible(true);
-					gui.setVisible(false);
-			
+					System.out.println("ciao");
+					gui.dispose();
 				}
 			}
 			
@@ -70,12 +72,14 @@ public class LoginControl implements ActionListener  {
         }
 
 
-*/
 
 
 
-	public static boolean checkUser(LoginModel user) throws SQLException, IOException  {
-	
+
+	public static boolean checkUser(LoginModel user) throws SQLException, IOException  
+	{
+		LoginModel model = new LoginModel();
+		LoginGUI gui = new LoginGUI();
     	ConnectionDb conn1 = new ConnectionDb();
     	String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";
         PreparedStatement pstmt = conn1.getConnection().prepareStatement(sql);
@@ -95,7 +99,7 @@ public class LoginControl implements ActionListener  {
 			MenuPrincipale menu;
 			menu = new MenuPrincipale(); 
 			menu.setVisible(true);
-			gui.dispose(); //gui o menu
+			gui.dispose(); 
 			return true;
 			
         } 
@@ -107,7 +111,9 @@ public class LoginControl implements ActionListener  {
         }
         }
     
-    private static boolean verificaCampi(){
+    private static boolean verificaCampi()
+    {
+    	LoginModel model = new LoginModel();
 		if(model.getUserName()==""|| model.getPassword()==""){
 			return false;
 		}
@@ -115,11 +121,7 @@ public class LoginControl implements ActionListener  {
 		return true;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	
 

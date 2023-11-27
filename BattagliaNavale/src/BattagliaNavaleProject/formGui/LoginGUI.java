@@ -30,7 +30,7 @@ import BattagliaNavaleProject.form.LoginModel;
 import BattagliaNavaleProject.form.SchermataIniziale;
 import BattagliaNavaleProject.server.ConnectionDb;
 
-public class LoginGUI extends JFrame implements ActionListener{
+public class LoginGUI extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -62,8 +62,9 @@ public class LoginGUI extends JFrame implements ActionListener{
 	 * @throws IOException 
 	 * @throws SQLException 
 	 */
-	public LoginGUI() throws SQLException, IOException {
-		LoginModel model;
+	public LoginGUI() throws SQLException, IOException 
+	{
+		//LoginModel model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
@@ -121,28 +122,11 @@ public class LoginGUI extends JFrame implements ActionListener{
         backButton.setBounds(391, 232, 85, 21);
         backgroundPanel.add(backButton);
        
-		loginButton.addActionListener(this);
-		
-		backButton.addActionListener(this);
-		
-       
+		loginButton.addActionListener(new LoginControl());
+		backButton.addActionListener(new LoginControl());
         
-		/*{
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		    	 String user = usernameField.getText();
-		    	 String pw = passwordField.getText();
-	              try {
-					log.VerificaUtente(user,pw);
-				} catch (IOException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-
-		    }
-		});
-		
-		*/
+       
+       
 	}
         
         public LoginModel getUserModel(){
@@ -154,9 +138,11 @@ public class LoginGUI extends JFrame implements ActionListener{
             JOptionPane.showMessageDialog(this, msg);
         }
      
-        public void addLoginListener(ActionListener log) {
+        public void addLoginListener(ActionListener log) 
+        {
               loginButton.addActionListener(log);
-            }
+        
+        }
 	
     
         
@@ -202,10 +188,9 @@ public class LoginGUI extends JFrame implements ActionListener{
 	}
 
 
-	
 
 
-
+/*
 	@Override
 	 public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -239,9 +224,9 @@ public class LoginGUI extends JFrame implements ActionListener{
 		}
 		
                        
-        
+       
     }
-
+ */
 
 	
 }
