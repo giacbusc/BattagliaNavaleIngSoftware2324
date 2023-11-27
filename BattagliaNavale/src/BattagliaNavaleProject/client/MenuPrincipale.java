@@ -2,7 +2,7 @@ package BattagliaNavaleProject.client;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import BattagliaNavaleProject.formGui.LoginGUI;
+import BattagliaNavaleProject.formGui.LoginView;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -318,7 +318,7 @@ public class MenuPrincipale extends JFrame {
         JPanel panel = new JPanel();
         panel.setBounds(629, 26, 109, 30);
         backgroundPanel.add(panel);
-        LoginGUI gui= new LoginGUI();
+        LoginView gui= new LoginView();
         infoPlayerLabel_1 = 
         		new JLabel(gui.getUser());
         panel.add(infoPlayerLabel_1);

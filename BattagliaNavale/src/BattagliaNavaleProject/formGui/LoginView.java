@@ -24,7 +24,7 @@ import BattagliaNavaleProject.client.MenuPrincipale;
 import BattagliaNavaleProject.form.LoginModel;
 import BattagliaNavaleProject.form.SchermataIniziale;
 
-public class LoginGUI extends JFrame implements ActionListener{
+public class LoginView extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JLabel usernameLabel, passwordLabel;
@@ -41,7 +41,7 @@ public class LoginGUI extends JFrame implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginGUI frame = new LoginGUI();
+					LoginView frame = new LoginView();
 					//LoginControl cont = new LoginControl(frame);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -53,7 +53,7 @@ public class LoginGUI extends JFrame implements ActionListener{
 	
 
 	
-	public LoginGUI() 
+	public LoginView() 
 	{
 		//LoginModel model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -2,30 +2,23 @@ package BattagliaNavaleProject.Control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.Statement;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.swing.JButton;
-
-import BattagliaNavaleProject.client.MenuPrincipale;
 import BattagliaNavaleProject.form.LoginModel;
-import BattagliaNavaleProject.form.SchermataIniziale;
-import BattagliaNavaleProject.formGui.LoginGUI;
+import BattagliaNavaleProject.formGui.LoginView;
 import BattagliaNavaleProject.server.ConnectionDb;
 
 public class LoginControl implements ActionListener  
 {
 	
-	private LoginGUI gui;
+	private LoginView gui;
 	public LoginModel model;
 	
 	
-	public LoginControl(LoginGUI gui)
+	public LoginControl(LoginView gui)
 	{	
 		this.gui = gui;
 		
@@ -73,7 +66,7 @@ public class LoginControl implements ActionListener
 	public static boolean checkUser(LoginModel model) throws SQLException, IOException  
 	{
 		
-		LoginGUI gui = new LoginGUI();
+		LoginView gui = new LoginView();
     	ConnectionDb conn1 = new ConnectionDb();
     	
     	String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";

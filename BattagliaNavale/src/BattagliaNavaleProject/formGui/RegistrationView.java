@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.form;
+package BattagliaNavaleProject.formGui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -20,14 +20,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import BattagliaNavaleProject.formGui.LoginGUI;
+import BattagliaNavaleProject.Control.RegistrationControl;
+import BattagliaNavaleProject.form.RegistrationModel;
+import BattagliaNavaleProject.form.SchermataIniziale;
 
 
 
 public class RegistrationView extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
-	private static final JLabel NicknameField = null;
 	private JTextField txtNickname;
 	private JTextField txtName;
 	private JTextField txtSurname;
@@ -150,7 +151,6 @@ public class RegistrationView extends JFrame implements ActionListener {
             public void run() {
                 try {
                 	RegistrationView frame = new RegistrationView();
-                    RegistrationControl controller = new RegistrationControl(frame);
                     frame.setVisible(true);
                    
                 } catch (Exception e) {
@@ -162,8 +162,8 @@ public class RegistrationView extends JFrame implements ActionListener {
 
 	public void openLogin() {
 			  
-        LoginGUI login;
-        login = new LoginGUI(); 
+        LoginView login;
+        login = new LoginView(); 
         login.setVisible(true);
         dispose(); 
 		

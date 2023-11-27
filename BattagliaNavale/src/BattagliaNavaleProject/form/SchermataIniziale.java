@@ -6,21 +6,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import BattagliaNavaleProject.formGui.LoginGUI;
+import BattagliaNavaleProject.Control.RegistrationControl;
+import BattagliaNavaleProject.formGui.LoginView;
+import BattagliaNavaleProject.formGui.RegistrationView;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
 
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -105,9 +102,9 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		        // Azioni da eseguire quando il pulsante viene premuto
-		    	LoginGUI login;
+		    	LoginView login;
 				
-				login = new LoginGUI();
+				login = new LoginView();
 				login.setVisible(true);
 				             
 	            dispose(); 
