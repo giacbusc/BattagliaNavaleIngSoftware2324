@@ -1,49 +1,44 @@
 package BattagliaNavaleProject.client;
 
-import java.awt.EventQueue;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+public class BattagliaNavaleClient 
+{
+	private BattagliaNavaleClient csc;
+	private Socket socket;
+	private DataInputStream dataIn;
+	private DataOutputStream dataOut;
 
-public class BattagliaNavaleClient extends JFrame {
-
-	private JPanel yourBoardPanel;
-	private JPanel oppenentBoardPanel;
-	private JPanel shipsPanel;
-	private Square[][] yourBoard;
-	private Square[][] opponentBoard;
-	private Square mouseOverSquare;
-	private Square selectedSquare;
-	private String status;
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BattagliaNavaleClient frame = new BattagliaNavaleClient();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public BattagliaNavaleClient()
+	{
+		System.out.println("CLIENTTTTT");
+		try {
+			socket = new Socket("localhost", 51734);
+			dataIn = new DataInputStream(socket.getInputStream());
+			dataOut = new DataOutputStream(socket.getOutputStream());
+			playerID = dataIn.readInt();
+			System.out.println("Connected to server as Player #" + playerId + ".");
+		}catch(IOException ex){
+			System.out.println("IO Exception from CSC constructor");
+		}
 	}
-
-	/**
-	 * Create the frame.
-	 */
-	public BattagliaNavaleClient() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		JPanel contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
+	
+	public void connectToServer()
+	{
+		csc = new BattagliaNavaleClient();
 	}
-
+	
+	
+	
+	//Classe di avvio del client
+	/*
+	 * VIENE ESEGUITO DOPO AVER CLICCATO MULTIPLAYER
+	 * 
+	 * player.connectToServer();
+	 * player.avvioGioco();
+	 */
 }
