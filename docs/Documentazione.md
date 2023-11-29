@@ -160,6 +160,13 @@ I lavori sono stati assegnati in base alle capacità personali, così da suddivi
 </table>
 
 ### 1.4 Standards, linee guida e procedure
+Il gioco è composto da due applicativi separati:
+
+Server: Gestisce l'andamento del gioco multiplayer effettuando la connesione di più client, non possiede un'interfaccia grafica <br>
+Client: Gestisce l'interfaccia grafica e l'interazione con l'utente, sia nelle fasi iniziali (registrazione, login, scelta della modalità di gioco) che nello svolgimento del gioco in versione single player <br>
+Sia server che client sono scritti in Java, in un progetto maven, e per la comunicazione utilizzano H2Database per quanto riguarda la fase di registrazione e di login ed i socket per la gestione della connessione client e server nelle fasi del gioco. 
+
+Per la grafica si è deciso di utilizzare la libreria JavaSwing ed è stata sviluppata interamente con linguaggio Java.
 
 ### 1.5 Attività di gestione
 Si è deciso di organizzare lo sviluppo seguando i metodi agili, secondo la filosofia dell'*extreme programming* in quanto permette di migliorare la qualità del codice e approcciarsi al cambiamento dei requisiti in modo più responsivo.<br>
@@ -176,7 +183,14 @@ I principali rischi che si possono incontrare durante lo sviluppo di questo gioc
 Non vi è stata una componente di aiuto esterno nella progettazione e nello sviluppo del software, i sopracitati componenti del gruppo sono stati gli unici partecipanti.
 
 ### 1.8 Metodi e tecniche
+La prima fase della progettazione è stata dedicata alla creazione di use case diagrams in modo da comprendere le funzionalità necessarie per la nostra applicazione.
 
+
+//immagine del diagramma 
+
+
+
+L'attore principale è l'utente che può interagire in vari modi con l'applicazione. Nel caso in cui voglia avviare una partita, per prima cosa deve fare richiesta al server (attore passivo) di creare la partita. Una volta effettuata la richiesta il client resta in attesa che al server si connetta un altro client, infatti affinché la partita possa essere avviata è necessaria la partecipazione di un altro giocatore. Il gioco è composto da due turni che si alternano tra loro: un giocatore fa la sua mossa, che il server trasmette all'avversario che era in attesa. A quel punto possono accadere due cose: o il turno passa all'avversario che quindi può eseguire la sua mossa, oppure il turno resta in mano al giocatore, se questo ha portato a termine una mossa efficace. Ciò che accade viene comunicato ai giocatori tramite una scritta a video. Al termine del gioco, dopo essere stata mostrato il vincitore, l'utente può decidere se giocare nuovamente oppure uscire dalla partita ed essere disconnesso dal server.
 
 ### 1.9 Garanzie di qualità
 Si punta a sviluppare un software che rispetti i parametri di qualità indicati dal modello di McCall:
@@ -191,13 +205,16 @@ Si punta a sviluppare un software che rispetti i parametri di qualità indicati 
 - Riusabilità: Sono state sfruttate e scritte librerie che possono essere riutilizzate in altri ambiti in quanto sono state sviluppate in modo indipendente dal contesto del gioco.
 
 ### 1.10 Package di lavoro
-
+Il progetto del software è realizzato su maven e abbiamo gestito la sua struttura attraverso la configurazione di 3 moduli: client, server e common. L'avere questa suddivisione ci ha permesso di non avere un codice unico e comune a client e server, che sarebbe rimasto parzialmente inutilizzato (il codice del client risulta inutile al server e così il contrario). <br>
+Il modulo del client è composto da quella parte di codice adibita alla visualizzazione del modello (ad esempio le classi *view* e *GUI*) e all'input/output da e verso l'utente. Tutta la parte del progetto che si occupa del gioco single player è implementata del modulo client in quanto si svolge in locale e non necessita collegamenti al server per funzionare. <br>
+Il modulo del server invece ha la funzione di controller e gestisce il modello, il codice di questo modulo è quello che permette la connessione tra i client nel gioco
 
 ### 1.11 Risorse
 Per l'utente non è richiesta una particolare dotazione se non un computer ed una connessione ad Internet funzionante.
 
 ### 1.12 Budget e pianificazione
-
+Il team non ha come obiettivo quello di ottenere un contributo per il lavoro svolto, infatti come già precemente detto non è un progetto nato su commissione. Nel caso in futuro si presentasse la possibilità di ottenere una retribuzione, il ricavato sarà equalmente distribuito tra i membri. <br>
+Per quanto riguarda il budget il gruppo ha messo a disposizione il proprio tempo, inoltre, considerato che le riunioni sono state svolte a Dalmine, presso l'Università, ed essendo che i membri del gruppo hanno domicilio in località distanti a questo luogo abbiamo considerato come budget anche la benzina impiegata al raggiungimento del luogo di lavoro.
 
 ### 1.13 Cambiamenti
 I cambiamenti vengono discussi tra i membri del team e poi effettuati insieme, possono essere suggeriti anche dagli utenti finali attraverso i loro feedback.<br> Ad ogni versione rilasciata verranno rilasciati i documenti relativi. 
