@@ -39,7 +39,7 @@ Realizzazione in Java del gioco Battaglia Navale, realizzato in due differenti m
 ### Guida rapida al gioco
 #### Scopo del gioco
 Lo scopo del gioco è localizzare tutte le unità della flotta navale nemica composta da diverse navi, in tutto 10: 
--1 portaerei lunga 4 caselle
+-1 portaerei da 4 caselle
 -2 incrociatori da 3 caselle
 -3 cacciatorpedinieri da 2 caselle 
 -4 sottomarini da 1 casella.
@@ -47,14 +47,14 @@ Le navi non si possono toccare e possono essere disposte solo in orizzontale ed 
 
 #### Svolgimento del gioco
 I giocatori devono posizionare le proprie navi sulla propria griglia, composta da 10 righe e da 10 colonne. Una volta posizionate le navi, il gioco procede a turni.
-Il giocatore di turno "spara un colpo" dichiarando una casella attraverso le sue coordinate, indicate da una lettera ed un numero.
+Il giocatore di turno "spara un colpo" selezionando sulla griglia dell'opponent la casella che si vuole colpire (la quale ha una specifica coordinata).
 Nel momento in cui il colpo va a segno, cioè il gioocatore ha colpito oppure affondato una nave, il turno non viene passato ed il giocatore può tentare un altro colpo. 
 Altrimenti, se il colpo non va a segno, il turno viene passato al giocatore avversario. 
 A vincere è il primo giocatore che affonda tutte le navi dell'avversario.
 
 ## 1. Project plan
 ### 1.1 Background e Introduzione
-Il nostro lavoro è iniziato con un'attenta analisi dei requisiti, che è stata il fulcro del primo incontro. I requisiti non sono dettati da un finanziatore o da utenti esterni, ma sono stati identificati dai membri del team. <br>
+Il nostro lavoro è iniziato con un'attenta analisi dei requisiti, che è stata il fulcro dei primi incontro. I requisiti non sono dettati da un finanziatore o da utenti esterni, ma sono stati identificati dai membri del team. <br>
 Durante la prima riunione operativa si è deciso di sviluppare un software per un gioco, chiamato "Battaglia Navale", il quale verrà proposto agli utenti in duplice modalità: single player (contro la CPU) e multiplayer (con la connessione di più client tramite server). A seguito verrano illustrate nel dettaglio le funzionalità che verranno implementate e quelle che abbiamo considerato come possibili sviluppi futuri dell'app (1.2 modello MoSCoW) <br>
 Ci siamo posti come deadline per il primo prototipo il 30/12/2023 mentre per la versione finale il 18/01/2024.<br>
 
@@ -105,7 +105,7 @@ Essendo un approccio agile:
 - L'organizzazione del team segue i principi della SWAT: i 4 membri hanno la stessa importanza e possono esprimere le loro opinioni. Le riunioni del gruppo sono brevi sessioni, prevalentemente di brain storming, o nelle quali si cerca una soluzione ad un problema rilevato durante i test, che sono stati svolti ripetutamente e a seguito di ogni cambiamento. La documentazione di queste riunioni  è minima, formata principalmente da appunti o da schemi sui quali basarci per le future implementazioni e modifiche da attuare. <br>
 Qualora non fosse stato possibile incontrarsi dal vivo, le riunioni sono state eseguite attraverso videochiamate da remoto, tramite applicazioni apposite quali *Google Meet* o *Discord*. 
 -	Abbiamo usato cicli di sviluppo piccoli ed incrementali; lo sviluppo viene pianificato man mano senza una pianificazione eccessivamente anticipata, data l'assenza di esperienze pregresse sulle quali basarci. Ogni volta che un membro apportava modifiche al progetto lo comunicava agli altri attraverso issues. 
-- Il team ha seguito la filosofia dell'*extreme programming*, basandosi sul concetto di voler creare un software funzionante e di qualità, dando importanza prima al portare a termine i punti di must have del progetto, poi al migliorarli fino all'ottenimento di un progetto che fosse ritenuto di buona qualità e infine alle possibili implementazioni da attuare nel tempo rimanente.
+- Il team ha seguito la filosofia dell'*extreme programming*, basandosi sul concetto di voler creare un software funzionante e di qualità, dando importanza: prima al portare a termine i punti di must have del progetto, poi al migliorarli fino all'ottenimento di un progetto che fosse ritenuto di buona qualità e infine alle possibili implementazioni da attuare nel tempo rimanente.
 - Durante lo sviluppo, sopratttutto nei momenti iniziali, si è sfruttato spesso il *pair programming* come metodo di verifica: abbiamo lavorato in coppia  sullo stesso frammento di codice in modo tale da avere una verifica in tempo reale sul lavoro svolto. Questa pratica ha inoltre favorito lo scambio di idee e la ricerca di soluzioni migliori, fondamentale nei primi incontri.
 - Durante lo sviluppo abbiamo fruttato la tecnica del *timeboxing* assegnando ad ogni compito una scadenza entro la quale doveva essere portato a termine. 
 
@@ -159,17 +159,19 @@ I lavori sono stati assegnati in base alle capacità personali, così da suddivi
     </tr>
 </table>
 
+È bene sottolineare che, essendo il team composto da pochi membri, ogni componente ha partecipato attivamente ad ogni attivita seppur con differente obiettivo.
+
 ### 1.4 Standards, linee guida e procedure
 Il gioco è composto da due applicativi separati:
 
-Server: Gestisce l'andamento del gioco multiplayer effettuando la connesione di più client, non possiede un'interfaccia grafica <br>
+Server: Gestisce l'andamento del gioco multiplayer effettuando la connesione di più client (non possiede un'interfaccia grafica) <br>
 Client: Gestisce l'interfaccia grafica e l'interazione con l'utente, sia nelle fasi iniziali (registrazione, login, scelta della modalità di gioco) che nello svolgimento del gioco in versione single player <br>
 Sia server che client sono scritti in Java, in un progetto maven, e per la comunicazione utilizzano H2Database per quanto riguarda la fase di registrazione e di login ed i socket per la gestione della connessione client e server nelle fasi del gioco. 
 
 Per la grafica si è deciso di utilizzare la libreria JavaSwing ed è stata sviluppata interamente con linguaggio Java.
 
 ### 1.5 Attività di gestione
-Si è deciso di organizzare lo sviluppo seguando i metodi agili, secondo la filosofia dell'*extreme programming* in quanto permette di migliorare la qualità del codice e approcciarsi al cambiamento dei requisiti in modo più responsivo.<br>
+Lo sviluppo è stato organizzato seguendo i metodi agili, secondo la filosofia dell'*extreme programming* in quanto permette di migliorare la qualità del codice e approcciarsi al cambiamento dei requisiti in modo più responsivo.<br>
 Il team ha lavorato sempre a stretto contatto con scambio continuo di idee e con confronti giornalieri, così da proseguire coesi e coerenti nonostante il lavoro sia stato indivuale in diverse fasi del progetto. <br>
 Nonostante i primi incontri di stesura dei requisiti e di avvio del lavoro siano state delle sessioni piuttosto lunghe, gli incontri settimanali successivi sono stati di breve durata, durante i quali sono state effettuate delle sessioni di *brain storming* per trovare nuove idee o cercare soluzioni a problemi riscontrati. Nei meeting, organizzati solitamente nel momento in cui scadevano i timebox assegnati (tempi nei quali il team si prefissava degli obiettivi da raggiungere), ci si è occupati della verifica del lavoro eseguito. La fase di test infatti è stata costante e ci ha permesso di tener monitorati gli sviluppi e le modifiche che ogni membro ha apportato. <br>
 Durante i meeting abbiamo, di volta in volta, deciso i passi successivi e identificato in quanto tempo sarebbero dovuti essere presentati. 
