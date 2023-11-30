@@ -13,13 +13,15 @@ import java.io.IOException;
 
 public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMotionListener{
 	private static final int GRID_DIMENSION = 10;
-	public final JFrame frame;
+	private final JFrame frame;
 	private JPanel yourBoardPanel;
 	private JPanel opponentBoardPanel;
-	private JPanel centralPanel;
+	private JPanel centralTopPanel;
 	private Square[][] yourBoard;
 	private Square[][] opponentBoard;
 	private JPanel shipsPanel;
+	private JPanel gridPanel;
+	private GridBagConstraints c;
 	//private int dim; -> se vogliamo far sì che il giocatore all'inizio scelga la dimensione
 	private int selectedShip;
 	private final Border topLeftBorder = BorderFactory.createMatteBorder(1, 1, 0, 0, Color.black);
@@ -48,10 +50,12 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	public DoubleGameGridGUI() throws IOException 
 	{
 		this.frame = new JFrame("Battaglia Navale");
-		setSize(1024,490);
+		setSize(1400,788);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		centralPanel = new JPanel(new BorderLayout());
-		
+		//centralPanel = new JPanel(new BorderLayout());
+		c = new GridBagConstraints();
+		gridPanel =  new JPanel();
+		centralTopPanel = new JPanel();
 		JPanel backgroundPanel = new JPanel();
 		/*final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoGriglia.jpg");
 		Image image = sfondo.getImage();
@@ -65,11 +69,17 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
             }
         };*/
         //getContentPane().add(backgroundPanel);
-		getContentPane().add(centralPanel, BorderLayout.CENTER);
-		frame.pack();
 
+		centralTopPanel.setBackground(Color.BLUE);
+		centralTopPanel.setPreferredSize(new Dimension(50, 50));
+		getContentPane().add(centralTopPanel, BorderLayout.NORTH);
+		
 		createGrid();
 		
+		getContentPane().add(gridPanel, BorderLayout.CENTER);
+		
+		
+		frame.pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
@@ -82,7 +92,12 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		JLabel selectorLabel;
 		int boatLength;
 		shipsPanel.setBackground(Color.blue);
-		centralPanel.add(shipsPanel);
+		shipsPanel.setPreferredSize(new Dimension(100,100));
+		//centralPanel.add(shipsPanel);
+		c.gridx = 0 ;
+		c.gridy = 1;
+		c.weightx = 2;
+		gridPanel.add(shipsPanel,c);
 		frame.pack();
 	}
 	
@@ -170,10 +185,26 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 			}
 		}
 		
-		yourBoardPanel.setPreferredSize(new Dimension(432,432));
-		opponentBoardPanel.setPreferredSize(new Dimension(432,432));
-		getContentPane().add(yourBoardPanel, BorderLayout.WEST);
-		getContentPane().add(opponentBoardPanel, BorderLayout.EAST);
+		gridPanel.setLayout(new GridBagLayout());
+		
+		yourBoardPanel.setPreferredSize(new Dimension(600,600));
+		c.ipadx = 35;
+		c.gridx = 0;
+		c.gridy = 0;
+		c.weightx = 1.0;
+		c.weighty = 1.0;
+		c.fill= GridBagConstraints.BOTH;
+		gridPanel.add(yourBoardPanel, c);
+		
+		opponentBoardPanel.setPreferredSize(new Dimension(600,600));
+		c.ipadx = 35;
+		c.gridx = 1;
+		c.gridy = 0;
+		c.weightx = 1.0;
+		c.weighty = 1.0;
+		c.fill= GridBagConstraints.BOTH;
+		gridPanel.add(opponentBoardPanel,c);
+		//getContentPane().add(yourBoardPanel, BorderLayout.WEST);
 		boatList();
 		frame.pack();
 		
