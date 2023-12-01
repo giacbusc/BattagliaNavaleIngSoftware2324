@@ -133,7 +133,7 @@ Non vi è stata una componente di aiuto esterno nella progettazione e nello svil
 La prima fase della progettazione è stata dedicata alla creazione di use case diagrams in modo da comprendere le funzionalità necessarie per la nostra applicazione.
 
 <p align="center">
-  <img style="width: 200px;" src="resources/useCaseUML.png">
+  <img style="width: 950px;" src="resources/useCaseUML.png">
 </p>
 
 L'attore principale è l'utente che può interagire in vari modi con l'applicazione. Nel caso in cui voglia avviare una partita, per prima cosa deve fare richiesta al server (attore passivo) di creare la partita. Una volta effettuata la richiesta il client resta in attesa che al server si connetta un altro client, infatti affinché la partita possa essere avviata è necessaria la partecipazione di un altro giocatore. Il gioco è composto da due turni che si alternano tra loro: un giocatore fa la sua mossa, che il server trasmette all'avversario che era in attesa. A quel punto possono accadere due cose: o il turno passa all'avversario che quindi può eseguire la sua mossa, oppure il turno resta in mano al giocatore, se questo ha portato a termine una mossa efficace. Ciò che accade viene comunicato ai giocatori tramite una scritta a video. Al termine del gioco, dopo essere stata mostrato il vincitore, l'utente può decidere se giocare nuovamente oppure uscire dalla partita ed essere disconnesso dal server.
