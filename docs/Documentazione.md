@@ -5,7 +5,6 @@
 
 # Progetto di ingegneria del software
 ### Anno accademico 2023-2024
-https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/README.md
 
 ### Membri del team
 - Buscaglia Giacomo, matricola 1078804
