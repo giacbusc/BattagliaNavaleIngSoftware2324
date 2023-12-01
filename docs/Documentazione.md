@@ -59,7 +59,10 @@ Durante la prima riunione operativa si è deciso di sviluppare un software per u
 Ci siamo posti come deadline per il primo prototipo il 30/12/2023 mentre per la versione finale il 18/01/2024.<br>
 
 ### 1.2 Modello di processo
+####<U> Ingegneria dei requisiti </U>
 La fase iniziale dello sviluppo è stata dedicata alla definizione dei requisiti del software richiesti da parte del committente. Dal momento che la produzione del gioco non è stata commissionata bensì è stata un'idea spontanea, i requisiti sono stati definiti in base a quello che era ritenuto importante per il team e alla conoscenza del gioco dal quale il software ha origine.<br>
+La fase di lavoro dedicata all'iongegneria dei requisiti ha occupato la maggior parte delle risorse in quanto su questo abbiamo basato tutto il lavoro eseguito successivamente. <br> 
+In particolare ci siamo soffermati sulla *fattiblità*, valutata sia in termini di tempo, che di conoscenze, in quanto essendo un progetto potenzialmente aperto a molte implementazioni, abbiamo ritenuto importanti fissare da subito quali implementazioni potessero risultare infattibili (e quindi lasciate ad un possibile futuro, in caso chiedendo per il loro sviluppo una consulenza da parte di terzi). <br>
 Abbiamo definito i requisiti sulla base del modello MoSCoW come segue:
 <table>
     <tr>
@@ -99,6 +102,21 @@ Abbiamo definito i requisiti sulla base del modello MoSCoW come segue:
     <td></td>
     </tr>
 </table>
+
+####<U> Progettazione </U>
+La progettazione è stata fondamentale per noi nello sviluppo del software infatti è stata il fondamento sul quale ci siamo basati per la creazione degli issues, per la suddivisione del lavoro, per la pianificazione dei timebox e per la gestione delle varie problematiche affrontate nel corso della programmazione. <br>
+La stesura dell'architettura ha quindi rappresentato il nostro vero punto di inizio ed il nostro punto di riferimento. 
+
+####<U> Implementazione e Test </U>
+Successivamente alla stesura del nostro progetto di base, siamo passati alla fase successiva che sarebbe sbagliato riconoscere come pura fase di implementazione, infatti i test sono stati eseguiti in parallelo, in modo costante, ritenendo necessario avere sempre un programma il quanto più corretto possibile. <br> 
+
+Al termine di questa fase viene presentata una prima versione di gioco detta "alpha", dotata di tutte le funzionalità di base necessarie che erano state concordate.
+
+####<U> Manutenzione </U>
+Questa fase si occupa della correzione di eventuali bug che si sono presentati dopo la consegna del software. <br>
+Spesso infatti è solo con l'uso effettivo del sistema che si verificano errori e che nascono richieste di miglioramenti.
+
+
 
 Per il processo di sviluppo del gioco si è deciso di sfruttare un approccio di tipo *agile*, infatti si è ritenuto che questo fosse più adatto per un progetto di questo tipo in cui la documentazione non è essenziale per l'utente finale, ossia i giocatori; di fatto anche il database associato non è molto rigoroso. <br>
 Essendo un approccio agile: 
@@ -219,7 +237,13 @@ Il team non ha come obiettivo quello di ottenere un contributo per il lavoro svo
 Per quanto riguarda il budget il gruppo ha messo a disposizione il proprio tempo, inoltre, considerato che le riunioni sono state svolte a Dalmine, presso l'Università, ed essendo che i membri del gruppo hanno domicilio in località distanti a questo luogo abbiamo considerato come budget anche la benzina impiegata al raggiungimento del luogo di lavoro.
 
 ### 1.13 Cambiamenti
-I cambiamenti vengono discussi tra i membri del team e poi effettuati insieme, possono essere suggeriti anche dagli utenti finali attraverso i loro feedback.<br> Ad ogni versione rilasciata verranno rilasciati i documenti relativi. 
+La manutenzione che ci proponiamo di effettuare in futuro comprenderà tutte e quattro le attività previste:
+-correzione di errori
+-adattamento ai cambiamenti dell'ambiente 
+.perfezione del software sulla base ad esempio delle richieste fornite dagli utenti oppure per la volontà dei membri di aumentare le prestazioni del sistema
+-prevenzione per l'aumento della manutentibilità del sistema (ad esempio con l'aggiornamento continuo della documentazione). <br>
+I cambiamenti verrano discussi tra i membri del team e poi effettuati insieme.<br>
+Ad ogni versione rilasciata verranno rilasciati i documenti relativi. <br>
 
 ### 1.14 Consegna
 Una volta pronta la versione finale, prima della pubblicazione, verrà inviata una segnalazione tramite issue a tutti i membri del team in modo tale da poter effettuare un'ultima revisione prima della pubblicazione.
