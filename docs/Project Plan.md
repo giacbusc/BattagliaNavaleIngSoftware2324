@@ -31,7 +31,7 @@
 
 ## 1. Project plan
 Il seguente project plan fa riferimento al progetto di Ingegneria del Software dei membri sopra citati, basato sullo sviluppo del gioco di Battaglia Navale in due differenti modalità: multiplayer e single player. 
-Il gioco consiste nel posizionare le proprie navi nella griglia e successivamente cercare di colpire le navi dell'avversario. <br>
+Il gioco consiste nel posizionare le proprie navi (ce ne sono di diverse grandezze) nella griglia e successivamente cercare di colpire le navi dell'avversario. <br>
 Ogni giocatore ha a disposizione un turno nel quale poter effettuare la propria mossa; se il colpo andasse a segno il turno non viene passato. <br>
 Il giocatore che vince è colui che affonda per primo tutte le navi del suo avversario.
 
