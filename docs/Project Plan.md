@@ -96,9 +96,9 @@ Al termine di questa fase viene presentata una prima versione di gioco detta "al
 #### Manutenzione 
 Questa fase si occupa della correzione di eventuali bug che si sono presentati dopo la consegna del software. <br>
 Spesso infatti è solo con l'uso effettivo del sistema che si verificano errori e che nascono richieste di miglioramenti.
-Come piattaforma di Version Control System si è scelto di sfruttare GitHub che ci ha permesso di sfruttare le funzionalità di:
--project con issue tracking, funzionalità la quale è stata fondamentale per la comunicazione tra i membri del team; è attraverso la creazione della Kanban board sche abbiamo gestito i vari issues e le varie attività da portare a termine
--branch: attraverso la loro creazione abbiamo potuto gestire l'implementazione di diverse parti di codice in modo simultaneo e parallelo alla versione alpha del codice alla quale le modifiche sono state applicate solo su revisione di altri membri (anche questo è stato gestito con github)
+Come piattaforma di Version Control System si è scelto di sfruttare GitHub che ci ha permesso di sfruttare le funzionalità di:< br >
+-project con issue tracking, funzionalità la quale è stata fondamentale per la comunicazione tra i membri del team; è attraverso la creazione della Kanban board sche abbiamo gestito i vari issues e le varie attività da portare a termine <br> 
+-branch: attraverso la loro creazione abbiamo potuto gestire l'implementazione di diverse parti di codice in modo simultaneo e parallelo alla versione alpha del codice alla quale le modifiche sono state applicate solo su revisione di altri membri (anche questo è stato gestito con github)<br>
 
 
 ### 1.3 Organizzazione del progetto
@@ -108,23 +108,24 @@ I lavori sono stati assegnati in base alle capacità personali, così da suddivi
 
 
 ### 1.4 Standards, linee guida e procedure
-Il gioco è composto da due applicativi separati:
+Il gioco è composto da due applicativi separati: <br>
 
 Server: Gestisce l'andamento del gioco multiplayer effettuando la connesione di più client (non possiede un'interfaccia grafica) <br>
 Client: Gestisce l'interfaccia grafica e l'interazione con l'utente, sia nelle fasi iniziali (registrazione, login, scelta della modalità di gioco) che nello svolgimento del gioco in versione single player <br>
-Sia server che client sono scritti in Java, in un progetto maven, e per la comunicazione utilizzano H2Database per quanto riguarda la fase di registrazione e di login ed i socket per la gestione della connessione client e server nelle fasi del gioco. 
+Sia server che client sono scritti in Java, in un progetto maven, e per la comunicazione utilizzano H2Database per quanto riguarda la fase di registrazione e di login ed i socket per la gestione della connessione client e server nelle fasi del gioco.  <br>
 Per la grafica si è deciso di utilizzare la libreria JavaSwing ed è stata sviluppata interamente con linguaggio Java.
 
 ### 1.5 Attività di gestione
 Lo sviluppo è stato organizzato seguendo i metodi agili, secondo la filosofia dell'*extreme programming* in quanto permette di migliorare la qualità del codice e approcciarsi al cambiamento dei requisiti in modo più responsivo.<br>
 Il team ha lavorato sempre a stretto contatto con scambio continuo di idee e con confronti giornalieri, così da proseguire coesi e coerenti nonostante il lavoro sia stato indivuale in diverse fasi del progetto. <br>
-Nonostante i primi incontri di stesura dei requisiti e di avvio del lavoro siano state delle sessioni piuttosto lunghe, gli incontri settimanali successivi sono stati di breve durata, durante i quali sono state effettuate delle sessioni di *brain storming* per trovare nuove idee o cercare soluzioni a problemi riscontrati. Nei meeting, organizzati solitamente nel momento in cui scadevano i timebox assegnati (tempi nei quali il team si prefissava degli obiettivi da raggiungere), ci si è occupati della verifica del lavoro eseguito. La fase di test infatti è stata costante e ci ha permesso di tener monitorati gli sviluppi e le modifiche che ogni membro ha apportato. <br>
+Nonostante i primi incontri di stesura dei requisiti e di avvio del lavoro siano state delle sessioni piuttosto lunghe, gli incontri settimanali successivi sono stati di breve durata, durante i quali sono state effettuate delle sessioni di *brain storming* per trovare nuove idee o cercare soluzioni a problemi riscontrati. <br>
+Nei meeting, organizzati solitamente nel momento in cui scadevano i timebox assegnati (tempi nei quali il team si prefissava degli obiettivi da raggiungere), ci si è occupati della verifica del lavoro eseguito. La fase di test infatti è stata costante e ci ha permesso di tener monitorati gli sviluppi e le modifiche che ogni membro ha apportato. <br>
 Durante i meeting abbiamo, di volta in volta, deciso i passi successivi e identificato in quanto tempo sarebbero dovuti essere presentati. 
 
 ### 1.6 Rischi
-I principali rischi che si possono incontrare durante lo sviluppo di questo gioco con le modalità sopra descritte sono principalmente 2:
-1. La connessione e i problemi ad essa relativi potrebbero influenzare l'esperienza dei giocatori
-2. Il gioco potrebbe non riscontrare l'interesse sperato da parte degli utenti o di potenziali investitori. In tal caso il tempo speso per lo sviluppo non potrà essere pagato. Inoltre gli utenti potrebbero perdere interesse a favore di altri giochi della concorrenza.
+I principali rischi che si possono incontrare durante lo sviluppo di questo gioco con le modalità sopra descritte sono principalmente 2: <br>
+1. La connessione e i problemi ad essa relativi potrebbero influenzare l'esperienza dei giocatori <br>
+2. Il gioco potrebbe non riscontrare l'interesse sperato da parte degli utenti o di potenziali investitori. In tal caso il tempo speso per lo sviluppo non potrà essere pagato. Inoltre gli utenti potrebbero perdere interesse a favore di altri giochi della concorrenza. <br>
 
 ### 1.7 Membri
 Non vi è stata una componente di aiuto esterno nella progettazione e nello sviluppo del software, i sopracitati componenti del gruppo sono stati gli unici partecipanti.
@@ -136,7 +137,9 @@ La prima fase della progettazione è stata dedicata alla creazione di use case d
   <img style="width: 950px;" src="resources/useCaseUML.png">
 </p>
 
-L'attore principale è l'utente che può interagire in vari modi con l'applicazione. Nel caso in cui voglia avviare una partita, per prima cosa deve fare richiesta al server (attore passivo) di creare la partita. Una volta effettuata la richiesta il client resta in attesa che al server si connetta un altro client, infatti affinché la partita possa essere avviata è necessaria la partecipazione di un altro giocatore. Il gioco è composto da due turni che si alternano tra loro: un giocatore fa la sua mossa, che il server trasmette all'avversario che era in attesa. A quel punto possono accadere due cose: o il turno passa all'avversario che quindi può eseguire la sua mossa, oppure il turno resta in mano al giocatore, se questo ha portato a termine una mossa efficace. Ciò che accade viene comunicato ai giocatori tramite una scritta a video. Al termine del gioco, dopo essere stata mostrato il vincitore, l'utente può decidere se giocare nuovamente oppure uscire dalla partita ed essere disconnesso dal server.
+L'attore principale è l'utente che può interagire in vari modi con l'applicazione. Nel caso in cui voglia avviare una partita, per prima cosa deve fare richiesta al server (attore passivo) di creare la partita. Una volta effettuata la richiesta il client resta in attesa che al server si connetta un altro client, infatti affinché la partita possa essere avviata è necessaria la partecipazione di un altro giocatore.<br>
+Il gioco è composto da due turni che si alternano tra loro: un giocatore fa la sua mossa, che il server trasmette all'avversario che era in attesa. A quel punto possono accadere due cose: o il turno passa all'avversario che quindi può eseguire la sua mossa, oppure il turno resta in mano al giocatore, se questo ha portato a termine una mossa efficace. Ciò che accade viene comunicato ai giocatori tramite una scritta a video.<br>
+Al termine del gioco, dopo essere stata mostrato il vincitore, l'utente può decidere se giocare nuovamente oppure uscire dalla partita ed essere disconnesso dal server.
 
 ### 1.9 Garanzie di qualità
 Per lo sviluppo di un software di qualità abbiamo puntato a rispettare i parametri indicati dal modello di McCall. <br>
@@ -166,10 +169,10 @@ Per quanto riguarda il budget il gruppo ha messo a disposizione il proprio tempo
 
 ### 1.13 Cambiamenti
 La manutenzione che ci proponiamo di effettuare in futuro comprenderà tutte e quattro le attività previste:
--correzione di errori
--adattamento ai cambiamenti dell'ambiente 
-.perfezione del software sulla base ad esempio delle richieste fornite dagli utenti oppure per la volontà dei membri di aumentare le prestazioni del sistema
--prevenzione per l'aumento della manutentibilità del sistema (ad esempio con l'aggiornamento continuo della documentazione). <br>
+- correzione di errori
+- adattamento ai cambiamenti dell'ambiente 
+- perfezione del software sulla base ad esempio delle richieste fornite dagli utenti oppure per la volontà dei membri di aumentare le prestazioni del sistema
+- prevenzione per l'aumento della manutentibilità del sistema (ad esempio con l'aggiornamento continuo della documentazione). <br>
 I cambiamenti verrano discussi tra i membri del team e poi effettuati insieme.<br>
 Ad ogni versione rilasciata verranno rilasciati i documenti relativi. <br>
 
