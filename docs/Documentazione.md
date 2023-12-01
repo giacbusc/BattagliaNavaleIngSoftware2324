@@ -39,10 +39,10 @@ Realizzazione in Java del gioco Battaglia Navale, realizzato in due differenti m
 ### Guida rapida al gioco
 #### Scopo del gioco
 Lo scopo del gioco è localizzare tutte le unità della flotta navale nemica composta da diverse navi, in tutto 10: 
--1 portaerei da 4 caselle
--2 incrociatori da 3 caselle
--3 cacciatorpedinieri da 2 caselle 
--4 sottomarini da 1 casella.
+-1 portaerei da 4 caselle <br>
+-2 incrociatori da 3 caselle <br>
+-3 cacciatorpedinieri da 2 caselle <br>
+-4 sottomarini da 1 casella. <br>
 Le navi non si possono toccare e possono essere disposte solo in orizzontale ed in verticale. 
 
 #### Svolgimento del gioco
