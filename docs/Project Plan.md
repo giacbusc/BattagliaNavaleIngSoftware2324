@@ -30,6 +30,11 @@
   - 1.14 Consegna
 
 ## 1. Project plan
+Il seguente project plan fa riferimento al progetto di Ingegneria del Software dei membri sopra citati, basato sullo sviluppo del gioco di Battaglia Navale in due differenti modalità: multiplayer e single player. 
+Il gioco consiste nel posizionare le proprie navi nella griglia e successivamente cercare di colpire le navi dell'avversario. <br>
+Ogni giocatore ha a disposizione un turno nel quale poter effettuare la propria mossa; se il colpo andasse a segno il turno non viene passato. <br>
+Il giocatore che vince è colui che affonda per primo tutte le navi del suo avversario.
+
 ### 1.1 Background e Introduzione
 Il nostro lavoro è iniziato con un'attenta analisi dei requisiti, che è stata il fulcro dei primi incontro. I requisiti non sono dettati da un finanziatore o da utenti esterni, ma sono stati identificati dai membri del team. <br>
 Durante la prima riunione operativa si è deciso di sviluppare un software per un gioco, chiamato "Battaglia Navale", il quale verrà proposto agli utenti in duplice modalità: single player (contro la CPU) e multiplayer (con la connessione di più client tramite server). A seguito verrano illustrate nel dettaglio le funzionalità che verranno implementate e quelle che abbiamo considerato come possibili sviluppi futuri dell'app (1.2 modello MoSCoW) <br>
