@@ -59,7 +59,7 @@ Durante la prima riunione operativa si è deciso di sviluppare un software per u
 Ci siamo posti come deadline per il primo prototipo il 30/12/2023 mentre per la versione finale il 18/01/2024.<br>
 
 ### 1.2 Modello di processo
-####<U> Ingegneria dei requisiti </U>
+#### <U> Ingegneria dei requisiti </U>
 La fase iniziale dello sviluppo è stata dedicata alla definizione dei requisiti del software richiesti da parte del committente. Dal momento che la produzione del gioco non è stata commissionata bensì è stata un'idea spontanea, i requisiti sono stati definiti in base a quello che era ritenuto importante per il team e alla conoscenza del gioco dal quale il software ha origine.<br>
 La fase di lavoro dedicata all'iongegneria dei requisiti ha occupato la maggior parte delle risorse in quanto su questo abbiamo basato tutto il lavoro eseguito successivamente. <br> 
 In particolare ci siamo soffermati sulla *fattiblità*, valutata sia in termini di tempo, che di conoscenze, in quanto essendo un progetto potenzialmente aperto a molte implementazioni, abbiamo ritenuto importanti fissare da subito quali implementazioni potessero risultare infattibili (e quindi lasciate ad un possibile futuro, in caso chiedendo per il loro sviluppo una consulenza da parte di terzi). <br>
@@ -103,16 +103,16 @@ Abbiamo definito i requisiti sulla base del modello MoSCoW come segue:
     </tr>
 </table>
 
-####<U> Progettazione </U>
+#### <U>Progettazione</U>
 La progettazione è stata fondamentale per noi nello sviluppo del software infatti è stata il fondamento sul quale ci siamo basati per la creazione degli issues, per la suddivisione del lavoro, per la pianificazione dei timebox e per la gestione delle varie problematiche affrontate nel corso della programmazione. <br>
 La stesura dell'architettura ha quindi rappresentato il nostro vero punto di inizio ed il nostro punto di riferimento. 
 
-####<U> Implementazione e Test </U>
+#### <U>Implementazione e Test </U>
 Successivamente alla stesura del nostro progetto di base, siamo passati alla fase successiva che sarebbe sbagliato riconoscere come pura fase di implementazione, infatti i test sono stati eseguiti in parallelo, in modo costante, ritenendo necessario avere sempre un programma il quanto più corretto possibile. <br> 
 
 Al termine di questa fase viene presentata una prima versione di gioco detta "alpha", dotata di tutte le funzionalità di base necessarie che erano state concordate.
 
-####<U> Manutenzione </U>
+#### <U> Manutenzione </U>
 Questa fase si occupa della correzione di eventuali bug che si sono presentati dopo la consegna del software. <br>
 Spesso infatti è solo con l'uso effettivo del sistema che si verificano errori e che nascono richieste di miglioramenti.
 
