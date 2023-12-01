@@ -1,3 +1,0 @@
-Created with UCDetector 2.0.0	2023-11-29 11:02:28	http://www.ucdetector.org/	Created by class: org.ucdetector.report.TextReport	
-Location	Description	Java	Marker	Author
-BattagliaNavaleProject.client.Ship.<init>(Ship.java:5)	Class "Ship" has 0 references	Ship	org.ucdetector.analyzeMarkerReference	
