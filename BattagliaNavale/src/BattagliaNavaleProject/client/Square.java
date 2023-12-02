@@ -3,6 +3,8 @@ package BattagliaNavaleProject.client;
 import java.awt.Color;
 import javax.swing.JPanel;
 
+import BattagliaNavaleProject.Control.DoubleGameGridControl;
+
 public class Square extends JPanel
 {
 	private Color color;
@@ -25,5 +27,6 @@ public class Square extends JPanel
 	{
 		this.color = c;
 	}
+
 	
 }

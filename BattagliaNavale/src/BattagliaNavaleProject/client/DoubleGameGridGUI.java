@@ -3,6 +3,8 @@ package BattagliaNavaleProject.client;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import BattagliaNavaleProject.Control.DoubleGameGridControl;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,11 +16,11 @@ import java.util.ArrayList;
 public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMotionListener{
 	private static final int GRID_DIMENSION = 10;
 	private final JFrame frame;
-	private JPanel yourBoardPanel;
-	private JPanel opponentBoardPanel;
+	public JPanel yourBoardPanel;
+	public JPanel opponentBoardPanel;
 	private JPanel centralTopPanel;
-	private Square[][] yourBoard;
-	private Square[][] opponentBoard;
+	public Square[][] yourBoard;
+	public Square[][] opponentBoard;
 	private JPanel shipsPanel;
 	private JPanel gridPanel;
 	private GridBagConstraints c;
@@ -107,6 +109,7 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		for(int i=0;i<dim.size();i++) 
 		{
 			panel[i]= new JPanel();
+			panel[i].addMouseListener(new DoubleGameGridControl(this));
 			panel[i].setName(""+i);
 			System.out.println(""+ panel[i].getName());
 			boatLength = dim.get(i);
@@ -116,6 +119,7 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 				panel[i].setPreferredSize(new Dimension(220,40));
 				panel[i].setBackground(Color.RED); // 4 quadretti = rosso
 				shipsPanel.add(panel[i]);
+	
 			}else if(boatLength == 3)
 			{
 				panel[i].setPreferredSize(new Dimension(165,40));
@@ -166,7 +170,7 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	}
 	
 
-	private void createGrid()
+	public void createGrid()
 	{	
 		yourBoardPanel = new JPanel();
 		opponentBoardPanel = new JPanel();
@@ -209,13 +213,18 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 				else
 				{
 					yourBoard[i][j]= new Square(i,j);
-					yourBoard[i][j].addMouseListener(this);
+					yourBoard[i][j].addMouseListener(new DoubleGameGridControl(this));//
+					yourBoard[i][j].setName("yourBoard");//
 					yourBoard[i][j].addMouseMotionListener(this);
 					yourBoardPanel.add(yourBoard[i][j]);
 					opponentBoard[i][j]= new Square(i,j);
-					opponentBoard[i][j].addMouseListener(this);
+					opponentBoard[i][j].addMouseListener(new DoubleGameGridControl(this));//
 					opponentBoard[i][j].addMouseMotionListener(this);
+					opponentBoard[i][j].setName( "opponentBoard" ); //
 					opponentBoardPanel.add(opponentBoard[i][j]);
+					
+					
+					
 					
 					if(i == GRID_DIMENSION-1 && j == GRID_DIMENSION -1 )
 					{
@@ -309,5 +318,9 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	public void mostra() {
+		// TODO Auto-generated method stub
+		yourBoardPanel.addMouseListener(new DoubleGameGridControl(this));//
 	}
 }
