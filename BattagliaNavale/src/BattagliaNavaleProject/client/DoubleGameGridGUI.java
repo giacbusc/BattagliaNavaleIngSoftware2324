@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
-
+import java.util.ArrayList;
 
 public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMotionListener{
 	private static final int GRID_DIMENSION = 10;
@@ -22,13 +22,15 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	private JPanel shipsPanel;
 	private JPanel gridPanel;
 	private GridBagConstraints c;
-	//private int dim; -> se vogliamo far sì che il giocatore all'inizio scelga la dimensione
+	private GridBagConstraints c1;
+	private GridBagConstraints c2;
+	private ArrayList<Integer> dim;
 	private int selectedShip;
 	private final Border topLeftBorder = BorderFactory.createMatteBorder(1, 1, 0, 0, Color.black);
 	private final Border topLeftBottomBorder = BorderFactory.createMatteBorder(1, 1, 1, 0, Color.black);
 	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
-	
+	private JPanel panel[];
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -54,6 +56,8 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//centralPanel = new JPanel(new BorderLayout());
 		c = new GridBagConstraints();
+		c1 = new GridBagConstraints();
+		c2 = new GridBagConstraints();
 		gridPanel =  new JPanel();
 		centralTopPanel = new JPanel();
 		JPanel backgroundPanel = new JPanel();
@@ -84,21 +88,81 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		setVisible(true);
 	}
 
-	private void boatList()
-	{
+	private void boatList(ArrayList<Integer> dim)
+	{	
+		panel= new JPanel[GRID_DIMENSION];
 		selectedShip = 0;
 		shipsPanel = new JPanel();
-		shipsPanel.setLayout(new GridLayout(7,6,0,3));
+		shipsPanel.setLayout(new FlowLayout());
 		JLabel selectorLabel;
 		int boatLength;
 		shipsPanel.setBackground(Color.blue);
 		shipsPanel.setPreferredSize(new Dimension(100,100));
 		//centralPanel.add(shipsPanel);
-		c.gridx = 0 ;
-		c.gridy = 1;
-		c.weightx = 2;
-		gridPanel.add(shipsPanel,c);
+		c2.gridx = 0 ;
+		c2.gridy = 1;
+		c2.weightx = 2;
+		c2.fill = GridBagConstraints.HORIZONTAL;
+		gridPanel.add(shipsPanel,c2);
+		for(int i=0;i<dim.size();i++) 
+		{
+			panel[i]= new JPanel();
+			panel[i].setName(""+i);
+			System.out.println(""+ panel[i].getName());
+			boatLength = dim.get(i);
+			
+			if(boatLength == 4)
+			{
+				panel[i].setPreferredSize(new Dimension(220,40));
+				panel[i].setBackground(Color.RED); // 4 quadretti = rosso
+				shipsPanel.add(panel[i]);
+			}else if(boatLength == 3)
+			{
+				panel[i].setPreferredSize(new Dimension(165,40));
+				panel[i].setBackground(Color.GREEN);
+				shipsPanel.add(panel[i]);
+			}
+			else if(boatLength == 2)
+			{
+				panel[i].setPreferredSize(new Dimension(110,40));
+				panel[i].setBackground(Color.ORANGE);
+				shipsPanel.add(panel[i]);
+			}
+			else if(boatLength == 1)
+			{
+				panel[i].setPreferredSize(new Dimension(55,40));
+				panel[i].setBackground(Color.MAGENTA);
+				shipsPanel.add(panel[i]);
+			}
+			
+		}
+		
 		frame.pack();
+	}
+	
+	private ArrayList<Integer> getDimNavi()
+	{
+		dim = new ArrayList<Integer>();
+		for(int i = 0; i < GRID_DIMENSION; i++)
+		{
+			if(i == 0)
+			{
+				dim.add(4);
+			}else if(i == 1 || i == 2)
+			{
+				dim.add(3);
+			}
+			else if( i > 2 && i < 6)
+			{
+				dim.add(2);
+			}
+			else
+			{
+				dim.add(1);
+			}
+			System.out.println(" "+ i + ": " + dim.get(i));
+		}
+		return dim;
 	}
 	
 
@@ -197,15 +261,16 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		gridPanel.add(yourBoardPanel, c);
 		
 		opponentBoardPanel.setPreferredSize(new Dimension(600,600));
-		c.ipadx = 35;
-		c.gridx = 1;
-		c.gridy = 0;
-		c.weightx = 1.0;
-		c.weighty = 1.0;
-		c.fill= GridBagConstraints.BOTH;
-		gridPanel.add(opponentBoardPanel,c);
+		c1.ipadx = 35;
+		c1.gridx = 1;
+		c1.gridy = 0;
+		c1.weightx = 1.0;
+		c1.weighty = 1.0;
+		c1.fill= GridBagConstraints.BOTH;
+		gridPanel.add(opponentBoardPanel,c1);
 		//getContentPane().add(yourBoardPanel, BorderLayout.WEST);
-		boatList();
+		dim=getDimNavi();
+		boatList(dim);
 		frame.pack();
 		
 	}
