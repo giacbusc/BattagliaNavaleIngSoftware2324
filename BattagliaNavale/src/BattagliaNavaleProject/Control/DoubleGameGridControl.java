@@ -21,15 +21,11 @@ public class DoubleGameGridControl implements MouseListener{
 	
 	
 	public void mouseClicked(MouseEvent e, int i, int j) {
-		if(e.getSource() instanceof Square ){
+		/*if(e.getSource() instanceof Square ){
 			System.out.println("sono la square");
 			Square clickedSquare= (Square) e.getSource();
-			if(clickedSquare.getName().equals("yourBoard")) {
-				grid.yourBoard[i][j].setColor(Color.ORANGE);
-			System.out.println("sono la square nell'if");
-			
-			}
-		}
+			clickedSquare.setBackground(Color.ORANGE);
+		}*/
 	}
 
 	@Override
@@ -68,10 +64,7 @@ public class DoubleGameGridControl implements MouseListener{
 				System.out.println("sono la square");
 				Square clickedSquare= (Square) e.getSource();
 				if(clickedSquare.getName().equals("yourBoard")) {
-					
-				//grid.yourBoard[clickedSquare.getX()][clickedSquare.getY()].setColor(Color.ORANGE);
-				//System.out.println("sono la square nell'if");
-				
+					clickedSquare.setBackground(Color.ORANGE);
 				}
 			}
 			
