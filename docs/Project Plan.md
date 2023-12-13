@@ -148,11 +148,11 @@ Il fatto di avere due moduli separati per la parte client e server permette di a
   
 
 ### 1.10 Package di lavoro
-Il progetto del software è realizzato su maven e abbiamo gestito la sua struttura attraverso la configurazione di 3 moduli: client, server e common. <br>
+Il progetto del software è realizzato su maven e abbiamo gestito la sua struttura attraverso la configurazione di 2 moduli: client e server. <br>
 Il modulo del client è composto da quella parte di codice adibita alla visualizzazione del modello (ad esempio le classi *view* e *GUI*) e all'input/output da e verso l'utente. Tutta la parte del progetto che si occupa del gioco single player è implementata del modulo client in quanto si svolge in locale e non necessita collegamenti al server per funzionare. <br>
-Il modulo del server invece ha la funzione di controller e gestisce il modello, il codice di questo modulo è quello che permette la connessione tra i client nel gioco. <br>.
-Per quanto riguarda la suddivisione del lavoro all'interno del gruppo ci siamo basati sulla struttura del progetto, lavorando, divisi in coppie, su un modulo per coppia, per poi collaborare nella creazione di parti comuni e ovviamente una volta terminato il lavoro assegnato si è collaborato per portare a termine il lavoro. <br>
-Non abbiamo avuto un'organizzazione gerarchica, e la suddivisioni dei vari compiti è stata distribuita come illustrato nel punto 3.
+Il modulo del server invece ha la funzione di controller e gestisce il modello, il codice di questo modulo è quello che permette la connessione tra i client nel gioco. <br>
+Per quanto riguarda la suddivisione del lavoro all'interno del gruppo dopo la fase iniziale di ingegneria dei requisiti, durante la quale abbiamo collaborato ci siamo basati sulla struttura del progetto, lavorando, divisi in coppie, su un modulo per coppia, per poi collaborare nella creazione di parti comuni e ovviamente una volta terminato il lavoro assegnato si è collaborato per portare a termine il lavoro. <br>
+
 
 ### 1.11 Risorse
 Per quanto riguarda l'utente non è richiesta una particolare dotazione se non un computer ed una connessione ad Internet funzionante. <br>
