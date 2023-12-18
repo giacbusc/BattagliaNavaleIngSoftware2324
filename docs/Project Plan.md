@@ -131,15 +131,13 @@ I principali rischi che si possono incontrare durante lo sviluppo di questo gioc
 Non vi è stata una componente di aiuto esterno nella progettazione e nello sviluppo del software, i sopracitati componenti del gruppo sono stati gli unici partecipanti.
 
 ### 1.8 Metodi e tecniche
-La prima fase della progettazione è stata dedicata alla creazione di use case diagrams in modo da comprendere le funzionalità necessarie per la nostra applicazione.
+La prima fase della progettazione è stata dedicata alla creazione di UML diagrams, ad esempio siamo partiti dal realizzare lo use case diagrams in modo da comprendere le funzionalità necessarie per la nostra applicazione. <br>
+A questo punto, il lavoro è iniziato dalla strutturazione del progetto con la realizzazione del modello MCV e la suddivisione dei diversi packages. Abbiamo lavorato secondo il modello XP, soprattuto nella fase iniziale infatti abbiamo sfruttato il pair programming. <br>
+La fase di documentazione non si è esaurita con l'ingegneria dei requisiti ma è proseguita in tutta la prima fase di lavoro, aggiornandola nel mentre in quanto, scontrandoci con limiti della programmazione (tempistici più che altro), abbiamo modificato i nostri obiettivi iniziali. <br>
+La documentazione però non è stata abbandonata con l'inizio della fase di implementazione, ma è continuata, è stta assegnata ad un componente del gruppo il quale si è incaricato di supervisionare il lavoro, modificando quando necessario e aggiornando in modo puntuale la documentazione di progetto, che è quindi sempre stata riferita alla versione più recente. In questo modo abbiamo tenuto traccia di tutte le possibili variazioni rese necessartie e che non erano state previste in fase di progettazione.<br>
+La fase di implementazione è stata quella più corposa ed è stata svolta in parallelo con quella di test, i timebox scelti sono stati volutamente molto brevi, così come le diverse mansioni affidate ai componenti del gruppo. In questo modo la fase di test e rilevamento di errori è stata facilitata, permettendoci di non continuare a lavorare su una versione del software mal funzionante ma avendo sempre a disposizione la versione migliore e più aggiornata. <br>
+Questo ci è stato possibile anche e soprattutto attraverso l'utilizzo dei branch, che con github ci hanno permesso di lavorare parallelamente al codice principale e di fare il merge a quest'ultimo solo una volta accertato che il codice creato era ben funzionante. <br>
 
-<p align="center">
-  <img style="width: 950px;" src="resources/useCaseUML.png">
-</p>
-
-L'attore principale è l'utente che può interagire in vari modi con l'applicazione. Nel caso in cui voglia avviare una partita, per prima cosa deve fare richiesta al server (attore passivo) di creare la partita. Una volta effettuata la richiesta il client resta in attesa che al server si connetta un altro client, infatti affinché la partita possa essere avviata è necessaria la partecipazione di un altro giocatore.<br>
-Il gioco è composto da due turni che si alternano tra loro: un giocatore fa la sua mossa, che il server trasmette all'avversario che era in attesa. A quel punto possono accadere due cose: o il turno passa all'avversario che quindi può eseguire la sua mossa, oppure il turno resta in mano al giocatore, se questo ha portato a termine una mossa efficace. Ciò che accade viene comunicato ai giocatori tramite una scritta a video.<br>
-Al termine del gioco, dopo essere stata mostrato il vincitore, l'utente può decidere se giocare nuovamente oppure uscire dalla partita ed essere disconnesso dal server.
 
 ### 1.9 Garanzie di qualità
 Per lo sviluppo di un software di qualità abbiamo puntato a rispettare i parametri indicati dal modello di McCall. <br>
