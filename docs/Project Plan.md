@@ -53,31 +53,31 @@ Abbiamo definito i requisiti sulla base del modello MoSCoW come segue:
         <th>WON'T</th>
     </tr>
     <tr>
-    <td>Gioco Single player vs CPU</td>
+    <td>Gioco Multiplayer</td>
     <td>Classifica generale utenti</td>
     <td>GUI implementata con animazioni</td>
     <td>Applicazione Mobile</td>
     </tr>
      <tr>
-    <td>Gioco Multiplayer</td>
+    <td>Implementazione GUI</td>
     <td>Torneo Multiplayer</td>
     <td>Cambio della grafica delle Navi tramite un sistema 'shop'</td>
     <td>Web App</td>
     </tr>
     <tr>
-    <td>Implementazione GUI</td>
+    <td>Login e Registrazione Utente</td>
     <td>Implementazione suono</td>
     <td>Livelli di difficoltà</td>
     <td>Versione alternativa del gioco con potenziamenti per i colpi</td>
     </tr>
     <tr>
-    <td>Login e Registrazione Utente</td>
+    <td>Utenti connessi Wireless</td>
     <td>Gioco MultiLingua</td>
-    <td></td>
+    <td>Gioco Single Player vs CPU</td>
     <td></td>
     </tr>
     <tr>
-    <td>Utenti connessi Wireless</td>
+    <td></td>
     <td>Tutorial del gioco</td> 
         <td></td>
     <td></td>
