@@ -1,23 +1,21 @@
 package BattagliaNavaleProject.client;
 
-import javax.swing.*;
-import javax.swing.border.Border;
 
-import BattagliaNavaleProject.Control.DoubleGameGridControl;
-
-import java.awt.*;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetDropEvent;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+
+import org.zeromq.SocketType;
+import org.zeromq.ZContext;
+import org.zeromq.ZMQ;
 
 public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMotionListener{
 
@@ -58,6 +56,27 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 				}
 			}
 		});
+		
+		try (ZContext context = new ZContext()) {
+            System.out.println("Connecting to hello world server");
+
+      		//  Socket to talk to server
+            ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+            socket.connect("tcp://localhost:5555");
+
+            for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
+                String request = "Hello";
+                System.out.println("Sending Hello " + requestNbr);
+                socket.send(request.getBytes(ZMQ.CHARSET), 0);
+
+                byte[] reply = socket.recv(0);
+                System.out.println(
+                    "Received " + new String(reply, ZMQ.CHARSET) + " " +
+                    requestNbr
+                );
+            }
+        }
+		
 		
 	}
 	public DoubleGameGridGUI() throws IOException 
