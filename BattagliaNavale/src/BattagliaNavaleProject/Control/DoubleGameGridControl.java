@@ -48,12 +48,12 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 					//cosa fare se clicco la nave da 3
 					
 				}
-				if(clickedPanel.getName().equals("3") || clickedPanel.getName().equals("4") || clickedPanel.getName().equals("4")) 
+				if(clickedPanel.getName().equals("3") || clickedPanel.getName().equals("4") || clickedPanel.getName().equals("5")) 
 				{
 					//cosa fare se clicco navi da 2
 					
 				}
-				if(clickedPanel.getName().equals("5") || clickedPanel.getName().equals("6") || clickedPanel.getName().equals("7") || clickedPanel.getName().equals("8")) 
+				if(clickedPanel.getName().equals("6") || clickedPanel.getName().equals("7") || clickedPanel.getName().equals("8") || clickedPanel.getName().equals("9")) 
 				{
 					//cosa fare se clicco navi da 1
 					

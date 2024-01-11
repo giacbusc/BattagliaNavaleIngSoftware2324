@@ -35,6 +35,6 @@ public class Square extends JPanel
 	
 	public int gety()
 	{
-		return this.x;
+		return this.y;
 	}
 }
