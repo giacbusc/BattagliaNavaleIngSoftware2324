@@ -6,6 +6,11 @@ import javax.swing.border.Border;
 import BattagliaNavaleProject.Control.DoubleGameGridControl;
 
 import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -14,7 +19,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMotionListener{
+
+	private static final long serialVersionUID = 1L;
 	private static final int GRID_DIMENSION = 10;
+	private static final int Square_SIZE = 60;
 	private final JFrame frame;
 	public JPanel yourBoardPanel;
 	public JPanel opponentBoardPanel;
@@ -109,9 +117,10 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		for(int i=0;i<dim.size();i++) 
 		{
 			panel[i]= new JPanel();
+			panel[i].setFocusable(true);
 			panel[i].addMouseListener(new DoubleGameGridControl(this));
+			panel[i].addMouseMotionListener(new DoubleGameGridControl(this));
 			panel[i].setName(""+i);
-			System.out.println(""+ panel[i].getName());
 			boatLength = dim.get(i);
 			
 			if(boatLength == 4)
@@ -164,7 +173,6 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 			{
 				dim.add(1);
 			}
-			System.out.println(" "+ i + ": " + dim.get(i));
 		}
 		return dim;
 	}
@@ -283,7 +291,20 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		frame.pack();
 		
 	}
-	
+	public void mostra() {
+		// TODO Auto-generated method stub
+		yourBoardPanel.addMouseListener(new DoubleGameGridControl(this));//
+	}
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -292,7 +313,7 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
@@ -308,19 +329,5 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-	}
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void mostra() {
-		// TODO Auto-generated method stub
-		yourBoardPanel.addMouseListener(new DoubleGameGridControl(this));//
 	}
 }
