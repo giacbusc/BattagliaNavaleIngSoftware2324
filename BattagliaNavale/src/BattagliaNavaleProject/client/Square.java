@@ -27,6 +27,14 @@ public class Square extends JPanel
 	{
 		this.color = c;
 	}
-
 	
+	public int getx()
+	{
+		return this.x;
+	}
+	
+	public int gety()
+	{
+		return this.x;
+	}
 }

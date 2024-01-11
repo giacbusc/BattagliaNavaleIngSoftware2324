@@ -60,8 +60,8 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				}
 			}
 			if(e.getSource() instanceof Square ){
-				System.out.println("sono la square");
 				Square clickedSquare= (Square) e.getSource();
+				System.out.println("sono la square" +clickedSquare.getx()+ clickedSquare.gety());
 				if(clickedSquare.getName().equals("yourBoard")) {
 					clickedSquare.setBackground(Color.ORANGE);
 				}
