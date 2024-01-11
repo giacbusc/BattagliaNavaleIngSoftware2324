@@ -1,6 +1,14 @@
 package BattagliaNavaleProject.client;
 
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -16,6 +24,8 @@ import javax.swing.border.Border;
 import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
+
+import BattagliaNavaleProject.Control.DoubleGameGridControl;
 
 public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMotionListener{
 
