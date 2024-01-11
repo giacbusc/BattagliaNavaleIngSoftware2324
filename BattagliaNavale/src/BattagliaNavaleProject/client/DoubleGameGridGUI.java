@@ -1,46 +1,45 @@
 package BattagliaNavaleProject.client;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-
-import BattagliaNavaleProject.Control.DoubleGameGridControl;
-
-import java.awt.*;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetDropEvent;
-import java.awt.event.MouseAdapter;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
-import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+
+import org.zeromq.SocketType;
+import org.zeromq.ZContext;
+import org.zeromq.ZMQ;
 
 public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMotionListener{
-
-	private static final long serialVersionUID = 1L;
 	private static final int GRID_DIMENSION = 10;
-	private static final int Square_SIZE = 60;
 	private final JFrame frame;
-	public JPanel yourBoardPanel;
-	public JPanel opponentBoardPanel;
+	private JPanel yourBoardPanel;
+	private JPanel opponentBoardPanel;
 	private JPanel centralTopPanel;
-	public Square[][] yourBoard;
-	public Square[][] opponentBoard;
+	private Square[][] yourBoard;
+	private Square[][] opponentBoard;
 	private JPanel shipsPanel;
 	private JPanel gridPanel;
 	private GridBagConstraints c;
-	private GridBagConstraints c1;
-	private GridBagConstraints c2;
-	private ArrayList<Integer> dim;
+	//private int dim; -> se vogliamo far sì che il giocatore all'inizio scelga la dimensione
 	private int selectedShip;
 	private final Border topLeftBorder = BorderFactory.createMatteBorder(1, 1, 0, 0, Color.black);
 	private final Border topLeftBottomBorder = BorderFactory.createMatteBorder(1, 1, 1, 0, Color.black);
 	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
-	private JPanel panel[];
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -58,6 +57,27 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 			}
 		});
 		
+		try (ZContext context = new ZContext()) {
+            System.out.println("Connecting to server to make the connection");
+
+      		//  Socket to talk to server
+            ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+            socket.connect("tcp://localhost:5555");
+
+            for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
+                String request = "Hello";
+                System.out.println("Sending Hello " + requestNbr);
+                socket.send(request.getBytes(ZMQ.CHARSET), 0);
+
+                byte[] reply = socket.recv(0);
+                System.out.println(
+                    "Received " + new String(reply, ZMQ.CHARSET) + " " +
+                    requestNbr
+                );
+            }
+        }
+		
+		
 	}
 	public DoubleGameGridGUI() throws IOException 
 	{
@@ -66,8 +86,6 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//centralPanel = new JPanel(new BorderLayout());
 		c = new GridBagConstraints();
-		c1 = new GridBagConstraints();
-		c2 = new GridBagConstraints();
 		gridPanel =  new JPanel();
 		centralTopPanel = new JPanel();
 		JPanel backgroundPanel = new JPanel();
@@ -98,87 +116,25 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		setVisible(true);
 	}
 
-	private void boatList(ArrayList<Integer> dim)
-	{	
-		panel= new JPanel[GRID_DIMENSION];
+	private void boatList()
+	{
 		selectedShip = 0;
 		shipsPanel = new JPanel();
-		shipsPanel.setLayout(new FlowLayout());
+		shipsPanel.setLayout(new GridLayout(7,6,0,3));
 		JLabel selectorLabel;
 		int boatLength;
 		shipsPanel.setBackground(Color.blue);
 		shipsPanel.setPreferredSize(new Dimension(100,100));
 		//centralPanel.add(shipsPanel);
-		c2.gridx = 0 ;
-		c2.gridy = 1;
-		c2.weightx = 2;
-		c2.fill = GridBagConstraints.HORIZONTAL;
-		gridPanel.add(shipsPanel,c2);
-		for(int i=0;i<dim.size();i++) 
-		{
-			panel[i]= new JPanel();
-			panel[i].setFocusable(true);
-			panel[i].addMouseListener(new DoubleGameGridControl(this));
-			panel[i].addMouseMotionListener(new DoubleGameGridControl(this));
-			panel[i].setName(""+i);
-			boatLength = dim.get(i);
-			
-			if(boatLength == 4)
-			{
-				panel[i].setPreferredSize(new Dimension(220,40));
-				panel[i].setBackground(Color.RED); // 4 quadretti = rosso
-				shipsPanel.add(panel[i]);
-	
-			}else if(boatLength == 3)
-			{
-				panel[i].setPreferredSize(new Dimension(165,40));
-				panel[i].setBackground(Color.GREEN);
-				shipsPanel.add(panel[i]);
-			}
-			else if(boatLength == 2)
-			{
-				panel[i].setPreferredSize(new Dimension(110,40));
-				panel[i].setBackground(Color.ORANGE);
-				shipsPanel.add(panel[i]);
-			}
-			else if(boatLength == 1)
-			{
-				panel[i].setPreferredSize(new Dimension(55,40));
-				panel[i].setBackground(Color.MAGENTA);
-				shipsPanel.add(panel[i]);
-			}
-			
-		}
-		
+		c.gridx = 0 ;
+		c.gridy = 1;
+		c.weightx = 2;
+		gridPanel.add(shipsPanel,c);
 		frame.pack();
 	}
 	
-	private ArrayList<Integer> getDimNavi()
-	{
-		dim = new ArrayList<Integer>();
-		for(int i = 0; i < GRID_DIMENSION; i++)
-		{
-			if(i == 0)
-			{
-				dim.add(4);
-			}else if(i == 1 || i == 2)
-			{
-				dim.add(3);
-			}
-			else if( i > 2 && i < 6)
-			{
-				dim.add(2);
-			}
-			else
-			{
-				dim.add(1);
-			}
-		}
-		return dim;
-	}
-	
 
-	public void createGrid()
+	private void createGrid()
 	{	
 		yourBoardPanel = new JPanel();
 		opponentBoardPanel = new JPanel();
@@ -221,18 +177,13 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 				else
 				{
 					yourBoard[i][j]= new Square(i,j);
-					yourBoard[i][j].addMouseListener(new DoubleGameGridControl(this));//
-					yourBoard[i][j].setName("yourBoard");//
+					yourBoard[i][j].addMouseListener(this);
 					yourBoard[i][j].addMouseMotionListener(this);
 					yourBoardPanel.add(yourBoard[i][j]);
 					opponentBoard[i][j]= new Square(i,j);
-					opponentBoard[i][j].addMouseListener(new DoubleGameGridControl(this));//
+					opponentBoard[i][j].addMouseListener(this);
 					opponentBoard[i][j].addMouseMotionListener(this);
-					opponentBoard[i][j].setName( "opponentBoard" ); //
 					opponentBoardPanel.add(opponentBoard[i][j]);
-					
-					
-					
 					
 					if(i == GRID_DIMENSION-1 && j == GRID_DIMENSION -1 )
 					{
@@ -278,33 +229,19 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		gridPanel.add(yourBoardPanel, c);
 		
 		opponentBoardPanel.setPreferredSize(new Dimension(600,600));
-		c1.ipadx = 35;
-		c1.gridx = 1;
-		c1.gridy = 0;
-		c1.weightx = 1.0;
-		c1.weighty = 1.0;
-		c1.fill= GridBagConstraints.BOTH;
-		gridPanel.add(opponentBoardPanel,c1);
+		c.ipadx = 35;
+		c.gridx = 1;
+		c.gridy = 0;
+		c.weightx = 1.0;
+		c.weighty = 1.0;
+		c.fill= GridBagConstraints.BOTH;
+		gridPanel.add(opponentBoardPanel,c);
 		//getContentPane().add(yourBoardPanel, BorderLayout.WEST);
-		dim=getDimNavi();
-		boatList(dim);
+		boatList();
 		frame.pack();
 		
 	}
-	public void mostra() {
-		// TODO Auto-generated method stub
-		yourBoardPanel.addMouseListener(new DoubleGameGridControl(this));//
-	}
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -313,7 +250,7 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
@@ -327,6 +264,16 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	}
 	@Override
 	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
