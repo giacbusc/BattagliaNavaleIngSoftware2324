@@ -11,110 +11,78 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import org.zeromq.SocketType;
+import org.zeromq.ZMQ;
+
+import BattagliaNavaleProject.client.Square;
+
+import org.zeromq.ZContext;
 
 public class Server
 {
-	private int port;
-	private boolean open = true;
-	private ServerSocket ss;
-	private ServerListener serverListener;
-	private ArrayList<Socket> clients = new ArrayList<>();
-	public Server(int port, ServerListener listener)
+	private Square[][] player1;
+	private Square[][] player2;
+	final static int MAX_LENGTH=10;
+	
+	public Server(int port, ServerListener listener) throws Exception
 	{
-		serverListener=listener;
-		try{
-			ss=new ServerSocket(port);
-			if(this.port==0)this.port=ss.getLocalPort();
-			else this.port=port;
-			Thread serverThread = new Thread(new Runnable(){
-				
-				public void run(){
-					
-					while(open){
-						
-						try{
-							@SuppressWarnings("resource")final Socket s = ss.accept();
-							Thread clientThread = new Thread(new Runnable(){
-								
-								public void run(){
-									
-									try {
-										clients.add(s);
-										BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
-										PrintWriter out = new PrintWriter(s.getOutputStream(), true);
-										ClientInstance client = new ClientInstance(s.getInetAddress(), s.getPort());
-										serverListener.clientConnected(client, out);
-										
-										while(open){
-											
-											try{ 
-												serverListener.recivedInput(client, in.readLine());
-												
-											}catch(IOException e){
-												
-												serverListener.clientDisconnected(client);
-												
-												try{
-													if(!s.isClosed()){
-														s.shutdownOutput();
-														s.close();
-													}
-												}catch(Exception exception){ exception.printStackTrace(); }
-												clients.remove(s);
-												return;
-											}
-										}
-									}catch(Exception exception) { 
-										exception.printStackTrace(); 
-									}
-									
-									try { 
-										s.close();
-									}catch(Exception exception){ 
-										exception.printStackTrace(); 
-									}
-									clients.remove(s);
-								}
-							});
-							clientThread.setDaemon(true);
-							clientThread.setName("Client "+s.getInetAddress().toString());
-							clientThread.start();
-						}catch(SocketException e){  //Do nothing
-						}catch(IOException e){ e.printStackTrace(); }
-					}
+		try (ZContext context = new ZContext()) {
+		      //  Socket to talk to clients
+		      ZMQ.Socket socket = context.createSocket(SocketType.REP);
+		      socket.bind("tcp://172.16.129.123:5555");
+
+		      while (!Thread.currentThread().isInterrupted()) 
+		      {
+		        byte[] reply = socket.recv(0); //funz.rec bloccata
+		       String messaggio=new String(reply, ZMQ.CHARSET);
+		       //devo dividere il messaggio
+		       String[] mexSplit=messaggio.split(" ");
+		       String x=mexSplit[0];
+		       String y=mexSplit[1];
+		       String nome=mexSplit[2];
+		       
+		       
+			       
+		            
+		      
+		      }
+		  
+	}
+		public String controllaCella(int x,int y, int nomeBarca)
+		{ 
+			String[] spedire={x,y,"1","0","0","0","0"};
+			int l=lunghezzaBarca(nomeBarca);
+		
+			if(l==1)
+			{
+				if(cellaLibera(x,y)==true)
+				{
+					spedire={x,y,"1","0","0","0","0"};
 				}
-			});
-			serverThread.setDaemon(true);
-			serverThread.setName("Server");
-			serverThread.start();
+			}
+			if(l==2)
+			{[]
+				if(cellaLibera(x,y)==true)
+				{	//nord
+					if(cellaLibera(x+1,y)==true) 
+					//sud
+					
+					spedire= x +" "+y+" "+1+" "+0+" "+0+" "+0+" "+0;
+				}
+			}
+			for(int i=0;i<MAX_LENGTH;i++) 
+		       {
+		    	   for(int j=0;j<MAX_LENGTH-1;j++)
+		    	   {
+		    		    
+		    	   }
+		       }
 		}
-		catch(IOException e) { 
-			e.printStackTrace(); 
+	public boolean cellaLibera(int x,int y)
+	{
+		if(player1[x][y].getStato()==0)
+		{
+			return true;
 		}
 	}
-	
-	
-	public void dispose(){
-		open=false;
-		try{ ss.close();
-		}catch(IOException e){ e.printStackTrace(); }
-		for(Socket s : clients){
-			try{ s.close();
-			}catch(Exception exception){ exception.printStackTrace(); }
-		}
-		clients.clear();
-		clients=null;
-		ss=null;
-		serverListener.serverClosed();
-		serverListener=null;
-	}
-	
-	
-	public String getIp(){
-		try{ ss.getInetAddress();
-		return InetAddress.getLocalHost().getHostAddress();
-		}catch(UnknownHostException e){ e.printStackTrace(); }
-		return null;
-	}
-	
 }
