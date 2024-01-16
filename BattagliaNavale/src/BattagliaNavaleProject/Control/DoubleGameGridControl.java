@@ -17,6 +17,7 @@ import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
 import BattagliaNavaleProject.client.DoubleGameGridGUI;
+import BattagliaNavaleProject.client.InfoBoat;
 import BattagliaNavaleProject.client.Square;
 
 public class DoubleGameGridControl implements MouseListener, MouseMotionListener{
@@ -27,6 +28,9 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	private Point previousPoint;
 	private Point currentPoint;
 	private int clickcount=0;
+	//private int[] arrayRisposta= new int[7];
+	private int[] arrayRisposta= {5,5,0,0,1,1,0};
+	int boatlenght;
 	
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
@@ -175,7 +179,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				Square clickedSquare= (Square) e.getSource();
 				System.out.println("sono la square"+clickcount +clickedSquare.getx()+ clickedSquare.gety());
 				if(clickedSquare.getName().equals("yourBoard")) {
-					clickedSquare.setBackground(Color.gray);
+					clickedSquare.setBackground(Color.gray); //da togliere
 					arraymsg[1]=""+clickedSquare.gety();
 					arraymsg[0]=""+clickedSquare.getx();
 					System.out.println("barca " + arraymsg[2]);
@@ -209,7 +213,6 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		String[] arrayStringhe = rispostamsg.split(",");
 		*/
 		//invece che 2 devo mettere arrayStringhe.length
-		int[] arrayRisposta= new int[3];
 		arrayRisposta[0]=2;
 		arrayRisposta[1]=2;
 		
@@ -218,9 +221,12 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
         System.out.println(
              "Received " + rispostamsg );
         */
-		
+		if(arrayRisposta[2]!=-1) {
         grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.ORANGE);
-        
+		}
+		
+		//else fai qualcosa per l'errore 
+       
         
          
 	}
@@ -258,7 +264,31 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		//0   1   2   3   4   5   6   
 		//x   y   St  N   E   S   O
 		
+			
 		
+		for(InfoBoat boat: InfoBoat.values()) {
+			if(boat.name().equalsIgnoreCase(nome))
+				boatlenght=boat.getLunghezza();
+		}
+		 if(arrayRisposta[6]==0) {
+			 for(int i=1;i<boatlenght;i++)
+	        	grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setBackground(Color.gray);
+	        }
+	        if(arrayRisposta[5]==0) {
+	        	for(int i=1;i<boatlenght;i++)
+		        	grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setBackground(Color.gray);
+		        }
+	        
+	       if(arrayRisposta[4]==0) {
+	    	   for(int i=1;i<boatlenght;i++)
+	    		   grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setBackground(Color.gray);
+	       }
+    
+	       if(arrayRisposta[3]==0) {
+	    	   for(int i=1;i<boatlenght;i++)
+	    		   grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setBackground(Color.gray);
+	       }
+
 		
 	}
 
