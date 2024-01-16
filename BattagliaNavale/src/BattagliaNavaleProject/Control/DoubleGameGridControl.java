@@ -27,9 +27,10 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	private Point previousPoint;
 	private Point currentPoint;
 	private int clickcount=0;
+	
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
-	int[] arraymsg = {-1, -1, -1};
+	String[] arraymsg =new String [3];
 	int dim=3;
 	
 	public static void main(String[] args)
@@ -80,55 +81,113 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				
 			}
 			
-			if(e.getSource() instanceof JPanel ) {
+			
+			if(e.getSource() instanceof JPanel && clickcount==1) {
 				
 				JPanel clickedPanel= (JPanel) e.getSource();
-				
+
 				if(clickedPanel.getName().equals("0")) 
 				{   
-					
-					arraymsg[2]=0;
+					clickedPanel.setName("aircraft");
+					arraymsg[2]=clickedPanel.getName();
 					clickedPanel.setVisible(false);
 					System.out.println("ciao funziono sono il clickcount "+ clickcount);
 					
 				}
-				if(clickedPanel.getName().equals("1") || clickedPanel.getName().equals("2")) 
+				if(clickedPanel.getName().equals("1") ) 
 				{
 					clickedPanel.setVisible(false);
-					arraymsg[2]=1;
+					clickedPanel.setName("destroyer1");
+					arraymsg[2]=clickedPanel.getName();
 					System.out.println("barca cliccata "+arraymsg[2]);
 				}
-				if(clickedPanel.getName().equals("3") || clickedPanel.getName().equals("4") || clickedPanel.getName().equals("5")) 
+				if(clickedPanel.getName().equals("2"))
+				{
+					clickedPanel.setVisible(false);
+					clickedPanel.setName("destroyer2");
+					arraymsg[2]=clickedPanel.getName();
+					System.out.println("barca cliccata "+arraymsg[2]);
+				}
+				if(clickedPanel.getName().equals("3") ) 
+				{
+					clickedPanel.setVisible(false);
+					clickedPanel.setName("cruiser1");
+					arraymsg[2]=clickedPanel.getName();
+					System.out.println("barca cliccata "+arraymsg[2]);
+				}
+				if(clickedPanel.getName().equals("4") ) 
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
+					clickedPanel.setName("cruiser2");
 					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
-					arraymsg[2]=Integer.parseInt(clickedPanel.getName());
+					arraymsg[2]=(clickedPanel.getName());
 				}
-				if(clickedPanel.getName().equals("6") || clickedPanel.getName().equals("7") || clickedPanel.getName().equals("8") || clickedPanel.getName().equals("9")) 
+				if(clickedPanel.getName().equals("5") ) 
 				{
-					//cosa fare se clicco navi da 1
+					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					arraymsg[2]=Integer.parseInt(clickedPanel.getName());
-				}	
+					clickedPanel.setName("cruiser3");
+					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
+					arraymsg[2]=(clickedPanel.getName());
+				}
+				if(clickedPanel.getName().equals("6") ) 
+				{
+					//cosa fare se clicco navi da 2
+					clickedPanel.setVisible(false);
+					clickedPanel.setName("submarine1");
+					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
+					arraymsg[2]=(clickedPanel.getName());
+				}
+				if(clickedPanel.getName().equals("7") ) 
+				{
+					//cosa fare se clicco navi da 2
+					clickedPanel.setVisible(false);
+					clickedPanel.setName("submarine2");
+					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
+					arraymsg[2]=(clickedPanel.getName());
+				}
+				if(clickedPanel.getName().equals("8") ) 
+				{
+					//cosa fare se clicco navi da 2
+					clickedPanel.setVisible(false);
+					clickedPanel.setName("submarine3");
+					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
+					arraymsg[2]=(clickedPanel.getName());
+				}
+				if(clickedPanel.getName().equals("9") ) 
+				{
+					//cosa fare se clicco navi da 2
+					clickedPanel.setVisible(false);
+					clickedPanel.setName("submarine4");
+					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
+					arraymsg[2]=(clickedPanel.getName());
+				}
 				
+			}
+			
+			if(!(e.getSource() instanceof Square )&& clickcount==2) {
+				System.out.println("Non puoi cliccare 2 barche; posiziona la barca che hai attualmente selezionato");
+				clickcount = 1;
 			}
 			
 				if(e.getSource() instanceof Square && clickcount==2){
 				Square clickedSquare= (Square) e.getSource();
 				System.out.println("sono la square"+clickcount +clickedSquare.getx()+ clickedSquare.gety());
 				if(clickedSquare.getName().equals("yourBoard")) {
-					clickedSquare.setBackground(Color.ORANGE);
-					arraymsg[1]=clickedSquare.gety();
-					arraymsg[0]=clickedSquare.getx();
+					clickedSquare.setBackground(Color.gray);
+					arraymsg[1]=""+clickedSquare.gety();
+					arraymsg[0]=""+clickedSquare.getx();
 					System.out.println("barca " + arraymsg[2]);
+					
 					
 					clickcount=0;
 					
-				            String msgserver=Arrays.toString(arraymsg);
+				            String msgserver=(""+arraymsg[0]+","+arraymsg[1]+","+arraymsg[2]);
 				            System.out.println(msgserver);
+				            ricevimsg();
 							//socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
-							
+				           
 				           
 					
 				}
@@ -143,7 +202,28 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 			
 		
 	}
-
+	
+	public void ricevimsg() {
+		/* byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
+        String rispostamsg= new String(reply, ZMQ.CHARSET);
+		String[] arrayStringhe = rispostamsg.split(",");
+		*/
+		//invece che 2 devo mettere arrayStringhe.length
+		int[] arrayRisposta= new int[3];
+		arrayRisposta[0]=2;
+		arrayRisposta[1]=2;
+		
+		/*for(int i = 0; i < arrayStringhe.length; i++)
+			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
+        System.out.println(
+             "Received " + rispostamsg );
+        */
+		
+        grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.ORANGE);
+        
+        
+         
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -174,7 +254,11 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
+		//0   1   2   3   4   5   6   
+		//x   y   St  N   E   S   O
+		
+		
 		
 	}
 
