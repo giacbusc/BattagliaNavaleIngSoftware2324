@@ -7,6 +7,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Arrays;
 
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
@@ -25,15 +26,20 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	private JPanel selectedShip;
 	private Point previousPoint;
 	private Point currentPoint;
+	private int clickcount=0;
+	static ZContext context = new ZContext();
+	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+	int[] arraymsg = {-1, -1, -1};
+	int dim=3;
 	
 	public static void main(String[] args)
     {
-		try (ZContext context = new ZContext()) {
+		try  {
         System.out.println("Connecting to th server");
 
   		//  Socket to talk to server
-        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
-        socket.connect("tcp://localhost:5555");
+			socket.connect("tcp://localhost:5555");
+		
 
         for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
             String request = "Hello";
@@ -46,7 +52,8 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
                 requestNbr
             );
         }
-    }
+
+		}finally {}
 		
     }
 	
@@ -57,44 +64,75 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		clickcount++;
 		
 		// TODO Auto-generated method stub
-
+ 
 		try {
+			if(e.getSource()instanceof Square && clickcount==1 ) {
+				System.out.println(clickcount);
+				/*Square clickedSquare2= (Square) e.getSource();
+				System.out.println("sono la square" +clickedSquare2.getx()+ clickedSquare2.gety());
+				if(clickedSquare2.getName().equals("yourBoard")) {
+					clickedSquare2.setBackground(Color.ORANGE);
+					uso le coordinate mandate per colorare le cose nel mezzo
+					*/
+				
+			}
 			
 			if(e.getSource() instanceof JPanel ) {
+				
 				JPanel clickedPanel= (JPanel) e.getSource();
 				
 				if(clickedPanel.getName().equals("0")) 
 				{   
-	                //cosa fare quando clicco la nave da 4
-					System.out.println("ciao funziono");
 					
+					arraymsg[2]=0;
+					clickedPanel.setVisible(false);
+					System.out.println("ciao funziono sono il clickcount "+ clickcount);
 					
 				}
 				if(clickedPanel.getName().equals("1") || clickedPanel.getName().equals("2")) 
 				{
-					//cosa fare se clicco la nave da 3
-					
+					clickedPanel.setVisible(false);
+					arraymsg[2]=1;
+					System.out.println("barca cliccata "+arraymsg[2]);
 				}
 				if(clickedPanel.getName().equals("3") || clickedPanel.getName().equals("4") || clickedPanel.getName().equals("5")) 
 				{
 					//cosa fare se clicco navi da 2
-					
+					clickedPanel.setVisible(false);
+					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
+					arraymsg[2]=Integer.parseInt(clickedPanel.getName());
 				}
 				if(clickedPanel.getName().equals("6") || clickedPanel.getName().equals("7") || clickedPanel.getName().equals("8") || clickedPanel.getName().equals("9")) 
 				{
 					//cosa fare se clicco navi da 1
-					
-				}
+					clickedPanel.setVisible(false);
+					arraymsg[2]=Integer.parseInt(clickedPanel.getName());
+				}	
+				
 			}
-			if(e.getSource() instanceof Square ){
+			
+				if(e.getSource() instanceof Square && clickcount==2){
 				Square clickedSquare= (Square) e.getSource();
-				System.out.println("sono la square" +clickedSquare.getx()+ clickedSquare.gety());
+				System.out.println("sono la square"+clickcount +clickedSquare.getx()+ clickedSquare.gety());
 				if(clickedSquare.getName().equals("yourBoard")) {
 					clickedSquare.setBackground(Color.ORANGE);
+					arraymsg[1]=clickedSquare.gety();
+					arraymsg[0]=clickedSquare.getx();
+					System.out.println("barca " + arraymsg[2]);
+					
+					clickcount=0;
+					
+				            String msgserver=Arrays.toString(arraymsg);
+				            System.out.println(msgserver);
+							//socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
+							
+				           
+					
 				}
+		
 			}
 			
 			
@@ -105,6 +143,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 			
 		
 	}
+
 
 	@Override
 	public void mousePressed(MouseEvent e) {

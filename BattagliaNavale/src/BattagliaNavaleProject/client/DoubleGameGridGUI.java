@@ -50,6 +50,7 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
+	private DoubleGameGridControl DGGC = new DoubleGameGridControl(this);
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -130,8 +131,8 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		{
 			panel[i]= new JPanel();
 			panel[i].setFocusable(true);
-			panel[i].addMouseListener(new DoubleGameGridControl(this));
-			panel[i].addMouseMotionListener(new DoubleGameGridControl(this));
+			panel[i].addMouseListener(DGGC);
+			panel[i].addMouseMotionListener(DGGC);
 			panel[i].setName(""+i);
 			boatLength = dim.get(i);
 			
@@ -233,12 +234,12 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 				else
 				{
 					yourBoard[i][j]= new Square(i,j);
-					yourBoard[i][j].addMouseListener(new DoubleGameGridControl(this));//
+					yourBoard[i][j].addMouseListener(DGGC);//
 					yourBoard[i][j].setName("yourBoard");//
 					yourBoard[i][j].addMouseMotionListener(this);
 					yourBoardPanel.add(yourBoard[i][j]);
 					opponentBoard[i][j]= new Square(i,j);
-					opponentBoard[i][j].addMouseListener(new DoubleGameGridControl(this));//
+					opponentBoard[i][j].addMouseListener(DGGC);//
 					opponentBoard[i][j].addMouseMotionListener(this);
 					opponentBoard[i][j].setName( "opponentBoard" ); //
 					opponentBoardPanel.add(opponentBoard[i][j]);
@@ -305,7 +306,7 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	}
 	public void mostra() {
 		// TODO Auto-generated method stub
-		yourBoardPanel.addMouseListener(new DoubleGameGridControl(this));//
+		yourBoardPanel.addMouseListener(DGGC);//
 	}
 	@Override
 	public void mouseDragged(MouseEvent e) {
