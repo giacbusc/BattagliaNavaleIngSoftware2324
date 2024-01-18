@@ -20,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import org.zeromq.ZMQ.Socket;
+
 import BattagliaNavaleProject.form.SchermataAttesaModel;
 
 import java.awt.BorderLayout;
@@ -66,11 +68,22 @@ public class SchermataAttesaView extends JFrame implements ActionListener{
 	            }
 	        });
 	    }
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void close(Socket socket) {
+		try {
+			DoubleGameGridView DGGV= new DoubleGameGridView(socket);
+			DGGV.setVisible(true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		dispose();
 	}
 	
 	

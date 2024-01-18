@@ -7,6 +7,7 @@ import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
 import BattagliaNavaleProject.formGui.DoubleGameGridView;
+import BattagliaNavaleProject.formGui.SchermataAttesaView;
 import BattagliaNavaleProject.form.LoginModel;
 
 public class ConnectionControl 
@@ -46,7 +47,11 @@ public class ConnectionControl
 
 		if(rispostaMsg.equals("Y"))
 		{
+			SchermataAttesaView sin= new SchermataAttesaView();
 			DoubleGameGridView DGG = new DoubleGameGridView(socket);
+			
+			sin.close(socket);
+			
 		}
 		else
 		{

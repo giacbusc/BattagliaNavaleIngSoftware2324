@@ -66,7 +66,7 @@ public class LoginControl implements ActionListener
 	public static boolean checkUser(LoginModel model) throws SQLException, IOException  
 	{
 		
-		LoginView gui = new LoginView();
+		//LoginView gui = new LoginView();
     	ConnectionDb conn1 = new ConnectionDb();
     	
     	String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";
