@@ -1,5 +1,5 @@
 package BattagliaNavaleProject.Control;
 
-public class SchermataAttesaControl {
+public class MenuPrincipaleControl {
 
 }

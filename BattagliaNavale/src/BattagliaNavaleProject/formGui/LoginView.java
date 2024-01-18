@@ -20,7 +20,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import BattagliaNavaleProject.Control.LoginControl;
-import BattagliaNavaleProject.client.MenuPrincipale;
 import BattagliaNavaleProject.form.LoginModel;
 import BattagliaNavaleProject.form.SchermataIniziale;
 

@@ -1,8 +1,6 @@
-package BattagliaNavaleProject.client;
+package BattagliaNavaleProject.formGui;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
-import BattagliaNavaleProject.formGui.LoginView;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
