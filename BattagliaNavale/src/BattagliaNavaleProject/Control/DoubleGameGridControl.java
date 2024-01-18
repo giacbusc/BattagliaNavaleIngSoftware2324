@@ -221,6 +221,9 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
         System.out.println(
              "Received " + rispostamsg );
         */
+		
+		
+		
 		if(arrayRisposta[2]!=-1) {
         grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.ORANGE);
 		}
@@ -263,6 +266,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		
 		//0   1   2   3   4   5   6   
 		//x   y   St  N   E   S   O
+		String nome= arraymsg[2];
 		
 		String nome = arraymsg[2];
 			
