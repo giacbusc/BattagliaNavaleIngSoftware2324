@@ -264,30 +264,41 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		//0   1   2   3   4   5   6   
 		//x   y   St  N   E   S   O
 		
+		String nome = arraymsg[2];
 			
 		
 		for(InfoBoat boat: InfoBoat.values()) {
 			if(boat.name().equalsIgnoreCase(nome))
 				boatlenght=boat.getLunghezza();
 		}
-		 if(arrayRisposta[6]==0) {
-			 for(int i=1;i<boatlenght;i++)
-	        	grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setBackground(Color.gray);
-	        }
-	        if(arrayRisposta[5]==0) {
-	        	for(int i=1;i<boatlenght;i++)
-		        	grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setBackground(Color.gray);
-		        }
-	        
-	       if(arrayRisposta[4]==0) {
-	    	   for(int i=1;i<boatlenght;i++)
-	    		   grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setBackground(Color.gray);
-	       }
-    
-	       if(arrayRisposta[3]==0) {
-	    	   for(int i=1;i<boatlenght;i++)
-	    		   grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setBackground(Color.gray);
-	       }
+		 if(e.getSource() instanceof Square)
+		 {
+			 Square square = (Square) e.getSource();
+			 int x = square.getx();
+			 int y = square.gety();
+			
+			 if(x==arrayRisposta[0] && y == arrayRisposta[1])
+			 {
+				 if(arrayRisposta[6]==0) {
+					 for(int i=1;i<boatlenght;i++)
+			        	grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setBackground(Color.gray);
+			        }
+			        if(arrayRisposta[5]==0) {
+			        	for(int i=1;i<boatlenght;i++)
+				        	grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setBackground(Color.gray);
+				        }
+			        
+			       if(arrayRisposta[4]==0) {
+			    	   for(int i=1;i<boatlenght;i++)
+			    		   grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setBackground(Color.gray);
+			       }
+		    
+			       if(arrayRisposta[3]==0) {
+			    	   for(int i=1;i<boatlenght;i++)
+			    		   grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setBackground(Color.gray);
+			       }
+			 }
+			 }
 
 		
 	}

@@ -233,12 +233,12 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 				}
 				else
 				{
-					yourBoard[i][j]= new Square(i,j);
+					yourBoard[i][j]= new Square(i,j,0);
 					yourBoard[i][j].addMouseListener(DGGC);//
 					yourBoard[i][j].setName("yourBoard");//
 					yourBoard[i][j].addMouseMotionListener(this);
 					yourBoardPanel.add(yourBoard[i][j]);
-					opponentBoard[i][j]= new Square(i,j);
+					opponentBoard[i][j]= new Square(i,j,0);
 					opponentBoard[i][j].addMouseListener(DGGC);//
 					opponentBoard[i][j].addMouseMotionListener(this);
 					opponentBoard[i][j].setName( "opponentBoard" ); //
