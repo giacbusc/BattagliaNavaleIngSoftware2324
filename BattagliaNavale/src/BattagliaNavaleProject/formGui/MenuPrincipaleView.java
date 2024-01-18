@@ -26,7 +26,7 @@ public class MenuPrincipaleView extends JFrame {
 				{
 					MenuPrincipaleView frame = new MenuPrincipaleView();
 				    frame.setVisible(true);
-				}
+			}
 				catch(Exception e)
 				{
 					e.printStackTrace();
@@ -40,6 +40,7 @@ public class MenuPrincipaleView extends JFrame {
 	public MenuPrincipaleView(String username) throws IOException, SQLException 
 	{
 		this.userName = username;
+		
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setSize(771, 600);
 	    final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");

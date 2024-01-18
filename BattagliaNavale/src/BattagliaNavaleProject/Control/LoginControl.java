@@ -27,26 +27,31 @@ public class LoginControl implements ActionListener
 	public void actionPerformed(ActionEvent e) 
 	{
 			// TODO Auto-generated method stub
-		
+		System.out.println("Ciao");
 		try {
 			
 			model = gui.getUserModel();
+			System.out.println(model.getUserName());
 			if(e.getSource() instanceof JButton ) {
 				JButton clickedButton= (JButton) e.getSource();
-				
+				System.out.println("Ciao2");
 				if(clickedButton.getText().equals("Login")) 
-				{   
+				{   System.out.println("Ciao3");
 	                try {
+	                	System.out.println("Ciao4");
 						if(checkUser(model)){
-						    gui.showMessage("Login succesfully!");
+							System.out.println("Ciao5");
+							gui.showMessage("Login succesfully!");
 						    gui.openMenu();
 						    
 							
 						}else{
+							System.out.println("Ciao6");
 						    gui.showMessage("Invalid username and/or password!");
 						}
 					} catch (SQLException | IOException e1) {
 						// TODO Auto-generated catch block
+						System.out.println("Ciao7");
 						e1.printStackTrace();
 					} 
                 
@@ -58,6 +63,7 @@ public class LoginControl implements ActionListener
 			
 		}catch(Exception e3) {
 			e3.printStackTrace();	
+			System.out.println("Ciao8");
 		}
 			
 		

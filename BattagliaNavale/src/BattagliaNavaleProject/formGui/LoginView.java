@@ -128,11 +128,6 @@ public class LoginView extends JFrame implements ActionListener{
             JOptionPane.showMessageDialog(this, msg);
         }
      
-        public void addLoginListener(ActionListener log) 
-        {
-              loginButton.addActionListener(log);
-        }
-    
 
 	public String getUser() {
 		try{
@@ -161,7 +156,8 @@ public void actionPerformed(ActionEvent e) {
 
 
 public void openMenu() throws IOException, SQLException {
-
+	
+	model = getUserModel();
     MenuPrincipaleView menu = new MenuPrincipaleView(model.getUserName()); 
 	menu.setVisible(true);
 	dispose(); 
