@@ -2,6 +2,10 @@ package BattagliaNavaleProject.formGui;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import BattagliaNavaleProject.Control.ConnectionControl;
+import BattagliaNavaleProject.Control.MenuPrincipaleControl;
+import BattagliaNavaleProject.Control.SchermataInizialeControl;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -124,6 +128,8 @@ public class MenuPrincipaleView extends JFrame {
 	    multiplayerButton.setBounds(258, 124, 275, 70);
 	    backgroundPanel.add(multiplayerButton);
 	    
+	    multiplayerButton.addActionListener(new MenuPrincipaleControl(this));
+		 
 	    
 	    multiplayerButton.addMouseListener(new MouseListener()
 	    {
@@ -185,10 +191,7 @@ public class MenuPrincipaleView extends JFrame {
 	    backgroundPanel.add(singleplayer);
 	    
 	    
-	    singleplayer.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    	}
-	    });
+	   // singleplayer.addActionListener(new MenuPrincipaleControl(this));
 	    
 	    singleplayer.addMouseListener(new MouseListener()
 	    {
@@ -322,5 +325,13 @@ public class MenuPrincipaleView extends JFrame {
         panel.add(infoPlayerLabel_1);
         infoPlayerLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 	                    
+	}
+
+
+	public void open() {
+		// TODO Auto-generated method stub
+		SchermataAttesaView sin= new SchermataAttesaView();
+		sin.setVisible(true);
+		dispose();
 	}
 }

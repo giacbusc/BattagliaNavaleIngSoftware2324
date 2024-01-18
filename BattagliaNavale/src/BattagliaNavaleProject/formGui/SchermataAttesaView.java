@@ -24,9 +24,9 @@ import BattagliaNavaleProject.form.SchermataAttesaModel;
 
 import java.awt.BorderLayout;
 
-public class SchermataAttesa extends JFrame implements ActionListener{
+public class SchermataAttesaView extends JFrame implements ActionListener{
 
-	 public SchermataAttesa() {
+	 public SchermataAttesaView() {
 	    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 516, 405);
 			
@@ -57,7 +57,7 @@ public class SchermataAttesa extends JFrame implements ActionListener{
 	        EventQueue.invokeLater(new Runnable() {
 	            public void run() {
 	                try {
-	                	SchermataAttesa frame = new SchermataAttesa();
+	                	SchermataAttesaView frame = new SchermataAttesaView();
 	                    frame.setVisible(true);
 	                   
 	                } catch (Exception e) {

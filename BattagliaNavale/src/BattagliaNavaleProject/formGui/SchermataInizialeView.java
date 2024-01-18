@@ -228,9 +228,9 @@ public class SchermataInizialeView extends JFrame implements ActionListener {
 		  
         RegistrationView reg;
         reg= new RegistrationView(); 
-        dispose(); 
+       
         reg.setVisible(true);
-        
+         dispose(); 
 		
 	}
 	public void openLogin() {
