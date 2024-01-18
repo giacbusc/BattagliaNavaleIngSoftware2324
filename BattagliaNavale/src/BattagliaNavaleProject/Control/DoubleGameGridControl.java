@@ -16,14 +16,14 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.client.DoubleGameGridGUI;
 import BattagliaNavaleProject.client.InfoBoat;
 import BattagliaNavaleProject.client.Square;
+import BattagliaNavaleProject.formGui.DoubleGameGridView;
 
 public class DoubleGameGridControl implements MouseListener, MouseMotionListener{
 	
 	private static final int GRID_DIMENSION = 10;
-	public DoubleGameGridGUI grid;
+	public DoubleGameGridView grid;
 	private JPanel selectedShip;
 	private Point previousPoint;
 	private Point currentPoint;
@@ -31,17 +31,40 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	//private int[] arrayRisposta= new int[7];
 	private int[] arrayRisposta= {5,5,0,0,1,1,0};
 	int boatlenght;
-
-	static ZMQ.Socket socket = null;
+	
+	static ZContext context = new ZContext();
+	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	String[] arraymsg =new String [3];
 	int dim=3;
 	
+	public static void main(String[] args)
+    {
+		try  {
+        System.out.println("Connecting to th server");
+
+  		//  Socket to talk to server
+			socket.connect("tcp://localhost:5555");
+		
+
+        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
+            String request = "Hello";
+            System.out.println("Sending Hello " + requestNbr);
+            socket.send(request.getBytes(ZMQ.CHARSET), 0);
+
+            byte[] reply = socket.recv(0);
+            System.out.println(
+                "Received " + new String(reply, ZMQ.CHARSET) + " " +
+                requestNbr
+            );
+        }
+
+		}finally {}
+		
+    }
 	
-	
-	public DoubleGameGridControl (DoubleGameGridGUI grid, ZMQ.Socket socket)
+	public DoubleGameGridControl (DoubleGameGridView grid)
 	{	
 		this.grid = grid;
-		this.socket= socket;
 	}
 
 	@Override
@@ -244,7 +267,8 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		//0   1   2   3   4   5   6   
 		//x   y   St  N   E   S   O
 		String nome= arraymsg[2];
-			
+		
+		
 		for(InfoBoat boat: InfoBoat.values()) {
 			if(boat.name().equalsIgnoreCase(nome))
 				boatlenght=boat.getLunghezza();

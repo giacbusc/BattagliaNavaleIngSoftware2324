@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.form;
+package BattagliaNavaleProject.formGui;
 
 import java.awt.EventQueue;
 
@@ -7,14 +7,15 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import BattagliaNavaleProject.Control.RegistrationControl;
-import BattagliaNavaleProject.formGui.LoginView;
-import BattagliaNavaleProject.formGui.RegistrationView;
+import BattagliaNavaleProject.Control.SchermataInizialeControl;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -23,9 +24,12 @@ import javax.swing.JLabel;
 import java.awt.Color;
 
 //pagina per loggarsi/registrarsi
-public class SchermataIniziale extends JFrame implements ActionListener {
+public class SchermataInizialeView extends JFrame implements ActionListener {
 	
 	JButton loginButton = new JButton("");
+	
+	
+	
 	JButton registerButton = new JButton("");
 
 	/**
@@ -35,7 +39,7 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SchermataIniziale frame = new SchermataIniziale();
+					SchermataInizialeView frame = new SchermataInizialeView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +51,7 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public SchermataIniziale() 
+	public SchermataInizialeView() 
 	{	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100,100,450,300);
@@ -78,13 +82,14 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		backgroundPanel.add(titleLabel);
 	    
 		loginButton.setBounds(128, 60, 166, 62);
-		
+		loginButton.setName("Login");
 		
 		loginButton.setFont(new Font("Tahoma", Font.BOLD, 18));
-		loginButton.addActionListener(this);
+	
 		
 		
 		final JLabel loginTextLabel= new JLabel("Login");
+		
 		loginTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		loginTextLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		loginTextLabel.setBounds(138,77,142,30);
@@ -93,23 +98,15 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		loginButton.setOpaque(false);
 		backgroundPanel.add(loginButton);
         
-		loginButton.addActionListener(this);
 		setVisible(true);
-		
-		
-        
-		loginButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        // Azioni da eseguire quando il pulsante viene premuto
-		    	LoginView login;
-				
-				login = new LoginView();
-				login.setVisible(true);
-				             
-	            dispose(); 
-		    }
-		});
+
+		loginButton.addActionListener(new SchermataInizialeControl(this));
+		 
+        this.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                System.exit(0);
+            }
+        });
 		
 		loginButton.addMouseListener(new MouseListener()
 	    {
@@ -154,6 +151,7 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 	
 
 		final JLabel registerTextLabel= new JLabel("Register");
+		registerButton.setName("Register");
 		registerTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		registerTextLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		registerTextLabel.setBounds(138,177,142,30);
@@ -164,20 +162,12 @@ public class SchermataIniziale extends JFrame implements ActionListener {
        
 		
 		
-		registerButton.addActionListener(this);
 		registerButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 		registerButton.setBackground(new Color(0, 0, 0, 0));
 		registerButton.setOpaque(false);
 		backgroundPanel.add(registerButton);
-		registerButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        // Azioni da eseguire quando il pulsante viene premuto
-		    	RegistrationView view       = new RegistrationView();
-		          RegistrationControl controller = new RegistrationControl(view);        
-		            view.setVisible(true);
-		    }
-		});
+		
+		registerButton.addActionListener(new SchermataInizialeControl(this));
 		
 		 registerButton.addMouseListener(new MouseListener()
 		    {
@@ -227,6 +217,28 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void close() {
+		// TODO Auto-generated method stub
+   	  dispose();
+	}
+	public void openRegistration() {
+		  
+        RegistrationView reg;
+        reg= new RegistrationView(); 
+        dispose(); 
+        reg.setVisible(true);
+        
+		
+	}
+	public void openLogin() {
+		  
+        LoginView login;
+        login = new LoginView(); 
+        login.setVisible(true);
+        dispose(); 
 		
 	}
 }
