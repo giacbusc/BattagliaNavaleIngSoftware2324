@@ -21,7 +21,6 @@ import javax.swing.SwingConstants;
 
 import BattagliaNavaleProject.Control.LoginControl;
 import BattagliaNavaleProject.form.LoginModel;
-import BattagliaNavaleProject.form.SchermataIniziale;
 
 public class LoginView extends JFrame implements ActionListener{
 

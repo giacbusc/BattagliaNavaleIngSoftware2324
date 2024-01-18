@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import BattagliaNavaleProject.form.SchermataAttesaModel;
-import BattagliaNavaleProject.form.SchermataIniziale;
+
 import java.awt.BorderLayout;
 
 public class SchermataAttesa extends JFrame implements ActionListener{
@@ -48,9 +48,9 @@ public class SchermataAttesa extends JFrame implements ActionListener{
 	        getContentPane().add(backgroundPanel);
 	    	backgroundPanel.setLayout(null);
 	    	
-	    	JLabel attesaserver = new JLabel("ATTESA DEL SERVER...");
+	    	JLabel attesaserver = new JLabel("ATTESA AVVERSARIO...");
 	    	attesaserver.setFont(new Font("Tahoma", Font.PLAIN, 42));
-			attesaserver.setBounds(38, 55, 443, 259);
+			attesaserver.setBounds(31, 49, 471, 259);
 			backgroundPanel.add(attesaserver);
 	 }
 	 public static void main(String[] args) {

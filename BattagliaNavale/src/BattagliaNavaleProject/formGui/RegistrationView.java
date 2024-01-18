@@ -22,7 +22,6 @@ import javax.swing.SwingConstants;
 
 import BattagliaNavaleProject.Control.RegistrationControl;
 import BattagliaNavaleProject.form.RegistrationModel;
-import BattagliaNavaleProject.form.SchermataIniziale;
 
 
 

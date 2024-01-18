@@ -268,8 +268,6 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		//x   y   St  N   E   S   O
 		String nome= arraymsg[2];
 		
-		String nome = arraymsg[2];
-			
 		
 		for(InfoBoat boat: InfoBoat.values()) {
 			if(boat.name().equalsIgnoreCase(nome))
