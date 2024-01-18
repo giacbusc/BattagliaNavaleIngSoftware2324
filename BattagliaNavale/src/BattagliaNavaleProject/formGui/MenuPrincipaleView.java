@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
-public class MenuPrincipale extends JFrame {
+public class MenuPrincipaleView extends JFrame {
 	private JLabel infoPlayerLabel_1;
 	
 	public static void main(String[] args) {
@@ -19,7 +19,7 @@ public class MenuPrincipale extends JFrame {
 			{
 				try 
 				{
-					MenuPrincipale frame = new MenuPrincipale();
+					MenuPrincipaleView frame = new MenuPrincipaleView();
 				    frame.setVisible(true);
 				}
 				catch(Exception e)
@@ -32,7 +32,7 @@ public class MenuPrincipale extends JFrame {
 	}
 
 	
-	public MenuPrincipale() throws IOException, SQLException 
+	public MenuPrincipaleView() throws IOException, SQLException 
 	{
 	   
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -145,8 +145,8 @@ public class LoginView extends JFrame implements ActionListener{
 	}
 	
 	public void close() {
-		SchermataIniziale inizio;
-		inizio = new SchermataIniziale(); 
+		SchermataInizialeView inizio;
+		inizio = new SchermataInizialeView(); 
 		dispose();
 		inizio.setVisible(true);
 	}
@@ -162,7 +162,7 @@ public void actionPerformed(ActionEvent e) {
 
 public void openMenu() throws IOException, SQLException {
 
-    MenuPrincipale menu = new MenuPrincipale(); 
+    MenuPrincipaleView menu = new MenuPrincipaleView(); 
 	menu.setVisible(true);
 	dispose(); 
 }

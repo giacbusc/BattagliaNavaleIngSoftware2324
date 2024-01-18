@@ -16,14 +16,14 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.client.DoubleGameGridGUI;
 import BattagliaNavaleProject.client.InfoBoat;
 import BattagliaNavaleProject.client.Square;
+import BattagliaNavaleProject.formGui.DoubleGameGridView;
 
 public class DoubleGameGridControl implements MouseListener, MouseMotionListener{
 	
 	private static final int GRID_DIMENSION = 10;
-	public DoubleGameGridGUI grid;
+	public DoubleGameGridView grid;
 	private JPanel selectedShip;
 	private Point previousPoint;
 	private Point currentPoint;
@@ -62,7 +62,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		
     }
 	
-	public DoubleGameGridControl (DoubleGameGridGUI grid)
+	public DoubleGameGridControl (DoubleGameGridView grid)
 	{	
 		this.grid = grid;
 	}

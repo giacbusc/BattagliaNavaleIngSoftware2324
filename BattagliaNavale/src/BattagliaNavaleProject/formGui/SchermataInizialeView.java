@@ -24,7 +24,7 @@ import javax.swing.JLabel;
 import java.awt.Color;
 
 //pagina per loggarsi/registrarsi
-public class SchermataIniziale extends JFrame implements ActionListener {
+public class SchermataInizialeView extends JFrame implements ActionListener {
 	
 	JButton loginButton = new JButton("");
 	
@@ -39,7 +39,7 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SchermataIniziale frame = new SchermataIniziale();
+					SchermataInizialeView frame = new SchermataInizialeView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class SchermataIniziale extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public SchermataIniziale() 
+	public SchermataInizialeView() 
 	{	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100,100,450,300);

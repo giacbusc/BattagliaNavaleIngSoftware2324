@@ -134,8 +134,8 @@ public class RegistrationView extends JFrame implements ActionListener {
         JOptionPane.showMessageDialog(this, msg);
     }
     public void close() {
-    	  SchermataIniziale inizio;
-    	  inizio = new SchermataIniziale(); 
+    	  SchermataInizialeView inizio;
+    	  inizio = new SchermataInizialeView(); 
     	  dispose();
     	  inizio.setVisible(true);
          }

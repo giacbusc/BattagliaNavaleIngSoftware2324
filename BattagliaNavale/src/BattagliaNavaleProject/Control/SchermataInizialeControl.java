@@ -8,13 +8,13 @@ import javax.swing.JButton;
 import BattagliaNavaleProject.form.RegistrationModel;
 import BattagliaNavaleProject.formGui.LoginView;
 import BattagliaNavaleProject.formGui.RegistrationView;
-import BattagliaNavaleProject.formGui.SchermataIniziale;
+import BattagliaNavaleProject.formGui.SchermataInizialeView;
 
 public class SchermataInizialeControl implements ActionListener{
 	
-    private SchermataIniziale schermata;
+    private SchermataInizialeView schermata;
     
-    public SchermataInizialeControl(SchermataIniziale schermata ){
+    public SchermataInizialeControl(SchermataInizialeView schermata ){
         this.schermata = schermata;
         //view.addRecListener(this);
     }
