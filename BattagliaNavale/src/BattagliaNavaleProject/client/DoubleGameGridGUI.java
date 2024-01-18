@@ -50,15 +50,16 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
-	private DoubleGameGridControl DGGC = new DoubleGameGridControl(this);
+	private DoubleGameGridControl DGGC = new DoubleGameGridControl(this, socket);
+	static ZMQ.Socket socket = null;
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run()
 			{
 				try 
 				{
-					DoubleGameGridGUI frame = new DoubleGameGridGUI();
+					DoubleGameGridGUI frame = new DoubleGameGridGUI(null);
 				    frame.setVisible(true);
 				}
 				catch(Exception e)
@@ -71,9 +72,51 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		
 		
 		
-	}
-	public DoubleGameGridGUI() throws IOException 
+	}*/
+	
+	/*public DoubleGameGridGUI()
 	{
+		socket = this.socket;
+		this.frame = new JFrame("Battaglia Navale");
+		setSize(1400,788);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//centralPanel = new JPanel(new BorderLayout());
+		c = new GridBagConstraints();
+		c1 = new GridBagConstraints();
+		c2 = new GridBagConstraints();
+		gridPanel =  new JPanel();
+		centralTopPanel = new JPanel();
+		JPanel backgroundPanel = new JPanel();
+		/*final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoGriglia.jpg");
+		Image image = sfondo.getImage();
+        final Image scaledImage = image.getScaledInstance(1450, 816, Image.SCALE_SMOOTH);
+        
+		JPanel backgroundPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(scaledImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        };*/
+        //getContentPane().add(backgroundPanel);
+
+		/*centralTopPanel.setBackground(Color.BLUE);
+		centralTopPanel.setPreferredSize(new Dimension(50, 50));
+		getContentPane().add(centralTopPanel, BorderLayout.NORTH);
+		
+		createGrid();
+		
+		getContentPane().add(gridPanel, BorderLayout.CENTER);
+		
+		
+		frame.pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}*/
+	
+	public DoubleGameGridGUI(ZMQ.Socket socket) throws IOException 
+	{
+		socket = this.socket;
 		this.frame = new JFrame("Battaglia Navale");
 		setSize(1400,788);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
