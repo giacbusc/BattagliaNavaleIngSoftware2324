@@ -162,7 +162,7 @@ public void actionPerformed(ActionEvent e) {
 
 public void openMenu() throws IOException, SQLException {
 
-    MenuPrincipaleView menu = new MenuPrincipaleView(); 
+    MenuPrincipaleView menu = new MenuPrincipaleView(model.getUserName()); 
 	menu.setVisible(true);
 	dispose(); 
 }

@@ -16,29 +16,11 @@ import java.awt.event.ActionEvent;
 
 public class MenuPrincipaleView extends JFrame {
 	private JLabel infoPlayerLabel_1;
+	private String userName;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run()
-			{
-				try 
-				{
-					MenuPrincipaleView frame = new MenuPrincipaleView();
-				    frame.setVisible(true);
-				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-		
-	}
-
-	
-	public MenuPrincipaleView() throws IOException, SQLException 
+	public MenuPrincipaleView(String username) throws IOException, SQLException 
 	{
-	   
+		this.userName = username;
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setSize(771, 600);
 	    final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
@@ -331,6 +313,7 @@ public class MenuPrincipaleView extends JFrame {
 	public void open() {
 		// TODO Auto-generated method stub
 		SchermataAttesaView sin= new SchermataAttesaView();
+		ConnectionControl c = new ConnectionControl(sin, userName);
 		sin.setVisible(true);
 		dispose();
 	}

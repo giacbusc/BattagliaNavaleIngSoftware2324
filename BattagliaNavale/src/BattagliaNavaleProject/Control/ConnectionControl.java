@@ -8,6 +8,7 @@ import org.zeromq.ZMQ;
 
 import BattagliaNavaleProject.formGui.DoubleGameGridView;
 import BattagliaNavaleProject.formGui.SchermataAttesaView;
+import BattagliaNavaleProject.formGui.SchermataInizialeView;
 import BattagliaNavaleProject.form.LoginModel;
 
 public class ConnectionControl 
@@ -16,7 +17,14 @@ public class ConnectionControl
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	String[] arrayMsg = null;
 	private static LoginModel model;
+	static private SchermataAttesaView sav;
+	private String userName;
 	
+	public ConnectionControl(SchermataAttesaView sav, String userName)
+	{
+		this.sav = sav;
+		this.userName = userName;
+	}
 	public static void main(String[] args) throws IOException
     {
 		try  {
@@ -45,19 +53,20 @@ public class ConnectionControl
 		byte[] byteMsg = socket.recv(0);
 		String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 
-		if(rispostaMsg.equals("Y"))
+		if(rispostaMsg.equals("OK"))
 		{
-			SchermataAttesaView sin= new SchermataAttesaView();
 			DoubleGameGridView DGG = new DoubleGameGridView(socket);
-			
-			sin.close(socket);
-			
 		}
-		else
+		else if(rispostaMsg.equals("ERROR"))
 		{
 			//Qui dobbiamo chiamare una funzione che faccia uscire a video nella schermata di attesa che qualcosa 
 			//è andato storto nella connessione
 			System.out.println("C'è stato un errore nella connessione.");
+		}
+		else if(rispostaMsg.equals("DUPL"))
+		{
+			SchermataInizialeView scv= new SchermataInizialeView();
+			sav.close(socket);
 		}
 		
 		

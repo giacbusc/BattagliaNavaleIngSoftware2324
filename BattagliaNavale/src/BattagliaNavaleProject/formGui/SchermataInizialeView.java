@@ -241,6 +241,7 @@ public class SchermataInizialeView extends JFrame implements ActionListener {
         dispose(); 
 		
 	}
+
 }
 
 	
