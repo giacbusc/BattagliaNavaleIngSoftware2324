@@ -18,6 +18,25 @@ public class MenuPrincipaleView extends JFrame {
 	private JLabel infoPlayerLabel_1;
 	private String userName;
 	
+	/*public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run()
+			{
+				try 
+				{
+					MenuPrincipaleView frame = new MenuPrincipaleView();
+				    frame.setVisible(true);
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		});
+		
+	}*/
+
+	
 	public MenuPrincipaleView(String username) throws IOException, SQLException 
 	{
 		this.userName = username;
