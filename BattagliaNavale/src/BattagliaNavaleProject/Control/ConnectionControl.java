@@ -6,7 +6,7 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.client.DoubleGameGridGUI;
+import BattagliaNavaleProject.formGui.DoubleGameGridView;
 import BattagliaNavaleProject.form.LoginModel;
 
 public class ConnectionControl 
@@ -46,7 +46,7 @@ public class ConnectionControl
 
 		if(rispostaMsg.equals("Y"))
 		{
-			DoubleGameGridGUI DGG = new DoubleGameGridGUI(socket);
+			DoubleGameGridView DGG = new DoubleGameGridView(socket);
 		}
 		else
 		{

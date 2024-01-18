@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.client;
+package BattagliaNavaleProject.formGui;
 
 
 import java.awt.BorderLayout;
@@ -26,13 +26,14 @@ import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
 import BattagliaNavaleProject.Control.DoubleGameGridControl;
+import BattagliaNavaleProject.client.Square;
 
-public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMotionListener{
+public class DoubleGameGridView extends JFrame implements MouseListener, MouseMotionListener{
 
 	private static final long serialVersionUID = 1L;
 	private static final int GRID_DIMENSION = 10;
 	private static final int Square_SIZE = 60;
-	private final JFrame frame;
+	private JFrame frame;
 	public JPanel yourBoardPanel;
 	public JPanel opponentBoardPanel;
 	private JPanel centralTopPanel;
@@ -114,7 +115,7 @@ public class DoubleGameGridGUI extends JFrame implements MouseListener, MouseMot
 		setVisible(true);
 	}*/
 	
-	public DoubleGameGridGUI(ZMQ.Socket socket) throws IOException 
+	public DoubleGameGridView(ZMQ.Socket socket) throws IOException 
 	{
 		socket = this.socket;
 		this.frame = new JFrame("Battaglia Navale");

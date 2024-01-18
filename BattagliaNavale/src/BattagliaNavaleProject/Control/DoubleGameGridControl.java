@@ -16,9 +16,9 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
+import BattagliaNavaleProject.formGui.DoubleGameGridView;
 import BattagliaNavaleProject.client.InfoBoat;
 import BattagliaNavaleProject.client.Square;
-import BattagliaNavaleProject.formGui.DoubleGameGridView;
 
 public class DoubleGameGridControl implements MouseListener, MouseMotionListener{
 	
@@ -32,39 +32,14 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	private int[] arrayRisposta= {5,5,0,0,1,1,0};
 	int boatlenght;
 	
-	static ZContext context = new ZContext();
-	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+	static ZMQ.Socket socket;
 	String[] arraymsg =new String [3];
 	int dim=3;
 	
-	public static void main(String[] args)
-    {
-		try  {
-        System.out.println("Connecting to th server");
-
-  		//  Socket to talk to server
-			socket.connect("tcp://localhost:5555");
-		
-
-        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
-            String request = "Hello";
-            System.out.println("Sending Hello " + requestNbr);
-            socket.send(request.getBytes(ZMQ.CHARSET), 0);
-
-            byte[] reply = socket.recv(0);
-            System.out.println(
-                "Received " + new String(reply, ZMQ.CHARSET) + " " +
-                requestNbr
-            );
-        }
-
-		}finally {}
-		
-    }
-	
-	public DoubleGameGridControl (DoubleGameGridView grid)
+	public DoubleGameGridControl (DoubleGameGridView grid, ZMQ.Socket socket)
 	{	
 		this.grid = grid;
+		this.socket = socket;
 	}
 
 	@Override
