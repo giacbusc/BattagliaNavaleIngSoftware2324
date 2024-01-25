@@ -13,8 +13,7 @@ public class AppTest
      */
 	public static void main(String[] args)
 	{
-		//ServerSocket server = new ServerSocket();
-		//server.startServer();
+	
 		ConnectionControl c = new ConnectionControl("papera");
 	}
 	

@@ -70,32 +70,31 @@ public class ConnectionControl
 	
 	public ConnectionControl(String fintoUsername)
 	{
-		this.userName = userName;
+		this.userName = fintoUsername;
 		
 		try  {
 	        System.out.println("Connecting to th server");
-
+	        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
 				socket.connect("tcp://172.16.128.218:5532");
 			
 
-	        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
-	            String request = "Hello";
-	            System.out.println("Sending Hello " + requestNbr);
+	        
+	            /*String request = "Hello";
+	            System.out.println("Sending Hello ");
 	            socket.send(request.getBytes(ZMQ.CHARSET), 0);
 
 	            byte[] reply = socket.recv(0);
 	            System.out.println(
-	                "Received " + new String(reply, ZMQ.CHARSET) + " " +
-	                requestNbr
-	            );
-	        }
-
-			}finally {}
+	                "Received " + new String(reply, ZMQ.CHARSET) + " ");
+	        */
 			
-			String sendMsg = model.getUserName();
+			String sendMsg = userName;
+			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
+
 			
 			byte[] byteMsg = socket.recv(0);
+			System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
 			String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 
 			if(rispostaMsg.equals("OK"))
@@ -118,5 +117,7 @@ public class ConnectionControl
 				SchermataInizialeView scv= new SchermataInizialeView();
 				sav.close(socket);
 			}
+		}finally {}
+	
 	}
 }
