@@ -100,8 +100,8 @@ public class ConnectionControl
 				
 				while(true) {
 					 sendMsg = "attesa";
-					 System.out.println(sendMsg);
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
+					System.out.println(sendMsg);
 					byteMsg = socket.recv(0);
 					System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
 					rispostaMsg= new String(byteMsg, ZMQ.CHARSET);

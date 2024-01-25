@@ -14,9 +14,9 @@ public class AppTest
      */
 	public static void main(String[] args) throws InterruptedException
 	{
-		ServerSocket server = new ServerSocket();
-		server.startServer();
-		//ConnectionControl c1 = new ConnectionControl("ciancio");
+		//ServerSocket server = new ServerSocket();
+		//server.startServer();
+		ConnectionControl c1 = new ConnectionControl("puffetta");
 		//ConnectionControl c2 = new ConnectionControl("pippo");
 
 	}
