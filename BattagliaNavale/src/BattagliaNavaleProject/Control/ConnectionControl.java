@@ -67,4 +67,51 @@ public class ConnectionControl
 				sav.close(socket);
 			}
 	}
+	
+	public ConnectionControl(String fintoUsername)
+	{
+		this.userName = userName;
+		
+		try  {
+	        System.out.println("Connecting to th server");
+
+	  		//  Socket to talk to server
+				socket.connect("tcp://localhost:5555");
+			
+
+	        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
+	            String request = "Hello";
+	            System.out.println("Sending Hello " + requestNbr);
+	            socket.send(request.getBytes(ZMQ.CHARSET), 0);
+
+	            byte[] reply = socket.recv(0);
+	            System.out.println(
+	                "Received " + new String(reply, ZMQ.CHARSET) + " " +
+	                requestNbr
+	            );
+	        }
+
+			}finally {}
+			
+			String sendMsg = model.getUserName();
+			
+			byte[] byteMsg = socket.recv(0);
+			String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
+
+			if(rispostaMsg.equals("OK"))
+			{
+				DoubleGameGridView DGG = new DoubleGameGridView(socket);
+			}
+			else if(rispostaMsg.equals("ERROR"))
+			{
+				//Qui dobbiamo chiamare una funzione che faccia uscire a video nella schermata di attesa che qualcosa 
+				//è andato storto nella connessione
+				System.out.println("C'è stato un errore nella connessione.");
+			}
+			else if(rispostaMsg.equals("DUPL"))
+			{
+				SchermataInizialeView scv= new SchermataInizialeView();
+				sav.close(socket);
+			}
+	}
 }
