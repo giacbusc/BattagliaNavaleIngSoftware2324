@@ -1,16 +1,4 @@
 package BattagliaNavaleProject.multiplayer;
-
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
 import org.zeromq.SocketType;
 import org.zeromq.ZMQ;
 
@@ -246,6 +234,7 @@ public class Server
 		{
 			return true;
 		}
+		return false;
 	}
 
 	
