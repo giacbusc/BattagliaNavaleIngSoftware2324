@@ -20,7 +20,7 @@ public class ConnectionControl
 	static private SchermataAttesaView sav;
 	private String userName;
 	
-	public ConnectionControl(SchermataAttesaView sav, String userName) throws IOException
+	/*public ConnectionControl(SchermataAttesaView sav, String userName) throws IOException
 	{
 		this.sav = sav;
 		this.userName = userName;
@@ -29,7 +29,7 @@ public class ConnectionControl
 	        System.out.println("Connecting to th server");
 
 	  		//  Socket to talk to server
-				socket.connect("tcp://172.16.128.218:5555");
+				socket.connect("tcp://172.16.128.218:5545");
 			
 
 	        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
@@ -66,7 +66,7 @@ public class ConnectionControl
 				SchermataInizialeView scv= new SchermataInizialeView();
 				sav.close(socket);
 			}
-	}
+	}*/
 	
 	public ConnectionControl(String fintoUsername)
 	{
@@ -76,7 +76,7 @@ public class ConnectionControl
 	        System.out.println("Connecting to th server");
 
 	  		//  Socket to talk to server
-				socket.connect("tcp://localhost:5555");
+				socket.connect("tcp://172.16.128.218:5532");
 			
 
 	        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {

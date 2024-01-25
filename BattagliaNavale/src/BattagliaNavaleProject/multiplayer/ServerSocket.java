@@ -18,7 +18,7 @@ public class ServerSocket {
     public void startServer() {
         ZContext context = new ZContext();
         ZMQ.Socket socketServer = context.createSocket(SocketType.REP);
-        socketServer.bind("tcp://localhost:5555");
+        socketServer.bind("tcp://172.16.128.218:55");
         System.out.println("Sono qui");
 
         try {
