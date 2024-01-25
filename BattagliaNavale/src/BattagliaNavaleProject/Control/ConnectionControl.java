@@ -75,7 +75,7 @@ public class ConnectionControl
 	        System.out.println("Connecting to th server");
 
 	  		//  Socket to talk to server
-				socket.connect("tcp://172.16.128.218:5549");
+				socket.connect("tcp://172.16.128.218:5525");
 			
 
 	        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
