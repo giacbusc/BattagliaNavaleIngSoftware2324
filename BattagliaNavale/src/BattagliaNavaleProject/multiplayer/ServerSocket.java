@@ -12,14 +12,14 @@ public class ServerSocket {
     
     public ServerSocket()
     {
-        ServerSocket server = new ServerSocket();
-        server.startServer();
+        //ServerSocket server = new ServerSocket();
     }
 
     public void startServer() {
         ZContext context = new ZContext();
         ZMQ.Socket socketServer = context.createSocket(SocketType.REP);
-        socketServer.bind("tcp://172.16.128.218:5555");
+        socketServer.bind("tcp://localhost:5555");
+        System.out.println("Sono qui");
 
         try {
             while (clientCount < 2) {
