@@ -10,7 +10,7 @@ public class ServerSocket {
     private static final ArrayList<String> connectedClients = new ArrayList<>();
     private static final ArrayList<ZMQ.Socket> clientSockets = new ArrayList<>();
     private int clientIndex=0;
-   
+    boolean sveglia = false;
                 public void startServer() {
                     ZContext context = new ZContext();
                     ZMQ.Socket socketServer = context.createSocket(SocketType.REP);
@@ -52,6 +52,7 @@ public class ServerSocket {
                                 String responseMessage = "OK";
                                 socketServer.send(responseMessage.getBytes(), 0);
                                 System.out.println("Inviato: " + responseMessage);
+                                sveglia = true;
                                 // Ignora il messaggio "attesa" e continua a ricevere
                                
                             }else{
@@ -59,6 +60,16 @@ public class ServerSocket {
                                 String responseMessage = "DUPL";
                                 socketServer.send(responseMessage.getBytes(), 0);
                                 System.out.println("Inviato: " + responseMessage);
+                            }
+                            
+                            if(sveglia == true)
+                            {
+                            	 String requestSveglia = socketServer.recvStr(0);
+                                 System.out.println("Messaggio ricevuto: " + requestSveglia);
+                                 String responseMessage = "OK";
+                                 socketServer.send(responseMessage.getBytes(), 0);
+                                 System.out.println("Inviato: " + responseMessage);
+                                 
                             }
                         }
                     } catch (Exception e) {

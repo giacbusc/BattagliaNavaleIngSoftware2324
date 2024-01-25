@@ -111,6 +111,7 @@ public class ConnectionControl
 							DoubleGameGridView DGG = new DoubleGameGridView(socket);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
+							//dario
 							e.printStackTrace();
 						}
 						break;
