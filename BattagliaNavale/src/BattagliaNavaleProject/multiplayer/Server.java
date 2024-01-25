@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import org.zeromq.SocketType;
 import org.zeromq.ZMQ;
 
+import BattagliaNavaleProject.client.InfoBoat;
 import BattagliaNavaleProject.client.Square;
 
 import org.zeromq.ZContext;
@@ -31,7 +32,7 @@ public class Server
 		try (ZContext context = new ZContext()) {
 		      //  Socket to talk to clients
 		      ZMQ.Socket socket = context.createSocket(SocketType.REP);
-		      socket.bind("tcp://172.16.129.123:5555");
+		      socket.bind("tcp://172.16.128.218:5555");
 
 		      while (!Thread.currentThread().isInterrupted()) 
 		      {
@@ -42,8 +43,8 @@ public class Server
 		       String x=mexSplit[0];
 		       String y=mexSplit[1];
 		       String nomeBarca=mexSplit[2];
-		       
-		       int l=getLunghezzaBarca(nomeBarca);
+		       InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarca);
+		       int l=boat.getLunghezza();
 		       
 		       
 		         
