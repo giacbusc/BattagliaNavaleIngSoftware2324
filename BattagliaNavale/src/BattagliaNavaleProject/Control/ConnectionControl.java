@@ -100,7 +100,12 @@ public class ConnectionControl
 
 			if(rispostaMsg.equals("OK"))
 			{
-				DoubleGameGridView DGG = new DoubleGameGridView(socket);
+				try {
+					DoubleGameGridView DGG = new DoubleGameGridView(socket);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			else if(rispostaMsg.equals("ERROR"))
 			{

@@ -10,7 +10,8 @@ public class ServerSocket {
     private int clientCount = 0;
     private static final ArrayList<String> connectedClients = new ArrayList<>();
     
-    public static void main(String[] args) {
+    public ServerSocket()
+    {
         ServerSocket server = new ServerSocket();
         server.startServer();
     }
