@@ -67,7 +67,7 @@ public class ConnectionControl
 			}
 	}
 	
-	public ConnectionControl(String fintoUsername)
+	public ConnectionControl(String fintoUsername) throws InterruptedException
 	{
 		this.userName = fintoUsername;
 		
@@ -97,7 +97,31 @@ public class ConnectionControl
 			byte[] byteMsg = socket.recv(0);
 			String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 
-			if(rispostaMsg.equals("OK"))
+			if(rispostaMsg.equals("WAIT"))
+			{
+				System.out.println("In attesa di risposte");
+				while(true)
+				{
+					
+					Thread.sleep(7000);
+					
+					byteMsg = socket.recv(0);
+					System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
+					String rispostaMsg1= new String(byteMsg, ZMQ.CHARSET);
+					
+					if(rispostaMsg1.equals("OK"))
+					{
+						try {
+							DoubleGameGridView DGG = new DoubleGameGridView(socket);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					break;
+				}
+			}
+			else if(rispostaMsg.equals("OK"))
 			{
 				try {
 					DoubleGameGridView DGG = new DoubleGameGridView(socket);
@@ -105,6 +129,7 @@ public class ConnectionControl
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			
 			}
 			else if(rispostaMsg.equals("ERROR"))
 			{

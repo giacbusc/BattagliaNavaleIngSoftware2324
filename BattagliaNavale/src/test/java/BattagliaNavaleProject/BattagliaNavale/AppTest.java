@@ -10,8 +10,9 @@ public class AppTest
 {
     /**
      * Rigorous Test :-)
+     * @throws InterruptedException 
      */
-	public static void main(String[] args)
+	public static void main(String[] args) throws InterruptedException
 	{
 		ServerSocket server = new ServerSocket();
 		server.startServer();
