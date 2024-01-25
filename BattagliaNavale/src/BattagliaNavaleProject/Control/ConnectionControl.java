@@ -20,7 +20,7 @@ public class ConnectionControl
 	static private SchermataAttesaView sav;
 	private String userName;
 	
-	public ConnectionControl(SchermataAttesaView sav, String userName) throws IOException
+	/*public ConnectionControl(SchermataAttesaView sav, String userName) throws IOException
 	{
 		this.sav = sav;
 		this.userName = userName;
@@ -29,8 +29,9 @@ public class ConnectionControl
 	        System.out.println("Connecting to th server");
 
 	  		//  Socket to talk to server
-				socket.connect("tcp://172.16.128.218:5551");
+				socket.connect("tcp://172.16.128.218:5545");
 			
+
 	        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
 	            String request = "Hello";
 	            System.out.println("Sending Hello " + requestNbr);
@@ -65,63 +66,72 @@ public class ConnectionControl
 				SchermataInizialeView scv= new SchermataInizialeView();
 				sav.close(socket);
 			}
-	}
+	}*/
 	
-	public ConnectionControl(String fintoUsername) throws InterruptedException
+	public ConnectionControl(String fintoUsername)
 	{
 		this.userName = fintoUsername;
 		
 		try  {
 	        System.out.println("Connecting to th server");
-
+	        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-				socket.connect("tcp://172.16.128.218:5525");
-			
-
-	        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
-	            String request = "Hello";
-	            System.out.println("Sending Hello " + requestNbr);
+				socket.connect("tcp://172.16.128.218:5510");
+				
+	        
+	            /*String request = "Hello";
+	            System.out.println("Sending Hello ");
 	            socket.send(request.getBytes(ZMQ.CHARSET), 0);
 
 	            byte[] reply = socket.recv(0);
 	            System.out.println(
-	                "Received " + new String(reply, ZMQ.CHARSET) + " " +
-	                requestNbr
-	            );
-	        }
-
-			}finally {}
+	                "Received " + new String(reply, ZMQ.CHARSET) + " ");
+	        */
 			
-			String sendMsg = model.getUserName();
-			
+			String sendMsg = userName;
+			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
+			System.out.println(sendMsg);
 			byte[] byteMsg = socket.recv(0);
-			String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
+				System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
+				String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
+				
 
-			if(rispostaMsg.equals("WAIT"))
-			{
-				System.out.println("In attesa di risposte");
-				while(true)
-				{
-					
-					Thread.sleep(7000);
-					
+			if (rispostaMsg.equals("WAIT")) {
+				
+				while(true) {
+					 sendMsg = "attesa";
+					 System.out.println(sendMsg);
+					socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 					byteMsg = socket.recv(0);
 					System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
-					String rispostaMsg1= new String(byteMsg, ZMQ.CHARSET);
+					rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 					
-					if(rispostaMsg1.equals("OK"))
-					{
+					if(rispostaMsg.equals("OK")) {
 						try {
 							DoubleGameGridView DGG = new DoubleGameGridView(socket);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+						break;
+					}else if(rispostaMsg.equals("ERROR"))
+					{
+						//Qui dobbiamo chiamare una funzione che faccia uscire a video nella schermata di attesa che qualcosa 
+						//è andato storto nella connessione
+						System.out.println("C'è stato un errore nella connessione.");
 					}
-					break;
+					else if(rispostaMsg.equals("DUPL"))
+					{
+						SchermataInizialeView scv= new SchermataInizialeView();
+						sav.close(socket);
+					}
+					
 				}
+				
+					
 			}
-			else if(rispostaMsg.equals("OK"))
+			
+			if(rispostaMsg.equals("OK"))
 			{
 				try {
 					DoubleGameGridView DGG = new DoubleGameGridView(socket);
@@ -129,7 +139,6 @@ public class ConnectionControl
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			
 			}
 			else if(rispostaMsg.equals("ERROR"))
 			{
@@ -142,5 +151,11 @@ public class ConnectionControl
 				SchermataInizialeView scv= new SchermataInizialeView();
 				sav.close(socket);
 			}
+		
+		
+	}finally {}
 	}
-}
+
+	
+	}	
+
