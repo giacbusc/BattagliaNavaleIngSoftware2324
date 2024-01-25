@@ -12,6 +12,7 @@ public class ServerSocket {
     public void startServer() {
         ZContext context = new ZContext();
         ZMQ.Socket socketServer = context.createSocket(SocketType.REP);
+<<<<<<< HEAD
         socketServer.bind("tcp://172.16.128.218:5525");
 
         try {
@@ -19,6 +20,16 @@ public class ServerSocket {
 
             for (int clientIndex = 0; clientIndex < maxClients; clientIndex++) {
                 System.out.println("In attesa di ricevere una mail...");
+=======
+        socketServer.bind("tcp://172.16.128.218:55");
+        System.out.println("Sono qui");
+
+        try {
+            while (clientCount < 2) {
+                clientCount++;
+                
+                
+>>>>>>> 191b084bd5caf96e63690f2c0ffefb6a2615e85b
                 String request = socketServer.recvStr(0);
                 System.out.println("Messaggio ricevuto: " + request);
                 String[] authInfo = request.split("\\|");
