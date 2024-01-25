@@ -29,7 +29,7 @@ public class ConnectionControl
 	        System.out.println("Connecting to th server");
 
 	  		//  Socket to talk to server
-				socket.connect("tcp://localhost:5555");
+				socket.connect("tcp://172.16.128.218:5555");
 			
 
 	        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
@@ -76,7 +76,7 @@ public class ConnectionControl
 	        System.out.println("Connecting to th server");
 
 	  		//  Socket to talk to server
-				socket.connect("tcp://localhost:5555");
+				socket.connect("tcp://172.16.128.218:5555");
 			
 
 	        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
