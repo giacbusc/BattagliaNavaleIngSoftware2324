@@ -6,7 +6,7 @@ import BattagliaNavaleProject.multiplayer.ServerSocket;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class AppTestServer 
 {
     /**
      * Rigorous Test :-)
@@ -16,8 +16,6 @@ public class AppTest
 	{
 		ServerSocket server = new ServerSocket();
 		server.startServer();
-		//ConnectionControl c1 = new ConnectionControl("ciancio");
-		//ConnectionControl c2 = new ConnectionControl("pippo");
 
 	}
 	
