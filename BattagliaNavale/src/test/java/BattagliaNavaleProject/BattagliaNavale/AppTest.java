@@ -15,7 +15,9 @@ public class AppTest
 	{
 		ServerSocket server = new ServerSocket();
 		server.startServer();
-		ConnectionControl c = new ConnectionControl("ciancio");
+		ConnectionControl c1 = new ConnectionControl("martin");
+		ConnectionControl c2 = new ConnectionControl("pippo");
+
 	}
 	
 }

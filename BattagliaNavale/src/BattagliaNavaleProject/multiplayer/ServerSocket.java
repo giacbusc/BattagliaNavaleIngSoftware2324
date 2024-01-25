@@ -18,13 +18,14 @@ public class ServerSocket {
     public void startServer() {
         ZContext context = new ZContext();
         ZMQ.Socket socketServer = context.createSocket(SocketType.REP);
-        socketServer.bind("tcp://localhost:5555");
+
+        socketServer.bind("tcp://172.16.128.218:5549");
         System.out.println("Sono qui");
 
         try {
             while (clientCount < 2) {
                 clientCount++;
-                
+                System.out.println(clientCount);
                 
                 String request = socketServer.recvStr(0);
                 String[] authInfo = request.split("\\|");

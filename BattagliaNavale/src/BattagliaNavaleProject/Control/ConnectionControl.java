@@ -29,9 +29,8 @@ public class ConnectionControl
 	        System.out.println("Connecting to th server");
 
 	  		//  Socket to talk to server
-				socket.connect("tcp://172.16.128.218:5555");
+				socket.connect("tcp://172.16.128.218:5551");
 			
-
 	        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
 	            String request = "Hello";
 	            System.out.println("Sending Hello " + requestNbr);
@@ -70,13 +69,13 @@ public class ConnectionControl
 	
 	public ConnectionControl(String fintoUsername)
 	{
-		this.userName = userName;
+		this.userName = fintoUsername;
 		
 		try  {
 	        System.out.println("Connecting to th server");
 
 	  		//  Socket to talk to server
-				socket.connect("tcp://localhost:5555");
+				socket.connect("tcp://172.16.128.218:5549");
 			
 
 	        for (int requestNbr = 0; requestNbr != 10; requestNbr++) {

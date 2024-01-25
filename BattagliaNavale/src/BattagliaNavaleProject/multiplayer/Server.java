@@ -15,7 +15,7 @@ public class Server
 	final static int MAX_LENGTH=9;
 	private String[] mexprec = new String[3];
 	
-	public Server(int port, ServerListener listener) throws Exception
+	public Server() throws Exception
 	{
 		try (ZContext context = new ZContext()) {
 		      //  Socket to talk to clients
