@@ -18,7 +18,7 @@ public class ServerSocket {
     public void startServer() {
         ZContext context = new ZContext();
         ZMQ.Socket socketServer = context.createSocket(SocketType.REP);
-        socketServer.bind("tcp://172.16.129.123:5555");
+        socketServer.bind("tcp://172.16.128.218:5555");
 
         try {
             while (clientCount < 2) {
