@@ -74,7 +74,7 @@ public class ServerSocket {
 					socketServer.send(responseMessage.getBytes(), 0);
 					System.out.println("Inviato: " + responseMessage);
 					turno=1;
-					piazzamentoBarca();
+					piazzTest();
 					clientIndex++;
 
 				}
@@ -87,7 +87,7 @@ public class ServerSocket {
 			context.close();
 		}
 		turno=2;
-		piazzamentoBarca();
+		piazzTest();
 	}
 
 	private static boolean isUsernameUnique(String username) {
@@ -99,7 +99,11 @@ public class ServerSocket {
 		}
 		return true;
 	}
-
+	private void piazzTest()
+	{
+		System.out.println("Inizio piazzamento");
+	}
+	
 	private void piazzamentoBarca() 
 	{
 		while (true) 
