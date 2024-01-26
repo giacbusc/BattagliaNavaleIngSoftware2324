@@ -77,7 +77,7 @@ public class ConnectionControl
 	        System.out.println("Connecting to th server");
 	        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-				socket.connect("tcp://172.16.128.218:5510");
+				socket.connect("tcp://172.16.128.218:5519");
 				
 	        
 	            /*String request = "Hello";
@@ -99,7 +99,7 @@ public class ConnectionControl
 				
 				if(rispostaMsg.equals("OK"))
 				{
-					sav= new SchermataAttesaView("ATTESA POSIZIONAMENTO");
+					sav= new SchermataAttesaView("ATTESA POSIZIONAMENTO", userName);
 				}
 				else if(rispostaMsg.equals("ERROR"))
 				{

@@ -22,15 +22,18 @@ import javax.swing.SwingConstants;
 
 import org.zeromq.ZMQ.Socket;
 
+import BattagliaNavaleProject.Control.SchermataAttesaControl;
 import BattagliaNavaleProject.form.SchermataAttesaModel;
 
 import java.awt.BorderLayout;
 
 public class SchermataAttesaView extends JFrame implements ActionListener{
 String msg;
-	 public SchermataAttesaView(String msg) {
+String username;
+	 public SchermataAttesaView(String msg,String userName) {
 		 this.msg=msg;
-		 
+		 this.username=userName;
+		 SchermataAttesaControl sac= new SchermataAttesaControl();
 		 try {
 	    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100,100,516, 405);
@@ -50,6 +53,9 @@ String msg;
 	    	backgroundPanel.setLayout(null);
 	    	
 	    	JLabel attesaserver = new JLabel(msg);
+	    	if(msg.equals("ATTESA POSIZIONAMENTO")) {
+	    		sac.attesa(userName);
+	    	}
 	    	attesaserver.setFont(new Font("Tahoma", Font.PLAIN, 42));
 			attesaserver.setBounds(29, 135, 450, 93);
 			backgroundPanel.add(attesaserver, BorderLayout.CENTER);

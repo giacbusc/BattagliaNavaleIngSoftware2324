@@ -332,7 +332,7 @@ public class MenuPrincipaleView extends JFrame {
 
 	public void open() throws IOException {
 		// TODO Auto-generated method stub
-		final SchermataAttesaView sin= new SchermataAttesaView("ATTESA AVVERSARIO");
+		final SchermataAttesaView sin= new SchermataAttesaView("ATTESA AVVERSARIO", userName);
 		sin.setVisible(true);
 		dispose();
 		//ConnectionControl c = new ConnectionControl(sin, userName);
