@@ -22,7 +22,7 @@ import javax.swing.SwingConstants;
 import BattagliaNavaleProject.Control.LoginControl;
 import BattagliaNavaleProject.form.LoginModel;
 
-public class LoginView extends JFrame implements ActionListener{
+public class LoginView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel usernameLabel, passwordLabel;
@@ -146,12 +146,6 @@ public class LoginView extends JFrame implements ActionListener{
 		inizio.setVisible(true);
 	}
 
-
-@Override
-public void actionPerformed(ActionEvent e) {
-	// TODO Auto-generated method stub
-	
-}
 
 
 
