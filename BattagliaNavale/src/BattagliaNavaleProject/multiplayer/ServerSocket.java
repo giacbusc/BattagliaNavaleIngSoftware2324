@@ -20,10 +20,10 @@ public class ServerSocket {
 	private ZContext context = new ZContext();
 	private ZMQ.Socket socketServer = context.createSocket(SocketType.REP);
 	private int turno = 0;
-	
+
 	public void startServer() {
 
-		socketServer.bind("tcp://172.16.128.218:5510");
+		socketServer.bind("tcp://172.16.128.218:5513");
 
 		try {
 			int maxClients = 2;
@@ -70,11 +70,11 @@ public class ServerSocket {
 					String requestSveglia = socketServer.recvStr(0);
 					System.out.println("Messaggio ricevuto: " + requestSveglia);
 					String responseMessage = "OK POS1";
-					
+
 					socketServer.send(responseMessage.getBytes(), 0);
 					System.out.println("Inviato: " + responseMessage);
-					turno=1;
-					piazzTest();
+					turno = 1;
+					piazzamentoBarca(turno);
 					clientIndex++;
 
 				}
@@ -86,8 +86,8 @@ public class ServerSocket {
 			socketServer.close();
 			context.close();
 		}
-		turno=2;
-		piazzTest();
+		turno = 2;
+		piazzamentoBarca(turno);
 	}
 
 	private static boolean isUsernameUnique(String username) {
@@ -99,33 +99,43 @@ public class ServerSocket {
 		}
 		return true;
 	}
-	private void piazzTest()
-	{
-		System.out.println("Inizio piazzamento");
+
+	private void piazzTest(int turno) {
+		System.out.println("Inizio piazzamento " + turno);
 	}
-	
-	private void piazzamentoBarca() 
-	{
-		while (true) 
-		{
+
+	private void piazzamentoBarca(int turno) {
+		int countB = 0;
+		mexprec[2] = "firstPosition";
+		while (countB < 10) {
 			byte[] reply = socketServer.recv(0);
 			String messaggio = new String(reply, ZMQ.CHARSET);
+
+			if (messaggio.equals("CODA")) {
+				String responseMessage = "CODA";
+				socketServer.send(responseMessage.getBytes(), 0);
+				System.out.println("Inviato: " + responseMessage);
+				continue;
+			}
 			String[] mexSplit = messaggio.split(",");
 			String x = mexSplit[0];
 			String y = mexSplit[1];
 			String nomeBarca = mexSplit[2];
+
 			InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarca);
 			int l = boat.getLunghezza();
 			System.out.println("Lunghezza barca: " + l);
 
-			// secondo click della barca
-			if (mexprec[2].equals(nomeBarca)) {
+			if (mexprec[2].equals(nomeBarca)) { // secondo click della barca
 				// RIEMPI CELLE
 				riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
-						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue());
-			} else {
-				String fiocco = controllaCella(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l);
-				// mandare fiocco
+						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno);
+			} else { // primo click
+				String fiocco = controllaCella(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l, turno);
+				socketServer.send(fiocco.getBytes(), 0);
+				System.out.println("Inviato: " + fiocco);
+				countB++;
+
 			}
 
 			// LOGICA DI SPEDIZIONE DEL MEX
@@ -138,7 +148,7 @@ public class ServerSocket {
 
 	}
 
-	public String controllaCella(int x, int y, int l) {
+	public String controllaCella(int x, int y, int l, int turno) {
 
 		String a = Integer.toString(x);
 		String b = Integer.toString(y);
@@ -147,7 +157,7 @@ public class ServerSocket {
 
 		switch (l) {
 		case 1: {
-			if (cellaLibera(x, y) == true) {
+			if (cellaLibera(x, y, turno) == true) {
 				spedire[2] = "1";
 			}
 			break;
@@ -155,32 +165,32 @@ public class ServerSocket {
 		case 2: {
 
 			// **NORD**
-			if (checkFuoriGriglia(x, y, l, 0)) {
-				if (cellaLibera(x, y - 1) == true) {
+			if (checkFuoriGriglia(x, y, l, 0, turno)) {
+				if (cellaLibera(x, y - 1, turno) == true) {
 					spedire[3] = "0";
 					spedire[2] = "1";
 				}
 			}
 
 			// **EST**
-			if (checkFuoriGriglia(x, y, l, 1)) {
-				if (cellaLibera(x + 1, y) == true) { // est
+			if (checkFuoriGriglia(x, y, l, 1, turno)) {
+				if (cellaLibera(x + 1, y, turno) == true) { // est
 					spedire[4] = "0";
 					spedire[2] = "1";
 				}
 			}
 
 			// **SUD**
-			if (checkFuoriGriglia(x, y, l, 2)) {
-				if (cellaLibera(x, y + 1) == true) {
+			if (checkFuoriGriglia(x, y, l, 2, turno)) {
+				if (cellaLibera(x, y + 1, turno) == true) {
 					spedire[5] = "0";
 					spedire[2] = "1";
 				}
 			}
 
 			// **OVEST**
-			if (checkFuoriGriglia(x, y, l, 3)) {
-				if (cellaLibera(x - 1, y) == true) { // ovest
+			if (checkFuoriGriglia(x, y, l, 3, turno)) {
+				if (cellaLibera(x - 1, y, turno) == true) { // ovest
 					spedire[6] = "0";
 					spedire[2] = "1";
 				}
@@ -193,9 +203,9 @@ public class ServerSocket {
 			int contaCelleVere = 0;
 
 			// **SUD**
-			if (checkFuoriGriglia(x, y, l, 2)) {
+			if (checkFuoriGriglia(x, y, l, 2, turno)) {
 				for (int i = y; i <= y + 3; i++) {
-					if (cellaLibera(x, i) == true) {
+					if (cellaLibera(x, i, turno) == true) {
 						contaCelleVere++;
 					}
 				}
@@ -206,9 +216,9 @@ public class ServerSocket {
 				contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
 			}
 			// **NORD**
-			if (checkFuoriGriglia(x, y, l, 0)) {
+			if (checkFuoriGriglia(x, y, l, 0, turno)) {
 				for (int i = y; i >= y - 3; i--) {
-					if (cellaLibera(x, i) == true) {
+					if (cellaLibera(x, i, turno) == true) {
 						contaCelleVere++;
 					}
 				}
@@ -220,9 +230,9 @@ public class ServerSocket {
 				contaCelleVere = 0;
 			}
 			// **OVEST**
-			if (checkFuoriGriglia(x, y, l, 3)) {
+			if (checkFuoriGriglia(x, y, l, 3, turno)) {
 				for (int i = x; i >= x - 3; i--) {
-					if (cellaLibera(i, y) == true) {
+					if (cellaLibera(i, y, turno) == true) {
 						contaCelleVere++;
 					}
 				}
@@ -234,9 +244,9 @@ public class ServerSocket {
 				contaCelleVere = 0;
 			}
 			// **EST**
-			if (checkFuoriGriglia(x, y, l, 1)) {
+			if (checkFuoriGriglia(x, y, l, 1, turno)) {
 				for (int i = x; i <= x + 3; i++) {
-					if (cellaLibera(i, y) == true) {
+					if (cellaLibera(i, y, turno) == true) {
 						contaCelleVere++;
 					}
 				}
@@ -254,6 +264,7 @@ public class ServerSocket {
 		case 4: {
 			break;
 		}
+
 		}
 
 		// Iteriamo attraverso gli elementi dell'array
@@ -268,7 +279,7 @@ public class ServerSocket {
 		return compostaFinale;
 	}
 
-	public boolean cellaLibera(int x, int y) {
+	public boolean cellaLibera(int x, int y, int turno) {
 		if (turno == 1) {
 			if (player1[x][y].getStato() == 0) {
 				return true;
@@ -283,7 +294,7 @@ public class ServerSocket {
 		return false;
 	}
 
-	public boolean checkFuoriGriglia(int x, int y, int l, int d) {
+	public boolean checkFuoriGriglia(int x, int y, int l, int d, int turno) {
 		if (d == 0) // nord
 		{
 			if (x - l - 1 < 0)
@@ -310,8 +321,9 @@ public class ServerSocket {
 	}
 
 //riempire le celle dopo il secondo click
-	public void riempiCelle(int x, int y, int l, int xp, int yp) // x e y posizioni secondo click,mentre xp e yp
-																	// posizioni primo click
+	public void riempiCelle(int x, int y, int l, int xp, int yp, int turno) // x e y posizioni secondo click,mentre xp e
+																			// yp
+	// posizioni primo click
 	{
 		if (x != xp) // CASO NORD o SUD
 		{
@@ -321,6 +333,7 @@ public class ServerSocket {
 					// mando le coordinate delle celle da colorare
 					// esempio mex: spedire(i,yp,.....) ?una volta che mando mex al client funziona
 					// come un return e non va avanti il for?
+
 				}
 			}
 
