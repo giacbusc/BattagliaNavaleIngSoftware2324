@@ -69,7 +69,8 @@ public class ServerSocket {
                                  String responseMessage = "OK";
                                  socketServer.send(responseMessage.getBytes(), 0);
                                  System.out.println("Inviato: " + responseMessage);
-                                 
+                                 clientIndex++;
+                            
                             }
                         }
                     } catch (Exception e) {
