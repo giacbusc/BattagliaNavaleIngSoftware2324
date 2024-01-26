@@ -76,7 +76,7 @@ public class ConnectionControl
 	        System.out.println("Connecting to th server");
 	        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-				socket.connect("tcp://172.16.128.218:5510");
+				socket.connect("tcp://172.16.128.218:5516");
 				
 	        
 	            /*String request = "Hello";
@@ -95,8 +95,30 @@ public class ConnectionControl
 				System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
 				String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 				
-
-			if (rispostaMsg.equals("WAIT")) {
+				
+				if(rispostaMsg.equals("OK"))
+				{
+					try {
+						DoubleGameGridView DGG = new DoubleGameGridView(socket);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else if(rispostaMsg.equals("ERROR"))
+				{
+					//Qui dobbiamo chiamare una funzione che faccia uscire a video nella schermata di attesa che qualcosa 
+					//è andato storto nella connessione
+					System.out.println("C'è stato un errore nella connessione.");
+				}
+				else if(rispostaMsg.equals("DUPL"))
+				{
+					SchermataInizialeView scv= new SchermataInizialeView();
+					sav.close(socket);
+				}
+				
+			
+				else if (rispostaMsg.equals("WAIT")) {
 				
 				while(true) {
 					 sendMsg = "attesa";
@@ -132,26 +154,7 @@ public class ConnectionControl
 					
 			}
 			
-			if(rispostaMsg.equals("OK"))
-			{
-				try {
-					DoubleGameGridView DGG = new DoubleGameGridView(socket);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			else if(rispostaMsg.equals("ERROR"))
-			{
-				//Qui dobbiamo chiamare una funzione che faccia uscire a video nella schermata di attesa che qualcosa 
-				//è andato storto nella connessione
-				System.out.println("C'è stato un errore nella connessione.");
-			}
-			else if(rispostaMsg.equals("DUPL"))
-			{
-				SchermataInizialeView scv= new SchermataInizialeView();
-				sav.close(socket);
-			}
+			
 		
 		
 	}finally {}
