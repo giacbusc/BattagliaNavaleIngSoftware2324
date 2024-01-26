@@ -44,4 +44,9 @@ public class Square extends JPanel
 	{
 		return this.stato;
 	}
+
+	public void setStato(int stato) {
+		this.stato = stato;
+	}
+	
 }

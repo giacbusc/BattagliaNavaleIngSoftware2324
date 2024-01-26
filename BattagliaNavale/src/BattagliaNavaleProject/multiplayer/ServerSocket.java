@@ -10,10 +10,11 @@ import BattagliaNavaleProject.client.Square;
 import java.util.ArrayList;
 
 public class ServerSocket {
-	private Square[][] player1;
-	private Square[][] player2;
-	private String[] spedire = new String[7];
 	final static int MAX_LENGTH = 9;
+	private Square[][] player1 = new Square[MAX_LENGTH][MAX_LENGTH];
+	private Square[][] player2 = new Square[MAX_LENGTH][MAX_LENGTH];
+	private String[] spedire = new String[7];
+
 	private String[] mexprec = new String[3];
 	private boolean sveglia = false;
 	private static final ArrayList<String> connectedClients = new ArrayList<>();
@@ -23,9 +24,10 @@ public class ServerSocket {
 
 	public void startServer() {
 
-		socketServer.bind("tcp://172.16.128.218:5513");
+		socketServer.bind("tcp://172.16.128.218:5521");
 
 		try {
+			inizializzaSquare();
 			int maxClients = 2;
 
 			for (int clientIndex = 0; clientIndex < maxClients; clientIndex++) {
@@ -74,6 +76,7 @@ public class ServerSocket {
 					socketServer.send(responseMessage.getBytes(), 0);
 					System.out.println("Inviato: " + responseMessage);
 					turno = 1;
+
 					piazzamentoBarca(turno);
 					clientIndex++;
 
@@ -107,9 +110,11 @@ public class ServerSocket {
 	private void piazzamentoBarca(int turno) {
 		int countB = 0;
 		mexprec[2] = "firstPosition";
+		System.out.println("inizio piazzamento ");
 		while (countB < 10) {
 			byte[] reply = socketServer.recv(0);
 			String messaggio = new String(reply, ZMQ.CHARSET);
+			System.out.println(messaggio);
 
 			if (messaggio.equals("CODA")) {
 				String responseMessage = "CODA";
@@ -121,7 +126,7 @@ public class ServerSocket {
 			String x = mexSplit[0];
 			String y = mexSplit[1];
 			String nomeBarca = mexSplit[2];
-
+			System.out.println(x + " " + y + " " + nomeBarca);
 			InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarca);
 			int l = boat.getLunghezza();
 			System.out.println("Lunghezza barca: " + l);
@@ -133,7 +138,10 @@ public class ServerSocket {
 			} else { // primo click
 				String fiocco = controllaCella(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l, turno);
 				socketServer.send(fiocco.getBytes(), 0);
-				System.out.println("Inviato: " + fiocco);
+				System.out.println("Inviato fiocco: " + fiocco);
+				
+				aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), turno);
+
 				countB++;
 
 			}
@@ -146,6 +154,16 @@ public class ServerSocket {
 
 		}
 
+	}
+
+	private void aggiornaGriglia(int x, int y, int turno) {
+		if (turno == 1) {
+
+			player1[x][y].setStato(1);
+		} 
+		else {
+			player2[x][y].setStato(1);
+		}
 	}
 
 	public String controllaCella(int x, int y, int l, int turno) {
@@ -281,6 +299,7 @@ public class ServerSocket {
 
 	public boolean cellaLibera(int x, int y, int turno) {
 		if (turno == 1) {
+
 			if (player1[x][y].getStato() == 0) {
 				return true;
 			}
@@ -364,6 +383,15 @@ public class ServerSocket {
 					// esempio mex: spedire(xp,i,.....) ?una volta che mando mex al client funziona
 					// come un return e non va avanti il for?
 				}
+			}
+		}
+	}
+
+	public void inizializzaSquare() {
+		for (int i = 0; i < MAX_LENGTH; i++) {
+			for (int j = 0; j < MAX_LENGTH - 1; j++) {
+				player1[i][j] = new Square(i, j, 0);
+				player2[i][j] = new Square(i, j, 0);
 			}
 		}
 	}
