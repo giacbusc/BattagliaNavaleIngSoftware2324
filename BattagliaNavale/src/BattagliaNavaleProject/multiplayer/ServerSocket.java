@@ -19,7 +19,8 @@ public class ServerSocket {
 	private static final ArrayList<String> connectedClients = new ArrayList<>();
 	private ZContext context = new ZContext();
 	private ZMQ.Socket socketServer = context.createSocket(SocketType.REP);
-
+	private int turno = 0;
+	
 	public void startServer() {
 
 		socketServer.bind("tcp://172.16.128.218:5510");
@@ -68,9 +69,12 @@ public class ServerSocket {
 				if (sveglia == true) {
 					String requestSveglia = socketServer.recvStr(0);
 					System.out.println("Messaggio ricevuto: " + requestSveglia);
-					String responseMessage = "OK";
+					String responseMessage = "OK POS1";
+					
 					socketServer.send(responseMessage.getBytes(), 0);
 					System.out.println("Inviato: " + responseMessage);
+					turno=1;
+					piazzamentoBarca();
 					clientIndex++;
 
 				}
@@ -82,6 +86,7 @@ public class ServerSocket {
 			socketServer.close();
 			context.close();
 		}
+		turno=2;
 		piazzamentoBarca();
 	}
 
@@ -95,33 +100,37 @@ public class ServerSocket {
 		return true;
 	}
 
-	private void piazzamentoBarca() {
+	private void piazzamentoBarca() 
+	{
+		while (true) 
+		{
+			byte[] reply = socketServer.recv(0);
+			String messaggio = new String(reply, ZMQ.CHARSET);
+			String[] mexSplit = messaggio.split(",");
+			String x = mexSplit[0];
+			String y = mexSplit[1];
+			String nomeBarca = mexSplit[2];
+			InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarca);
+			int l = boat.getLunghezza();
+			System.out.println("Lunghezza barca: " + l);
 
-		byte[] reply = socketServer.recv(0);
-		String messaggio = new String(reply, ZMQ.CHARSET);
-		String[] mexSplit = messaggio.split(",");
-		String x = mexSplit[0];
-		String y = mexSplit[1];
-		String nomeBarca = mexSplit[2];
-		InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarca);
-		int l = boat.getLunghezza();
+			// secondo click della barca
+			if (mexprec[2].equals(nomeBarca)) {
+				// RIEMPI CELLE
+				riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
+						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue());
+			} else {
+				String fiocco = controllaCella(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l);
+				// mandare fiocco
+			}
 
-		if (mexprec[2].equals(nomeBarca)) {
-			// RIEMPI CELLE
-			riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
-					Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue());
-		} else {
-			String fiocco = controllaCella(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l);
-			// mandare fiocco
+			// LOGICA DI SPEDIZIONE DEL MEX
+			// nel mex prec salviamo x,y,nomebarca
+			mexprec[0] = x;
+			mexprec[1] = y;
+			mexprec[2] = nomeBarca;
+
 		}
-
-		// LOGICA DI SPEDIZIONE DEL MEX
-		// nel mex prec salviamo x,y,nomebarca
-		mexprec[0] = x;
-		mexprec[1] = y;
-		mexprec[2] = nomeBarca;
-
-	}
 
 	}
 
@@ -140,8 +149,6 @@ public class ServerSocket {
 			break;
 		}
 		case 2: {
-
-			boolean verificaPosizione = false;
 
 			// **NORD**
 			if (checkFuoriGriglia(x, y, l, 0)) {
@@ -258,9 +265,17 @@ public class ServerSocket {
 	}
 
 	public boolean cellaLibera(int x, int y) {
-		if (player1[x][y].getStato() == 0) {
-			return true;
+		if (turno == 1) {
+			if (player1[x][y].getStato() == 0) {
+				return true;
+			}
+
+		} else {
+			if (player2[x][y].getStato() == 0) {
+				return true;
+			}
 		}
+
 		return false;
 	}
 
