@@ -68,9 +68,10 @@ public class ConnectionControl
 			}
 	}*/
 	
-	public ConnectionControl(String fintoUsername)
+	public ConnectionControl(SchermataAttesaView sav, String userName) throws IOException
 	{
-		this.userName = fintoUsername;
+		this.sav = sav;
+		this.userName = userName;
 		
 		try  {
 	        System.out.println("Connecting to th server");
