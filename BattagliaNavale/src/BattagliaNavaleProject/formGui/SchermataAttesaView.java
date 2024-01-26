@@ -53,6 +53,7 @@ String username;
 	    	backgroundPanel.setLayout(null);
 	    	
 	    	JLabel attesaserver = new JLabel(msg);
+	    	
 	    	if(msg.equals("ATTESA POSIZIONAMENTO")) {
 	    		sac.attesa(userName);
 	    	}

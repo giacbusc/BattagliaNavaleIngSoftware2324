@@ -25,7 +25,7 @@ import BattagliaNavaleProject.form.RegistrationModel;
 
 
 
-public class RegistrationView extends JFrame implements ActionListener {
+public class RegistrationView extends JFrame  {
 	
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNickname;
@@ -119,11 +119,7 @@ public class RegistrationView extends JFrame implements ActionListener {
             }
         });
     }
-    
-    public void actionPerformed(ActionEvent e) {
-    
-    	
-   }
+  
 
     public RegistrationModel getUser(){
         model = new RegistrationModel(txtName.getText(),txtSurname.getText(),txtNickname.getText(),txtPassword.getText());
