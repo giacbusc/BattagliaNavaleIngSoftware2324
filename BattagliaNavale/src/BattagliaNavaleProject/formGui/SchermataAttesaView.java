@@ -29,31 +29,34 @@ import java.awt.BorderLayout;
 public class SchermataAttesaView extends JFrame implements ActionListener{
 
 	 public SchermataAttesaView() {
+		 
+		 try {
 	    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setBounds(100, 100, 516, 405);
+			setBounds(100,100,516, 405);
 			
 			final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 			
 			JPanel backgroundPanel = new JPanel() {
-	            
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1L;
-
 				@Override
 	            protected void paintComponent(Graphics g) {
 	                super.paintComponent(g);
 	                g.drawImage(sfondo.getImage(), 0, 0, getWidth(), getHeight(), this);
 	            }
 	        };
+	        
+	        backgroundPanel.setBounds(100, 100, 516, 405);
 	        getContentPane().add(backgroundPanel);
 	    	backgroundPanel.setLayout(null);
 	    	
 	    	JLabel attesaserver = new JLabel("ATTESA AVVERSARIO...");
 	    	attesaserver.setFont(new Font("Tahoma", Font.PLAIN, 42));
-			attesaserver.setBounds(31, 49, 471, 259);
-			backgroundPanel.add(attesaserver);
+			attesaserver.setBounds(29, 135, 450, 93);
+			backgroundPanel.add(attesaserver, BorderLayout.CENTER);
+			
+		 }catch(Exception e)
+		 {
+			 e.printStackTrace();
+		 }
 	 }
 	/* public static void main(String[] args) {
 	        EventQueue.invokeLater(new Runnable() {

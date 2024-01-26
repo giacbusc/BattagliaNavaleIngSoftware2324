@@ -332,10 +332,21 @@ public class MenuPrincipaleView extends JFrame {
 
 	public void open() throws IOException {
 		// TODO Auto-generated method stub
-		SchermataAttesaView sin= new SchermataAttesaView();
-		
+		final SchermataAttesaView sin= new SchermataAttesaView();
 		sin.setVisible(true);
 		dispose();
-		ConnectionControl c = new ConnectionControl(sin, userName);
+		//ConnectionControl c = new ConnectionControl(sin, userName);
+		
+		
+		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+	        @Override
+	        protected Void doInBackground() throws Exception {
+	            // Esegui le operazioni di connessione qui
+	            ConnectionControl c = new ConnectionControl(sin, userName);
+	            return null;
+	        }
+	    };
+
+	    worker.execute();
 	}
 }
