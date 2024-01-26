@@ -67,7 +67,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 
 				if(clickedPanel.getName().equals("0")) 
 				{   
-					clickedPanel.setName("aircraft");
+					clickedPanel.setName("Aircraft");
 					arraymsg[2]=clickedPanel.getName();
 					clickedPanel.setVisible(false);
 					System.out.println("ciao funziono sono il clickcount "+ clickcount);
@@ -76,21 +76,21 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				if(clickedPanel.getName().equals("1") ) 
 				{
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("destroyer1");
+					clickedPanel.setName("Destroyer1");
 					arraymsg[2]=clickedPanel.getName();
 					System.out.println("barca cliccata "+arraymsg[2]);
 				}
 				if(clickedPanel.getName().equals("2"))
 				{
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("destroyer2");
+					clickedPanel.setName("Destroyer2");
 					arraymsg[2]=clickedPanel.getName();
 					System.out.println("barca cliccata "+arraymsg[2]);
 				}
 				if(clickedPanel.getName().equals("3") ) 
 				{
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("cruiser1");
+					clickedPanel.setName("Cruiser1");
 					arraymsg[2]=clickedPanel.getName();
 					System.out.println("barca cliccata "+arraymsg[2]);
 				}
@@ -98,7 +98,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("cruiser2");
+					clickedPanel.setName("Cruiser2");
 					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 				}
@@ -106,7 +106,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("cruiser3");
+					clickedPanel.setName("Cruiser3");
 					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 				}
@@ -114,7 +114,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("submarine1");
+					clickedPanel.setName("Submarine1");
 					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 				}
@@ -122,7 +122,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("submarine2");
+					clickedPanel.setName("Submarine2");
 					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 				}
@@ -130,7 +130,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("submarine3");
+					clickedPanel.setName("Submarine3");
 					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 				}
@@ -138,7 +138,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("submarine4");
+					clickedPanel.setName("Submarine4");
 					System.out.println("barca cliccata "+Integer.parseInt(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 				}

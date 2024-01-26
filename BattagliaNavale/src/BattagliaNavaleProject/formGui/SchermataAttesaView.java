@@ -27,8 +27,9 @@ import BattagliaNavaleProject.form.SchermataAttesaModel;
 import java.awt.BorderLayout;
 
 public class SchermataAttesaView extends JFrame implements ActionListener{
-
-	 public SchermataAttesaView() {
+String msg;
+	 public SchermataAttesaView(String msg) {
+		 this.msg=msg;
 		 
 		 try {
 	    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,7 +49,7 @@ public class SchermataAttesaView extends JFrame implements ActionListener{
 	        getContentPane().add(backgroundPanel);
 	    	backgroundPanel.setLayout(null);
 	    	
-	    	JLabel attesaserver = new JLabel("ATTESA AVVERSARIO...");
+	    	JLabel attesaserver = new JLabel(msg);
 	    	attesaserver.setFont(new Font("Tahoma", Font.PLAIN, 42));
 			attesaserver.setBounds(29, 135, 450, 93);
 			backgroundPanel.add(attesaserver, BorderLayout.CENTER);

@@ -99,12 +99,7 @@ public class ConnectionControl
 				
 				if(rispostaMsg.equals("OK"))
 				{
-					try {
-						DoubleGameGridView DGG = new DoubleGameGridView(socket);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					sav= new SchermataAttesaView("ATTESA POSIZIONAMENTO");
 				}
 				else if(rispostaMsg.equals("ERROR"))
 				{
@@ -129,7 +124,7 @@ public class ConnectionControl
 					System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
 					rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 					
-					if(rispostaMsg.equals("OK")) {
+					if(rispostaMsg.equals("OK POS1")) {
 						try {
 							DoubleGameGridView DGG = new DoubleGameGridView(socket);
 						} catch (IOException e) {
