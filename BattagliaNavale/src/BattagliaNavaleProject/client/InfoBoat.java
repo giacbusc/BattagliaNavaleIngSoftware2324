@@ -1,10 +1,16 @@
 package BattagliaNavaleProject.client;
 
 public enum InfoBoat {
-	Aircraft(4),
-	Destroyer(3),
-	Cruiser(2),
-	Submarine(1);
+	Aircraft1(4),
+	Destroyer1(3),
+	Destroyer2(3),
+	Cruiser1(2),
+	Cruiser2(2),
+	Cruiser3(2),
+	Submarine1(1),
+	Submarine2(1),
+	Submarine3(1),
+	Submarine4(1);
 	
 	private final int lunghezza;
 	
