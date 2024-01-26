@@ -43,8 +43,6 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	// System.out.println("Connecting to th server");
      
 		//  Socket to talk to server
-			
-			
 
 	public DoubleGameGridControl (DoubleGameGridView grid, ZMQ.Socket socket)
 	{	
@@ -204,9 +202,15 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	}
 	
 	public void ricevimsg() {
+		
+        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+  		//  Socket to talk to server
+			
 		 byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
         String rispostamsg= new String(reply, ZMQ.CHARSET);
+        System.out.println(rispostamsg);
 		String[] arrayStringhe = rispostamsg.split(",");
+		 System.out.println();
 		
 		//invece che 2 devo mettere arrayStringhe.length
 		arrayRisposta[0]=arrayStringhe.length;
