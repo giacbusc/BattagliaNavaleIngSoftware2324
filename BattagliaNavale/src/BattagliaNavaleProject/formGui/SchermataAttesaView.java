@@ -55,7 +55,7 @@ public class SchermataAttesaView extends JFrame implements ActionListener{
 			attesaserver.setBounds(31, 49, 471, 259);
 			backgroundPanel.add(attesaserver);
 	 }
-	 public static void main(String[] args) {
+	/* public static void main(String[] args) {
 	        EventQueue.invokeLater(new Runnable() {
 	            public void run() {
 	                try {
@@ -68,6 +68,7 @@ public class SchermataAttesaView extends JFrame implements ActionListener{
 	            }
 	        });
 	    }
+	    */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
