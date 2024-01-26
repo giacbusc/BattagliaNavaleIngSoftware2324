@@ -1,6 +1,5 @@
 package test.java.BattagliaNavaleProject.BattagliaNavale;
 
-import BattagliaNavaleProject.Control.ConnectionControl;
 import BattagliaNavaleProject.multiplayer.ServerSocket;
 
 /**

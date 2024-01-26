@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 import javax.swing.JButton;
 
+import BattagliaNavaleProject.Database.ConnectionDb;
 import BattagliaNavaleProject.form.RegistrationModel;
 import BattagliaNavaleProject.formGui.RegistrationView;
-import BattagliaNavaleProject.server.ConnectionDb;
 
 public class RegistrationControl implements ActionListener {
 	

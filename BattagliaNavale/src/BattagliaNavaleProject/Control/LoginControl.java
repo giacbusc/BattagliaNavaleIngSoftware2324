@@ -7,9 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JButton;
+
+import BattagliaNavaleProject.Database.ConnectionDb;
 import BattagliaNavaleProject.form.LoginModel;
 import BattagliaNavaleProject.formGui.LoginView;
-import BattagliaNavaleProject.server.ConnectionDb;
 
 public class LoginControl implements ActionListener  
 {

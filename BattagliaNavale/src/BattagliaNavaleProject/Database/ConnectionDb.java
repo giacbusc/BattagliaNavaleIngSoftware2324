@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.server;
+package BattagliaNavaleProject.Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
