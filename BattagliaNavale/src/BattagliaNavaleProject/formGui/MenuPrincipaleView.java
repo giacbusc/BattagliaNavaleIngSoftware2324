@@ -1,18 +1,13 @@
 package BattagliaNavaleProject.formGui;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import BattagliaNavaleProject.Control.ConnectionControl;
 import BattagliaNavaleProject.Control.MenuPrincipaleControl;
-import BattagliaNavaleProject.Control.SchermataInizialeControl;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.awt.event.ActionEvent;
 
 public class MenuPrincipaleView extends JFrame {
 	private JLabel infoPlayerLabel_1;

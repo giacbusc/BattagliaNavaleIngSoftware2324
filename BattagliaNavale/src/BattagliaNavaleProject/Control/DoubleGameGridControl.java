@@ -28,7 +28,8 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	private Point previousPoint;
 	private Point currentPoint;
 	private int clickcount=0;
-	
+	int x;
+	int y;
 	//private int[] arrayRisposta= new int[7];
 	private int[] arrayRisposta= {5,5,0,0,1,1,0};
 	int boatlenght;
@@ -84,8 +85,7 @@ public static void setIndirizzo(String indirizzo) {
 					arraymsg[1]=""+clickedSquare.gety();
 					arraymsg[0]=""+clickedSquare.getx();
 					System.out.println("barca" + arraymsg[2]);
-					int x=clickedSquare.getX();
-					int y=clickedSquare.getY();
+				
 					
 					clickcount=0;
 					
@@ -208,7 +208,8 @@ public static void setIndirizzo(String indirizzo) {
 					arraymsg[0]=""+clickedSquare.getx();
 					System.out.println("barca" + arraymsg[2]);
 					
-					
+					x=clickedSquare.getx();
+					y=clickedSquare.gety();
 					clickcount=0;
 					
 					
@@ -251,7 +252,7 @@ public static void setIndirizzo(String indirizzo) {
 	        
 	      //0   1   2   3   4   5   6   
 			//x   y   St  N   E   S   O
-			
+			System.out.println("quello che ho mandato prima : "+x +" quello che ricevo: "+ arrayRisposta[0]);
 	        
 	        	if(arrayRisposta[6]==0) {
 	        		 while(y!=arrayRisposta[1]) {
