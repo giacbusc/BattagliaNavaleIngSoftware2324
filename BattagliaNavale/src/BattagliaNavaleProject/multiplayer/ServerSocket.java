@@ -10,7 +10,7 @@ import BattagliaNavaleProject.client.Square;
 import java.util.ArrayList;
 
 public class ServerSocket {
-	final static int MAX_LENGTH = 9;
+	final static int MAX_LENGTH = 10;
 	private Square[][] player1 = new Square[MAX_LENGTH][MAX_LENGTH];
 	private Square[][] player2 = new Square[MAX_LENGTH][MAX_LENGTH];
 	private String[] spedire = new String[7];
@@ -24,7 +24,7 @@ public class ServerSocket {
 
 	public void startServer() {
 
-		socketServer.bind("tcp://*:5545");
+		socketServer.bind("tcp://172.16.128.94:5525");
 
 		try {
 			inizializzaSquare();
@@ -116,13 +116,14 @@ public class ServerSocket {
 	}
 
 	private void piazzamentoBarca(int turno) {
+		System.out.println("il martin dice shhhhh");
 		int countB = 0;
 		mexprec[2] = "firstPosition";
 		System.out.println("inizio piazzamento ");
 		while (countB < 10) {
 			byte[] reply = socketServer.recv(0);
 			String messaggio = new String(reply, ZMQ.CHARSET);
-			System.out.println(messaggio);
+			System.out.println("ricevuto: "+messaggio);
 
 			if (messaggio.equals("CODA")) {
 				String responseMessage = "CODA";
@@ -130,6 +131,8 @@ public class ServerSocket {
 				System.out.println("Inviato: " + responseMessage);
 				continue;
 			}
+			stampaGriglia();
+
 			String[] mexSplit = messaggio.split(",");
 			String x = mexSplit[0];
 			String y = mexSplit[1];
@@ -138,27 +141,42 @@ public class ServerSocket {
 			InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarca);
 			int l = boat.getLunghezza();
 			System.out.println("Lunghezza barca: " + l);
-
+			System.out.println("Nome barca: "+nomeBarca);
 			if (mexprec[2].equals(nomeBarca)) { // secondo click della barca
 				// RIEMPI CELLE
-				riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
+				//setto spedire a -1
+				 for (int k = 0; k < spedire.length; k++) {
+			           spedire[k] = "-1";
+			       }
+				String fiocco2=riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
 						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno);
+				socketServer.send(fiocco2.getBytes(), 0);
+				System.out.println("Inviato fiocco2: " + fiocco2);
+				
+				//aggiorna gliglia
+					
 			} else { // primo click
 				String fiocco = controllaCella(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l, turno);
 				socketServer.send(fiocco.getBytes(), 0);
 				System.out.println("Inviato fiocco: " + fiocco);
 				
 				aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), turno);
-
+				
+				stampaGriglia();
 				countB++;
 
 			}
 
 			// LOGICA DI SPEDIZIONE DEL MEX
 			// nel mex prec salviamo x,y,nomebarca
+			
 			mexprec[0] = x;
 			mexprec[1] = y;
 			mexprec[2] = nomeBarca;
+			
+			for (int i = 0; i < mexprec.length; i++) {
+			    System.out.println("Elemento " + i + ": " + mexprec[i]);
+			}
 
 		}
 
@@ -176,6 +194,11 @@ public class ServerSocket {
 
 	public String controllaCella(int x, int y, int l, int turno) {
 
+		 // Riempimento dell'array con il valore -1
+       for (int k = 0; k < spedire.length; k++) {
+           spedire[k] = "-1";
+       }
+       
 		String a = Integer.toString(x);
 		String b = Integer.toString(y);
 		spedire[0] = a;
@@ -327,9 +350,9 @@ public class ServerSocket {
 			if (x - l - 1 < 0)
 				return false;
 		}
-		if (d == 1) // est
+		if (d == 3) // ovest
 		{
-			if (y + (l - 1) > MAX_LENGTH)
+			if (y - l - 1 < 0)
 				return false;
 		}
 
@@ -339,68 +362,84 @@ public class ServerSocket {
 				return false;
 		}
 
-		if (d == 3) // ovest
+		if (d == 1) // est
 		{
-			if (y - l - 1 < 0)
+			if (y + (l - 1) > MAX_LENGTH)
 				return false;
 		}
 		return true;
 	}
 
 //riempire le celle dopo il secondo click
-	public void riempiCelle(int x, int y, int l, int xp, int yp, int turno) // x e y posizioni secondo click,mentre xp e
-																			// yp
+	public String riempiCelle(int x, int y, int l, int xp, int yp, int turno) // x e y posizioni secondo click,mentre xp e yp
+																			
 	// posizioni primo click
 	{
 		if (x != xp) // CASO NORD o SUD
 		{
-			if (xp < x) // caso nord
+			if (xp < x) // caso sud
 			{
-				for (int i = xp - 1; i > xp - l; i--) {
-					// mando le coordinate delle celle da colorare
-					// esempio mex: spedire(i,yp,.....) ?una volta che mando mex al client funziona
-					// come un return e non va avanti il for?
-
-				}
+				//devo mandare le coordinate dell'ultima cella e la direzione in cui colorare(da ultima cella verso la prima)
+				//mi serve anche la lunghezza della barca.Basta fare prima cella + lunghezza -1?
+				spedire[0]=Integer.toString(xp+l-1);
+				spedire[1]=Integer.toString(y);
+				spedire[2]="1";
+				spedire[3]="0";
 			}
 
-			if (xp > x) // caso sud
+			if (xp > x) // caso nord
 			{
-				for (int i = xp + 1; i < xp + l; i++) {
-					// mando le coordinate delle celle da colorare
-					// esempio mex: spedire(i,yp,.....) ?una volta che mando mex al client funziona
-					// come un return e non va avanti il for?
-				}
+				spedire[0]=Integer.toString(xp-l+1);
+				spedire[1]=Integer.toString(y);
+				spedire[2]="1";
+				spedire[5]="0";
 			}
 		}
 
 		if (y != yp) // EST O OVEST
 		{
-			if (yp < y) // EST
+			if (yp < y) // ovest
 			{
-				for (int i = yp - 1; i > yp - l; i--) {
-					// mando le coordinate delle celle da colorare
-					// esempio mex: spedire(xp,i,.....) ?una volta che mando mex al client funziona
-					// come un return e non va avanti il for?
-				}
+				spedire[0]=Integer.toString(xp);
+				spedire[1]=Integer.toString(yp-l+1);
+				spedire[2]="1";
+				spedire[4]="0";
 			}
-			if (yp > y) // OVEST
+			if (yp > y) // est
 			{
-				for (int i = yp + 1; i < yp + l; i++) {
-					// mando le coordinate delle celle da colorare
-					// esempio mex: spedire(xp,i,.....) ?una volta che mando mex al client funziona
-					// come un return e non va avanti il for?
-				}
+				spedire[0]=Integer.toString(xp);
+				spedire[1]=Integer.toString(y+l-1);
+				spedire[2]="1";
+				spedire[6]="0";
 			}
 		}
+
+		StringBuilder composta = new StringBuilder();
+		for (String e : spedire) {
+			// Aggiungiamo l'elemento alla StringBuilder con uno spazio
+			composta.append(e).append(",");
+		}
+
+		String compostaFinale = composta.toString().trim();
+		return compostaFinale;
 	}
 
 	public void inizializzaSquare() {
 		for (int i = 0; i < MAX_LENGTH; i++) {
-			for (int j = 0; j < MAX_LENGTH - 1; j++) {
+			for (int j = 0; j < MAX_LENGTH; j++) {
 				player1[i][j] = new Square(i, j, 0);
 				player2[i][j] = new Square(i, j, 0);
 			}
 		}
+	}
+	public void stampaGriglia()
+	{
+		for (int i = 0; i < MAX_LENGTH; i++) {
+            for (int j = 0; j < MAX_LENGTH; j++) {
+                System.out.print(player1[i][j].getStato()+"\t");
+            }
+            System.out.println(); // Vai a capo dopo ogni riga
+        }
+	
 	}
 }
