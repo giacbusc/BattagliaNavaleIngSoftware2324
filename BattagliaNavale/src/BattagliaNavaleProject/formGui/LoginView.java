@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 
 import BattagliaNavaleProject.Control.LoginControl;
 import BattagliaNavaleProject.form.LoginModel;
+import java.awt.Dimension;
 
 public class LoginView extends JFrame {
 
@@ -55,7 +56,6 @@ public class LoginView extends JFrame {
 	{
 		//LoginModel model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
 		LoginControl cont;
 		final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		

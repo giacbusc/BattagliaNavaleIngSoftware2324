@@ -127,7 +127,7 @@ public class ConnectionControl
 					
 					if(rispostaMsg.equals("OK POS1")) {
 						try {
-							DoubleGameGridView DGG = new DoubleGameGridView(socket);
+							DoubleGameGridView DGGV = new DoubleGameGridView();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							//dario

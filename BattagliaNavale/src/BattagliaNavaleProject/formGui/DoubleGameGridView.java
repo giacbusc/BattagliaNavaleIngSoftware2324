@@ -48,8 +48,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
-	private DoubleGameGridControl DGGC;
-	static ZMQ.Socket socket = null;
+	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
 	
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -112,10 +111,8 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 		setVisible(true);
 	}*/
 	
-	public DoubleGameGridView(ZMQ.Socket socket) throws IOException 
+	public DoubleGameGridView() throws IOException 
 	{
-		socket = this.socket;
-		DGGC = new DoubleGameGridControl(this, socket);
 		this.frame = new JFrame("Battaglia Navale");
 		setSize(1400,788);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

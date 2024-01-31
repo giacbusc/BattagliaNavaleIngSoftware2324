@@ -88,7 +88,7 @@ String username;
 
 	public void close(Socket socket) {
 		try {
-			DoubleGameGridView DGGV= new DoubleGameGridView(socket);
+			DoubleGameGridView DGGV= new DoubleGameGridView();
 			DGGV.setVisible(true);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

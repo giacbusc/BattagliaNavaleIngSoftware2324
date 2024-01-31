@@ -39,7 +39,7 @@ static String indirizzo;
 			String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 			
 			if(rispostaMsg== "START2") {
-				DoubleGameGridView dggv= new DoubleGameGridView(socket);
+				DoubleGameGridView dggv= new DoubleGameGridView();
 			}
 			
 		}while(r==true);
