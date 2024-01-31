@@ -24,7 +24,8 @@ public SceltaGiocoControl( SceltaGiocoView s) {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String tcp= "tcp://172.16.128.94:5513";
-		String local="tcp://localhost:5533";
+		String local="tcp://localhost:5545";
+		String[] parti = local.split(":");
 		
 		
 		
@@ -46,7 +47,7 @@ public SceltaGiocoControl( SceltaGiocoView s) {
 				}
 			}
 			else if(clickedButton.getText().equals("")) {
-				//ServerSocket.setIndirizzo(local);
+				ServerSocket.setIndirizzo("tcp://*:" + parti[2]);
 				ConnectionControl.setIndirizzo(local);
 				SchermataAttesaControl.setIndirizzo(local);
 				System.out.println("un pc");
