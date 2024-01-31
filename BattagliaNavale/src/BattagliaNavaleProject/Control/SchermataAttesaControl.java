@@ -22,7 +22,7 @@ boolean r=true;
 		 System.out.println("Connecting to th server");
 	        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-				socket.connect("tcp://172.16.128.218:5519");
+				socket.connect("tcp://172.16.128.218:5521");
 				System.out.println("qua non mi sono rotto");
 			
 		do {

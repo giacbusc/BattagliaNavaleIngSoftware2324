@@ -24,7 +24,7 @@ public class ServerSocket {
 
 	public void startServer() {
 
-		socketServer.bind("tcp://172.16.128.218:5521");
+		socketServer.bind("tcp://172.16.128.94:5513");
 
 		try {
 			inizializzaSquare();

@@ -9,13 +9,16 @@ import org.h2.tools.Server;
 
 public class ConnectionDb 
 {
-	private String jdbcURL = "jdbc:h2:tcp://172.16.128.218:9092/~/test";
+	//DA METTERE IN QUESTO MODO
+	//private String jdbcURL = "jdbc:h2:./test";
+	private String jdbcURL = "jdbc:h2:tcp://172.16.128.94:9092/~/test";
 	private String username = "sa";
 	private String password = "1234";
 	public ConnectionDb()
 	{
-		
 		try {
+			
+			//DA MODIFICARE PER METTERLO EMBEDDED
 			Server server = Server.createTcpServer().start();
 			
 		}
