@@ -3,9 +3,11 @@ package BattagliaNavaleProject.Control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
+import java.sql.SQLException;
 
 import javax.swing.JButton;
+
+import org.h2.tools.Server;
 
 import BattagliaNavaleProject.formGui.SceltaGiocoView;
 import BattagliaNavaleProject.multiplayer.ServerSocket;
@@ -33,7 +35,12 @@ public SceltaGiocoControl( SceltaGiocoView s) {
 		if(e.getSource() instanceof JButton ) {
 			JButton clickedButton= (JButton) e.getSource();
 			if(clickedButton.getText().equals("  ")) {
-				
+				try {
+					Server.createTcpServer().start();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				ServerSocket.setIndirizzo(tcp);
 				ConnectionControl.setIndirizzo(tcp);
 				SchermataAttesaControl.setIndirizzo(tcp);
