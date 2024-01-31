@@ -84,7 +84,8 @@ public static void setIndirizzo(String indirizzo) {
 					arraymsg[1]=""+clickedSquare.gety();
 					arraymsg[0]=""+clickedSquare.getx();
 					System.out.println("barca" + arraymsg[2]);
-					
+					int x=clickedSquare.getX();
+					int y=clickedSquare.getY();
 					
 					clickcount=0;
 					
@@ -94,7 +95,7 @@ public static void setIndirizzo(String indirizzo) {
 				            
 				            socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
 				            System.out.println("ho inviato");
-				            ricevi2msg(socket);
+				            ricevi2msg(socket,x,y);
 				}
 				
 							
@@ -200,6 +201,8 @@ public static void setIndirizzo(String indirizzo) {
 				Square clickedSquare= (Square) e.getSource();
 				System.out.println("sono la square"+clickcount +clickedSquare.getx()+ clickedSquare.gety());
 				if(clickedSquare.getName().equals("yourBoard")) {
+				
+			
 					//clickedSquare.setBackground(Color.gray); //da togliere
 					arraymsg[1]=""+clickedSquare.gety();
 					arraymsg[0]=""+clickedSquare.getx();
@@ -231,7 +234,9 @@ public static void setIndirizzo(String indirizzo) {
 		
 	}
 	
-	public void ricevi2msg(ZMQ.Socket socket) {
+	public void ricevi2msg(ZMQ.Socket socket,int x,int y) {
+		
+		
 		
 		 byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
        String rispostamsg= new String(reply, ZMQ.CHARSET);
@@ -243,15 +248,41 @@ public static void setIndirizzo(String indirizzo) {
 				arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
 	        System.out.println(
 	             "Received " + rispostamsg );
-	        /*
-	        arraymsg[1]=""+clickedSquare.gety();
-			arraymsg[0]=""+clickedSquare.getx();
+	        
+	      //0   1   2   3   4   5   6   
+			//x   y   St  N   E   S   O
 			
-			//coloro la casella inviata e tutte quelle tra questa e quella di prima 
-			if(arrayRisposta[2]!=-1) {
-	        grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.ORANGE);
-	        */
-			}
+	        
+	        	if(arrayRisposta[6]==0) {
+	        		 while(y!=arrayRisposta[1]) {
+	        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
+	        			 arrayRisposta[1]--;
+	        		 }
+			        }
+			        if(arrayRisposta[5]==0) {
+			        	while(x!=arrayRisposta[0]) {
+		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
+		        			 arrayRisposta[0]++;
+		        		 }
+				        }
+			        
+			       if(arrayRisposta[4]==0) {
+			    	   while(y!=arrayRisposta[1]) {
+		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
+		        			 arrayRisposta[1]++;
+		        		 }
+			       }
+		    
+			       if(arrayRisposta[3]==0) {
+			    	   while(x!=arrayRisposta[0]) {
+		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
+		        			 arrayRisposta[0]--;
+		        		 }
+			       }
+	        }
+	        
+	        
+		
 			
 			
 		 
