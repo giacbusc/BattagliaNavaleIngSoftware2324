@@ -1,6 +1,6 @@
 package test.java.BattagliaNavaleProject.BattagliaNavale;
 
-import BattagliaNavaleProject.Control.ConnectionControl;
+
 import BattagliaNavaleProject.formGui.SchermataInizialeView;
 
 public class AppTestClient 
