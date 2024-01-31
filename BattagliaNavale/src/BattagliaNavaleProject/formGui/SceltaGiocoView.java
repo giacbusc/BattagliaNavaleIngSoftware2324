@@ -19,24 +19,7 @@ public class SceltaGiocoView extends JFrame {
 	private JLabel infoPlayerLabel_1;
 	private String userName;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run()
-			{
-				try 
-				{
-					SceltaGiocoView s= new SceltaGiocoView("ciao");
-				    s.setVisible(true);
-			}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-		
-	}
-
+	
 	
 	public SceltaGiocoView(String username) throws IOException, SQLException 
 	{
@@ -103,14 +86,15 @@ public class SceltaGiocoView extends JFrame {
 	    
 
 	    final JButton pcsolobutton = new JButton("");
+	   
 	    pcsolobutton.setPreferredSize(new Dimension(170, 50));
 	    pcsolobutton.setBackground(new Color(0, 0, 0, 0));
 	    pcsolobutton.setOpaque(false);
 	    pcsolobutton.setBounds(216, 135, 356, 158);
 	    backgroundPanel.add(pcsolobutton);
 	    
-	   // pcsolobutton.addActionListener(new SceltaGiocoControl(this));
-		 
+	    pcsolobutton.addActionListener(new SceltaGiocoControl(this));
+		 System.out.println("vado");
 	    
 	    pcsolobutton.addMouseListener(new MouseListener()
 	    {
@@ -163,7 +147,8 @@ public class SceltaGiocoView extends JFrame {
         pcmultipli.setBounds(237,379,313,60);
         backgroundPanel.add(pcmultipli);
         
-	    final JButton pcbutton = new JButton("");
+	    final JButton pcbutton = new JButton("  ");
+	  
 	    pcbutton.setBackground(new Color(0, 0, 255));
 	    pcbutton.setBackground(new Color(0, 0, 0, 0));
 	    pcbutton.setOpaque(false);
@@ -172,7 +157,7 @@ public class SceltaGiocoView extends JFrame {
 	    backgroundPanel.add(pcbutton);
 	    
 	    
-	   // singleplayer.addActionListener(new MenuPrincipaleControl(this));
+	   pcbutton.addActionListener(new SceltaGiocoControl(this));
 	    
 	    pcbutton.addMouseListener(new MouseListener()
 	    {
@@ -217,6 +202,27 @@ public class SceltaGiocoView extends JFrame {
 		}
 
 	    });
+	}
+
+	public void open( ) throws IOException {
+		// TODO Auto-generated method stub
+		
+		final SchermataAttesaView sin= new SchermataAttesaView("ATTESA AVVERSARIO", userName);
+		sin.setVisible(true);
+		dispose();
+		//ConnectionControl c = new ConnectionControl(sin, userName);
+		
+		
+		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+	        @Override
+	        protected Void doInBackground() throws Exception {
+	            // Esegui le operazioni di connessione qui
+	            ConnectionControl c = new ConnectionControl(sin, userName);
+	            return null;
+	        }
+	    };
+
+	    worker.execute();
 	}
 	   
 }

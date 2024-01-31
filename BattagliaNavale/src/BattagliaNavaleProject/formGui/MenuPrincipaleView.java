@@ -18,13 +18,13 @@ public class MenuPrincipaleView extends JFrame {
 	private JLabel infoPlayerLabel_1;
 	private String userName;
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run()
 			{
 				try 
 				{
-					MenuPrincipaleView frame = new MenuPrincipaleView();
+					MenuPrincipaleView frame = new MenuPrincipaleView("fede");
 				    frame.setVisible(true);
 			}
 				catch(Exception e)
@@ -34,7 +34,7 @@ public class MenuPrincipaleView extends JFrame {
 			}
 		});
 		
-	}*/
+	}
 
 	
 	public MenuPrincipaleView(String username) throws IOException, SQLException 
@@ -332,21 +332,17 @@ public class MenuPrincipaleView extends JFrame {
 
 	public void open() throws IOException {
 		// TODO Auto-generated method stub
-		final SchermataAttesaView sin= new SchermataAttesaView("ATTESA AVVERSARIO", userName);
-		sin.setVisible(true);
+	 try {
+		SceltaGiocoView s= new SceltaGiocoView(userName);
+		s.setVisible(true);
 		dispose();
-		//ConnectionControl c = new ConnectionControl(sin, userName);
-		
-		
-		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-	        @Override
-	        protected Void doInBackground() throws Exception {
-	            // Esegui le operazioni di connessione qui
-	            ConnectionControl c = new ConnectionControl(sin, userName);
-	            return null;
-	        }
-	    };
-
-	    worker.execute();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
+	 
+}
 }

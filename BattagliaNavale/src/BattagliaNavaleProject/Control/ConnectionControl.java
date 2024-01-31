@@ -13,6 +13,7 @@ import BattagliaNavaleProject.form.LoginModel;
 
 public class ConnectionControl 
 {
+	static String indirizzo;
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	String[] arrayMsg = null;
@@ -77,7 +78,7 @@ public class ConnectionControl
 	        System.out.println("Connecting to th server");
 	        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-				socket.connect("tcp://172.16.128.94:5513");
+				socket.connect(indirizzo);
 				
 	        
 	            /*String request = "Hello";
@@ -154,6 +155,11 @@ public class ConnectionControl
 		
 		
 	}finally {}
+	}
+
+	public static void setIndirizzo(String ind) {
+		// TODO Auto-generated method stub
+		indirizzo = ind;
 	}
 
 	
