@@ -52,19 +52,22 @@ public static void setIndirizzo(String indirizzo) {
 	// System.out.println("Connecting to th server");
      
 		//  Socket to talk to server
-
+ 
 	public DoubleGameGridControl (DoubleGameGridView grid, ZMQ.Socket socket)
 	{	
 		this.grid = grid;
 		this.socket = socket;
+			
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 		 System.out.println("Connecting to th server");
-	        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+		 System.out.println("sono tornato sopra");
+	     ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-				socket.connect(indirizzo);
+		socket.connect(indirizzo);
 		clickcount++;
 		
 		// TODO Auto-generated method stub
@@ -72,17 +75,33 @@ public static void setIndirizzo(String indirizzo) {
 		try {
 			if(e.getSource()instanceof Square && clickcount==1 ) {
 				System.out.println(clickcount);
-				/*Square clickedSquare2= (Square) e.getSource();
-				System.out.println("sono la square" +clickedSquare2.getx()+ clickedSquare2.gety());
-				if(clickedSquare2.getName().equals("yourBoard")) {
-					clickedSquare2.setBackground(Color.ORANGE);
-					uso le coordinate mandate per colorare le cose nel mezzo
-					*/
 				
+				Square clickedSquare= (Square) e.getSource();
+				
+				System.out.println("sono la square"+clickcount +clickedSquare.getx()+ clickedSquare.gety());
+				if(clickedSquare.getName().equals("yourBoard")) {
+					//clickedSquare.setBackground(Color.gray); //da togliere
+					arraymsg[1]=""+clickedSquare.gety();
+					arraymsg[0]=""+clickedSquare.getx();
+					System.out.println("barca" + arraymsg[2]);
+					
+					
+					clickcount=0;
+					
+					
+				            String msgserver=(""+arraymsg[0]+","+arraymsg[1]+","+arraymsg[2]);
+				            System.out.println(msgserver);
+				            
+				            socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
+				            System.out.println("ho inviato");
+				            ricevi2msg(socket);
+				}
+				
+							
 			}
 			
 			
-			if(e.getSource() instanceof JPanel && clickcount==1) {
+			else if(e.getSource() instanceof JPanel && clickcount==1) {
 				
 				JPanel clickedPanel= (JPanel) e.getSource();
 
@@ -211,6 +230,32 @@ public static void setIndirizzo(String indirizzo) {
 			
 		
 	}
+	
+	public void ricevi2msg(ZMQ.Socket socket) {
+		
+		 byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
+       String rispostamsg= new String(reply, ZMQ.CHARSET);
+       System.out.println(rispostamsg);
+		String[] arrayStringhe = rispostamsg.split(",");
+		 System.out.println();
+			
+			for(int i = 0; i < arrayStringhe.length; i++)
+				arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
+	        System.out.println(
+	             "Received " + rispostamsg );
+	        /*
+	        arraymsg[1]=""+clickedSquare.gety();
+			arraymsg[0]=""+clickedSquare.getx();
+			
+			//coloro la casella inviata e tutte quelle tra questa e quella di prima 
+			if(arrayRisposta[2]!=-1) {
+	        grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.ORANGE);
+	        */
+			}
+			
+			
+		 
+	
 	
 	public void ricevimsg(ZMQ.Socket socket) {
 		
