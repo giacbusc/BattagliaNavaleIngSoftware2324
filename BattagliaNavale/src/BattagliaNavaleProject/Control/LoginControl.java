@@ -43,6 +43,8 @@ public class LoginControl implements ActionListener
 						if(checkUser(model)){
 							System.out.println("Ciao5");
 							gui.showMessage("Login succesfully!");
+							ConnectionDb conn = new ConnectionDb();
+							conn.closeConnection();
 						    gui.openMenu();
 						    
 							
