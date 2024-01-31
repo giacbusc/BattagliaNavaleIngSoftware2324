@@ -11,10 +11,10 @@ public class ConnectionDb
 {
 	//DA METTERE IN QUESTO MODO
 	//private String jdbcURL = "jdbc:h2:./test";
-	private String jdbcURL = "jdbc:h2:tcp://172.16.128.94:9092/~/test";
+	private String jdbcURL = "jdbc:h2:./BattagliaNavale";
 	private String username = "sa";
-	private String password = "1234";
-	public ConnectionDb()
+	private String password = "";
+	/*public ConnectionDb()
 	{
 		try {
 			
@@ -25,7 +25,7 @@ public class ConnectionDb
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	public Connection getConnection() throws SQLException
 	{
