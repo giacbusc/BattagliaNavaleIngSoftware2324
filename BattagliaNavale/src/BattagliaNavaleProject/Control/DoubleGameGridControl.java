@@ -28,9 +28,19 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	private Point previousPoint;
 	private Point currentPoint;
 	private int clickcount=0;
+	int x;
+	int y;
 	//private int[] arrayRisposta= new int[7];
 	private int[] arrayRisposta= {5,5,0,0,1,1,0};
 	int boatlenght;
+static String indirizzo;
+	public static String getIndirizzo() {
+	return indirizzo;
+}
+
+public static void setIndirizzo(String indirizzo) {
+	DoubleGameGridControl.indirizzo = indirizzo;
+}
 
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
@@ -43,19 +53,22 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	// System.out.println("Connecting to th server");
      
 		//  Socket to talk to server
-
+ 
 	public DoubleGameGridControl (DoubleGameGridView grid, ZMQ.Socket socket)
 	{	
 		this.grid = grid;
 		this.socket = socket;
+			
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 		 System.out.println("Connecting to th server");
-	        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+		 System.out.println("sono tornato sopra");
+	     ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-				socket.connect("tcp://172.16.128.218:5519");
+		socket.connect(indirizzo);
 		clickcount++;
 		
 		// TODO Auto-generated method stub
@@ -63,17 +76,33 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		try {
 			if(e.getSource()instanceof Square && clickcount==1 ) {
 				System.out.println(clickcount);
-				/*Square clickedSquare2= (Square) e.getSource();
-				System.out.println("sono la square" +clickedSquare2.getx()+ clickedSquare2.gety());
-				if(clickedSquare2.getName().equals("yourBoard")) {
-					clickedSquare2.setBackground(Color.ORANGE);
-					uso le coordinate mandate per colorare le cose nel mezzo
-					*/
 				
+				Square clickedSquare= (Square) e.getSource();
+				
+				System.out.println("sono la square"+clickcount +clickedSquare.getx()+ clickedSquare.gety());
+				if(clickedSquare.getName().equals("yourBoard")) {
+					//clickedSquare.setBackground(Color.gray); //da togliere
+					arraymsg[1]=""+clickedSquare.gety();
+					arraymsg[0]=""+clickedSquare.getx();
+					System.out.println("barca" + arraymsg[2]);
+				
+					
+					clickcount=0;
+					
+					
+				            String msgserver=(""+arraymsg[0]+","+arraymsg[1]+","+arraymsg[2]);
+				            System.out.println(msgserver);
+				            
+				            socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
+				            System.out.println("ho inviato");
+				            ricevi2msg(socket,x,y);
+				}
+				
+							
 			}
 			
 			
-			if(e.getSource() instanceof JPanel && clickcount==1) {
+			else if(e.getSource() instanceof JPanel && clickcount==1) {
 				
 				JPanel clickedPanel= (JPanel) e.getSource();
 
@@ -131,7 +160,6 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 					arraymsg[2]=(clickedPanel.getName());
 					
 					
-						//socket.send(arraymsg[2].getBytes(ZMQ.CHARSET), 0);
 			           
 			           
 				}
@@ -159,6 +187,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 					System.out.println("barca cliccata "+(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 					
+					
 				}
 				
 			}
@@ -172,21 +201,26 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				Square clickedSquare= (Square) e.getSource();
 				System.out.println("sono la square"+clickcount +clickedSquare.getx()+ clickedSquare.gety());
 				if(clickedSquare.getName().equals("yourBoard")) {
+				
+			
 					//clickedSquare.setBackground(Color.gray); //da togliere
 					arraymsg[1]=""+clickedSquare.gety();
 					arraymsg[0]=""+clickedSquare.getx();
 					System.out.println("barca" + arraymsg[2]);
 					
-					
+					x=clickedSquare.getx();
+					y=clickedSquare.gety();
 					clickcount=0;
+					
 					
 				            String msgserver=(""+arraymsg[0]+","+arraymsg[1]+","+arraymsg[2]);
 				            System.out.println(msgserver);
+				            
 				            socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
-				            ricevimsg();
+				            System.out.println("ho inviato");
+				            ricevimsg(socket);
 							
-				           
-				           
+
 					
 				}
 		
@@ -201,9 +235,63 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		
 	}
 	
-	public void ricevimsg() {
+	public void ricevi2msg(ZMQ.Socket socket,int x,int y) {
 		
-        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+		
+		
+		 byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
+       String rispostamsg= new String(reply, ZMQ.CHARSET);
+       System.out.println(rispostamsg);
+		String[] arrayStringhe = rispostamsg.split(",");
+		 System.out.println();
+			
+			for(int i = 0; i < arrayStringhe.length; i++)
+				arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
+	        System.out.println(
+	             "Received " + rispostamsg );
+	        
+	      //0   1   2   3   4   5   6   
+			//x   y   St  N   E   S   O
+			System.out.println("quello che ho mandato prima : "+x +" quello che ricevo: "+ arrayRisposta[0]);
+	        
+	        	if(arrayRisposta[6]==0) {
+	        		 while(y!=arrayRisposta[1]) {
+	        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
+	        			 arrayRisposta[1]--;
+	        		 }
+			        }
+			        if(arrayRisposta[5]==0) {
+			        	while(x!=arrayRisposta[0]) {
+		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
+		        			 arrayRisposta[0]++;
+		        		 }
+				        }
+			        
+			       if(arrayRisposta[4]==0) {
+			    	   while(y!=arrayRisposta[1]) {
+		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
+		        			 arrayRisposta[1]++;
+		        		 }
+			       }
+		    
+			       if(arrayRisposta[3]==0) {
+			    	   while(x!=arrayRisposta[0]) {
+		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
+		        			 arrayRisposta[0]--;
+		        		 }
+			       }
+	        }
+	        
+	        
+		
+			
+			
+		 
+	
+	
+	public void ricevimsg(ZMQ.Socket socket) {
+		
+       // ZMQ.Socket socket = context.createSocket(SocketType.REQ);
   		//  Socket to talk to server
 			
 		 byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
@@ -212,9 +300,6 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		String[] arrayStringhe = rispostamsg.split(",");
 		 System.out.println();
 		
-		//invece che 2 devo mettere arrayStringhe.length
-		arrayRisposta[0]=arrayStringhe.length;
-		arrayRisposta[1]=arrayStringhe.length;
 		
 		for(int i = 0; i < arrayStringhe.length; i++)
 			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());

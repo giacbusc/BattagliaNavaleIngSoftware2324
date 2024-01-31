@@ -4,10 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-
-import BattagliaNavaleProject.form.RegistrationModel;
-import BattagliaNavaleProject.formGui.LoginView;
-import BattagliaNavaleProject.formGui.RegistrationView;
 import BattagliaNavaleProject.formGui.SchermataInizialeView;
 
 public class SchermataInizialeControl implements ActionListener{
@@ -46,7 +42,6 @@ public class SchermataInizialeControl implements ActionListener{
 	            ex.printStackTrace(); // <-- Aggiunta per visualizzare il messaggio di errore
 	            
 	        }
-		// TODO Auto-generated method stub
 		
 	}
 
