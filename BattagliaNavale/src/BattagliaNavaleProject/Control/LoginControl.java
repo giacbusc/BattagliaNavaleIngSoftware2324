@@ -35,7 +35,7 @@ public class LoginControl implements ActionListener
 			System.out.println(model.getUserName());
 			if(e.getSource() instanceof JButton ) {
 				JButton clickedButton= (JButton) e.getSource();
-				System.out.println("Ciao2");
+				
 				if(clickedButton.getText().equals("Login")) 
 				{   System.out.println("Ciao3");
 	                try {
