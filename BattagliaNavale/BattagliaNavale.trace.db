@@ -1,0 +1,40 @@
+2024-01-31 09:29:15.481295+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "UTENTE" not found (this database is empty); SQL statement:
+SELECT nickname FROM UTENTE WHERE nickname = ? [42104-224]
+2024-01-31 09:40:02.702619+01:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE UTENTE (    nome VARCHAR (50) NOT NULL,\000d\000a    cognome VARCHAR (50) NOT NULL\0009   [*]nickname VARCHAR (50) PRIMARY KEY NOT NULL\0009   password VARCHAR (50) NOT NULL);"; expected "DEFAULT, GENERATED, ON UPDATE, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE UTENTE (    nome VARCHAR (50) NOT NULL,
+    cognome VARCHAR (50) NOT NULL	   nickname VARCHAR (50) PRIMARY KEY NOT NULL	   password VARCHAR (50) NOT NULL); [42001-224]
+2024-01-31 09:40:16.715818+01:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE UTENTE (    nome VARCHAR (50) NOT NULL,\000d\000a    cognome VARCHAR (50) NOT NULL\0009   [*]nickname VARCHAR (50) PRIMARY KEY\0009   password VARCHAR (50) NOT NULL);"; expected "DEFAULT, GENERATED, ON UPDATE, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE UTENTE (    nome VARCHAR (50) NOT NULL,
+    cognome VARCHAR (50) NOT NULL	   nickname VARCHAR (50) PRIMARY KEY	   password VARCHAR (50) NOT NULL); [42001-224]
+2024-01-31 09:44:58.480653+01:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE PARTITA (    Giocatore1 VARCHAR (50) [*]FOREIGN KEY REFERENCES UTENTE(nickname),\000d\000a    Giocatore2 VARCHAR (50) FOREIGN KEY REFERENCES UTENTE(nickname),\000d\000a\0009   Vincitore VARCHAR (50) FOREIGN KEY REFERENCES UTENTE(nickname),\000d\000a\0009   ID VARCHAR (50) PRIMARY KEY AUTO_INCREMENT);"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE PARTITA (    Giocatore1 VARCHAR (50) FOREIGN KEY REFERENCES UTENTE(nickname),
+    Giocatore2 VARCHAR (50) FOREIGN KEY REFERENCES UTENTE(nickname),
+	   Vincitore VARCHAR (50) FOREIGN KEY REFERENCES UTENTE(nickname),
+	   ID VARCHAR (50) PRIMARY KEY AUTO_INCREMENT); [42001-224]
+2024-01-31 09:45:58.878193+01:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLFeatureNotSupportedException: Feature not supported: "CHARACTER VARYING(50)"; SQL statement:
+CREATE TABLE PARTITA (    Giocatore1 VARCHAR(50) REFERENCES UTENTE(nickname),
+    Giocatore2 VARCHAR(50) REFERENCES UTENTE(nickname),
+    Vincitore VARCHAR(50) REFERENCES UTENTE(nickname),
+    ID VARCHAR(50) PRIMARY KEY AUTO_INCREMENT) [50100-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:568)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.getUnsupportedException(DbException.java:287)
+	at org.h2.command.ddl.SequenceOptions.getBounds(SequenceOptions.java:316)
+	at org.h2.command.ddl.SequenceOptions.getBounds(SequenceOptions.java:244)
+	at org.h2.schema.Sequence.<init>(Sequence.java:100)
+	at org.h2.table.Column.initializeSequence(Column.java:459)
+	at org.h2.command.ddl.CommandWithColumns.generateSequences(CommandWithColumns.java:103)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:113)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at BattagliaNavaleProject.Database.ConnectionDb.insertQuery(ConnectionDb.java:41)
+	at BattagliaNavaleProject.Database.SettingDatabaseTemp.main(SettingDatabaseTemp.java:12)
