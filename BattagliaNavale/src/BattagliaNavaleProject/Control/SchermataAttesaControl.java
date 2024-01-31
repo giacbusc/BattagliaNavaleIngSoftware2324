@@ -11,6 +11,9 @@ import BattagliaNavaleProject.formGui.DoubleGameGridView;
 public class SchermataAttesaControl {
 String userName;
 boolean r=true;
+static String indirizzo;
+
+
 
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
@@ -22,7 +25,7 @@ boolean r=true;
 		 System.out.println("Connecting to th server");
 	        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-				socket.connect("tcp://172.16.128.218:5521");
+				socket.connect(indirizzo);
 				System.out.println("qua non mi sono rotto");
 			
 		do {
@@ -42,5 +45,14 @@ boolean r=true;
 		}while(r==true);
 	        
 	}
+	public String getIndirizzo() {
+	return indirizzo;
+}
+
+
+public static void setIndirizzo(String ind) {
+	indirizzo = ind;
+}
+
 	
 }

@@ -35,7 +35,7 @@ public class LoginControl implements ActionListener
 			System.out.println(model.getUserName());
 			if(e.getSource() instanceof JButton ) {
 				JButton clickedButton= (JButton) e.getSource();
-				System.out.println("Ciao2");
+				
 				if(clickedButton.getText().equals("Login")) 
 				{   System.out.println("Ciao3");
 	                try {
@@ -43,6 +43,8 @@ public class LoginControl implements ActionListener
 						if(checkUser(model)){
 							System.out.println("Ciao5");
 							gui.showMessage("Login succesfully!");
+							ConnectionDb conn = new ConnectionDb();
+							conn.closeConnection();
 						    gui.openMenu();
 						    
 							

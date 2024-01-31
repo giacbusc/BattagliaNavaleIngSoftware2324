@@ -14,7 +14,7 @@ public class ServerSocket {
 	private Square[][] player1 = new Square[MAX_LENGTH][MAX_LENGTH];
 	private Square[][] player2 = new Square[MAX_LENGTH][MAX_LENGTH];
 	private String[] spedire = new String[7];
-
+	static String indirizzo;
 	private String[] mexprec = new String[3];
 	private boolean sveglia = false;
 	private static final ArrayList<String> connectedClients = new ArrayList<>();
@@ -24,7 +24,7 @@ public class ServerSocket {
 
 	public void startServer() {
 
-		socketServer.bind("tcp://172.16.128.94:5513");
+		socketServer.bind("tcp://*:5545");
 
 		try {
 			inizializzaSquare();
@@ -91,6 +91,14 @@ public class ServerSocket {
 		}
 		turno = 2;
 		piazzamentoBarca(turno);
+	}
+
+	public String getIndirizzo() {
+		return indirizzo;
+	}
+
+	public static void setIndirizzo(String ind) {
+		indirizzo = ind;
 	}
 
 	private static boolean isUsernameUnique(String username) {
