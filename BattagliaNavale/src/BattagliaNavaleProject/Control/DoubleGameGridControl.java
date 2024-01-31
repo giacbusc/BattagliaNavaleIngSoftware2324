@@ -54,10 +54,9 @@ public static void setIndirizzo(String indirizzo) {
      
 		//  Socket to talk to server
  
-	public DoubleGameGridControl (DoubleGameGridView grid, ZMQ.Socket socket)
+	public DoubleGameGridControl (DoubleGameGridView grid)
 	{	
 		this.grid = grid;
-		this.socket = socket;
 			
 	}
 
@@ -376,7 +375,41 @@ public static void setIndirizzo(String indirizzo) {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+		String nome= arraymsg[2];
 		
+		
+		for(InfoBoat boat: InfoBoat.values()) {
+			if(boat.name().equalsIgnoreCase(nome))
+				boatlenght=boat.getLunghezza();
+		}
+		 if(e.getSource() instanceof Square)
+		 {
+			 Square square = (Square) e.getSource();
+			 int x = square.getx();
+			 int y = square.gety();
+			
+			 if(x==arrayRisposta[0] && y == arrayRisposta[1])
+			 {
+				 if(arrayRisposta[6]==0) {
+					 for(int i=1;i<boatlenght;i++)
+			        	grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setBackground(Color.white);
+			        }
+			        if(arrayRisposta[5]==0) {
+			        	for(int i=1;i<boatlenght;i++)
+				        	grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setBackground(Color.white);
+				        }
+			        
+			       if(arrayRisposta[4]==0) {
+			    	   for(int i=1;i<boatlenght;i++)
+			    		   grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setBackground(Color.white);
+			       }
+		    
+			       if(arrayRisposta[3]==0) {
+			    	   for(int i=1;i<boatlenght;i++)
+			    		   grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setBackground(Color.white);
+			       }
+			 }
+			 }
 	}
 
 	@Override
