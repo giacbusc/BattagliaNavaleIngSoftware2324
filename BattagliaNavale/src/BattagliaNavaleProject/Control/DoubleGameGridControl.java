@@ -28,9 +28,18 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	private Point previousPoint;
 	private Point currentPoint;
 	private int clickcount=0;
+	
 	//private int[] arrayRisposta= new int[7];
 	private int[] arrayRisposta= {5,5,0,0,1,1,0};
 	int boatlenght;
+static String indirizzo;
+	public static String getIndirizzo() {
+	return indirizzo;
+}
+
+public static void setIndirizzo(String indirizzo) {
+	DoubleGameGridControl.indirizzo = indirizzo;
+}
 
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
@@ -55,7 +64,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		 System.out.println("Connecting to th server");
 	        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-				socket.connect("tcp://172.16.128.218:5519");
+				socket.connect(indirizzo);
 		clickcount++;
 		
 		// TODO Auto-generated method stub
@@ -131,7 +140,6 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 					arraymsg[2]=(clickedPanel.getName());
 					
 					
-						//socket.send(arraymsg[2].getBytes(ZMQ.CHARSET), 0);
 			           
 			           
 				}
@@ -159,6 +167,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 					System.out.println("barca cliccata "+(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 					
+					
 				}
 				
 			}
@@ -180,13 +189,15 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 					
 					clickcount=0;
 					
+					
 				            String msgserver=(""+arraymsg[0]+","+arraymsg[1]+","+arraymsg[2]);
 				            System.out.println(msgserver);
+				            
 				            socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
-				            ricevimsg();
+				            System.out.println("ho inviato");
+				            ricevimsg(socket);
 							
-				           
-				           
+
 					
 				}
 		
@@ -201,9 +212,9 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		
 	}
 	
-	public void ricevimsg() {
+	public void ricevimsg(ZMQ.Socket socket) {
 		
-        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+       // ZMQ.Socket socket = context.createSocket(SocketType.REQ);
   		//  Socket to talk to server
 			
 		 byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
@@ -212,9 +223,6 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		String[] arrayStringhe = rispostamsg.split(",");
 		 System.out.println();
 		
-		//invece che 2 devo mettere arrayStringhe.length
-		arrayRisposta[0]=arrayStringhe.length;
-		arrayRisposta[1]=arrayStringhe.length;
 		
 		for(int i = 0; i < arrayStringhe.length; i++)
 			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());

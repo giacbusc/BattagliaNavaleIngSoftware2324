@@ -25,7 +25,7 @@ public SceltaGiocoControl( SceltaGiocoView s) {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		String tcp= "tcp://172.16.128.94:5513";
+		String tcp= "tcp://172.16.128.94:5537";
 		String local="tcp://localhost:5545";
 		String[] parti = local.split(":");
 		
@@ -42,6 +42,7 @@ public SceltaGiocoControl( SceltaGiocoView s) {
 					e1.printStackTrace();
 				}
 				ServerSocket.setIndirizzo(tcp);
+				DoubleGameGridControl.setIndirizzo(tcp);
 				ConnectionControl.setIndirizzo(tcp);
 				SchermataAttesaControl.setIndirizzo(tcp);
 				System.out.println("tanti pc");
