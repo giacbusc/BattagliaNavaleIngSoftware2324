@@ -24,7 +24,7 @@ public class ServerSocket {
 
 	public void startServer() {
 
-		socketServer.bind(indirizzo);
+		socketServer.bind("tcp://172.16.128.120:5530");
 
 		try {
 			inizializzaSquare();
@@ -408,24 +408,24 @@ public class ServerSocket {
 	public boolean checkFuoriGriglia(int x, int y, int l, int d, int turno) {
 		if (d == 0) // nord
 		{
-			if (x - l - 1 < 0)
+			if (x - l + 1 < 0)
 				return false;
 		}
 		if (d == 3) // ovest
 		{
-			if (y - l - 1 < 0)
+			if (y - l + 1 < 0)
 				return false;
 		}
 
 		if (d == 2) // sud
 		{
-			if (x + (l - 1) > MAX_LENGTH)
+			if (x + (l - 1) > MAX_LENGTH-1)
 				return false;
 		}
 
 		if (d == 1) // est
 		{
-			if (y + (l - 1) > MAX_LENGTH)
+			if (y + (l - 1) > MAX_LENGTH-1)
 				return false;
 		}
 		return true;
@@ -440,6 +440,14 @@ public class ServerSocket {
 		{
 			if (xp < x) // caso sud
 			{
+				
+				for (int i = xp + 1; i < xp + l; i++) 
+				{
+					if(turno==1)
+						player1[i][yp].setStato(1);
+					else
+						player2[i][yp].setStato(1);
+				}
 				//devo mandare le coordinate dell'ultima cella e la direzione in cui colorare(da ultima cella verso la prima)
 				//mi serve anche la lunghezza della barca.Basta fare prima cella + lunghezza -1?
 				spedire[0]=Integer.toString(xp+l-1);
@@ -447,27 +455,58 @@ public class ServerSocket {
 				spedire[2]="1";
 				spedire[3]="0";
 			}
+				
+			
 
 			if (xp > x) // caso nord
 			{
+				for (int i = xp - 1; i > xp - l; i--)
+				{
+					if(turno==1)
+						player1[i][yp].setStato(1);
+					else
+						player1[i][yp].setStato(1);
+
+				}
 				spedire[0]=Integer.toString(xp-l+1);
 				spedire[1]=Integer.toString(y);
 				spedire[2]="1";
 				spedire[5]="0";
 			}
+				
+			
 		}
 
 		if (y != yp) // EST O OVEST
 		{
-			if (yp < y) // ovest
+			if (yp > y) // ovest
 			{
+				
+				for (int i = yp - 1; i > yp - l; i--) 
+				{
+					if(turno==1)
+						player1[xp][i].setStato(1);
+					else
+						player2[xp][i].setStato(1);
+
+				}
+			
 				spedire[0]=Integer.toString(xp);
 				spedire[1]=Integer.toString(yp-l+1);
 				spedire[2]="1";
 				spedire[4]="0";
 			}
-			if (yp > y) // est
+			if (yp < y) // est
 			{
+				for (int i = yp + 1; i < yp + l; i++) 
+				{
+					if(turno==1)
+						player1[xp][i].setStato(1);
+					else
+						player2[xp][i].setStato(1);
+
+				}
+				
 				spedire[0]=Integer.toString(xp);
 				spedire[1]=Integer.toString(y+l-1);
 				spedire[2]="1";
