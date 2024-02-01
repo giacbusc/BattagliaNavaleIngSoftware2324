@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -56,8 +57,15 @@ public class LoginView extends JFrame {
 	{
 		//LoginModel model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500,230,450,300);
-		setSize(600, 300);
+		
+		 Dimension dimensioniSchermo = Toolkit.getDefaultToolkit().getScreenSize();
+
+	        // Calcola le coordinate x e y per centrare la finestra
+	        int x = (dimensioniSchermo.width - getWidth()) / 2;
+	        int y = (dimensioniSchermo.height - getHeight()) / 2;
+	        
+	        setBounds(x-(450/2),y-(150),450,300);
+		
 		LoginControl cont;
 		final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		

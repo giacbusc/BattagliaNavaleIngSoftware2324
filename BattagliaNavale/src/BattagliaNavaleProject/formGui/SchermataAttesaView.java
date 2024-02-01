@@ -1,9 +1,11 @@
 package BattagliaNavaleProject.formGui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -36,7 +38,16 @@ String username;
 		 SchermataAttesaControl sac= new SchermataAttesaControl();
 		 try {
 	    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    	setBounds(550,230,600,400);
+
+			 Dimension dimensioniSchermo = Toolkit.getDefaultToolkit().getScreenSize();
+
+		        // Calcola le coordinate x e y per centrare la finestra
+		        int x = (dimensioniSchermo.width - getWidth()) / 2;
+		        int y = (dimensioniSchermo.height - getHeight()) / 2;
+		        
+		        setBounds(x-(525/2),y-(200),520,400);
+			
+	    	
 			
 			final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 			
