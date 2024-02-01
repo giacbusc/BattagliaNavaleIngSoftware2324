@@ -24,7 +24,7 @@ public class ServerSocket {
 
 	public void startServer() {
 
-		socketServer.bind("tcp://172.16.128.94:5525");
+		socketServer.bind("tcp://*:5530");
 
 		try {
 			inizializzaSquare();
@@ -152,7 +152,7 @@ public class ServerSocket {
 						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno);
 				socketServer.send(fiocco2.getBytes(), 0);
 				System.out.println("Inviato fiocco2: " + fiocco2);
-				
+				stampaGriglia();
 				//aggiorna gliglia
 					
 			} else { // primo click
@@ -311,6 +311,21 @@ public class ServerSocket {
 			break;
 
 		case 4: {
+			int contaCelleVere = 0;
+
+			// **SUD**
+			if (checkFuoriGriglia(x, y, l, 2, turno)) {
+				for (int i = y; i <= y + 4; i++) {
+					if (cellaLibera(x, i, turno) == true) {
+						contaCelleVere++;
+					}
+				}
+				if (contaCelleVere == 4) {
+					spedire[5] = "0";
+					spedire[2] = "1";
+				}
+				contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
+			}
 			break;
 		}
 
@@ -358,13 +373,13 @@ public class ServerSocket {
 
 		if (d == 2) // sud
 		{
-			if (x + (l - 1) > MAX_LENGTH)
+			if (x + (l - 1) > MAX_LENGTH-1)
 				return false;
 		}
 
 		if (d == 1) // est
 		{
-			if (y + (l - 1) > MAX_LENGTH)
+			if (y + (l - 1) > MAX_LENGTH-1)
 				return false;
 		}
 		return true;
@@ -379,6 +394,14 @@ public class ServerSocket {
 		{
 			if (xp < x) // caso sud
 			{
+				for (int i = xp + 1; i < xp + l; i++) 
+				{
+					if(turno==1)
+						player1[i][yp].setStato(1);
+					else
+						player2[i][yp].setStato(1);
+				}
+				
 				//devo mandare le coordinate dell'ultima cella e la direzione in cui colorare(da ultima cella verso la prima)
 				//mi serve anche la lunghezza della barca.Basta fare prima cella + lunghezza -1?
 				spedire[0]=Integer.toString(xp+l-1);
@@ -389,6 +412,14 @@ public class ServerSocket {
 
 			if (xp > x) // caso nord
 			{
+				for (int i = xp - 1; i > xp - l; i--)
+				{
+					if(turno==1)
+						player1[i][yp].setStato(1);
+					else
+						player1[i][yp].setStato(1);
+						
+				}
 				spedire[0]=Integer.toString(xp-l+1);
 				spedire[1]=Integer.toString(y);
 				spedire[2]="1";
@@ -400,13 +431,30 @@ public class ServerSocket {
 		{
 			if (yp < y) // ovest
 			{
+				for (int i = yp - 1; i > yp - l; i--) 
+				{
+					if(turno==1)
+						player1[xp][i].setStato(1);
+					else
+						player2[xp][i].setStato(1);
+					
+				}
 				spedire[0]=Integer.toString(xp);
 				spedire[1]=Integer.toString(yp-l+1);
 				spedire[2]="1";
 				spedire[4]="0";
 			}
 			if (yp > y) // est
-			{
+			{	 
+				for (int i = yp + 1; i < yp + l; i++) {
+				
+					if(turno==1)
+						player1[xp][i].setStato(1);
+					else
+						player2[xp][i].setStato(1);
+					
+				
+    			}
 				spedire[0]=Integer.toString(xp);
 				spedire[1]=Integer.toString(y+l-1);
 				spedire[2]="1";
