@@ -440,6 +440,14 @@ public class ServerSocket {
 		{
 			if (xp < x) // caso sud
 			{
+				
+				for (int i = xp + 1; i < xp + l; i++) 
+				{
+					if(turno==1)
+						player1[i][yp].setStato(1);
+					else
+						player2[i][yp].setStato(1);
+				}
 				//devo mandare le coordinate dell'ultima cella e la direzione in cui colorare(da ultima cella verso la prima)
 				//mi serve anche la lunghezza della barca.Basta fare prima cella + lunghezza -1?
 				spedire[0]=Integer.toString(xp+l-1);
@@ -447,27 +455,58 @@ public class ServerSocket {
 				spedire[2]="1";
 				spedire[3]="0";
 			}
+				
+			
 
 			if (xp > x) // caso nord
 			{
+				for (int i = xp - 1; i > xp - l; i--)
+				{
+					if(turno==1)
+						player1[i][yp].setStato(1);
+					else
+						player1[i][yp].setStato(1);
+
+				}
 				spedire[0]=Integer.toString(xp-l+1);
 				spedire[1]=Integer.toString(y);
 				spedire[2]="1";
 				spedire[5]="0";
 			}
+				
+			
 		}
 
 		if (y != yp) // EST O OVEST
 		{
-			if (yp < y) // ovest
+			if (yp > y) // ovest
 			{
+				
+				for (int i = yp - 1; i > yp - l; i--) 
+				{
+					if(turno==1)
+						player1[xp][i].setStato(1);
+					else
+						player2[xp][i].setStato(1);
+
+				}
+			
 				spedire[0]=Integer.toString(xp);
 				spedire[1]=Integer.toString(yp-l+1);
 				spedire[2]="1";
 				spedire[4]="0";
 			}
-			if (yp > y) // est
+			if (yp < y) // est
 			{
+				for (int i = yp + 1; i < yp + l; i++) 
+				{
+					if(turno==1)
+						player1[xp][i].setStato(1);
+					else
+						player2[xp][i].setStato(1);
+
+				}
+				
 				spedire[0]=Integer.toString(xp);
 				spedire[1]=Integer.toString(y+l-1);
 				spedire[2]="1";
@@ -503,4 +542,3 @@ public class ServerSocket {
         }
 	
 	}
-}
