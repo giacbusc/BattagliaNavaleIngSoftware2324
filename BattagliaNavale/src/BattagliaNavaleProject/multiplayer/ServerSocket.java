@@ -78,7 +78,7 @@ public class ServerSocket {
 					turno = 1;
 
 					piazzamentoBarca(turno);
-					clientIndex++;
+					//clientIndex++;
 
 				}
 			}
@@ -86,6 +86,7 @@ public class ServerSocket {
 			e.printStackTrace();
 		} finally {
 			// Chiusura del socket e del contesto alla fine del programma
+			System.out.println("il martin fa etciù");
 			socketServer.close();
 			context.close();
 		}
@@ -149,14 +150,13 @@ public class ServerSocket {
 				 for (int k = 0; k < spedire.length; k++) {
 			           spedire[k] = "-1";
 			       }
-				 
+		
 				String fiocco2=riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
 						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno);
 				socketServer.send(fiocco2.getBytes(), 0);
 				System.out.println("Inviato fiocco2: " + fiocco2);
 				countB++;
 				
-				//aggiorna gliglia
 					
 			} else { // primo click
 				String fiocco = controllaCella(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l, turno);
