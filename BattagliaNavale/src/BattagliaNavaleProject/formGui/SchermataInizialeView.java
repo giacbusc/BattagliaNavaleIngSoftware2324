@@ -57,14 +57,14 @@ public class SchermataInizialeView extends JFrame implements ActionListener {
 	public SchermataInizialeView() 
 	{		
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
 			 Dimension dimensioniSchermo = Toolkit.getDefaultToolkit().getScreenSize();
 
 		        // Calcola le coordinate x e y per centrare la finestra
-			;
-			 int x = (dimensioniSchermo.width - getWidth()) / 2;
+		        int x = (dimensioniSchermo.width - getWidth()) / 2;
 		        int y = (dimensioniSchermo.height - getHeight()) / 2;
 		        
-		        setBounds(x,y,450,300);
+		        setBounds(x-(450/2),y-(150),450,300);
 			
 			final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 			
