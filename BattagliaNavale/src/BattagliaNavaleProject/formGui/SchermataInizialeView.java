@@ -20,9 +20,11 @@ import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Dimension;
 
 //pagina per loggarsi/registrarsi
 public class SchermataInizialeView extends JFrame implements ActionListener {
@@ -55,8 +57,14 @@ public class SchermataInizialeView extends JFrame implements ActionListener {
 	public SchermataInizialeView() 
 	{		
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setBounds(500,230,450,300);
-			
+			 Dimension dimensioniSchermo = Toolkit.getDefaultToolkit().getScreenSize();
+
+		        // Calcola le coordinate x e y per centrare la finestra
+			;
+			 int x = (dimensioniSchermo.width - getWidth()) / 2;
+		        int y = (dimensioniSchermo.height - getHeight()) / 2;
+		        
+		        setBounds(x,y,450,300);
 			
 			final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 			

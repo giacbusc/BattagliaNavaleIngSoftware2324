@@ -27,6 +27,13 @@ public class SceltaGiocoView extends JFrame {
 		
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setSize(771, 600);
+	    Dimension dimensioniSchermo = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // Calcola le coordinate x e y per centrare la finestra
+        int x = (dimensioniSchermo.width - getWidth()) / 2;
+        int y = (dimensioniSchermo.height - getHeight()) / 2;
+        
+        setBounds(x,y,771,600);
 	    final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		
 		JPanel backgroundPanel = new JPanel() {

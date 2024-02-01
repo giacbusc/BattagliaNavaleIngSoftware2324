@@ -36,7 +36,7 @@ String username;
 		 SchermataAttesaControl sac= new SchermataAttesaControl();
 		 try {
 	    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setBounds(100,100,516, 405);
+	    	setBounds(550,230,600,400);
 			
 			final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 			

@@ -57,6 +57,7 @@ public class LoginView extends JFrame {
 		//LoginModel model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500,230,450,300);
+		setSize(600, 300);
 		LoginControl cont;
 		final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		
