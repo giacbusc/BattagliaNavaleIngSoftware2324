@@ -24,7 +24,7 @@ public class ServerSocket {
 
 	public void startServer() {
 
-		socketServer.bind(indirizzo);
+		socketServer.bind("tcp://172.16.128.120:5530");
 
 		try {
 			inizializzaSquare();
@@ -408,24 +408,24 @@ public class ServerSocket {
 	public boolean checkFuoriGriglia(int x, int y, int l, int d, int turno) {
 		if (d == 0) // nord
 		{
-			if (x - l - 1 < 0)
+			if (x - l + 1 < 0)
 				return false;
 		}
 		if (d == 3) // ovest
 		{
-			if (y - l - 1 < 0)
+			if (y - l + 1 < 0)
 				return false;
 		}
 
 		if (d == 2) // sud
 		{
-			if (x + (l - 1) > MAX_LENGTH)
+			if (x + (l - 1) > MAX_LENGTH-1)
 				return false;
 		}
 
 		if (d == 1) // est
 		{
-			if (y + (l - 1) > MAX_LENGTH)
+			if (y + (l - 1) > MAX_LENGTH-1)
 				return false;
 		}
 		return true;
@@ -542,3 +542,4 @@ public class ServerSocket {
         }
 	
 	}
+}
