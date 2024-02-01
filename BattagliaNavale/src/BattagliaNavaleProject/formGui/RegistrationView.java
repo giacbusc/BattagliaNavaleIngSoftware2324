@@ -41,7 +41,7 @@ public class RegistrationView extends JFrame  {
     public RegistrationView() {
    
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 516, 405);
+    	setBounds(500,250,450,300);
 		
 		final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		
@@ -56,18 +56,20 @@ public class RegistrationView extends JFrame  {
     	backgroundPanel.setLayout(null);
       	
     	JLabel titleLabel = new JLabel("Registration");
-    	titleLabel.setBounds(5, 5, 99, 20);
+    	titleLabel.setBounds(20, 20, 99, 50);
 		titleLabel.setForeground(new Color(0, 0, 255));
-		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		backgroundPanel.add(titleLabel);
 		
 		JLabel nicknameLabel = new JLabel("Nickname:");
+		nicknameLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
 		nicknameLabel.setBounds(67, 175, 120, 13);
 		backgroundPanel.add(nicknameLabel);
 		
 		JLabel passwordLabel = new JLabel("Password:");
 		passwordLabel.setBounds(67, 229, 120, 13);
+		passwordLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
 		backgroundPanel.add(passwordLabel);
 		
 		txtName = new JTextField(15);
@@ -87,11 +89,13 @@ public class RegistrationView extends JFrame  {
 		txtNickname.setColumns(10);
 		
 		JLabel nameLabel = new JLabel("Name:");
+		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
 		nameLabel.setBounds(67, 68, 120, 13);
 		backgroundPanel.add(nameLabel);
 		
 		JLabel surnameLabel = new JLabel("Surname:");
 		surnameLabel.setBounds(67, 121, 120, 13);
+		surnameLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
 		backgroundPanel.add(surnameLabel);
 		
 		 txtPassword = new JPasswordField(15);
