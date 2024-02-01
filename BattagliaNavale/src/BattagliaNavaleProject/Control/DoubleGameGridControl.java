@@ -33,7 +33,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	//private int[] arrayRisposta= new int[7];
 	private int[] arrayRisposta= {5,5,0,0,1,1,0};
 	int boatlenght;
-static String indirizzo;
+	static String indirizzo;
 	public static String getIndirizzo() {
 	return indirizzo;
 }
@@ -217,6 +217,7 @@ public static void setIndirizzo(String indirizzo) {
 				            
 				            socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
 				            System.out.println("ho inviato");
+				            System.out.println(""+msgserver);
 				            ricevimsg(socket);
 							
 
@@ -393,37 +394,33 @@ public static void setIndirizzo(String indirizzo) {
 				 if(arrayRisposta[6]==0) {
 					 for(int i=1;i<boatlenght;i++)
 			        	grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setBackground(Color.white);
+					 System.out.println("colorato di bianco la cella a ovest");
 			        }
 			        if(arrayRisposta[5]==0) {
 			        	for(int i=1;i<boatlenght;i++)
 				        	grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setBackground(Color.white);
+			        	System.out.println("colorato di bianco la cella a sud");
 				        }
 			        
 			       if(arrayRisposta[4]==0) {
 			    	   for(int i=1;i<boatlenght;i++)
 			    		   grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setBackground(Color.white);
+			    	   System.out.println("colorato di bianco la cella a est");
 			       }
 		    
 			       if(arrayRisposta[3]==0) {
 			    	   for(int i=1;i<boatlenght;i++)
 			    		   grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setBackground(Color.white);
+			    	   System.out.println("colorato di bianco la cella a nord");
 			       }
 			 }
 			 }
+		 
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		if(previousPoint != null && selectedShip != null)
-		{
-			System.out.println("Mi dovrei spostare");
-			currentPoint = e.getPoint();
-			selectedShip = (JPanel) e.getSource();
-			selectedShip.setLocation((int) currentPoint.getX() - (int) previousPoint.getX(), (int) currentPoint.getY() - (int) previousPoint.getY());
-			previousPoint = currentPoint;
-		}
-			
+		// TODO Auto-generated method stub	
 	}
 
 	@Override

@@ -45,7 +45,7 @@ public class SceltaGiocoView extends JFrame {
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         
         final JLabel pcsolo= new JLabel("Voglio giocare su un solo pc");
-       pcsolo.setHorizontalAlignment(SwingConstants.CENTER);
+        pcsolo.setHorizontalAlignment(SwingConstants.CENTER);
         pcsolo.setFont(new Font("Tahoma", Font.BOLD, 20));
         pcsolo.setBounds(237,174,313,78);
         backgroundPanel.add(pcsolo);
@@ -85,8 +85,9 @@ public class SceltaGiocoView extends JFrame {
 	    backgroundPanel.add(imageLabel2);
 	    
 
-	    final JButton pcsolobutton = new JButton("");
-	   
+	    final JButton pcsolobutton = new JButton();
+	    
+	    pcsolobutton.setName("Solo");
 	    pcsolobutton.setPreferredSize(new Dimension(170, 50));
 	    pcsolobutton.setBackground(new Color(0, 0, 0, 0));
 	    pcsolobutton.setOpaque(false);
@@ -143,11 +144,13 @@ public class SceltaGiocoView extends JFrame {
 	    
 	    final JLabel pcmultipli= new JLabel("Voglio giocare con pc diversi");
         pcmultipli.setHorizontalAlignment(SwingConstants.CENTER);
-       pcmultipli.setFont(new Font("Tahoma", Font.BOLD, 20));
+        	pcmultipli.setFont(new Font("Tahoma", Font.BOLD, 20));
         pcmultipli.setBounds(237,379,313,60);
         backgroundPanel.add(pcmultipli);
         
 	    final JButton pcbutton = new JButton("  ");
+	    
+	    pcbutton.setName("Multi");
 	  
 	    pcbutton.setBackground(new Color(0, 0, 255));
 	    pcbutton.setBackground(new Color(0, 0, 0, 0));
@@ -157,7 +160,7 @@ public class SceltaGiocoView extends JFrame {
 	    backgroundPanel.add(pcbutton);
 	    
 	    
-	   pcbutton.addActionListener(new SceltaGiocoControl(this));
+	    pcbutton.addActionListener(new SceltaGiocoControl(this));
 	    
 	    pcbutton.addMouseListener(new MouseListener()
 	    {

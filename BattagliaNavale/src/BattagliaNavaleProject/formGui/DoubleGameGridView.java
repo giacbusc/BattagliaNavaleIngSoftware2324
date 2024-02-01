@@ -4,6 +4,7 @@ package BattagliaNavaleProject.formGui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -56,7 +57,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 			{
 				try 
 				{
-					DoubleGameGridGUI frame = new DoubleGameGridGUI(null);
+					DoubleGameGridView frame = new DoubleGameGridView();
 				    frame.setVisible(true);
 				}
 				catch(Exception e)
