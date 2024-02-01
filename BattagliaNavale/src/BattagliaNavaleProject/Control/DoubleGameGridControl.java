@@ -24,9 +24,6 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	
 	private static final int GRID_DIMENSION = 10;
 	public DoubleGameGridView grid;
-	private JPanel selectedShip;
-	private Point previousPoint;
-	private Point currentPoint;
 	private int clickcount=0;
 	int x;
 	int y;
@@ -212,16 +209,14 @@ public static void setIndirizzo(String indirizzo) {
 					clickcount=0;
 					
 					
-				            String msgserver=(""+arraymsg[0]+","+arraymsg[1]+","+arraymsg[2]);
-				            System.out.println(msgserver);
+					String msgserver=(""+arraymsg[0]+","+arraymsg[1]+","+arraymsg[2]);
+		            System.out.println(msgserver);
 				            
-				            socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
-				            System.out.println("ho inviato");
-				            System.out.println(""+msgserver);
-				            ricevimsg(socket);
-							
-
-					
+		            socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
+		            System.out.println("ho inviato");
+		            System.out.println(""+msgserver);
+		            ricevimsg(socket);
+				      
 				}
 		
 			}
@@ -251,19 +246,21 @@ public static void setIndirizzo(String indirizzo) {
 	             "Received " + rispostamsg );
 	        
 	      //0   1   2   3   4   5   6   
-			//x   y   St  N   E   S   O
+		  //x   y   St  N   E   S   O
 			System.out.println("quello che ho mandato prima : "+x +" quello che ricevo: "+ arrayRisposta[0]);
 	        
 	        	if(arrayRisposta[6]==0) {
 	        		 while(y!=arrayRisposta[1]) {
 	        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
 	        			 arrayRisposta[1]--;
+	        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 	        		 }
 			        }
 			        if(arrayRisposta[5]==0) {
 			        	while(x!=arrayRisposta[0]) {
 		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
 		        			 arrayRisposta[0]++;
+		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 		        		 }
 				        }
 			        
@@ -271,6 +268,7 @@ public static void setIndirizzo(String indirizzo) {
 			    	   while(y!=arrayRisposta[1]) {
 		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
 		        			 arrayRisposta[1]++;
+		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 		        		 }
 			       }
 		    
@@ -278,6 +276,7 @@ public static void setIndirizzo(String indirizzo) {
 			    	   while(x!=arrayRisposta[0]) {
 		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
 		        			 arrayRisposta[0]--;
+		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 		        		 }
 			       }
 	        }
@@ -376,45 +375,6 @@ public static void setIndirizzo(String indirizzo) {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		String nome= arraymsg[2];
-		
-		
-		for(InfoBoat boat: InfoBoat.values()) {
-			if(boat.name().equalsIgnoreCase(nome))
-				boatlenght=boat.getLunghezza();
-		}
-		 if(e.getSource() instanceof Square)
-		 {
-			 Square square = (Square) e.getSource();
-			 int x = square.getx();
-			 int y = square.gety();
-			
-			 if(x==arrayRisposta[0] && y == arrayRisposta[1])
-			 {
-				 if(arrayRisposta[6]==0) {
-					 for(int i=1;i<boatlenght;i++)
-			        	grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setBackground(Color.white);
-					 System.out.println("colorato di bianco la cella a ovest");
-			        }
-			        if(arrayRisposta[5]==0) {
-			        	for(int i=1;i<boatlenght;i++)
-				        	grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setBackground(Color.white);
-			        	System.out.println("colorato di bianco la cella a sud");
-				        }
-			        
-			       if(arrayRisposta[4]==0) {
-			    	   for(int i=1;i<boatlenght;i++)
-			    		   grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setBackground(Color.white);
-			    	   System.out.println("colorato di bianco la cella a est");
-			       }
-		    
-			       if(arrayRisposta[3]==0) {
-			    	   for(int i=1;i<boatlenght;i++)
-			    		   grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setBackground(Color.white);
-			    	   System.out.println("colorato di bianco la cella a nord");
-			       }
-			 }
-			 }
 		 
 	}
 

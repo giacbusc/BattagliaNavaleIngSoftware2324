@@ -28,7 +28,6 @@ public class LoginControl implements ActionListener
 	public void actionPerformed(ActionEvent e) 
 	{
 			// TODO Auto-generated method stub
-		System.out.println("Ciao");
 		try {
 			
 			model = gui.getUserModel();
@@ -37,11 +36,9 @@ public class LoginControl implements ActionListener
 				JButton clickedButton= (JButton) e.getSource();
 				
 				if(clickedButton.getText().equals("Login")) 
-				{   System.out.println("Ciao3");
+				{   
 	                try {
-	                	System.out.println("Ciao4");
 						if(checkUser(model)){
-							System.out.println("Ciao5");
 							gui.showMessage("Login succesfully!");
 							ConnectionDb conn = new ConnectionDb();
 							conn.closeConnection();
@@ -49,12 +46,10 @@ public class LoginControl implements ActionListener
 						    
 							
 						}else{
-							System.out.println("Ciao6");
 						    gui.showMessage("Invalid username and/or password!");
 						}
 					} catch (SQLException | IOException e1) {
 						// TODO Auto-generated catch block
-						System.out.println("Ciao7");
 						e1.printStackTrace();
 					} 
                 
@@ -66,7 +61,6 @@ public class LoginControl implements ActionListener
 			
 		}catch(Exception e3) {
 			e3.printStackTrace();	
-			System.out.println("Ciao8");
 		}
 			
 		
@@ -80,7 +74,7 @@ public class LoginControl implements ActionListener
     	
     	String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";
         PreparedStatement pstmt = conn1.getConnection().prepareStatement(sql);
-        pstmt.setString(1, model.getUserName());
+        pstmt.setString(1, model.getUserName().trim());
         pstmt.setString(2, model.getPassword());
 
         ResultSet rs = pstmt.executeQuery();

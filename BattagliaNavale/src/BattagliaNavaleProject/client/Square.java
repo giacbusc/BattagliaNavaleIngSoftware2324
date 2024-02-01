@@ -45,6 +45,10 @@ public class Square extends JPanel
 		return this.stato;
 	}
 
+	//Stato: 0 se è libero
+	//		 1 se è occupato
+	//		 2 se è colpito
+	//		 3 se è affondato
 	public void setStato(int stato) {
 		this.stato = stato;
 	}
