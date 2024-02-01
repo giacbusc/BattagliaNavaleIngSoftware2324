@@ -24,7 +24,7 @@ public class ServerSocket {
 
 	public void startServer() {
 
-		socketServer.bind("tcp://172.16.128.120:5530");
+		socketServer.bind("tcp://172.16.128.120:5567");
 
 		try {
 			inizializzaSquare();
@@ -89,6 +89,10 @@ public class ServerSocket {
 			socketServer.close();
 			context.close();
 		}
+		//mandare mex per dire che pui iniziare il 2
+		String responseMessage = "OK POS2";
+		socketServer.send(responseMessage.getBytes(), 0);
+		System.out.println("Inviato: " + responseMessage);
 		turno = 2;
 		piazzamentoBarca(turno);
 	}
@@ -111,9 +115,6 @@ public class ServerSocket {
 		return true;
 	}
 
-	private void piazzTest(int turno) {
-		System.out.println("Inizio piazzamento " + turno);
-	}
 
 	private void piazzamentoBarca(int turno) {
 		System.out.println("il martin dice shhhhh");
@@ -148,10 +149,12 @@ public class ServerSocket {
 				 for (int k = 0; k < spedire.length; k++) {
 			           spedire[k] = "-1";
 			       }
+				 
 				String fiocco2=riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
 						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno);
 				socketServer.send(fiocco2.getBytes(), 0);
 				System.out.println("Inviato fiocco2: " + fiocco2);
+				countB++;
 				
 				//aggiorna gliglia
 					
@@ -163,7 +166,7 @@ public class ServerSocket {
 				aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), turno);
 				
 				stampaGriglia();
-				countB++;
+				if(l==1) {countB++;}
 
 			}
 
@@ -322,7 +325,7 @@ public class ServerSocket {
 						contaCelleVere++;
 					}
 				}
-				if (contaCelleVere == 3) {
+				if (contaCelleVere == 4) {
 					spedire[5] = "0";
 					spedire[2] = "1";
 				}
@@ -335,7 +338,7 @@ public class ServerSocket {
 						contaCelleVere++;
 					}
 				}
-				if (contaCelleVere == 3) {
+				if (contaCelleVere == 4) {
 					spedire[3] = "0";
 					spedire[2] = "1";
 
@@ -349,7 +352,7 @@ public class ServerSocket {
 						contaCelleVere++;
 					}
 				}
-				if (contaCelleVere == 3) {
+				if (contaCelleVere == 4) {
 					spedire[6] = "0";
 					spedire[2] = "1";
 
@@ -363,7 +366,7 @@ public class ServerSocket {
 						contaCelleVere++;
 					}
 				}
-				if (contaCelleVere == 3) {
+				if (contaCelleVere == 4) {
 					spedire[4] = "0";
 					spedire[2] = "1";
 
@@ -508,7 +511,7 @@ public class ServerSocket {
 				}
 				
 				spedire[0]=Integer.toString(xp);
-				spedire[1]=Integer.toString(y+l-1);
+				spedire[1]=Integer.toString(yp+l-1);
 				spedire[2]="1";
 				spedire[6]="0";
 			}
