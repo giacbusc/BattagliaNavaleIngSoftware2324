@@ -25,8 +25,8 @@ public SceltaGiocoControl( SceltaGiocoView s) {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		String tcp= "tcp://172.16.128.120:55";
-		String local="tcp://localhost:5545";
+		String tcp= "tcp://172.16.128.120:5525";
+		String local="tcp://localhost:5530";
 		String[] parti = local.split(":");
 		
 		
@@ -34,7 +34,7 @@ public SceltaGiocoControl( SceltaGiocoView s) {
 		
 		if(e.getSource() instanceof JButton ) {
 			JButton clickedButton= (JButton) e.getSource();
-			if(clickedButton.getName().equals("Multi")) {
+			if(clickedButton.getText().equals("  ")) {
 				try {
 					Server.createTcpServer().start();
 				} catch (SQLException e1) {
@@ -54,11 +54,10 @@ public SceltaGiocoControl( SceltaGiocoView s) {
 					e1.printStackTrace();
 				}
 			}
-			else if(clickedButton.getName().equals("Solo")) {
+			else if(clickedButton.getText().equals("")) {
 				ServerSocket.setIndirizzo("tcp://*:" + parti[2]);
 				ConnectionControl.setIndirizzo(local);
 				SchermataAttesaControl.setIndirizzo(local);
-				DoubleGameGridControl.setIndirizzo(local);
 				System.out.println("un pc");
 				try {
 					s.open();
