@@ -100,13 +100,13 @@ String username;
 	public void close(Socket socket) {
 		try {
 			DoubleGameGridView DGGV= new DoubleGameGridView();
-			DGGV.setVisible(true);
+			DGGV.setVisible(true);	
+			dispose();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		dispose();
+	
 	}
 	
 	

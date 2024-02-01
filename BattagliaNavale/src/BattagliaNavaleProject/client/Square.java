@@ -52,5 +52,10 @@ public class Square extends JPanel
 	public void setStato(int stato) {
 		this.stato = stato;
 	}
+
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return this.color;
+	}
 	
 }

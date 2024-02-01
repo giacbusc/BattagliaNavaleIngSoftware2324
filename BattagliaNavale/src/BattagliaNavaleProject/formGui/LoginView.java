@@ -166,6 +166,4 @@ public void openMenu() throws IOException, SQLException {
 	menu.setVisible(true);
 	dispose(); 
 }
-
-	
 }
