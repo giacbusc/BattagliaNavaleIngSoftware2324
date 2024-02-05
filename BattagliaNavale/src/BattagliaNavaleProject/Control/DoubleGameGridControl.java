@@ -24,12 +24,13 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	
 	private static final int GRID_DIMENSION = 10;
 	public DoubleGameGridView grid;
+	JPanel[] clickedPanel= new JPanel[GRID_DIMENSION];
 	private int clickcount=0;
 	boolean entra=false;
 	int x;
 	int y;
 	private int[] arrayRisposta= new int[7];
-
+	int primo=0;
 	int boatlenght;
 	static String indirizzo;
 	public static String getIndirizzo() {
@@ -71,10 +72,13 @@ public static void setIndirizzo(String indirizzo) {
 		// TODO Auto-generated method stub
  
 		try {
+			
 			if(!(e.getSource()instanceof Square )|| clickcount!=0 || entra==true) {
 				clickcount++;
 				entra=true;
+				
 			if(e.getSource()instanceof Square && clickcount==1 ) {
+				
 				System.out.println(clickcount);
 				
 				Square clickedSquare= (Square) e.getSource();
@@ -187,21 +191,23 @@ public static void setIndirizzo(String indirizzo) {
 					System.out.println("barca cliccata "+(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 					
-					
-				}
-				/*for(int i = 0; i < 10; i++)
+				}	
+				
+				if(primo==1) {
+				for(int i = 0; i < 10; i++)
 	   			{
 	   				for(int j = 0; j < 10; j++)
 	   				{
 	   				 
-	   	   			
+	   					if(grid.yourBoard[i][j].getBackground()!=Color.orange)
 	   	   				grid.yourBoard[i][j].addMouseListener(this);
 	   	   			 
 	   				}
 	   				}
+			
+				}
 			}
-			*/
-			}
+			
 			if(!(e.getSource() instanceof Square )&& clickcount==2) {
 				System.out.println("Non puoi cliccare 2 barche; posiziona la barca che hai attualmente selezionato");
 				clickcount = 1;
@@ -258,7 +264,7 @@ public static void setIndirizzo(String indirizzo) {
 				arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
 	        System.out.println(
 	             "Received " + rispostamsg );
-	      
+	        
 	      //0   1   2   3   4   5   6   
 		  //x   y   St  N   E   S   O
 			System.out.println("quello che ho mandato prima x: "+x +" quello che ricevo: "+ arrayRisposta[0]);
@@ -326,9 +332,9 @@ public static void setIndirizzo(String indirizzo) {
    				
    			 }
    			 
-   			 if(grid.yourBoard[i][j].getBackground()!=Color.orange){
-   				grid.yourBoard[i][j].addMouseListener(this);
-   			 }
+   			 
+   				grid.yourBoard[i][j].removeMouseListener(this);
+   				
    			
    			 
    			 }
@@ -343,7 +349,7 @@ public static void setIndirizzo(String indirizzo) {
 		
        // ZMQ.Socket socket = context.createSocket(SocketType.REQ);
   		//  Socket to talk to server
-			
+			primo=1;
 		 byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
         String rispostamsg= new String(reply, ZMQ.CHARSET);
         System.out.println(rispostamsg);
@@ -407,7 +413,14 @@ public static void setIndirizzo(String indirizzo) {
 			    	   }
 			    	 }
 			 }
-
+			 
+			 //togli i panel
+			/*	for(int i=0;i<9;i++) 
+				{
+					
+					clickedPanel[i].addMouseListener(this);
+				}
+			 */
 			for(int i = 0; i < 10; i++)
 	   			{
 	   				for(int j = 0; j < 10; j++)
