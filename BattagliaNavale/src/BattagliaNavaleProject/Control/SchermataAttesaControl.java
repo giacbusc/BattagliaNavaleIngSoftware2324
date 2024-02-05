@@ -38,7 +38,7 @@ static String indirizzo;
 			System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
 			String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 			
-			if(rispostaMsg== "START2") {
+			if(rispostaMsg== "OKPOS2") {
 				DoubleGameGridView dggv= new DoubleGameGridView();
 			}
 			

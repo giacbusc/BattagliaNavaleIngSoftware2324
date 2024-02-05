@@ -22,9 +22,9 @@ public class ServerSocket {
 	private ZMQ.Socket socketServer = context.createSocket(SocketType.REP);
 	private int turno = 0;
 
-	public void startServer() {
+	public void startServer(String indirizzo) {
 
-		socketServer.bind("tcp://localhost:5541");
+		socketServer.bind(indirizzo);
 
 		try {
 			inizializzaSquare();

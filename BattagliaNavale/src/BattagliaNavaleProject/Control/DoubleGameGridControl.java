@@ -65,7 +65,7 @@ public static void setIndirizzo(String indirizzo) {
 		 System.out.println("sono tornato sopra");
 	     ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-		socket.connect("tcp://localhost:5541");
+		socket.connect("tcp://localhost:5547");
 			
 				
 		// TODO Auto-generated method stub
@@ -289,6 +289,7 @@ public static void setIndirizzo(String indirizzo) {
 		        		 }
 			       }
 			       colorabianco();
+			       //tutto non cliccabile 
 	        }
 	        
 	        
@@ -396,7 +397,7 @@ public static void setIndirizzo(String indirizzo) {
 			    	 }
 			 }
 
-			 for(int i = 0; i < 10; i++)
+			/* for(int i = 0; i < 10; i++)
 	   			{
 	   				for(int j = 0; j < 10; j++)
 	   				{
@@ -407,6 +408,7 @@ public static void setIndirizzo(String indirizzo) {
 	   				}
 	   				
 	   			}
+	   			*/
 	}
 
         
