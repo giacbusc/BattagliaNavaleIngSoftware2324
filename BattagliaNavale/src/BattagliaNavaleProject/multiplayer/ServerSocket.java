@@ -78,26 +78,43 @@ public class ServerSocket {
 					turno = 1;
 
 					piazzamentoBarca(turno);
+
 					clientIndex++;
+					System.out.println(clientIndex);
+					turno = 2;
 
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			// Chiusura del socket e del contesto alla fine del programma
-			System.out.println("il martin fa etciù");
 			socketServer.close();
 			context.close();
+		} /*
+			 * finally { // Chiusura del socket e del contesto alla fine del programma
+			 * System.out.println("il martin fa etciù");
+			 * 
+			 * }
+			 */
+
+		if (turno == 2) {
+			byte[] reply = socketServer.recv(0);
+			String messaggio = new String(reply, ZMQ.CHARSET);
+			System.out.println("ricevuto: " + messaggio);
+
+			if (messaggio.equals("CODA")) {
+				String responseMessage = "OK POS2";
+				socketServer.send(responseMessage.getBytes(), 0);
+				System.out.println("Inviato: " + responseMessage);
+				piazzamentoBarca(turno);
+			}
 		}
 		// mandare mex per dire che pui iniziare il 2
 		/*
-		String responseMessage = "OK POS2";
-		socketServer.send(responseMessage.getBytes(), 0);
-		System.out.println("Inviato: " + responseMessage);
-		turno = 2;
-		piazzamentoBarca(turno);
-		*/
+		 * String responseMessage = "OK POS2";
+		 * socketServer.send(responseMessage.getBytes(), 0);
+		 * System.out.println("Inviato: " + responseMessage); turno = 2;
+		 * piazzamentoBarca(turno);
+		 */
 	}
 
 	public String getIndirizzo() {
@@ -120,7 +137,7 @@ public class ServerSocket {
 
 	private void piazzamentoBarca(int turno) {
 		System.out.println("il martin dice shhhhh");
-		int countB = 0;
+		int countB = 0; // contatore barche
 		mexprec[2] = "firstPosition";
 		System.out.println("inizio piazzamento ");
 		while (countB < 10) {
@@ -134,7 +151,7 @@ public class ServerSocket {
 				System.out.println("Inviato: " + responseMessage);
 				continue;
 			}
-			stampaGriglia();
+			stampaGriglia(turno);
 
 			String[] mexSplit = messaggio.split(",");
 			String x = mexSplit[0];
@@ -165,7 +182,7 @@ public class ServerSocket {
 
 				aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), turno);
 
-				stampaGriglia();
+				stampaGriglia(turno);
 				if (l == 1) {
 					countB++;
 				}
@@ -183,15 +200,6 @@ public class ServerSocket {
 				System.out.println("Elemento " + i + ": " + mexprec[i]);
 			}
 
-		}
-		
-		if(turno==1)
-		{
-			String responseMessage = "OK POS2";
-			socketServer.send(responseMessage.getBytes(), 0);
-			System.out.println("Inviato: " + responseMessage);
-			turno = 2;
-			piazzamentoBarca(turno);
 		}
 
 	}
@@ -541,10 +549,13 @@ public class ServerSocket {
 		}
 	}
 
-	public void stampaGriglia() {
+	public void stampaGriglia(int turno) {
 		for (int i = 0; i < MAX_LENGTH; i++) {
 			for (int j = 0; j < MAX_LENGTH; j++) {
-				System.out.print(player1[i][j].getStato() + "\t");
+				if (turno == 1)
+					System.out.print(player1[i][j].getStato() + "\t");
+				else
+					System.out.println(player2[i][j].getStato() + "\t");
 			}
 			System.out.println(); // Vai a capo dopo ogni riga
 		}
