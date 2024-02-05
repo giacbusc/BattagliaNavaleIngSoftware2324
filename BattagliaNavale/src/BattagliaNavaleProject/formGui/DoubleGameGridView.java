@@ -279,8 +279,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 					yourBoard[i][j].addMouseMotionListener(this);
 					yourBoardPanel.add(yourBoard[i][j]);
 					opponentBoard[i][j]= new Square(i,j,0);
-					opponentBoard[i][j].addMouseListener(DGGC);//
-					opponentBoard[i][j].addMouseMotionListener(this);
+					
 					opponentBoard[i][j].setName( "opponentBoard" ); //
 					opponentBoardPanel.add(opponentBoard[i][j]);
 					
@@ -344,10 +343,12 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 		frame.pack();
 		
 	}
-	public void mostra() {
+	/*public void mostra() {
 		// TODO Auto-generated method stub
 		yourBoardPanel.addMouseListener(DGGC);//
+		
 	}
+	*/
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub

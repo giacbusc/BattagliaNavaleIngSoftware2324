@@ -65,7 +65,7 @@ public static void setIndirizzo(String indirizzo) {
 		 System.out.println("sono tornato sopra");
 	     ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-		socket.connect(indirizzo);
+		socket.connect("tcp://localhost:5541");
 			
 				
 		// TODO Auto-generated method stub
@@ -248,7 +248,7 @@ public static void setIndirizzo(String indirizzo) {
 				arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
 	        System.out.println(
 	             "Received " + rispostamsg );
-	        
+	      
 	      //0   1   2   3   4   5   6   
 		  //x   y   St  N   E   S   O
 			System.out.println("quello che ho mandato prima x: "+x +" quello che ricevo: "+ arrayRisposta[0]);
@@ -256,19 +256,18 @@ public static void setIndirizzo(String indirizzo) {
 	        	if(arrayRisposta[6]==0) {
 	        		 while(y!=arrayRisposta[1]) {
 	        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
-	        			 
 	        			 arrayRisposta[1]--;
 	        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 	        			 
 	        		 }
-	        		 colorabianco();
+	        		
 			        }
 			        if(arrayRisposta[5]==0) {
 			        	while(x!=arrayRisposta[0]) {
 		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
 		        			 arrayRisposta[0]++;
 		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
-		        			 colorabianco();
+		        			
 		        		 }
 				        }
 			        
@@ -277,7 +276,7 @@ public static void setIndirizzo(String indirizzo) {
 		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
 		        			 arrayRisposta[1]++;
 		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
-		        			 colorabianco();
+		        			
 		        		 }
 			       }
 		    
@@ -286,9 +285,10 @@ public static void setIndirizzo(String indirizzo) {
 		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
 		        			 arrayRisposta[0]--;
 		        			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
-		        			 colorabianco();
+		        			 
 		        		 }
 			       }
+			       colorabianco();
 	        }
 	        
 	        
@@ -299,7 +299,7 @@ public static void setIndirizzo(String indirizzo) {
 	
 	
 	private void colorabianco() {
-		System.out.println("sto colorando"+ arrayRisposta[0]+arrayRisposta[1]);
+		
 		
    		
    		//grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
@@ -307,42 +307,23 @@ public static void setIndirizzo(String indirizzo) {
    			{
    				for(int j = 0; j < 10; j++)
    				{
-   			 if( grid.yourBoard[i][j].getColor()==Color.gray) {
-   				 System.out.println(grid.yourBoard[i][j]);
+   			 if( grid.yourBoard[i][j].getBackground()==Color.gray && grid.yourBoard[i][j].getStato()==0) {
+   				 
+   				 
    				grid.yourBoard[i][j].setBackground(Color.white);
+   				
+   				
    			 }
+   			 //tutto tranne arancione cliccabile 
+   			 if(grid.yourBoard[i][j].getBackground()!=Color.orange){
+   				grid.yourBoard[i][j].setEnabled(true);
+   			 }
+   			 
    			 }
 		
 		}
    			
-   			 /*
-   			if(arrayRisposta[6]==0) {
-   		   		
-      			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
-      			 //gira tutte le square
-   		 
-	        }
-	        if(arrayRisposta[5]==0) {
-	        	
-       			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
-       			 arrayRisposta[0]++;
-       			
-		        }
-	        
-	       if(arrayRisposta[4]==0) {
-	    	   	
-       			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
-       			 arrayRisposta[1]++;
-       			
-	       }
-   
-	       if(arrayRisposta[3]==0) {
-	    	  
-       			 grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
-       			 arrayRisposta[0]--;
-       			 
-       		 }
-	       */
+   		
 	}
 	
 
@@ -387,7 +368,6 @@ public static void setIndirizzo(String indirizzo) {
 					 for(int i=1;i<boatlenght;i++) { 
 						 if(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].getStato()==0) {
 			        	grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setBackground(Color.gray);
-					 	grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setColor(Color.gray);
 					 }
 					 }
 			        }
@@ -395,7 +375,6 @@ public static void setIndirizzo(String indirizzo) {
 			        	for(int i=1;i<boatlenght;i++) {
 			        		if(grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].getStato()==0) {
 				        	grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setBackground(Color.gray);
-				        	grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setColor(Color.gray);
 				        }
 			        	}
 			        }
@@ -404,7 +383,6 @@ public static void setIndirizzo(String indirizzo) {
 			    	   for(int i=1;i<boatlenght;i++) {
 			    		   if(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].getStato()==0) {
 			    		   grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setBackground(Color.gray);
-			    	   grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setColor(Color.gray);
 			    	   }
 			    	   }
 			       }
@@ -412,14 +390,24 @@ public static void setIndirizzo(String indirizzo) {
 			       if(arrayRisposta[3]==0) {
 			    	   for(int i=1;i<boatlenght;i++) {
 			    		   if(grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].getStato()==0) {
-			    			
 			    		   grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setBackground(Color.gray);
-			    	   grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setBackground(Color.gray);
 			    	   }
 			    	   }
 			    	 }
 			 }
-			 }
+
+			 for(int i = 0; i < 10; i++)
+	   			{
+	   				for(int j = 0; j < 10; j++)
+	   				{
+	   					if(grid.yourBoard[i][j].getBackground()!=Color.gray){
+	   		   				grid.yourBoard[i][j].setEnabled(false);
+	   		   			 }
+	   					
+	   				}
+	   				
+	   			}
+	}
 
         
          
@@ -438,45 +426,7 @@ public static void setIndirizzo(String indirizzo) {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		
-		//0   1   2   3   4   5   6   
-		//x   y   St  N   E   S   O
-		/*String nome= arraymsg[2];
-		
-		
-		for(InfoBoat boat: InfoBoat.values()) {
-			if(boat.name().equalsIgnoreCase(nome))
-				boatlenght=boat.getLunghezza();
-		}
-		 if(e.getSource() instanceof Square)
-		 {
-			 Square square = (Square) e.getSource();
-			 int x = square.getx();
-			 int y = square.gety();
-			
-			 if(x==arrayRisposta[0] && y == arrayRisposta[1])
-			 {
-				 if(arrayRisposta[6]==0) {
-					 for(int i=1;i<boatlenght;i++)
-			        	grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setBackground(Color.gray);
-			        }
-			        if(arrayRisposta[5]==0) {
-			        	for(int i=1;i<boatlenght;i++)
-				        	grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setBackground(Color.gray);
-				        }
-			        
-			       if(arrayRisposta[4]==0) {
-			    	   for(int i=1;i<boatlenght;i++)
-			    		   grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setBackground(Color.gray);
-			       }
-		    
-			       if(arrayRisposta[3]==0) {
-			    	   for(int i=1;i<boatlenght;i++)
-			    		   grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setBackground(Color.gray);
-			       }
-			 }
-			 }
-
-		*/
+	
 	}
 
 	@Override
