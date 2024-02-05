@@ -189,9 +189,19 @@ public static void setIndirizzo(String indirizzo) {
 					
 					
 				}
-				//clickcount++;
+				/*for(int i = 0; i < 10; i++)
+	   			{
+	   				for(int j = 0; j < 10; j++)
+	   				{
+	   				 
+	   	   			
+	   	   				grid.yourBoard[i][j].addMouseListener(this);
+	   	   			 
+	   				}
+	   				}
 			}
-			
+			*/
+			}
 			if(!(e.getSource() instanceof Square )&& clickcount==2) {
 				System.out.println("Non puoi cliccare 2 barche; posiziona la barca che hai attualmente selezionato");
 				clickcount = 1;
@@ -315,10 +325,11 @@ public static void setIndirizzo(String indirizzo) {
    				
    				
    			 }
-   			 //tutto tranne arancione cliccabile 
+   			 
    			 if(grid.yourBoard[i][j].getBackground()!=Color.orange){
-   				grid.yourBoard[i][j].setEnabled(true);
+   				grid.yourBoard[i][j].addMouseListener(this);
    			 }
+   			
    			 
    			 }
 		
@@ -397,18 +408,18 @@ public static void setIndirizzo(String indirizzo) {
 			    	 }
 			 }
 
-			/* for(int i = 0; i < 10; i++)
+			for(int i = 0; i < 10; i++)
 	   			{
 	   				for(int j = 0; j < 10; j++)
 	   				{
 	   					if(grid.yourBoard[i][j].getBackground()!=Color.gray){
-	   		   				grid.yourBoard[i][j].setEnabled(false);
+	   		   				grid.yourBoard[i][j].removeMouseListener(this);
 	   		   			 }
 	   					
 	   				}
 	   				
 	   			}
-	   			*/
+	   			
 	}
 
         
