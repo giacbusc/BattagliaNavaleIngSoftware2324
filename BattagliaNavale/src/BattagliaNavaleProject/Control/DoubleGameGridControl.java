@@ -316,23 +316,14 @@ public static void setIndirizzo(String indirizzo) {
    				 
    				 
    				grid.yourBoard[i][j].setBackground(Color.white);
-   				
-   				
    			 }
-   			 
-   			 
    				grid.yourBoard[i][j].removeMouseListener(this);
    				
-   			
-   			 
    			 }
 		
 		}
    			
-   			for(int i=0;i<GRID_DIMENSION;i++) {
-   				arrayPanel[i].addMouseListener(this);
-   			}
-   		
+   			aggiungiPanel();
 	}
 	
 
@@ -360,7 +351,7 @@ public static void setIndirizzo(String indirizzo) {
         grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.ORANGE);
 		}
 		
-		//else fai qualcosa per l'errore 
+		
 		String nome= arraymsg[2];
 		
 		
@@ -368,8 +359,12 @@ public static void setIndirizzo(String indirizzo) {
 			if(boat.name().equalsIgnoreCase(nome)) {
 				boatlenght=boat.getLunghezza();
 			}
+			
 			if(boatlenght!=1) {
 				togliPanel();
+			}
+			if(boatlenght==1) {
+				aggiungiPanel();
 			}
 		}
 		 
@@ -423,6 +418,12 @@ public static void setIndirizzo(String indirizzo) {
 	   			}
 	   			
 	}
+	public void aggiungiPanel() {
+	for(int i=0;i<GRID_DIMENSION;i++) {
+			arrayPanel[i].addMouseListener(this);
+		}
+	}
+	
 	 public void togliPanel() {
 			for(int i=0;i<GRID_DIMENSION;i++) {
 				arrayPanel[i].removeMouseListener(this);
