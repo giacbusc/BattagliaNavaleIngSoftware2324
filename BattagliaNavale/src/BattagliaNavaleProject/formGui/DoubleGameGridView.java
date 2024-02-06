@@ -53,6 +53,8 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
+	
+	
 	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
 	
 	public static void main(String[] args) {
@@ -414,4 +416,11 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 		// TODO Auto-generated method stub
 		
 	}
+	public JPanel[] getPanel() {
+		return panel;
+	}
+	public void setPanel(JPanel[] panel) {
+		this.panel = panel;
+	}
+
 }

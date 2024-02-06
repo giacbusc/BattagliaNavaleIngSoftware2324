@@ -24,6 +24,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	
 	private static final int GRID_DIMENSION = 10;
 	public DoubleGameGridView grid;
+	JPanel clickedPanel;
 	JPanel[] arrayPanel= new JPanel[GRID_DIMENSION];
 	private int clickcount=0;
 	boolean entra=false;
@@ -61,7 +62,7 @@ public static void setIndirizzo(String indirizzo) {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		 assegnaPanel();
 		 System.out.println("Connecting to th server");
 		 System.out.println("sono tornato sopra");
 	     ZMQ.Socket socket = context.createSocket(SocketType.REQ);
@@ -108,92 +109,73 @@ public static void setIndirizzo(String indirizzo) {
 			
 			else if(e.getSource() instanceof JPanel && clickcount==1) {
 				
-				JPanel clickedPanel= (JPanel) e.getSource();
+				clickedPanel= (JPanel) e.getSource();
 
-				if(clickedPanel.getName().equals("0")) 
+				if(clickedPanel.getName().equals("Aircraft")) 
 				{   
-					clickedPanel.setName("Aircraft");
-					arrayPanel[0]=clickedPanel;
 					arraymsg[2]=clickedPanel.getName();
 					clickedPanel.setVisible(false);
 					System.out.println("ciao funziono sono il clickcount "+ clickcount);
 					
 				}
-				else if(clickedPanel.getName().equals("1") ) 
+				else if(clickedPanel.getName().equals("Destroyer1") ) 
 				{
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("Destroyer1");
-					arrayPanel[1]=clickedPanel;
+					
 					arraymsg[2]=clickedPanel.getName();
 					System.out.println("barca cliccata "+arraymsg[2]);
 				}
-				else if(clickedPanel.getName().equals("2"))
+				else if(clickedPanel.getName().equals("Destroyer2"))
 				{
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("Destroyer2");
-					arrayPanel[2]=clickedPanel;
 					arraymsg[2]=clickedPanel.getName();
 					System.out.println("barca cliccata "+arraymsg[2]);
 				}
-				else if(clickedPanel.getName().equals("3") ) 
+				else if(clickedPanel.getName().equals("Cruiser1") ) 
 				{
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("Cruiser1");
-					arrayPanel[3]=clickedPanel;
 					arraymsg[2]=clickedPanel.getName();
 					System.out.println("barca cliccata "+arraymsg[2]);
 				}
-				else if(clickedPanel.getName().equals("4") ) 
+				else if(clickedPanel.getName().equals("Cruiser2") ) 
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("Cruiser2");
-					arrayPanel[4]=clickedPanel;
 					System.out.println("barca cliccata "+(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 				}
-				else if(clickedPanel.getName().equals("5") ) 
+				else if(clickedPanel.getName().equals("Cruiser3") ) 
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("Cruiser3");
-					arrayPanel[5]=clickedPanel;
 					System.out.println("barca cliccata "+(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 				}
-				else if(clickedPanel.getName().equals("6") ) 
+				else if(clickedPanel.getName().equals("Submarine1") ) 
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("Submarine1");
-					arrayPanel[6]=clickedPanel;
 					System.out.println("barca cliccata "+clickedPanel.getName());
 					arraymsg[2]=(clickedPanel.getName());     
 				}
-				else if(clickedPanel.getName().equals("7") ) 
+				else if(clickedPanel.getName().equals("Submarine2") ) 
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("Submarine2");
-					arrayPanel[7]=clickedPanel;
 					System.out.println("barca cliccata "+(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 				}
-				else if(clickedPanel.getName().equals("8") ) 
+				else if(clickedPanel.getName().equals("Submarine3") ) 
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("Submarine3");
-					arrayPanel[8]=clickedPanel;
 					System.out.println("barca cliccata "+(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 				}
-				else if(clickedPanel.getName().equals("9") ) 
+				else if(clickedPanel.getName().equals("Submarine4") ) 
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
-					clickedPanel.setName("Submarine4");
-					arrayPanel[9]=clickedPanel;
 					System.out.println("barca cliccata "+(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 					
@@ -347,6 +329,9 @@ public static void setIndirizzo(String indirizzo) {
 		
 		}
    			
+   			for(int i=0;i<GRID_DIMENSION;i++) {
+   				arrayPanel[i].addMouseListener(this);
+   			}
    		
 	}
 	
@@ -380,8 +365,12 @@ public static void setIndirizzo(String indirizzo) {
 		
 		
 		for(InfoBoat boat: InfoBoat.values()) {
-			if(boat.name().equalsIgnoreCase(nome))
+			if(boat.name().equalsIgnoreCase(nome)) {
 				boatlenght=boat.getLunghezza();
+			}
+			if(boatlenght!=1) {
+				togliPanel();
+			}
 		}
 		 
 			
@@ -421,12 +410,6 @@ public static void setIndirizzo(String indirizzo) {
 			 }
 			 
 
-			 //togli i panel
-			for(int i=0;i<9;i++) 
-				{   
-					arrayPanel[i].removeMouseListener(this);
-				}
-			 
 			for(int i = 0; i < 10; i++)
 	   			{
 	   				for(int j = 0; j < 10; j++)
@@ -440,10 +423,88 @@ public static void setIndirizzo(String indirizzo) {
 	   			}
 	   			
 	}
-
+	 public void togliPanel() {
+			for(int i=0;i<GRID_DIMENSION;i++) {
+				arrayPanel[i].removeMouseListener(this);
+			}
+		 }
         
-         
+    private void assegnaPanel() {     
+    	
+    	JPanel[] vettore;
+    	vettore= grid.getPanel();
+    	
+	for(int i=0;i<10;i++) {
+		if(vettore[i].getName().equals("0")) 
+		{   
+			vettore[i].setName("Aircraft");
+			arrayPanel[0]=vettore[i];
+			
+			
+		}
+		else if(vettore[i].getName().equals("1") ) 
+		{
+			
+			vettore[i].setName("Destroyer1");
+			arrayPanel[1]=vettore[i];
+			
+		}
+		else if(vettore[i].getName().equals("2"))
+		{
+			vettore[i].setName("Destroyer2");
+			arrayPanel[2]=vettore[i];
+			
+		}
+		else if(vettore[i].getName().equals("3") ) 
+		{
+			
+			vettore[i].setName("Cruiser1");
+			arrayPanel[3]=vettore[i];
+			
+		}
+		else if(vettore[i].getName().equals("4") ) 
+		{
+			
+			vettore[i].setName("Cruiser2");
+			arrayPanel[4]=vettore[i];
+			
+		}
+		else if(vettore[i].getName().equals("5") ) 
+		{
+			vettore[i].setName("Cruiser3");
+			arrayPanel[5]=vettore[i];
+			
+		}
+		else if(vettore[i].getName().equals("6") ) 
+		{
+			vettore[i].setName("Submarine1");
+			arrayPanel[6]=vettore[i];
+			
+		}
+		else if(vettore[i].getName().equals("7") ) 
+		{
+			vettore[i].setName("Submarine2");
+			arrayPanel[7]=vettore[i];
+			
+		}
+		else if(vettore[i].getName().equals("8") ) 
+		{
+			vettore[i].setName("Submarine3");
+			arrayPanel[8]=vettore[i];
+			
+		}
+		else if(vettore[i].getName().equals("9") ) 
+		{
+			
+			vettore[i].setName("Submarine4");
+			arrayPanel[9]=vettore[i];
+			
+		}	
+	}
+	grid.setPanel(vettore);
+    }
 	
+
 
 	@Override
 	public void mousePressed(MouseEvent e) {
