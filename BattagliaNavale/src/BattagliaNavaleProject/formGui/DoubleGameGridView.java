@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -19,6 +20,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import org.zeromq.ZMQ;
@@ -39,9 +41,11 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 	public Square[][] opponentBoard;
 	private JPanel shipsPanel;
 	private JPanel gridPanel;
+	private JPanel waitPanel;
 	private GridBagConstraints c;
 	private GridBagConstraints c1;
 	private GridBagConstraints c2;
+	private GridBagConstraints c3;
 	private ArrayList<Integer> dim;
 	private int selectedShip;
 	private final Border topLeftBorder = BorderFactory.createMatteBorder(1, 1, 0, 0, Color.black);
@@ -51,7 +55,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 	private JPanel panel[];
 	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run()
 			{
@@ -70,7 +74,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 		
 		
 		
-	}*/
+	}
 	
 	/*public DoubleGameGridGUI()
 	{
@@ -121,6 +125,8 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 		c = new GridBagConstraints();
 		c1 = new GridBagConstraints();
 		c2 = new GridBagConstraints();
+		c3 = new GridBagConstraints();
+		c3.fill = GridBagConstraints.BOTH;
 		gridPanel =  new JPanel();
 		centralTopPanel = new JPanel();
 		JPanel backgroundPanel = new JPanel();
@@ -340,9 +346,33 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 		//getContentPane().add(yourBoardPanel, BorderLayout.WEST);
 		dim=getDimNavi();
 		boatList(dim);
+		waitPanelCreation();
 		frame.pack();
 		
 	}
+	private void waitPanelCreation() {
+		// TODO Auto-generated method stub
+		waitPanel = new JPanel();
+		waitPanel.setBackground(Color.white);
+		c3.gridx = 1 ;
+		c3.gridy = 1;
+		c3.weightx = 2;
+		gridPanel.add(waitPanel,c3);
+		GridBagLayout gbl_waitPanel = new GridBagLayout();
+		gbl_waitPanel.columnWidths = new int[]{0};
+		gbl_waitPanel.rowHeights = new int[]{0};
+		gbl_waitPanel.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_waitPanel.rowWeights = new double[]{Double.MIN_VALUE};
+		waitPanel.setLayout(gbl_waitPanel);
+		
+		JLabel attesa = new JLabel("Attendi che l'avversario finisca il posizionamento");
+		 attesa.setForeground(new Color(0, 128, 255));
+	        attesa.setFont(new Font("Tahoma", Font.BOLD, 28));
+	        attesa.setHorizontalAlignment(SwingConstants.CENTER);
+		waitPanel.add(attesa);
+		waitPanel.setVisible(false);
+	}
+
 	/*public void mostra() {
 		// TODO Auto-generated method stub
 		yourBoardPanel.addMouseListener(DGGC);//
