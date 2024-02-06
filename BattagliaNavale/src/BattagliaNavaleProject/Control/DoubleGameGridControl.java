@@ -7,6 +7,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.IOException;
 import java.util.Arrays;
 
 import javax.swing.JPanel;
@@ -21,7 +22,7 @@ import BattagliaNavaleProject.client.InfoBoat;
 import BattagliaNavaleProject.client.Square;
 
 public class DoubleGameGridControl implements MouseListener, MouseMotionListener{
-	
+	static int barche=0;
 	private static final int GRID_DIMENSION = 10;
 	public DoubleGameGridView grid;
 	JPanel clickedPanel;
@@ -238,7 +239,7 @@ public static void setIndirizzo(String indirizzo) {
 		
 	}
 	
-	public void ricevi2msg(ZMQ.Socket socket,int x,int y) {
+	public void ricevi2msg(ZMQ.Socket socket,int x,int y) throws InterruptedException, IOException {
 		
 		
 		
@@ -303,7 +304,7 @@ public static void setIndirizzo(String indirizzo) {
 		 
 	
 	
-	private void colorabianco() {
+	private void colorabianco() throws InterruptedException, IOException {
 		
 		
    		
@@ -324,10 +325,15 @@ public static void setIndirizzo(String indirizzo) {
 		}
    			
    			aggiungiPanel();
+   			if(barche==10) {
+				terminaPosizionamento();
+		}
 	}
 	
 
-	public void ricevimsg(ZMQ.Socket socket) {
+	public void ricevimsg(ZMQ.Socket socket) throws InterruptedException, IOException {
+		
+	
 		
        // ZMQ.Socket socket = context.createSocket(SocketType.REQ);
   		//  Socket to talk to server
@@ -353,7 +359,7 @@ public static void setIndirizzo(String indirizzo) {
 		
 		
 		String nome= arraymsg[2];
-		
+		barche++;
 		
 		for(InfoBoat boat: InfoBoat.values()) {
 			if(boat.name().equalsIgnoreCase(nome)) {
@@ -365,6 +371,9 @@ public static void setIndirizzo(String indirizzo) {
 			}
 			if(boatlenght==1) {
 				aggiungiPanel();
+				if(barche==10) {
+					terminaPosizionamento();
+			}
 			}
 		}
 		 
@@ -505,7 +514,29 @@ public static void setIndirizzo(String indirizzo) {
 	grid.setPanel(vettore);
     }
 	
-
+    public void terminaPosizionamento() throws InterruptedException, IOException {
+    	
+    	boolean r=true;
+    	
+    	do {
+			Thread.sleep(5000);
+			String sendMsg = "CODA";
+			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
+			System.out.println(sendMsg);
+			
+			byte[] byteMsg = socket.recv(0);
+			System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
+			String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
+			
+			if(rispostaMsg.equals("OK POS2")) {
+				
+				DoubleGameGridView dggv= new DoubleGameGridView();
+				r=false;
+			}
+			
+		}while(r==true);
+	        
+    }
 
 	@Override
 	public void mousePressed(MouseEvent e) {
