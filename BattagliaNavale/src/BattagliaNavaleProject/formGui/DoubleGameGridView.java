@@ -352,7 +352,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 		frame.pack();
 		
 	}
-	private void waitPanelCreation() {
+	public void waitPanelCreation() {
 		// TODO Auto-generated method stub
 		waitPanel = new JPanel();
 		waitPanel.setBackground(Color.white);
@@ -372,7 +372,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 	        attesa.setFont(new Font("Tahoma", Font.BOLD, 28));
 	        attesa.setHorizontalAlignment(SwingConstants.CENTER);
 		waitPanel.add(attesa);
-		waitPanel.setVisible(false);
+		waitPanel.setVisible(true);
 	}
 
 	/*public void mostra() {

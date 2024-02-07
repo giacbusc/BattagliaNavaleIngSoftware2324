@@ -22,7 +22,7 @@ import BattagliaNavaleProject.client.InfoBoat;
 import BattagliaNavaleProject.client.Square;
 
 public class DoubleGameGridControl implements MouseListener, MouseMotionListener{
-	static int barche=0;
+	
 	private static final int GRID_DIMENSION = 10;
 	public DoubleGameGridView grid;
 	JPanel clickedPanel;
@@ -187,7 +187,6 @@ public static void setIndirizzo(String indirizzo) {
 	   			{
 	   				for(int j = 0; j < 10; j++)
 	   				{
-	   				 
 	   					if(grid.yourBoard[i][j].getBackground()!=Color.orange)
 	   	   				grid.yourBoard[i][j].addMouseListener(this);
 	   	   			 
@@ -325,9 +324,7 @@ public static void setIndirizzo(String indirizzo) {
 		}
    			
    			aggiungiPanel();
-   			/*if(barche==10) {
-				terminaPosizionamento();
-		}*/
+   			
 	}
 	
 
@@ -362,7 +359,7 @@ public static void setIndirizzo(String indirizzo) {
 		}
 		
 		String nome= arraymsg[2];
-		//barche++;
+		
 		
 		for(InfoBoat boat: InfoBoat.values()) {
 			if(boat.name().equalsIgnoreCase(nome)) {
@@ -374,9 +371,7 @@ public static void setIndirizzo(String indirizzo) {
 			}
 			if(boatlenght==1) {
 				aggiungiPanel();
-				/*if(barche==10) {
-					terminaPosizionamento();
-			}*/
+				
 			}
 		}
 		 
@@ -521,9 +516,11 @@ public static void setIndirizzo(String indirizzo) {
     	
     	boolean r=true;
     	
+    	grid.waitPanelCreation();
+    	
     	do {
 			Thread.sleep(5000);
-			String sendMsg = "CODA";
+			String sendMsg = "ATA";
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 			System.out.println(sendMsg);
 			
