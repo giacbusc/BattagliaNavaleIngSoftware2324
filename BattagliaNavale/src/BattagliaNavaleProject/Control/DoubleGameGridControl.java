@@ -325,9 +325,9 @@ public static void setIndirizzo(String indirizzo) {
 		}
    			
    			aggiungiPanel();
-   			if(barche==10) {
+   			/*if(barche==10) {
 				terminaPosizionamento();
-		}
+		}*/
 	}
 	
 
@@ -357,9 +357,12 @@ public static void setIndirizzo(String indirizzo) {
         grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.ORANGE);
 		}
 		
+		if(arrayRisposta[7]==1) {
+        terminaPosizionamento();
+		}
 		
 		String nome= arraymsg[2];
-		barche++;
+		//barche++;
 		
 		for(InfoBoat boat: InfoBoat.values()) {
 			if(boat.name().equalsIgnoreCase(nome)) {
@@ -371,9 +374,9 @@ public static void setIndirizzo(String indirizzo) {
 			}
 			if(boatlenght==1) {
 				aggiungiPanel();
-				if(barche==10) {
+				/*if(barche==10) {
 					terminaPosizionamento();
-			}
+			}*/
 			}
 		}
 		 
