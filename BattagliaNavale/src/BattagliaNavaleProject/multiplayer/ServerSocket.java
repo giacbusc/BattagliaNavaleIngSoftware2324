@@ -179,6 +179,7 @@ public class ServerSocket {
 			int l = boat.getLunghezza();
 			System.out.println("Lunghezza barca: " + l);
 			System.out.println("Nome barca: "+nomeBarca);
+			String[] dividimex = null; 
 			if (mexprec[2].equals(nomeBarca)) { // secondo click della barca
 				// RIEMPI CELLE
 				//setto spedire a -1
@@ -208,6 +209,7 @@ public class ServerSocket {
 					
 			} else { // primo click
 				String fiocco = controllaCella(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l, turno);
+				dividimex = fiocco.split(",");
 				if(l==1 && countB==9)
 				{
 					fiocco=fiocco + "1";//Per indicare che il posizionamento è terminato al client
@@ -222,7 +224,7 @@ public class ServerSocket {
 				
 				aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), turno);
 
-
+				
 				stampaGriglia(turno);
 				if (l == 1) {
 					countB++;
@@ -232,17 +234,27 @@ public class ServerSocket {
 	
 
 			}
-
+			
+			
+			
 			// LOGICA DI SPEDIZIONE DEL MEX
 			// nel mex prec salviamo x,y,nomebarca
-			
-			mexprec[0] = x;
-			mexprec[1] = y;
-			mexprec[2] = nomeBarca;
-			
-			for (int i = 0; i < mexprec.length; i++) {
-			    System.out.println("Elemento " + i + ": " + mexprec[i]);
+			if(!(dividimex[2].equals("-1")))
+			{
+				mexprec[0] = x;
+				mexprec[1] = y;
+				mexprec[2] = nomeBarca;
+				
+				for (int i = 0; i < mexprec.length; i++) {
+				    System.out.println("Elemento " + i + ": " + mexprec[i]);
+				}
 			}
+			else
+			{
+				mexprec[2]="errorposition";
+			}
+				
+			
 
 		}
 
@@ -601,8 +613,10 @@ public class ServerSocket {
 
 
 	public void stampaGriglia(int turno) {
-		for (int i = 0; i < MAX_LENGTH; i++) {
-			for (int j = 0; j < MAX_LENGTH; j++) {
+		for (int i = 0; i < MAX_LENGTH; i++) 
+		{
+			for (int j = 0; j < MAX_LENGTH; j++) 
+			{
 				if (turno == 1)
 					System.out.print(player1[i][j].getStato() + "\t");
 				else

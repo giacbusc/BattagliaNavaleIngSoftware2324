@@ -68,7 +68,7 @@ public static void setIndirizzo(String indirizzo) {
 		 System.out.println("sono tornato sopra");
 	     ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-		socket.connect("tcp://localhost:5547");
+		socket.connect(indirizzo);
 			
 				
 		// TODO Auto-generated method stub
@@ -525,7 +525,7 @@ public static void setIndirizzo(String indirizzo) {
     	do {
     		   ZMQ.Socket socket = context.createSocket(SocketType.REQ);
    	  		//  Socket to talk to server
-   		socket.connect("tcp://localhost:5547");
+   		socket.connect(indirizzo);
 			Thread.sleep(5000);
 			String sendMsg = "ATA";
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
