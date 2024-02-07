@@ -26,6 +26,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	private static final int GRID_DIMENSION = 10;
 	public DoubleGameGridView grid;
 	JPanel clickedPanel;
+	boolean salta=false;
 	JPanel[] arrayPanel= new JPanel[GRID_DIMENSION];
 	private int clickcount=0;
 	boolean entra=false;
@@ -37,6 +38,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	static String indirizzo;
 	public static String getIndirizzo() {
 	return indirizzo;
+	
 }
 
 public static void setIndirizzo(String indirizzo) {
@@ -68,7 +70,7 @@ public static void setIndirizzo(String indirizzo) {
 		 System.out.println("sono tornato sopra");
 	     ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	  		//  Socket to talk to server
-		socket.connect("tcp://localhost:5547");
+		socket.connect(indirizzo);
 			
 				
 		// TODO Auto-generated method stub
@@ -326,6 +328,7 @@ public static void setIndirizzo(String indirizzo) {
    			aggiungiPanel();
    			Thread.sleep(3);
    			if(arrayRisposta[7]==1) {
+   				
    		        terminaPosizionamento();
    				}
 	}
@@ -413,9 +416,14 @@ public static void setIndirizzo(String indirizzo) {
 			    	   }
 			    	   }
 			    	 }
+			       if(arrayRisposta[3]!=0&&arrayRisposta[4]!=0&&arrayRisposta[5]!=0&&arrayRisposta[6]!=0) {
+			    	   clickedPanel.setVisible(true);
+			    	  aggiungiPanel();
+			    	  salta=true;
+			       }
 			 }
 			 
-
+			 if(salta==true) {
 			for(int i = 0; i < 10; i++)
 	   			{
 	   				for(int j = 0; j < 10; j++)
@@ -427,6 +435,9 @@ public static void setIndirizzo(String indirizzo) {
 	   				}
 	   				
 	   			}
+			
+			 }
+			 salta=false;
 	   			
 	}
 	public void aggiungiPanel() {
@@ -525,7 +536,7 @@ public static void setIndirizzo(String indirizzo) {
     	do {
     		   ZMQ.Socket socket = context.createSocket(SocketType.REQ);
    	  		//  Socket to talk to server
-   		socket.connect("tcp://localhost:5547");
+    		socket.connect(indirizzo);
 			Thread.sleep(5000);
 			String sendMsg = "ATA";
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
