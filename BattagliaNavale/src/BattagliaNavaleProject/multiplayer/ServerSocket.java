@@ -280,7 +280,7 @@ public class ServerSocket {
 		case 2: {
 
 			// **OVEST** DEVE AVERE d=3
-			if (checkFuoriGriglia(x, y, l, 0, turno)) {
+			if (checkFuoriGriglia(x, y, l, 3, turno)) {
 				if (cellaLibera(x, y - 1, turno) == true) {
 					
 					spedire[6] = "0";
@@ -289,7 +289,7 @@ public class ServerSocket {
 			}
 
 			//  **SUD** DEVE AVERE d=2
-			if (checkFuoriGriglia(x, y, l, 1, turno)) {
+			if (checkFuoriGriglia(x, y, l, 2, turno)) {
 				if (cellaLibera(x + 1, y, turno) == true) { // est
 					spedire[5] = "0";
 					spedire[2] = "1";
@@ -297,7 +297,7 @@ public class ServerSocket {
 			}
 
 			// **EST** DEVE AVERE d=1
-			if (checkFuoriGriglia(x, y, l, 2, turno)) {
+			if (checkFuoriGriglia(x, y, l, 1, turno)) {
 				if (cellaLibera(x, y + 1, turno) == true) {
 					spedire[4] = "0";
 					spedire[2] = "1";
@@ -305,7 +305,7 @@ public class ServerSocket {
 			}
 
 			// **NORD** DEVE AVERE d=0
-			if (checkFuoriGriglia(x, y, l, 3, turno)) {
+			if (checkFuoriGriglia(x, y, l, 0, turno)) {
 				if (cellaLibera(x - 1, y, turno) == true) { // ovest
 					spedire[3] = "0";
 					spedire[2] = "1";
