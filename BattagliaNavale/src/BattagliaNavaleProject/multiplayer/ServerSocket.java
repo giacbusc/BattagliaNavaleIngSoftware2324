@@ -192,6 +192,7 @@ public class ServerSocket {
 				if(countB==9)
 				{
 					fiocco2=fiocco2 + "1";//Per indicare che il posizionamento è terminato al client
+					
 					System.out.println("hihihihihihihi "+fiocco2);
 				}
 				else

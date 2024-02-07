@@ -31,7 +31,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	boolean entra=false;
 	int x;
 	int y;
-	private int[] arrayRisposta= new int[7];
+	private int[] arrayRisposta= new int[8];
 	int primo=0;
 	int boatlenght;
 	static String indirizzo;
