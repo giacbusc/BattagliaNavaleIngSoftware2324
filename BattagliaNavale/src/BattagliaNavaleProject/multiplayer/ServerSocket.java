@@ -110,6 +110,9 @@ public class ServerSocket {
 				System.out.println("Inviato: " + responseMessage);
 				piazzamentoBarca(turno);
 			}
+			
+			
+			
 		}
 
 		// mandare mex per dire che pui iniziare il 2
@@ -158,6 +161,13 @@ public class ServerSocket {
 				System.out.println("Inviato: " + responseMessage);
 				continue;
 			}
+			
+			if (messaggio.equals("ATA")) {
+				String responseMessage = "ATA";
+				socketServer.send(responseMessage.getBytes(), 0);
+				System.out.println("Inviato: " + responseMessage);
+				continue;
+			}
 			stampaGriglia(turno);
 
 			String[] mexSplit = messaggio.split(",");
@@ -175,9 +185,21 @@ public class ServerSocket {
 				 for (int k = 0; k < spedire.length; k++) {
 			           spedire[k] = "-1";
 			       }
-		
+				
 				String fiocco2=riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
 						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno);
+				
+				if(countB==9)
+				{
+					fiocco2=fiocco2 + "1";//Per indicare che il posizionamento è terminato al client
+					System.out.println("hihihihihihihi "+fiocco2);
+				}
+				else
+				{
+					fiocco2=fiocco2+"0";
+					System.out.println("hihihihihihihihi "+fiocco2);
+				}
+				
 				socketServer.send(fiocco2.getBytes(), 0);
 				System.out.println("Inviato fiocco2: " + fiocco2);
 				countB++;
@@ -185,6 +207,15 @@ public class ServerSocket {
 					
 			} else { // primo click
 				String fiocco = controllaCella(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l, turno);
+				if(l==1 && countB==9)
+				{
+					fiocco=fiocco + "1";//Per indicare che il posizionamento è terminato al client
+					System.out.println("STRINGA FINALE DA SPEDIRE: " + fiocco);
+				}
+				else 
+				{
+					fiocco=fiocco+"0";
+				}
 				socketServer.send(fiocco.getBytes(), 0);
 				System.out.println("Inviato fiocco: " + fiocco);
 				
