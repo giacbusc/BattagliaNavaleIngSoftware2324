@@ -322,11 +322,12 @@ public static void setIndirizzo(String indirizzo) {
    			 }
 		
 		}
+   			
+   			aggiungiPanel();
+   			Thread.sleep(3);
    			if(arrayRisposta[7]==1) {
    		        terminaPosizionamento();
    				}
-   			aggiungiPanel();
-   			
 	}
 	
 
@@ -519,9 +520,12 @@ public static void setIndirizzo(String indirizzo) {
     	
     	boolean r=true;
     	
-    	grid.waitPanelCreation();
+    	//grid.waitPanelCreation();
     	
     	do {
+    		   ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+   	  		//  Socket to talk to server
+   		socket.connect("tcp://localhost:5547");
 			Thread.sleep(5000);
 			String sendMsg = "ATA";
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
