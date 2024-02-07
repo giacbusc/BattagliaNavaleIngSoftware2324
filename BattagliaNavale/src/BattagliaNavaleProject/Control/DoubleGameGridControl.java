@@ -322,7 +322,9 @@ public static void setIndirizzo(String indirizzo) {
    			 }
 		
 		}
-   			
+   			if(arrayRisposta[7]==1) {
+   		        terminaPosizionamento();
+   				}
    			aggiungiPanel();
    			
 	}
@@ -354,9 +356,7 @@ public static void setIndirizzo(String indirizzo) {
         grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.ORANGE);
 		}
 		
-		if(arrayRisposta[7]==1) {
-        terminaPosizionamento();
-		}
+		
 		
 		String nome= arraymsg[2];
 		
@@ -371,6 +371,9 @@ public static void setIndirizzo(String indirizzo) {
 			}
 			if(boatlenght==1) {
 				aggiungiPanel();
+				if(arrayRisposta[7]==1) {
+			        terminaPosizionamento();
+					}
 				
 			}
 		}
