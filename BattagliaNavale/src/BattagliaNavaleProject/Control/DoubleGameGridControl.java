@@ -24,12 +24,14 @@ import BattagliaNavaleProject.client.Square;
 public class DoubleGameGridControl implements MouseListener, MouseMotionListener{
 	
 	private static final int GRID_DIMENSION = 10;
+	boolean salta=false;
 	public DoubleGameGridView grid;
 	JPanel clickedPanel;
-	boolean salta=false;
+	boolean vai=true;
 	JPanel[] arrayPanel= new JPanel[GRID_DIMENSION];
 	private int clickcount=0;
 	boolean entra=false;
+	int passaggio=0;
 	int x;
 	int y;
 	private int[] arrayRisposta= new int[8];
@@ -66,23 +68,19 @@ public static void setIndirizzo(String indirizzo) {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 		 assegnaPanel();
-		 System.out.println("Connecting to th server");
-		 System.out.println("sono tornato sopra");
-	     ZMQ.Socket socket = context.createSocket(SocketType.REQ);
-	  		//  Socket to talk to server
+		 System.out.println("click");
+		
 		socket.connect(indirizzo);
-			
-				
-		// TODO Auto-generated method stub
- 
+		
 		try {
 			
 			if(!(e.getSource()instanceof Square )|| clickcount!=0 || entra==true) {
 				clickcount++;
 				entra=true;
 				
-			if(e.getSource()instanceof Square && clickcount==1 ) {
+			if(e.getSource()instanceof Square && clickcount==1 && salta==false) {
 				
 				System.out.println(clickcount);
 				
@@ -90,7 +88,7 @@ public static void setIndirizzo(String indirizzo) {
 				
 				System.out.println("sono la square"+clickcount +clickedSquare.getx()+ clickedSquare.gety());
 				if(clickedSquare.getName().equals("yourBoard")) {
-					//clickedSquare.setBackground(Color.gray); //da togliere
+					
 					arraymsg[1]=""+clickedSquare.gety();
 					arraymsg[0]=""+clickedSquare.getx();
 					System.out.println("barca" + arraymsg[2]);
@@ -103,15 +101,16 @@ public static void setIndirizzo(String indirizzo) {
 				            System.out.println(msgserver);
 				            
 				            socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
-				            System.out.println("ho inviato");
+				            System.out.println("ho inviato secondo msg");
 				            ricevi2msg(socket,x,y);
+				            
 				}
 				
 							
 			}
 			
 			
-			else if(e.getSource() instanceof JPanel && clickcount==1) {
+			if(e.getSource() instanceof JPanel && clickcount==1) {
 				
 				clickedPanel= (JPanel) e.getSource();
 
@@ -120,6 +119,7 @@ public static void setIndirizzo(String indirizzo) {
 					arraymsg[2]=clickedPanel.getName();
 					clickedPanel.setVisible(false);
 					System.out.println("ciao funziono sono il clickcount "+ clickcount);
+					salta=false;
 					
 				}
 				else if(clickedPanel.getName().equals("Destroyer1") ) 
@@ -128,18 +128,21 @@ public static void setIndirizzo(String indirizzo) {
 					
 					arraymsg[2]=clickedPanel.getName();
 					System.out.println("barca cliccata "+arraymsg[2]);
+					salta=false;
 				}
 				else if(clickedPanel.getName().equals("Destroyer2"))
 				{
 					clickedPanel.setVisible(false);
 					arraymsg[2]=clickedPanel.getName();
 					System.out.println("barca cliccata "+arraymsg[2]);
+					salta=false;
 				}
 				else if(clickedPanel.getName().equals("Cruiser1") ) 
 				{
 					clickedPanel.setVisible(false);
 					arraymsg[2]=clickedPanel.getName();
 					System.out.println("barca cliccata "+arraymsg[2]);
+					salta=false;
 				}
 				else if(clickedPanel.getName().equals("Cruiser2") ) 
 				{
@@ -147,13 +150,16 @@ public static void setIndirizzo(String indirizzo) {
 					clickedPanel.setVisible(false);
 					System.out.println("barca cliccata "+(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
+					salta=false;
 				}
+				
 				else if(clickedPanel.getName().equals("Cruiser3") ) 
 				{
 					//cosa fare se clicco navi da 2
 					clickedPanel.setVisible(false);
 					System.out.println("barca cliccata "+(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
+					salta=false;
 				}
 				else if(clickedPanel.getName().equals("Submarine1") ) 
 				{
@@ -183,6 +189,7 @@ public static void setIndirizzo(String indirizzo) {
 					System.out.println("barca cliccata "+(clickedPanel.getName()));
 					arraymsg[2]=(clickedPanel.getName());
 					
+					
 				}	
 				
 				if(primo==1) {
@@ -199,14 +206,14 @@ public static void setIndirizzo(String indirizzo) {
 				}
 			}
 			
-			if(!(e.getSource() instanceof Square )&& clickcount==2) {
-				System.out.println("Non puoi cliccare 2 barche; posiziona la barca che hai attualmente selezionato");
+			 if(!(e.getSource() instanceof Square )&& clickcount==2 && salta==false) {
+				
 				clickcount = 1;
 			}
 			
-				if(e.getSource() instanceof Square && clickcount==2){
+			if(e.getSource() instanceof Square && clickcount==2){
 				Square clickedSquare= (Square) e.getSource();
-				System.out.println("sono la square"+clickcount +clickedSquare.getx()+ clickedSquare.gety());
+				System.out.println("sono la square: "+clickcount +clickedSquare.getx()+ clickedSquare.gety());
 				if(clickedSquare.getName().equals("yourBoard")) {
 				
 			
@@ -222,7 +229,7 @@ public static void setIndirizzo(String indirizzo) {
 					
 					String msgserver=(""+arraymsg[0]+","+arraymsg[1]+","+arraymsg[2]);
 		            
-				    System.out.println("ho inviato"+msgserver);
+				    System.out.println("ho inviato primo msg: "+msgserver);
 		           
 		            socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
 		           
@@ -243,8 +250,12 @@ public static void setIndirizzo(String indirizzo) {
 	
 	public void ricevi2msg(ZMQ.Socket socket,int x,int y) throws InterruptedException, IOException {
 		
-		
-		
+		if(passaggio==2) {
+			clickcount=0;
+			passaggio=0;
+			return;
+		}
+		if(passaggio==1){
 		 byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
        String rispostamsg= new String(reply, ZMQ.CHARSET);
        
@@ -254,10 +265,10 @@ public static void setIndirizzo(String indirizzo) {
 			for(int i = 0; i < arrayStringhe.length; i++)
 				arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
 	        System.out.println(
-	             "Received " + rispostamsg );
+	             "Received msg 2 " + rispostamsg );
 	        
 	      //0   1   2   3   4   5   6   
-		  //x   y   St  N   E   S   O
+		  //x{   y   St  N   E   S   O
 			System.out.println("quello che ho mandato prima x: "+x +" quello che ricevo: "+ arrayRisposta[0]);
 			System.out.println("quello che ho mandato prima y: "+y +" quello che ricevo: "+ arrayRisposta[1]);
 	        	if(arrayRisposta[6]==0) {
@@ -296,6 +307,8 @@ public static void setIndirizzo(String indirizzo) {
 		        		 }
 			       }
 			       colorabianco();
+			       passaggio=2;
+		}
 			       //tutto non cliccabile 
 	        }
 	        
@@ -325,8 +338,10 @@ public static void setIndirizzo(String indirizzo) {
    			 }
 		
 		}
-   			
+   			if(!(arraymsg[2].contains("Submarine"))) {
    			aggiungiPanel();
+   			}
+	
    			Thread.sleep(3);
    			if(arrayRisposta[7]==1) {
    				
@@ -344,7 +359,7 @@ public static void setIndirizzo(String indirizzo) {
 			primo=1;
 		 byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
         String rispostamsg= new String(reply, ZMQ.CHARSET);
-        System.out.println(rispostamsg);
+        
 		String[] arrayStringhe = rispostamsg.split(",");
 		 System.out.println();
 		
@@ -352,7 +367,7 @@ public static void setIndirizzo(String indirizzo) {
 		for(int i = 0; i < arrayStringhe.length; i++)
 			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
         System.out.println(
-             "Received " + rispostamsg );
+             "Received msg1" + rispostamsg );
         
 		
 		
@@ -365,7 +380,7 @@ public static void setIndirizzo(String indirizzo) {
 		
 		String nome= arraymsg[2];
 		
-		
+		passaggio=1;
 		for(InfoBoat boat: InfoBoat.values()) {
 			if(boat.name().equalsIgnoreCase(nome)) {
 				boatlenght=boat.getLunghezza();
@@ -375,6 +390,9 @@ public static void setIndirizzo(String indirizzo) {
 				togliPanel();
 			}
 			if(boatlenght==1) {
+				//clickcount--;
+				salta=true;
+				passaggio=2;
 				aggiungiPanel();
 				if(arrayRisposta[7]==1) {
 			        terminaPosizionamento();
@@ -384,8 +402,8 @@ public static void setIndirizzo(String indirizzo) {
 		}
 		 
 			
-			 if(x==arrayRisposta[0] && y == arrayRisposta[1])
-			 {
+			 //if(x==arrayRisposta[0] && y == arrayRisposta[1])
+			 { 
 				 if(arrayRisposta[6]==0) {
 					
 					 for(int i=1;i<boatlenght;i++) { 
@@ -420,12 +438,14 @@ public static void setIndirizzo(String indirizzo) {
 			       
 			       if(arrayRisposta[3]!=0&&arrayRisposta[4]!=0&&arrayRisposta[5]!=0&&arrayRisposta[6]!=0&& !(arraymsg[2].contains("Submarine"))) {
 			    	   clickedPanel.setVisible(true);
+			    	   
 			    	   aggiungiPanel();
+			    	   vai=false;
 			    	   salta=true;
 			       }
 			 }
 			 
-			 if(salta==true) {
+			if(vai==true) {
 			for(int i = 0; i < 10; i++)
 	   			{
 	   				for(int j = 0; j < 10; j++)
@@ -438,10 +458,14 @@ public static void setIndirizzo(String indirizzo) {
 	   				
 	   			}
 			
-			 }
+			
+			}
+			vai=true;
 			 salta=false;
+			 
 	   			
 	}
+	
 	public void aggiungiPanel() {
 	for(int i=0;i<GRID_DIMENSION;i++) {
 			arrayPanel[i].addMouseListener(this);
@@ -551,7 +575,7 @@ public static void setIndirizzo(String indirizzo) {
 			
 			if(rispostaMsg.equals("OK POS2")) {
 				
-				DoubleGameGridView dggv= new DoubleGameGridView();
+				
 				r=false;
 			}
 			

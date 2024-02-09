@@ -211,7 +211,7 @@ public class ServerSocket {
 				dividimex[2] = "1";
 				String fiocco2=riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
 						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno);
-				
+				System.out.println("CONTAAAA DEL 2 CLICK: " + countB);
 				if(countB==9)
 				{
 					fiocco2=fiocco2 + "1";//Per indicare che il posizionamento è terminato al client
@@ -232,6 +232,7 @@ public class ServerSocket {
 			} else { // primo click
 				String fiocco = controllaCella(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l, turno);
 				dividimex = fiocco.split(",");
+				System.out.println("CONTAAAA: " + countB);
 				if(l==1 && countB==9)
 				{
 					fiocco=fiocco + "1";//Per indicare che il posizionamento è terminato al client
@@ -245,7 +246,8 @@ public class ServerSocket {
 				System.out.println("Inviato fiocco: " + fiocco);
 				
 				aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), turno);
-
+				
+				
 				
 				stampaGriglia(turno);
 				if (l == 1) {
@@ -643,7 +645,7 @@ public class ServerSocket {
 				if (turno == 1)
 					System.out.print(player1[i][j].getStato() + "\t");
 				else
-					System.out.println(player2[i][j].getStato() + "\t");
+					System.out.print(player2[i][j].getStato() + "\t");
 			}
 			System.out.println(); // Vai a capo dopo ogni riga
 		}
