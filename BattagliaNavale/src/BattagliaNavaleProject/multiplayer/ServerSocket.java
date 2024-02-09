@@ -274,6 +274,7 @@ public class ServerSocket {
 			else
 			{
 				mexprec[2]="errorposition";
+				countB--;
 			}
 				
 			
