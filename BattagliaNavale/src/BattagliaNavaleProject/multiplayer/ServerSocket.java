@@ -19,13 +19,34 @@ public class ServerSocket {
 	private boolean sveglia = false;
 	private static final ArrayList<String> connectedClients = new ArrayList<>();
 	private ZContext context = new ZContext();
-	private ZMQ.Socket socketServer = context.createSocket(SocketType.REP);
+	private ZMQ.Socket socketServer;
 	private int turno = 0;
+	private static ServerSocket istance=null;
 
+	public static ServerSocket getIstance()
+	{
+		if(istance==null)
+			istance= new ServerSocket();
+		
+		return istance;
+	}
+	
+	private ServerSocket()
+	{
+		socketServer=context.createSocket(SocketType.REP);
+	}
+	
+	
 	public void startServer(String indirizzo) {
 
 		socketServer.bind(indirizzo);
-
+		
+		/*
+		"ABCSDSA"
+		""
+		"HelloWorld"
+		*/
+		
 		try {
 			inizializzaSquare();
 			int maxClients = 2;
@@ -179,14 +200,15 @@ public class ServerSocket {
 			int l = boat.getLunghezza();
 			System.out.println("Lunghezza barca: " + l);
 			System.out.println("Nome barca: "+nomeBarca);
-			String[] dividimex = null; 
-			if (mexprec[2].equals(nomeBarca)) { // secondo click della barca
+			String[] dividimex = new String[8]; 
+			if (mexprec[2].equals(nomeBarca)) 
+			{ 	// secondo click della barca
 				// RIEMPI CELLE
 				//setto spedire a -1
 				 for (int k = 0; k < spedire.length; k++) {
 			           spedire[k] = "-1";
 			       }
-				
+				dividimex[2] = "1";
 				String fiocco2=riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
 						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno);
 				
