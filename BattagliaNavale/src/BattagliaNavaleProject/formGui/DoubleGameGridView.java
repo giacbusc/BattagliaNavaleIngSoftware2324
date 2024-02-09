@@ -41,7 +41,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 	public Square[][] opponentBoard;
 	private JPanel shipsPanel;
 	private JPanel gridPanel;
-	private JPanel waitPanel;
+	public JPanel waitPanel;
 	private GridBagConstraints c;
 	private GridBagConstraints c1;
 	private GridBagConstraints c2;
@@ -157,6 +157,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 		frame.pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
+		waitPanel.setVisible(false);
 	}
 
 	private void boatList(ArrayList<Integer> dim)
