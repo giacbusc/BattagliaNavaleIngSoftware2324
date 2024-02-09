@@ -36,6 +36,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 	int primo=0;
 	int boatlenght;
 	static String indirizzo;
+	
 	public static String getIndirizzo() {
 	return indirizzo;
 	
@@ -416,10 +417,11 @@ public static void setIndirizzo(String indirizzo) {
 			    	   }
 			    	   }
 			    	 }
-			       if(arrayRisposta[3]!=0&&arrayRisposta[4]!=0&&arrayRisposta[5]!=0&&arrayRisposta[6]!=0) {
+			       
+			       if(arrayRisposta[3]!=0&&arrayRisposta[4]!=0&&arrayRisposta[5]!=0&&arrayRisposta[6]!=0&& !(arraymsg[2].contains("Submarine"))) {
 			    	   clickedPanel.setVisible(true);
-			    	  aggiungiPanel();
-			    	  salta=true;
+			    	   aggiungiPanel();
+			    	   salta=true;
 			       }
 			 }
 			 

@@ -57,6 +57,7 @@ public SceltaGiocoControl( SceltaGiocoView s) {
 			else if(clickedButton.getText().equals("")) {
 				ServerSocket.setIndirizzo("tcp://*:" + parti[2]);
 				ConnectionControl.setIndirizzo(local);
+				DoubleGameGridControl.setIndirizzo(local);
 				SchermataAttesaControl.setIndirizzo(local);
 				System.out.println("un pc");
 				try {
