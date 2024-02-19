@@ -25,6 +25,7 @@ import BattagliaNavaleProject.client.Square;
 public class DoubleGameGridControl{
 
 	private static final int GRID_DIMENSION = 10;
+	TurniControl turni;
 	boolean salta=false;
 	public DoubleGameGridView grid;
 	JPanel clickedPanel;
@@ -40,7 +41,7 @@ public class DoubleGameGridControl{
 	static String indirizzo;
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
-	String[] arrayMsg = null;
+	
 
 
 	String[] arraymsg =new String [3];
@@ -85,7 +86,6 @@ public class DoubleGameGridControl{
 
 						clickcount=0;
 
-
 						String msgserver=(""+arraymsg[0]+","+arraymsg[1]+","+arraymsg[2]);
 						System.out.println(msgserver);
 
@@ -102,84 +102,9 @@ public class DoubleGameGridControl{
 				if(e.getSource() instanceof JPanel && clickcount==1) {
 
 					clickedPanel= (JPanel) e.getSource();
-
-					if(clickedPanel.getName().equals("Aircraft")) 
-					{   
-						arraymsg[2]=clickedPanel.getName();
-						clickedPanel.setVisible(false);
-						System.out.println("ciao funziono sono il clickcount "+ clickcount);
-						salta=false;
-
-					}
-					else if(clickedPanel.getName().equals("Destroyer1") ) 
-					{
-						clickedPanel.setVisible(false);
-
-						arraymsg[2]=clickedPanel.getName();
-						System.out.println("barca cliccata "+arraymsg[2]);
-						salta=false;
-					}
-					else if(clickedPanel.getName().equals("Destroyer2"))
-					{
-						clickedPanel.setVisible(false);
-						arraymsg[2]=clickedPanel.getName();
-						System.out.println("barca cliccata "+arraymsg[2]);
-						salta=false;
-					}
-					else if(clickedPanel.getName().equals("Cruiser1") ) 
-					{
-						clickedPanel.setVisible(false);
-						arraymsg[2]=clickedPanel.getName();
-						System.out.println("barca cliccata "+arraymsg[2]);
-						salta=false;
-					}
-					else if(clickedPanel.getName().equals("Cruiser2") ) 
-					{
-						//cosa fare se clicco navi da 2
-						clickedPanel.setVisible(false);
-						System.out.println("barca cliccata "+(clickedPanel.getName()));
-						arraymsg[2]=(clickedPanel.getName());
-						salta=false;
-					}
-
-					else if(clickedPanel.getName().equals("Cruiser3") ) 
-					{
-						//cosa fare se clicco navi da 2
-						clickedPanel.setVisible(false);
-						System.out.println("barca cliccata "+(clickedPanel.getName()));
-						arraymsg[2]=(clickedPanel.getName());
-						salta=false;
-					}
-					else if(clickedPanel.getName().equals("Submarine1") ) 
-					{
-						//cosa fare se clicco navi da 2
-						clickedPanel.setVisible(false);
-						System.out.println("barca cliccata "+clickedPanel.getName());
-						arraymsg[2]=(clickedPanel.getName());     
-					}
-					else if(clickedPanel.getName().equals("Submarine2") ) 
-					{
-						//cosa fare se clicco navi da 2
-						clickedPanel.setVisible(false);
-						System.out.println("barca cliccata "+(clickedPanel.getName()));
-						arraymsg[2]=(clickedPanel.getName());
-					}
-					else if(clickedPanel.getName().equals("Submarine3") ) 
-					{
-						//cosa fare se clicco navi da 2
-						clickedPanel.setVisible(false);
-						System.out.println("barca cliccata "+(clickedPanel.getName()));
-						arraymsg[2]=(clickedPanel.getName());
-					}
-					else if(clickedPanel.getName().equals("Submarine4") ) 
-					{
-						//cosa fare se clicco navi da 2
-						clickedPanel.setVisible(false);
-						System.out.println("barca cliccata "+(clickedPanel.getName()));
-						arraymsg[2]=(clickedPanel.getName());
-
-
-					}	
+					
+					assegnabarca(clickedPanel);
+					
 
 					if(primo==1) {
 						for(int i = 0; i < 10; i++)
@@ -237,6 +162,85 @@ public class DoubleGameGridControl{
 
 	}
 
+	public void assegnabarca(JPanel clickedPanel) {
+		if(clickedPanel.getName().equals("Aircraft")) 
+		{   
+			arraymsg[2]=clickedPanel.getName();
+			clickedPanel.setVisible(false);
+			
+			salta=false;
+
+		}
+		else if(clickedPanel.getName().equals("Destroyer1") ) 
+		{
+			clickedPanel.setVisible(false);
+
+			arraymsg[2]=clickedPanel.getName();
+			System.out.println("barca cliccata "+arraymsg[2]);
+			salta=false;
+		}
+		else if(clickedPanel.getName().equals("Destroyer2"))
+		{
+			clickedPanel.setVisible(false);
+			arraymsg[2]=clickedPanel.getName();
+			System.out.println("barca cliccata "+arraymsg[2]);
+			salta=false;
+		}
+		else if(clickedPanel.getName().equals("Cruiser1") ) 
+		{
+			clickedPanel.setVisible(false);
+			arraymsg[2]=clickedPanel.getName();
+			System.out.println("barca cliccata "+arraymsg[2]);
+			salta=false;
+		}
+		else if(clickedPanel.getName().equals("Cruiser2") ) 
+		{
+			//cosa fare se clicco navi da 2
+			clickedPanel.setVisible(false);
+			System.out.println("barca cliccata "+(clickedPanel.getName()));
+			arraymsg[2]=(clickedPanel.getName());
+			salta=false;
+		}
+
+		else if(clickedPanel.getName().equals("Cruiser3") ) 
+		{
+			//cosa fare se clicco navi da 2
+			clickedPanel.setVisible(false);
+			System.out.println("barca cliccata "+(clickedPanel.getName()));
+			arraymsg[2]=(clickedPanel.getName());
+			salta=false;
+		}
+		else if(clickedPanel.getName().equals("Submarine1") ) 
+		{
+			//cosa fare se clicco navi da 2
+			clickedPanel.setVisible(false);
+			System.out.println("barca cliccata "+clickedPanel.getName());
+			arraymsg[2]=(clickedPanel.getName());     
+		}
+		else if(clickedPanel.getName().equals("Submarine2") ) 
+		{
+			//cosa fare se clicco navi da 2
+			clickedPanel.setVisible(false);
+			System.out.println("barca cliccata "+(clickedPanel.getName()));
+			arraymsg[2]=(clickedPanel.getName());
+		}
+		else if(clickedPanel.getName().equals("Submarine3") ) 
+		{
+			//cosa fare se clicco navi da 2
+			clickedPanel.setVisible(false);
+			System.out.println("barca cliccata "+(clickedPanel.getName()));
+			arraymsg[2]=(clickedPanel.getName());
+		}
+		else if(clickedPanel.getName().equals("Submarine4") ) 
+		{
+			//cosa fare se clicco navi da 2
+			clickedPanel.setVisible(false);
+			System.out.println("barca cliccata "+(clickedPanel.getName()));
+			arraymsg[2]=(clickedPanel.getName());
+
+
+		}	
+	}
 	public void ricevi2msg(ZMQ.Socket socket,int x,int y) throws InterruptedException, IOException {
 
 		byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
@@ -378,40 +382,9 @@ public class DoubleGameGridControl{
 		}
 
 
-		//if(x==arrayRisposta[0] && y == arrayRisposta[1])
-		{ 
-			if(arrayRisposta[6]==0) {
-
-				for(int i=1;i<boatlenght;i++) { 
-					if(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].getStato()==0) {
-						grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setGrigio();
-					}
-				}
-			}
-			if(arrayRisposta[5]==0) {
-				for(int i=1;i<boatlenght;i++) {
-					if(grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].getStato()==0) {
-						grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setGrigio();
-					}
-				}
-			}
-
-			if(arrayRisposta[4]==0) {
-				for(int i=1;i<boatlenght;i++) {
-					if(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].getStato()==0) {
-						grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setGrigio();
-					}
-				}
-			}
-
-			if(arrayRisposta[3]==0) {
-				for(int i=1;i<boatlenght;i++) {
-					if(grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].getStato()==0) {
-						grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setGrigio();
-					}
-				}
-			}
-
+		
+		 coloragrigio();
+	
 			if(arrayRisposta[3]!=0&&arrayRisposta[4]!=0&&arrayRisposta[5]!=0&&arrayRisposta[6]!=0&& !(arraymsg[2].contains("Submarine"))) {
 				clickedPanel.setVisible(true);
 				for(int i = 0; i < 10; i++)
@@ -438,7 +411,7 @@ public class DoubleGameGridControl{
 				vai=false;
 				salta=true;
 			}
-		}
+		
 
 		if(vai==true) {
 			for(int i = 0; i < 10; i++)
@@ -458,9 +431,42 @@ public class DoubleGameGridControl{
 		vai=true;
 		salta=false;
 
+}
+	
+	public void coloragrigio() {
+		if(arrayRisposta[6]==0) {
 
+			for(int i=1;i<boatlenght;i++) { 
+				if(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].getStato()==0) {
+					grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setGrigio();
+				}
+			}
+		}
+		if(arrayRisposta[5]==0) {
+			for(int i=1;i<boatlenght;i++) {
+				if(grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].getStato()==0) {
+					grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setGrigio();
+				}
+			}
+		}
+
+		if(arrayRisposta[4]==0) {
+			for(int i=1;i<boatlenght;i++) {
+				if(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].getStato()==0) {
+					grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setGrigio();
+				}
+			}
+		}
+
+		if(arrayRisposta[3]==0) {
+			for(int i=1;i<boatlenght;i++) {
+				if(grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].getStato()==0) {
+					grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setGrigio();
+				}
+			}
+		}
 	}
-
+	
 	public void aggiungiPanel() {
 		for(int i=0;i<GRID_DIMENSION;i++) {
 			arrayPanel[i].addMouseListener(grid);
@@ -568,7 +574,7 @@ public class DoubleGameGridControl{
 				boolean r=true;
 				do {
 					grid.waitPanel.setVisible(true);
-					Thread.sleep(5000);
+					Thread.sleep(10000);
 					String sendMsg = "ATA";
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 					System.out.println(sendMsg);
@@ -580,6 +586,7 @@ public class DoubleGameGridControl{
 					if(rispostaMsg.equals("Inizia Gioco")) {
 
 						grid.waitPanel.setVisible(false);
+						
 						r=false;
 					}
 
@@ -589,6 +596,8 @@ public class DoubleGameGridControl{
 		};
 
 		worker.execute();
+		turni= new TurniControl(indirizzo);
+		turni.turno();
 		//grid.waitPanelCreation();
 
 
