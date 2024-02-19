@@ -5,6 +5,7 @@ import BattagliaNavaleProject.Control.ConnectionControl;
 import BattagliaNavaleProject.Control.MenuPrincipaleControl;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -13,6 +14,8 @@ import java.sql.SQLException;
 public class MenuPrincipaleView extends JFrame {
 	private JLabel infoPlayerLabel_1;
 	private static String userName;
+	private JButton pcSoloButton;
+	private JButton pcMultiButton;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -119,7 +122,7 @@ public class MenuPrincipaleView extends JFrame {
 	    backgroundPanel.add(imageLabel3);
 	    
 
-	    final JButton pcSoloButton = new JButton();
+	    pcSoloButton = new JButton();
 	    pcSoloButton.setName("Solo");
 	    
 	    pcSoloButton.setPreferredSize(new Dimension(370, 150));
@@ -192,7 +195,7 @@ public class MenuPrincipaleView extends JFrame {
 	    backgroundPanel.add(pcMultiButton);
 	    
 	    
-	   // singleplayer.addActionListener(new MenuPrincipaleControl(this));
+	   pcMultiButton.addActionListener(new MenuPrincipaleControl(this));
 	    
 	    pcMultiButton.addMouseListener(new MouseListener()
 	    {
@@ -326,6 +329,16 @@ public class MenuPrincipaleView extends JFrame {
         panel.add(infoPlayerLabel_1);
         infoPlayerLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 	                    
+	}
+	
+	public void addActionMulti(ActionListener act)
+	{
+		pcMultiButton.addActionListener(act);
+	}
+	
+	public void addActionSolo(ActionListener act)
+	{
+		pcSoloButton.addActionListener(act);
 	}
 
 
