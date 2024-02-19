@@ -89,7 +89,7 @@ private void ricevi() throws IOException {
 	x= arrayRisposta[0];
 	y= arrayRisposta[1];
 	
-	DGGV.opponentBoard[x][y].setAffondato();
+	
 	
 	
 
@@ -139,7 +139,7 @@ private void verificaLunghezza() {
 		stato=arrayRisposta[2];
 		x= arrayRisposta[0];
 		y= arrayRisposta[1];
-		
+		DGGV.opponentBoard[x][y].setAffondato();
 		
 	}
 }
