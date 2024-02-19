@@ -130,20 +130,15 @@ public class ServerSocket {
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
 				piazzamentoBarca(turno);
+				
 			}
-			
-			
-			
 		}
-
-		// mandare mex per dire che pui iniziare il 2
-		/*
-		 * String responseMessage = "OK POS2";
-		 * socketServer.send(responseMessage.getBytes(), 0);
-		 * System.out.println("Inviato: " + responseMessage); turno = 2;
-		 * piazzamentoBarca(turno);
-		 */
-
+		System.out.println("inizio giocooooo");
+		
+		
+	}
+	private void inGabbia(int turno) {
+		
 		
 	}
 
