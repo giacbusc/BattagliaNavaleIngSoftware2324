@@ -18,7 +18,6 @@ static String indirizzo;
 
 static ZContext context = new ZContext();
 static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
-DoubleGameGridControl DGGC;
 String[] arraymsg =new String [2];
 public TurniControl(String indirizzo,DoubleGameGridView DGGV) {
 	// TODO Auto-generated constructor stub
