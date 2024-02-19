@@ -31,8 +31,29 @@ public class Partita {
 
 			// BOOLEANO CHE ANDRA SETTATO PER RISPONDERGLI ANZICHE CON ATA CON GIOCA PER
 			// RISVEGLIARLO
-			if(request.equals("ATA") && INVIATO==true)
+			if(request.equals("ATA2") && INVIATO==true)
 			{
+				String responseMessage = "GIOCA";
+				socketServer.send(responseMessage.getBytes(), 0);
+				System.out.println("Inviato: " + responseMessage);
+				turno=1;
+				INVIATO=false;
+				continue;
+			}
+			/*if (request.equals("ATA2")&& INVIATO==false) {
+				String responseMessage = "ATA2";
+				socketServer.send(responseMessage.getBytes(), 0);
+				System.out.println("Inviato: " + responseMessage);
+				continue;
+			}*/
+			if (request.equals("ATA")&& INVIATO==false) {
+				String responseMessage = "ATA";
+				socketServer.send(responseMessage.getBytes(), 0);
+				System.out.println("Inviato: " + responseMessage);
+				continue;
+			}
+			
+			if (request.equals("ATA") && INVIATO==true) {
 				String responseMessage = "GIOCA";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
@@ -40,13 +61,10 @@ public class Partita {
 				INVIATO=false;
 				continue;
 			}
-			if (request.equals("ATA")) {
-				String responseMessage = "ATA";
-				socketServer.send(responseMessage.getBytes(), 0);
-				System.out.println("Inviato: " + responseMessage);
-				continue;
-			} else {
-				String[] mexSplit = request.split(",");
+			
+		
+			if(!(request.contains("ATA")) )
+				{String[] mexSplit = request.split(",");
 				String x = mexSplit[0];
 				String y = mexSplit[1];
 				if (turno == 1) 
@@ -69,6 +87,7 @@ public class Partita {
 						}*/
 						
 						spedireMex(spedire);
+						
 
 					} else {// colpito o affondato
 						spedireMex(spedire);
@@ -100,12 +119,12 @@ public class Partita {
 						spedireMex(spedire);
 					}
 				}
-
+		}
 			}
 
 		}
 
-	}
+	
 
 	public void spedireMex(String[] spedire) {
 		s = ServerSocket.getIstance();

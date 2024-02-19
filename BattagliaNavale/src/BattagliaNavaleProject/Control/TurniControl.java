@@ -25,7 +25,7 @@ private int lunghezza;
 static ZContext context = new ZContext();
 static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 int[] arraymsg =new int[2];
-int[] arrayRisposta;
+int[] arrayRisposta= new int[4];
 public TurniControl(String indirizzo,DoubleGameGridView DGGV) {
 	// TODO Auto-generated constructor stub
 	this.indirizzo=indirizzo;
@@ -84,7 +84,7 @@ private void ricevi() throws IOException {
 	for(int i = 0; i < arrayStringhe.length; i++) 
 		arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
 	System.out.println(
-			"Received msg 2 " + rispostamsg );
+			"Received msg  " + rispostamsg );
 	
 	stato= arrayRisposta[2];
 	lunghezza= arrayRisposta[3];
@@ -150,12 +150,12 @@ private void cicloattesa() throws InterruptedException {
 	// TODO Auto-generated method stub
 	boolean r=true;
 	do {
-		
-		Thread.sleep(3000);
-		String sendMsg = "ATA";
 		toglilistener();
+		Thread.sleep(1300);
+		String sendMsg = "ATA2";
+		
 		socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
-		System.out.println(sendMsg);
+		System.out.println("inviata attesa del turno " + sendMsg);
 
 		byte[] byteMsg = socket.recv(0);
 		System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");

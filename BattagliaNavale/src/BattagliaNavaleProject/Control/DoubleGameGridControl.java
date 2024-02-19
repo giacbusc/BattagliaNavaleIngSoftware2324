@@ -35,7 +35,7 @@ public class DoubleGameGridControl{
 	boolean entra=false;
 	int x;
 	int y;
-	private int ataconta;
+	private int ataconta=0;
 	private int[] arrayRisposta= new int[8];
 	int primo=0;
 	int boatlenght;
@@ -567,20 +567,19 @@ public class DoubleGameGridControl{
 	public void terminaPosizionamento() throws InterruptedException, IOException {
 
 
-
+		ataconta++;
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
 				// Esegui le operazioni di connessione qui
-				ataconta=0;
+				
 				boolean r=true;
 				do {
 					grid.waitPanel.setVisible(true);
-					Thread.sleep(5000);
+					Thread.sleep(4500);
 					String sendMsg = "ATA";
-					turni.toglilistener();
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
-					System.out.println("Inviato" +sendMsg);
+					System.out.println("Inviato " +sendMsg);
 
 					byte[] byteMsg = socket.recv(0);
 					System.out.println("Ricevuto " + new String(byteMsg, ZMQ.CHARSET) + " ");
