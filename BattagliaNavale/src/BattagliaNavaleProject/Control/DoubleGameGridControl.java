@@ -578,6 +578,7 @@ public class DoubleGameGridControl{
 					grid.waitPanel.setVisible(true);
 					Thread.sleep(5000);
 					String sendMsg = "ATA";
+					turni.toglilistener();
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 					System.out.println("Inviato" +sendMsg);
 
