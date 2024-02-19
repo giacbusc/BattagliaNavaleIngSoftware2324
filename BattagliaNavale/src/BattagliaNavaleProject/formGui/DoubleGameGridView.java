@@ -55,8 +55,8 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
 	
-	private TurniControl turni= new TurniControl();
-	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
+	private TurniControl turni;
+	//private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -248,86 +248,11 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		opponentBoard = new Square[GRID_DIMENSION][GRID_DIMENSION];
 		yourBoardPanel.setLayout(new GridLayout(GRID_DIMENSION+2, GRID_DIMENSION+2, 0, 0));
 		opponentBoardPanel.setLayout(new GridLayout(GRID_DIMENSION+2, GRID_DIMENSION+2, 0, 0));
-		
-		for(int i = -1; i < GRID_DIMENSION + 1; i++)
-		{
-			for(int j = -1; j < GRID_DIMENSION + 1; j++)
-			{
-				
-				if((i == -1 && j == -1) || (i == -1 && j == GRID_DIMENSION) || (i == GRID_DIMENSION && j == -1) || (i == GRID_DIMENSION && j == GRID_DIMENSION))
-				{
-					 yourBoardPanel.add(new JLabel(" "));
-	                 opponentBoardPanel.add(new JLabel(" "));
-				}
-				
-				else if(i==-1)
-				{
-					yourBoardPanel.add(new JLabel(""+(char)(j+'A'), JLabel.CENTER));
-                    opponentBoardPanel.add(new JLabel(""+(char)(j+'A'), JLabel.CENTER));
-				}
-				else if(j==-1)
-				{
-					  yourBoardPanel.add(new JLabel((i+1)+"", JLabel.CENTER));
-	                  opponentBoardPanel.add(new JLabel((i+1)+"", JLabel.CENTER));
-				}
-				else if (i == GRID_DIMENSION)
-				{
-					yourBoardPanel.add(new JLabel(" "));
-                    opponentBoardPanel.add(new JLabel(" "));
-				}
-				else if(j == GRID_DIMENSION)
-				{
-					yourBoardPanel.add(new JLabel(" "));
-                    opponentBoardPanel.add(new JLabel(" "));
-				}
-				else
-				{
-					yourBoard[i][j]= new Square(i,j,0);
-					yourBoard[i][j].addMouseListener(this);//
-					yourBoard[i][j].setName("yourBoard");//
-					yourBoardPanel.add(yourBoard[i][j]);
-					opponentBoard[i][j]= new Square(i,j,0);
-					
-					opponentBoard[i][j].setName( "opponentBoard" ); //
-					opponentBoardPanel.add(opponentBoard[i][j]);
-					
-					
-					
-					
-					if(i == GRID_DIMENSION-1 && j == GRID_DIMENSION -1 )
-					{
-						yourBoard[i][j].setBorder(topLeftBottomRightBorder);
-						opponentBoard[i][j].setBorder(topLeftBottomRightBorder);
-					}
 
-					else if(j == GRID_DIMENSION -1)
-					{
-						yourBoard[i][j].setBorder(topLeftRightBorder);
-						opponentBoard[i][j].setBorder(topLeftRightBorder);
-					}
+		graficGrid();
 
-					else if(j == GRID_DIMENSION -1)
-					{
-						yourBoard[i][j].setBorder(topLeftRightBorder);
-						opponentBoard[i][j].setBorder(topLeftRightBorder);
-					}
-
-					else if(i == GRID_DIMENSION-1)
-					{
-						yourBoard[i][j].setBorder(topLeftBottomBorder);
-						opponentBoard[i][j].setBorder(topLeftBottomBorder);
-					}
-					else
-					{
-						yourBoard[i][j].setBorder(topLeftBorder);
-						opponentBoard[i][j].setBorder(topLeftBorder);
-					}
-				}
-			}
-		}
-		
 		gridPanel.setLayout(new GridBagLayout());
-		
+
 		yourBoardPanel.setPreferredSize(new Dimension(600,600));
 		c.ipadx = 35;
 		c.gridx = 0;
@@ -336,7 +261,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		c.weighty = 1.0;
 		c.fill= GridBagConstraints.BOTH;
 		gridPanel.add(yourBoardPanel, c);
-		
+
 		opponentBoardPanel.setPreferredSize(new Dimension(600,600));
 		c1.ipadx = 35;
 		c1.gridx = 1;
@@ -350,7 +275,90 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		boatList(dim);
 		waitPanelCreation();
 		frame.pack();
-		
+
+	}
+
+	public void graficGrid()
+	{
+		for(int i = -1; i < GRID_DIMENSION + 1; i++)
+		{
+			for(int j = -1; j < GRID_DIMENSION + 1; j++)
+			{
+
+				if((i == -1 && j == -1) || (i == -1 && j == GRID_DIMENSION) || (i == GRID_DIMENSION && j == -1) || (i == GRID_DIMENSION && j == GRID_DIMENSION))
+				{
+					yourBoardPanel.add(new JLabel(" "));
+					opponentBoardPanel.add(new JLabel(" "));
+				}
+
+				else if(i==-1)
+				{
+					yourBoardPanel.add(new JLabel(""+(char)(j+'A'), JLabel.CENTER));
+					opponentBoardPanel.add(new JLabel(""+(char)(j+'A'), JLabel.CENTER));
+				}
+				else if(j==-1)
+				{
+					yourBoardPanel.add(new JLabel((i+1)+"", JLabel.CENTER));
+					opponentBoardPanel.add(new JLabel((i+1)+"", JLabel.CENTER));
+				}
+				else if (i == GRID_DIMENSION)
+				{
+					yourBoardPanel.add(new JLabel(" "));
+					opponentBoardPanel.add(new JLabel(" "));
+				}
+				else if(j == GRID_DIMENSION)
+				{
+					yourBoardPanel.add(new JLabel(" "));
+					opponentBoardPanel.add(new JLabel(" "));
+				}
+				else
+				{
+					yourBoard[i][j]= new Square(i,j,0);
+					yourBoard[i][j].addMouseListener(this);//
+					yourBoard[i][j].setName("yourBoard");//
+					yourBoardPanel.add(yourBoard[i][j]);
+					opponentBoard[i][j]= new Square(i,j,0);
+
+					opponentBoard[i][j].setName( "opponentBoard" ); //
+					opponentBoardPanel.add(opponentBoard[i][j]);
+
+					setBorder(i, j );
+
+				}
+			}
+		}
+	}
+
+	public void setBorder(int i ,int j)
+	{
+		if(i == GRID_DIMENSION-1 && j == GRID_DIMENSION -1 )
+		{
+			yourBoard[i][j].setBorder(topLeftBottomRightBorder);
+			opponentBoard[i][j].setBorder(topLeftBottomRightBorder);
+		}
+
+		else if(j == GRID_DIMENSION -1)
+		{
+			yourBoard[i][j].setBorder(topLeftRightBorder);
+			opponentBoard[i][j].setBorder(topLeftRightBorder);
+		}
+
+		else if(j == GRID_DIMENSION -1)
+		{
+			yourBoard[i][j].setBorder(topLeftRightBorder);
+			opponentBoard[i][j].setBorder(topLeftRightBorder);
+		}
+
+		else if(i == GRID_DIMENSION-1)
+		{
+			yourBoard[i][j].setBorder(topLeftBottomBorder);
+			opponentBoard[i][j].setBorder(topLeftBottomBorder);
+		}
+		else
+		{
+			yourBoard[i][j].setBorder(topLeftBorder);
+			opponentBoard[i][j].setBorder(topLeftBorder);
+		}
 	}
 	public void waitPanelCreation() {
 		// TODO Auto-generated method stub
