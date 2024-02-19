@@ -57,14 +57,16 @@ https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Project%
 
 ## 2. Software lifecylce
 
-Per il processo di sviluppo del gioco si è deciso di sfruttare un approccio di tipo *agile*, infatti si è ritenuto che questo fosse più adatto per un progetto di questo tipo in cui la documentazione non è essenziale per l'utente finale, ossia i giocatori; di fatto anche il database associato non è molto rigoroso. <br>
-Essendo un approccio agile: 
-- L'organizzazione del team segue i principi della SWAT: i 4 membri hanno la stessa importanza e possono esprimere le loro opinioni. Le riunioni del gruppo sono brevi sessioni, prevalentemente di brain storming, o nelle quali si cerca una soluzione ad un problema rilevato durante i test, che sono stati svolti ripetutamente e a seguito di ogni cambiamento. La documentazione di queste riunioni  è minima, formata principalmente da appunti o da schemi sui quali basarci per le future implementazioni e modifiche da attuare. <br>
+Per il processo di sviluppo del gioco si è deciso di sfruttare un approccio di tipo *agile*, in particolare abbiamo deciso di seguire i principi del modello RAD, Rapid Application  Development. <br>
+I principi sui quali ci siamo basati sono:
+- L'organizzazione del team ha seguito i principi della SWAT: i 4 membri hanno avuto la stessa importanza e non ci sono state gerarchie all'interno del team, che ha lavorato in modo coeso e collaborando nelle diverse fasi dello sviluppo. <br>
+- Le riunioni del gruppo sono state brevi sessioni, prevalentemente di brain storming, o nelle quali si cerca una soluzione ad un problema rilevato durante i test, che sono stati svolti ripetutamente e a seguito di ogni cambiamento. La documentazione di queste riunioni  è minima, formata principalmente da appunti o da schemi sui quali basarci per le future implementazioni e modifiche da attuare. <br>
 Qualora non fosse stato possibile incontrarsi dal vivo, le riunioni sono state eseguite attraverso videochiamate da remoto, tramite applicazioni apposite quali *Google Meet* o *Discord*. 
--	Abbiamo usato cicli di sviluppo piccoli ed incrementali; lo sviluppo viene pianificato man mano senza una pianificazione eccessivamente anticipata, data l'assenza di esperienze pregresse sulle quali basarci. Ogni volta che un membro apportava modifiche al progetto lo comunicava agli altri attraverso issues. 
-- Il team ha seguito la filosofia dell'*extreme programming*, basandosi sul concetto di voler creare un software funzionante e di qualità, dando importanza: prima al portare a termine i punti di must have del progetto, poi al migliorarli fino all'ottenimento di un progetto che fosse ritenuto di buona qualità e infine alle possibili implementazioni da attuare nel tempo rimanente.
+-	Abbiamo usato cicli di sviluppo piccoli ed incrementali; lo sviluppo viene pianificato man mano senza una pianificazione eccessivamente anticipata, data l'assenza di esperienze pregresse sulle quali basarci. Ogni volta che un membro apportava modifiche al progetto lo comunicava agli altri membri, nel caso fosse necessario anche attraverso issues. <br>
+- Il team ha preso anche spunto dai principi dell'*extreme programming*, basandosi sul concetto di voler creare un software funzionante e di qualità, dando importanza: prima al portare a termine i punti di must have del progetto, poi al migliorarli fino all'ottenimento di un progetto che fosse ritenuto di buona qualità e infine alle possibili implementazioni da attuare nel tempo rimanente.
 - Durante lo sviluppo, sopratttutto nei momenti iniziali, si è sfruttato spesso il *pair programming* come metodo di verifica: abbiamo lavorato in coppia  sullo stesso frammento di codice in modo tale da avere una verifica in tempo reale sul lavoro svolto. Questa pratica ha inoltre favorito lo scambio di idee e la ricerca di soluzioni migliori, fondamentale nei primi incontri.
-- Durante lo sviluppo abbiamo fruttato la tecnica del *timeboxing* assegnando ad ogni compito una scadenza entro la quale doveva essere portato a termine. 
+- Durante lo sviluppo abbiamo fruttato la tecnica del *timeboxing* tipica dello sviluppo RAD assegnando ad ogni compito una scadenza entro la quale doveva essere portato a termine.
+- Sempre seguendo il principio di RAD abbiamo eseguito un triage dei requisiti secondo il metodo Moscow durante la fase iniziale. 
 
 ## 3. Configuration management
 Tutto il lavoro svolto, che si tratti di documentazione o di codice, viene regolarmente salvato nel repository di GitHub.
@@ -77,10 +79,15 @@ Il repository è strutturato nel seguente modo:
     - *code*:
     - *docs*: Contiene la documentazione del progetto
 
-### 3.2 Issues
-Le varie attività sono state segnate come issues all'interno di Github nella sezione della Kanban Board. Per ogni issue della board è stata fatta una breve descrizione ed è stato designato un membro (o più) al quale assegnarlo.
+Durante lo sviluppo del progetto sono stati creati diversi branch a partire dal master per implementare modifiche o per correggere errori quando riscontrati.<br>
+Al termine dell'implementazione di tali modifiche, previa revisione di qualche altro componente delle modifiche eseguite attraverso una pull request, è stato effettuato il merge al branch master.
+
+### 3.2 Issues e Kanban Board
+Per la comunicazione e per l'aggiornamento sull'avanzamento dello sviluppo del lavoro il team ha utilizzato gli issues di GitHub. <br>
 Come obiettivo del gruppo c'è stato l'impegno nell'utilizzo di questi come mezzo di comunicazione e di segnalazione degli avanzamenti o possibili problematiche; ogni membro ha la possibilità di creare nuovi issues nel caso lo trovasse necessario. <br>
-Le issue sono suddivise in 3 categorie principali:
+Gli issues sono stati utilizzati anche all'interno della Kanban Board, utilizzata per monitorare le attività del team e come strumento di gestione. <br>
+Per ogni issue della board è stata fatta una breve descrizione ed è stato designato un membro (o più) al quale assegnarlo.
+Gli issues sono suddivise in 3 categorie principali:
 - *task*: attività da svolgere
 - *bug*: segnalazione di un bug
 - *enhancement*: proposta di miglioramento
@@ -92,7 +99,6 @@ Gli stati sono i seguenti:
 - *Review*: L'attività è stata completata e deve essere testata
 - *Done*:L'attività è stata completata e funziona correttamente
 - *To fix*: L'attività è stata testata ma non funziona correttamente
-
 
 ## 4. People management
 Abbiamo deciso di basarci su una struttura organizzativa non gerarchica, così da garantire una maggiore flessibilità e un più facile adattamento alle esigenze del progetto. <br>
@@ -146,17 +152,20 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
 </table>
 
 ## 5. Software quality
-Come precedentemente specificato, il team si è prefissato di sviluppare un'applicazione che rispetti i parametri e gli attributi di qualità definiti da McCall-Richards-Walters: 
+Come precedentemente specificato, il team si è prefissato di sviluppare un'applicazione che rispetti i parametri e gli attributi di qualità, considerando fondamentale lo sviluppo di un software di qualità che garantisca: 
 
-- Efficienza : per il funzionamento del software non è necessario l'uso di particolari risorse
 - Correttezza : il software consegnato soddisfa i requisiti (identificati come i must have del progetto)
-- Affidabilità : abbiamo testato più e più volte la nostra applicazione presentandola col minor numero di bug possibili
-- Integrità : il software è reso quanto più sicuro possibile in quanto è prevalentemente autonomo 
-- Usabilità : il prodotto è semplice da utilizzare infatti non sono richieste, oltre che a risorse avanzate, nemmeno competenze e conoscenze particolari
-- Testabilità: Tutte le funzionalità incluse sono testabili in qualunque momento tramite test manuali 
-- Flessibilità: il software si presenza incline all'implementazione di nuove funzionalità rendendolo molto flessibile.
-- Portabilità: Il gioco è eseguibile sui più diffusi sistemi operativi desktop (Windows, Linux, MacOS) dotati di una connessione internet.
+- Affidabilità : abbiamo testato più e più volte la nostra applicazione presentandola col minor numero di bug possibili, il software svolge le funzioni richieste in modo corretto
+- Efficienza : per il funzionamento del software non è necessario l'uso di particolari risorse 
+- Integrità : il software permette l'accesso ai soli utenti che hanno effettuato la registrazione e sono inseriti nel database
+- Usabilità : il prodotto è semplice da utilizzare infatti non sono richieste, oltre che a risorse avanzate, nemmeno competenze e conoscenze particolari. L'interpretazione dell'output e l'immissione dell'input non dovrebbero richiedere sforzo particolare grazie alla presenza di un Tutorial iniziale che è possibile consultare ogni volta che si apre il menu principale
+
+Rispetto alla manutenibilità e all'interazione con l'ambiente, ci aspettiamo che rispetti le seguenti qualità:
+- Testabilità: le funzionalità incluse sono testabili in qualunque momento tramite test manuali implementati attraverso l'utilizzo di JUnit
+- Manutenibilità: il software è stato sviluppato con l'obbiettivo di essere chiaro, cosi da permettere l'individualizzazione e la risoluzione di eventuali errori. A questo fine è stato utilizzato JavaDoc
+- Flessibilità: il software si presenza incline all'implementazione di nuove funzionalità
 - Riusabilità: Sono state sfruttate e scritte librerie che possono essere riutilizzate in altri ambiti in quanto sono state sviluppate in modo indipendente dal contesto del gioco.
+- Portabilità: Il gioco è eseguibile sui più diffusi sistemi operativi desktop (Windows, Linux, MacOS) dotati di una connessione internet.
 <br>
 
 ## 6. Requirement Engineering
