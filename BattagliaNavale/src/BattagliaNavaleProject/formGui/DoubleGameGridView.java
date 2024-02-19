@@ -61,7 +61,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
 	private JPanel panel_1;
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run()
 			{
@@ -80,7 +80,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 
 
 
-	}
+	}*/
 
 	/*public DoubleGameGridGUI()
 	{
