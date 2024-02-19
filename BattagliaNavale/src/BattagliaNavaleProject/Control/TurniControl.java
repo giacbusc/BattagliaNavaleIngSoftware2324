@@ -16,7 +16,7 @@ import BattagliaNavaleProject.formGui.DoubleGameGridView;
 public class TurniControl  {
 DoubleGameGridView DGGV;
 final int GRID_DIMENSION=10;
-static String indirizzo;
+private String indirizzo;
 private int stato;
 private int x;
 private int y;
@@ -30,6 +30,7 @@ public TurniControl(String indirizzo,DoubleGameGridView DGGV) {
 	// TODO Auto-generated constructor stub
 	this.indirizzo=indirizzo;
 	this.DGGV=DGGV;
+	socket.connect(indirizzo);	
 }
 
 /*0 libero bianco
@@ -173,6 +174,7 @@ private void cicloattesa() throws InterruptedException {
 
 private void toglilistener() {
 	// TODO Auto-generated method stub
+	System.out.println("tolti");
 	for(int i = 0; i < GRID_DIMENSION ; i++)
 	{
 		for(int j = 0; j < GRID_DIMENSION ; j++)
