@@ -56,7 +56,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	private JPanel panel[];
 	
 	private TurniControl turni;
-	//private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
+	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
