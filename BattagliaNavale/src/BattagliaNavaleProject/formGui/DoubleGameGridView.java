@@ -26,6 +26,7 @@ import javax.swing.border.Border;
 import org.zeromq.ZMQ;
 
 import BattagliaNavaleProject.Control.DoubleGameGridControl;
+import BattagliaNavaleProject.Control.TurniControl;
 import BattagliaNavaleProject.client.Square;
 
 public class DoubleGameGridView extends JFrame implements MouseListener{
@@ -53,6 +54,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
+	private TurniControl turni;
 
 
 	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
@@ -390,7 +392,23 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		DGGC.gestioneClick(e);
+		if(e.getSource()instanceof Square) {
+			Square clickedSquare= (Square) e.getSource();
+			if(clickedSquare.getName().equals("yourBoard")) {
+			DGGC.gestioneClick(e);
+		}
+			else if(clickedSquare.getName().equals("opponentBoard")) {
+				try {
+					turni.colpoClick(e);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
+		else if(e.getSource()instanceof JPanel) {
+			DGGC.gestioneClick(e);
+		}
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
