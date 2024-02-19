@@ -112,7 +112,10 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <tr>
         <th></th>
         <th>Documentazione</th>
+        <th>UML</th>
         <th>Progettazione</th>
+       <th>Server</th>
+       <th>Client</th>
         <th>Sviluppo back-end</th>
         <th>Sviluppo front-end</th>
         <th>Test</th>
@@ -124,9 +127,15 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
+      <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
     </tr>
     <tr>
     <th>Luca Ciancio</th>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
@@ -139,10 +148,16 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
+     <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
     <td>✅</td>
     </tr>
     <tr>
     <th>Giulia Signori</th>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
@@ -169,6 +184,14 @@ Rispetto alla manutenibilità e all'interazione con l'ambiente, ci aspettiamo ch
 <br>
 
 ## 6. Requirement Engineering
+I requisiti sono stati decisi in fase di elicitazione, durante la quale abbiamo utilizzato linguaggio formali e semiformali, cioè la descrizione in linguaggio naturale e la descrizione degli scenari attarverso diagrammmi UML (ad esempio lo use case lo abbiamo utilizzato per comprendere come l'utente potesse interagire col sistema). Abbiamo quindi redatto, a partire dai requisiti elicitati un documento identificato come Specifica dei Requisiti, il quale è stato alla base dell'attività di Validazione, necessaria per capire se stessimo costruendo nel modo giusto il nostro sistema. <br> 
+
+### 6.1 Specifica dei Requisiti
+#### 6.1.1 Schermata Iniziale e Accesso
+La prima schermata che si presenta al cliente è quella per l'accesso, che si distingue in due modalità: attraverso Login o Registrazione. <br>
+Un cliente che non è loggato può registrarsi inserendo il suo nome, il cognome, un username(il quale vogliamo che sia univoco) ed una password. Queste informazioni vengono salvate nel database e vengono poi verificate ogni volta che un utente esegue il login (con username e password). <br>
+Il login ha successo solo nel momento in cui l'username inserito ha un riscontro nel database. <br>
+
 
 ## 7. Modelling
 
