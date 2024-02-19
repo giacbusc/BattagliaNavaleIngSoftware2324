@@ -174,6 +174,7 @@ private void cicloattesa() throws InterruptedException {
 
 private void toglilistener() {
 	// TODO Auto-generated method stub
+	System.out.println("tolti");
 	for(int i = 0; i < GRID_DIMENSION ; i++)
 	{
 		for(int j = 0; j < GRID_DIMENSION ; j++)
