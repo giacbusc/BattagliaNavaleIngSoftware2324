@@ -656,8 +656,8 @@ public class ServerSocket {
 		for (int i = 0; i < MAX_LENGTH; i++) {
 			for (int j = 0; j < MAX_LENGTH; j++) 
 			{
-				player1[i][j] = new Square(i, j, 0, "000000000");
-				player2[i][j] = new Square(i, j, 0, "000000000");
+				player1[i][j] = new Square(i, j, 0, "0000000000");
+				player2[i][j] = new Square(i, j, 0, "0000000000");
 				
 			}
 		}
