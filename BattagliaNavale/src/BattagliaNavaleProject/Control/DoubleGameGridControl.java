@@ -35,6 +35,7 @@ public class DoubleGameGridControl{
 	boolean entra=false;
 	int x;
 	int y;
+	private int ataconta;
 	private int[] arrayRisposta= new int[8];
 	int primo=0;
 	int boatlenght;
@@ -567,6 +568,7 @@ public class DoubleGameGridControl{
 			@Override
 			protected Void doInBackground() throws Exception {
 				// Esegui le operazioni di connessione qui
+				ataconta=0;
 				boolean r=true;
 				do {
 					grid.waitPanel.setVisible(true);
