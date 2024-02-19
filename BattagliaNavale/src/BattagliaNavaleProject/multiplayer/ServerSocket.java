@@ -97,7 +97,8 @@ public class ServerSocket {
 
 					clientIndex++;
 					System.out.println(clientIndex);
-					
+					System.out.println("STAMPA NOMI");
+					stampaGriglia2(turno);
 					turno = 2;
 
 				}
@@ -174,8 +175,6 @@ public class ServerSocket {
 				continue;
 			}
 			stampaGriglia(turno);
-			System.out.println("STAMPA NOMI");
-			stampaGriglia2(turno);
 
 			String[] mexSplit = messaggio.split(",");
 			String x = mexSplit[0];
@@ -250,8 +249,6 @@ public class ServerSocket {
 				}
 
 				stampaGriglia(turno);
-				System.out.println("STAMPA NOMI");
-				stampaGriglia2(turno);
 				
 			}
 
@@ -314,7 +311,7 @@ public class ServerSocket {
 		case 2: {
                  Case2ControllaCella(x,y,l,turno);
                  break;
-		}
+				}
 
 		case 3: {
 			 Case3ControllaCella(x,y,l,turno);
@@ -324,7 +321,7 @@ public class ServerSocket {
 		case 4: {
 			 Case4ControllaCella(x,y,l,turno);
              break;
-		}
+			}
 
 		}
 
@@ -659,8 +656,8 @@ public class ServerSocket {
 		for (int i = 0; i < MAX_LENGTH; i++) {
 			for (int j = 0; j < MAX_LENGTH; j++) 
 			{
-				player1[i][j] = new Square(i, j, 0, "000000000");
-				player2[i][j] = new Square(i, j, 0, "000000000");
+				player1[i][j] = new Square(i, j, 0, "0000000000");
+				player2[i][j] = new Square(i, j, 0, "0000000000");
 				
 			}
 		}

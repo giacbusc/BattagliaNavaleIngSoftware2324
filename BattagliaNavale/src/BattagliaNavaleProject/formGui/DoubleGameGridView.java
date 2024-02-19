@@ -53,10 +53,10 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
-	
-	
+
+
 	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run()
@@ -64,7 +64,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 				try 
 				{
 					DoubleGameGridView frame = new DoubleGameGridView();
-				    frame.setVisible(true);
+					frame.setVisible(true);
 				}
 				catch(Exception e)
 				{
@@ -72,12 +72,12 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 				}
 			}
 		});
-		
-		
-		
-		
+
+
+
+
 	}
-	
+
 	/*public DoubleGameGridGUI()
 	{
 		socket = this.socket;
@@ -94,7 +94,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		/*final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoGriglia.jpg");
 		Image image = sfondo.getImage();
         final Image scaledImage = image.getScaledInstance(1450, 816, Image.SCALE_SMOOTH);
-        
+
 		JPanel backgroundPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -102,22 +102,22 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
                 g.drawImage(scaledImage, 0, 0, getWidth(), getHeight(), this);
             }
         };*/
-        //getContentPane().add(backgroundPanel);
+	//getContentPane().add(backgroundPanel);
 
-		/*centralTopPanel.setBackground(Color.BLUE);
+	/*centralTopPanel.setBackground(Color.BLUE);
 		centralTopPanel.setPreferredSize(new Dimension(50, 50));
 		getContentPane().add(centralTopPanel, BorderLayout.NORTH);
-		
+
 		createGrid();
-		
+
 		getContentPane().add(gridPanel, BorderLayout.CENTER);
-		
-		
+
+
 		frame.pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}*/
-	
+
 	public DoubleGameGridView() throws IOException 
 	{
 		this.frame = new JFrame("Battaglia Navale");
@@ -135,7 +135,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		/*final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoGriglia.jpg");
 		Image image = sfondo.getImage();
         final Image scaledImage = image.getScaledInstance(1450, 816, Image.SCALE_SMOOTH);
-        
+
 		JPanel backgroundPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -143,17 +143,17 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
                 g.drawImage(scaledImage, 0, 0, getWidth(), getHeight(), this);
             }
         };*/
-        //getContentPane().add(backgroundPanel);
+		//getContentPane().add(backgroundPanel);
 
 		centralTopPanel.setBackground(Color.BLUE);
 		centralTopPanel.setPreferredSize(new Dimension(50, 50));
 		getContentPane().add(centralTopPanel, BorderLayout.NORTH);
-		
+
 		createGrid();
-		
+
 		getContentPane().add(gridPanel, BorderLayout.CENTER);
-		
-		
+
+
 		frame.pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -183,13 +183,13 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 			panel[i].addMouseListener(this);
 			panel[i].setName(""+i);
 			boatLength = dim.get(i);
-			
+
 			if(boatLength == 4)
 			{
 				panel[i].setPreferredSize(new Dimension(220,40));
 				panel[i].setBackground(Color.RED); // 4 quadretti = rosso
 				shipsPanel.add(panel[i]);
-	
+
 			}else if(boatLength == 3)
 			{
 				panel[i].setPreferredSize(new Dimension(165,40));
@@ -208,12 +208,12 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 				panel[i].setBackground(Color.MAGENTA);
 				shipsPanel.add(panel[i]);
 			}
-			
+
 		}
-		
+
 		frame.pack();
 	}
-	
+
 	private ArrayList<Integer> getDimNavi()
 	{
 		dim = new ArrayList<Integer>();
@@ -237,7 +237,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		}
 		return dim;
 	}
-	
+
 
 	public void createGrid()
 	{	
@@ -247,86 +247,10 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		opponentBoard = new Square[GRID_DIMENSION][GRID_DIMENSION];
 		yourBoardPanel.setLayout(new GridLayout(GRID_DIMENSION+2, GRID_DIMENSION+2, 0, 0));
 		opponentBoardPanel.setLayout(new GridLayout(GRID_DIMENSION+2, GRID_DIMENSION+2, 0, 0));
-		
-		for(int i = -1; i < GRID_DIMENSION + 1; i++)
-		{
-			for(int j = -1; j < GRID_DIMENSION + 1; j++)
-			{
-				
-				if((i == -1 && j == -1) || (i == -1 && j == GRID_DIMENSION) || (i == GRID_DIMENSION && j == -1) || (i == GRID_DIMENSION && j == GRID_DIMENSION))
-				{
-					 yourBoardPanel.add(new JLabel(" "));
-	                 opponentBoardPanel.add(new JLabel(" "));
-				}
-				
-				else if(i==-1)
-				{
-					yourBoardPanel.add(new JLabel(""+(char)(j+'A'), JLabel.CENTER));
-                    opponentBoardPanel.add(new JLabel(""+(char)(j+'A'), JLabel.CENTER));
-				}
-				else if(j==-1)
-				{
-					  yourBoardPanel.add(new JLabel((i+1)+"", JLabel.CENTER));
-	                  opponentBoardPanel.add(new JLabel((i+1)+"", JLabel.CENTER));
-				}
-				else if (i == GRID_DIMENSION)
-				{
-					yourBoardPanel.add(new JLabel(" "));
-                    opponentBoardPanel.add(new JLabel(" "));
-				}
-				else if(j == GRID_DIMENSION)
-				{
-					yourBoardPanel.add(new JLabel(" "));
-                    opponentBoardPanel.add(new JLabel(" "));
-				}
-				else
-				{
-					yourBoard[i][j]= new Square(i,j,0);
-					yourBoard[i][j].addMouseListener(this);//
-					yourBoard[i][j].setName("yourBoard");//
-					yourBoardPanel.add(yourBoard[i][j]);
-					opponentBoard[i][j]= new Square(i,j,0);
-					
-					opponentBoard[i][j].setName( "opponentBoard" ); //
-					opponentBoardPanel.add(opponentBoard[i][j]);
-					
-					
-					
-					
-					if(i == GRID_DIMENSION-1 && j == GRID_DIMENSION -1 )
-					{
-						yourBoard[i][j].setBorder(topLeftBottomRightBorder);
-						opponentBoard[i][j].setBorder(topLeftBottomRightBorder);
-					}
 
-					else if(j == GRID_DIMENSION -1)
-					{
-						yourBoard[i][j].setBorder(topLeftRightBorder);
-						opponentBoard[i][j].setBorder(topLeftRightBorder);
-					}
-
-					else if(j == GRID_DIMENSION -1)
-					{
-						yourBoard[i][j].setBorder(topLeftRightBorder);
-						opponentBoard[i][j].setBorder(topLeftRightBorder);
-					}
-
-					else if(i == GRID_DIMENSION-1)
-					{
-						yourBoard[i][j].setBorder(topLeftBottomBorder);
-						opponentBoard[i][j].setBorder(topLeftBottomBorder);
-					}
-					else
-					{
-						yourBoard[i][j].setBorder(topLeftBorder);
-						opponentBoard[i][j].setBorder(topLeftBorder);
-					}
-				}
-			}
-		}
-		
+		grigliaView();
 		gridPanel.setLayout(new GridBagLayout());
-		
+
 		yourBoardPanel.setPreferredSize(new Dimension(600,600));
 		c.ipadx = 35;
 		c.gridx = 0;
@@ -335,7 +259,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		c.weighty = 1.0;
 		c.fill= GridBagConstraints.BOTH;
 		gridPanel.add(yourBoardPanel, c);
-		
+
 		opponentBoardPanel.setPreferredSize(new Dimension(600,600));
 		c1.ipadx = 35;
 		c1.gridx = 1;
@@ -349,7 +273,88 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		boatList(dim);
 		waitPanelCreation();
 		frame.pack();
-		
+
+	}
+	public void grigliaView()
+	{
+
+		for(int i = -1; i < GRID_DIMENSION + 1; i++)
+		{
+			for(int j = -1; j < GRID_DIMENSION + 1; j++)
+			{
+
+				if((i == -1 && j == -1) || (i == -1 && j == GRID_DIMENSION) || (i == GRID_DIMENSION && j == -1) || (i == GRID_DIMENSION && j == GRID_DIMENSION))
+				{
+					yourBoardPanel.add(new JLabel(" "));
+					opponentBoardPanel.add(new JLabel(" "));
+				}
+
+				else if(i==-1)
+				{
+					yourBoardPanel.add(new JLabel(""+(char)(j+'A'), JLabel.CENTER));
+					opponentBoardPanel.add(new JLabel(""+(char)(j+'A'), JLabel.CENTER));
+				}
+				else if(j==-1)
+				{
+					yourBoardPanel.add(new JLabel((i+1)+"", JLabel.CENTER));
+					opponentBoardPanel.add(new JLabel((i+1)+"", JLabel.CENTER));
+				}
+				else if (i == GRID_DIMENSION)
+				{
+					yourBoardPanel.add(new JLabel(" "));
+					opponentBoardPanel.add(new JLabel(" "));
+				}
+				else if(j == GRID_DIMENSION)
+				{
+					yourBoardPanel.add(new JLabel(" "));
+					opponentBoardPanel.add(new JLabel(" "));
+				}
+				else
+				{
+					yourBoard[i][j]= new Square(i,j,0);
+					yourBoard[i][j].addMouseListener(this);//
+					yourBoard[i][j].setName("yourBoard");//
+					yourBoardPanel.add(yourBoard[i][j]);
+					opponentBoard[i][j]= new Square(i,j,0);
+
+					opponentBoard[i][j].setName( "opponentBoard" ); //
+					opponentBoardPanel.add(opponentBoard[i][j]);
+
+					setBordi(i, j);
+				}
+			}
+		}
+	}
+	public void setBordi(int i, int j)
+	{
+		if(i == GRID_DIMENSION-1 && j == GRID_DIMENSION -1 )
+		{
+			yourBoard[i][j].setBorder(topLeftBottomRightBorder);
+			opponentBoard[i][j].setBorder(topLeftBottomRightBorder);
+		}
+
+		else if(j == GRID_DIMENSION -1)
+		{
+			yourBoard[i][j].setBorder(topLeftRightBorder);
+			opponentBoard[i][j].setBorder(topLeftRightBorder);
+		}
+
+		else if(j == GRID_DIMENSION -1)
+		{
+			yourBoard[i][j].setBorder(topLeftRightBorder);
+			opponentBoard[i][j].setBorder(topLeftRightBorder);
+		}
+
+		else if(i == GRID_DIMENSION-1)
+		{
+			yourBoard[i][j].setBorder(topLeftBottomBorder);
+			opponentBoard[i][j].setBorder(topLeftBottomBorder);
+		}
+		else
+		{
+			yourBoard[i][j].setBorder(topLeftBorder);
+			opponentBoard[i][j].setBorder(topLeftBorder);
+		}
 	}
 	public void waitPanelCreation() {
 		// TODO Auto-generated method stub
@@ -365,11 +370,11 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		gbl_waitPanel.columnWeights = new double[]{Double.MIN_VALUE};
 		gbl_waitPanel.rowWeights = new double[]{Double.MIN_VALUE};
 		waitPanel.setLayout(gbl_waitPanel);
-		
+
 		JLabel attesa = new JLabel("Attendi che l'avversario finisca il posizionamento");
-		 attesa.setForeground(new Color(0, 128, 255));
-	        attesa.setFont(new Font("Tahoma", Font.BOLD, 28));
-	        attesa.setHorizontalAlignment(SwingConstants.CENTER);
+		attesa.setForeground(new Color(0, 128, 255));
+		attesa.setFont(new Font("Tahoma", Font.BOLD, 28));
+		attesa.setHorizontalAlignment(SwingConstants.CENTER);
 		waitPanel.add(attesa);
 		waitPanel.setVisible(true);
 	}
@@ -377,9 +382,9 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	/*public void mostra() {
 		// TODO Auto-generated method stub
 		yourBoardPanel.addMouseListener(DGGC);//
-		
+
 	}
-	*/
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -388,22 +393,22 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	public JPanel[] getPanel() {
 		return panel;
