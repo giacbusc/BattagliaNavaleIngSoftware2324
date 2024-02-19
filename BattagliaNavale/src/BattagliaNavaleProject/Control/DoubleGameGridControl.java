@@ -431,6 +431,10 @@ public class DoubleGameGridControl{
 		}
 	}
 	public void coloragrigio() {
+		if(!(arraymsg[2].contains("Submarine"))) {
+			togliPanel();
+		}
+		
 		if(arrayRisposta[6]==0) {
 
 			for(int i=1;i<boatlenght;i++) { 
@@ -574,11 +578,12 @@ public class DoubleGameGridControl{
 					grid.waitPanel.setVisible(true);
 					Thread.sleep(5000);
 					String sendMsg = "ATA";
+					turni.toglilistener();
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
-					System.out.println(sendMsg);
+					System.out.println("Inviato" +sendMsg);
 
 					byte[] byteMsg = socket.recv(0);
-					System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
+					System.out.println("Ricevuto " + new String(byteMsg, ZMQ.CHARSET) + " ");
 					String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 					
 					if(rispostaMsg.equals("GIOCA")) {
