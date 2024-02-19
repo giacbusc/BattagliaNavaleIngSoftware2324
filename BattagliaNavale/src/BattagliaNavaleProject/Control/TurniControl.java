@@ -16,7 +16,7 @@ import BattagliaNavaleProject.formGui.DoubleGameGridView;
 public class TurniControl  {
 DoubleGameGridView DGGV;
 final int GRID_DIMENSION=10;
-static String indirizzo;
+private String indirizzo;
 private int stato;
 private int x;
 private int y;
@@ -30,6 +30,7 @@ public TurniControl(String indirizzo,DoubleGameGridView DGGV) {
 	// TODO Auto-generated constructor stub
 	this.indirizzo=indirizzo;
 	this.DGGV=DGGV;
+	socket.connect(indirizzo);	
 }
 
 /*0 libero bianco
