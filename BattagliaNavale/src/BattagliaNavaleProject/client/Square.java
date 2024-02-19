@@ -9,6 +9,7 @@ public class Square extends JPanel
 {
 	
 	public int x, y, stato;
+	public String nome;
 	
 	
 	public Square(int x, int y, int stato)
@@ -19,9 +20,24 @@ public class Square extends JPanel
 		this.y = y;
 		this.stato = stato;
 	}
+	 public Square(int x, int y, int stato,String nome)
+		{
+			
+			setBackground(Color.white);
+			this.x = x;
+			this.y = y;
+			this.stato = stato;
+			this.nome=nome;
+		}
+	 
 	
 	
-	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	public int getx()
 	{
 		return this.x;
