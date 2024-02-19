@@ -1,5 +1,7 @@
 package BattagliaNavaleProject.formGui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -24,7 +26,7 @@ import BattagliaNavaleProject.Control.LoginControl;
 import BattagliaNavaleProject.form.LoginModel;
 import java.awt.Dimension;
 
-public class LoginView extends JFrame {
+public class LoginView extends JFrame implements ActionListener  {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel usernameLabel, passwordLabel;
@@ -32,6 +34,7 @@ public class LoginView extends JFrame {
 	private JPasswordField passwordField;
 	private JButton loginButton;
 	private LoginModel model;
+	private LoginControl control;
 	private JButton backButton;
 	
 	/**
@@ -121,8 +124,8 @@ public class LoginView extends JFrame {
         backButton.setBounds(391, 232, 85, 21);
         backgroundPanel.add(backButton);
        
-		loginButton.addActionListener(new LoginControl(this));
-		backButton.addActionListener(new LoginControl(this));
+		loginButton.addActionListener(this);
+		backButton.addActionListener(this);
         
        
        
@@ -165,5 +168,13 @@ public void openMenu() throws IOException, SQLException {
     MenuPrincipaleView menu = new MenuPrincipaleView(model.getUserName()); 
 	menu.setVisible(true);
 	dispose(); 
+}
+
+
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
+	control.gestioneClick( e);
 }
 }
