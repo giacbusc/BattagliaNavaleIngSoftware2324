@@ -55,6 +55,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
 	private TurniControl turni;
+	private String username;
 
 
 	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
@@ -121,8 +122,9 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		setVisible(true);
 	}*/
 
-	public DoubleGameGridView() throws IOException 
+	public DoubleGameGridView(String username) throws IOException 
 	{
+		this.username = username;
 		this.frame = new JFrame("Battaglia Navale");
 		setSize(1400,788);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -148,10 +150,13 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
         };*/
 		//getContentPane().add(backgroundPanel);
 
+		JLabel usernameLabel = new JLabel(""+username);
 		centralTopPanel.setBackground(Color.BLUE);
 		centralTopPanel.setPreferredSize(new Dimension(50, 50));
 		getContentPane().add(centralTopPanel, BorderLayout.NORTH);
 		
+
+		centralTopPanel.add(usernameLabel);
 	
 		createGrid();
 
