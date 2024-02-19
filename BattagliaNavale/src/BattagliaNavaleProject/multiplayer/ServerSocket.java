@@ -129,7 +129,16 @@ public class ServerSocket {
 			}
 		}
 		
+		
 		System.out.println("inizio giocooooo");
+		byte[] reply = socketServer.recv(0);
+		String messaggio = new String(reply, ZMQ.CHARSET);
+		System.out.println("ricevuto: " + messaggio);
+		if (messaggio.equals("ATA")) {
+			String responseMessage = "GIOCA";
+			socketServer.send(responseMessage.getBytes(), 0);
+			System.out.println("Inviato: " + responseMessage);
+		}
 
 	}
 
