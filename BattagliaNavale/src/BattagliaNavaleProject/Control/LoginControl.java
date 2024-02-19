@@ -12,7 +12,7 @@ import BattagliaNavaleProject.Database.ConnectionDb;
 import BattagliaNavaleProject.form.LoginModel;
 import BattagliaNavaleProject.formGui.LoginView;
 
-public class LoginControl implements ActionListener  
+public class LoginControl 
 {
 	
 	private LoginView gui;
@@ -25,10 +25,45 @@ public class LoginControl implements ActionListener
 		
 	}
 	
-	public void actionPerformed(ActionEvent e) 
+	
+	public static boolean checkUser(LoginModel model) throws SQLException, IOException  
 	{
-			// TODO Auto-generated method stub
-		try {
+		
+		//LoginView gui = new LoginView();
+    	ConnectionDb conn1 = new ConnectionDb();
+    	
+    	String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";
+        PreparedStatement pstmt = conn1.getConnection().prepareStatement(sql);
+        pstmt.setString(1, model.getUserName().trim());
+        pstmt.setString(2, model.getPassword());
+
+        ResultSet rs = pstmt.executeQuery();
+        
+        if (rs.next() && verificaCampi(model)) 
+        { 
+			
+			return true;
+			
+        } 
+        else {
+        	model.setUserName("");
+			model.setPassword("");
+			return false;
+        }
+        }
+    
+    private static boolean verificaCampi(LoginModel model)
+    {
+		if(model.getUserName()=="" || model.getPassword()==""){
+			return false;
+		}
+		
+		return true;
+	}
+
+	public void gestioneClick(ActionEvent e) {
+		// TODO Auto-generated method stub
+try {
 			
 			model = gui.getUserModel();
 			System.out.println(model.getUserName());
@@ -63,42 +98,6 @@ public class LoginControl implements ActionListener
 			e3.printStackTrace();	
 		}
 			
-		
-        }
-
-	public static boolean checkUser(LoginModel model) throws SQLException, IOException  
-	{
-		
-		//LoginView gui = new LoginView();
-    	ConnectionDb conn1 = new ConnectionDb();
-    	
-    	String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";
-        PreparedStatement pstmt = conn1.getConnection().prepareStatement(sql);
-        pstmt.setString(1, model.getUserName().trim());
-        pstmt.setString(2, model.getPassword());
-
-        ResultSet rs = pstmt.executeQuery();
-        
-        if (rs.next() && verificaCampi(model)) 
-        { 
-			
-			return true;
-			
-        } 
-        else {
-        	model.setUserName("");
-			model.setPassword("");
-			return false;
-        }
-        }
-    
-    private static boolean verificaCampi(LoginModel model)
-    {
-		if(model.getUserName()=="" || model.getPassword()==""){
-			return false;
-		}
-		
-		return true;
 	}
 
 	
