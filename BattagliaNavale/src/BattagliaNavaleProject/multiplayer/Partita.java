@@ -25,7 +25,8 @@ public class Partita {
 		stampaGriglia(1);
 		
 		while (true) {
-			String request = socketServer.recvStr(0);
+			byte[] reply = socketServer.recv(0);
+			String request = new String(reply, ZMQ.CHARSET);
 			System.out.println("Messaggio ricevuto: " + request);
 
 			// BOOLEANO CHE ANDRA SETTATO PER RISPONDERGLI ANZICHE CON ATA CON GIOCA PER

@@ -138,10 +138,10 @@ public class ServerSocket {
 				String responseMessage = "GIOCA";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
+				Partita a = new Partita();
+				a.inizioGioco();
 			}
-			
-			Partita a = new Partita();
-			a.inizioGioco();
+				
 		}
 		
 
