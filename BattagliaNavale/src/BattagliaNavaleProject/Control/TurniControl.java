@@ -42,9 +42,9 @@ public TurniControl(String indirizzo,DoubleGameGridView DGGV) {
  * */
  public void turno() {
 	 //rendo la griglia cliccabile 
-		for(int i = -1; i < GRID_DIMENSION + 1; i++)
+		for(int i = 0; i < GRID_DIMENSION ; i++)
 		{
-			for(int j = -1; j < GRID_DIMENSION + 1; j++)
+			for(int j = 0; j < GRID_DIMENSION ; j++)
 			{
 				DGGV.yourBoard[i][j].removeMouseListener(DGGV);
 				DGGV.opponentBoard[i][j].addMouseListener(DGGV);
