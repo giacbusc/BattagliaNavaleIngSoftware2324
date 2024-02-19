@@ -45,5 +45,31 @@ public class Square extends JPanel
 		this.stato = stato;
 	}
 
+	public Color getColor()
+	{
+		return this.getBackground();
+	}
+	public void setColor()
+	{
+		this.setBackground(Color.orange);
+	}
 	
+	public void setColpito()
+	{
+		this.setBackground(Color.red);
+	}
+	
+	public void setGrigio()
+	{
+		this.setBackground(Color.gray);
+	}
+	public void setAffondato()
+	{
+		this.setBackground(Color.black);
+	}
+	
+	public void setReset()
+	{
+		this.setBackground(Color.white);
+	}
 }

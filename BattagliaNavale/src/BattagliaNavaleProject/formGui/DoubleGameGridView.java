@@ -28,7 +28,7 @@ import org.zeromq.ZMQ;
 import BattagliaNavaleProject.Control.DoubleGameGridControl;
 import BattagliaNavaleProject.client.Square;
 
-public class DoubleGameGridView extends JFrame implements MouseListener, MouseMotionListener{
+public class DoubleGameGridView extends JFrame implements MouseListener{
 
 	private static final long serialVersionUID = 1L;
 	private static final int GRID_DIMENSION = 10;
@@ -180,8 +180,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 		{
 			panel[i]= new JPanel();
 			panel[i].setFocusable(true);
-			panel[i].addMouseListener(DGGC);
-			panel[i].addMouseMotionListener(DGGC);
+			panel[i].addMouseListener(this);
 			panel[i].setName(""+i);
 			boatLength = dim.get(i);
 			
@@ -283,9 +282,8 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 				else
 				{
 					yourBoard[i][j]= new Square(i,j,0);
-					yourBoard[i][j].addMouseListener(DGGC);//
+					yourBoard[i][j].addMouseListener(this);//
 					yourBoard[i][j].setName("yourBoard");//
-					yourBoard[i][j].addMouseMotionListener(this);
 					yourBoardPanel.add(yourBoard[i][j]);
 					opponentBoard[i][j]= new Square(i,j,0);
 					
@@ -383,19 +381,9 @@ public class DoubleGameGridView extends JFrame implements MouseListener, MouseMo
 	}
 	*/
 	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		DGGC.gestioneClick(e);
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {

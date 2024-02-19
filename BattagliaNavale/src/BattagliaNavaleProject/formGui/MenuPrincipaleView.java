@@ -96,9 +96,9 @@ public class MenuPrincipaleView extends JFrame {
        
         JLabel lblNewLabel_2 = new JLabel("BATTAGLIA NAVALE ");
         lblNewLabel_2.setForeground(new Color(0, 128, 255));
-        lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 60));
+        lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 70));
         lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_2.setBounds(400, 0, 650, 85);
+        lblNewLabel_2.setBounds(350, 0, 750, 85);
         backgroundPanel.add(lblNewLabel_2);
        
         final ImageIcon hoverIcon = new ImageIcon("../docs/resources/EffettoBottone.png");
