@@ -431,6 +431,10 @@ public class DoubleGameGridControl{
 		}
 	}
 	public void coloragrigio() {
+		if(!(arraymsg[2].contains("Submarine"))) {
+			togliPanel();
+		}
+		
 		if(arrayRisposta[6]==0) {
 
 			for(int i=1;i<boatlenght;i++) { 
