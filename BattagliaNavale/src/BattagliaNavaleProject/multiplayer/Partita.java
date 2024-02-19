@@ -8,6 +8,9 @@ public class Partita {
 	public void inizioGioco()
 	{
 		ServerSocket socket = ServerSocket.getIstance();
+	
+	
+	
 	}
 	
 	
