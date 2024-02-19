@@ -56,6 +56,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 
 
 	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
+	private JPanel panel_1;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -148,7 +149,8 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		centralTopPanel.setBackground(Color.BLUE);
 		centralTopPanel.setPreferredSize(new Dimension(50, 50));
 		getContentPane().add(centralTopPanel, BorderLayout.NORTH);
-
+		
+	
 		createGrid();
 
 		getContentPane().add(gridPanel, BorderLayout.CENTER);

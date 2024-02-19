@@ -59,6 +59,7 @@ public class LoginView extends JFrame implements ActionListener  {
 	
 	public LoginView() 
 	{
+		control=new LoginControl(this);
 		//LoginModel model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -70,7 +71,6 @@ public class LoginView extends JFrame implements ActionListener  {
 	        
 	        setBounds(x-(450/2),y-(150),450,300);
 		
-		LoginControl cont;
 		final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		
 		JPanel backgroundPanel = new JPanel() {
@@ -177,7 +177,6 @@ public void openMenu() throws IOException, SQLException {
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
 
-	// TODO Auto-generated method stub
 	control.gestioneClick(e);
 	
 }
