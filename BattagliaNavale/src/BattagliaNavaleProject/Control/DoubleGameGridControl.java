@@ -25,7 +25,7 @@ import BattagliaNavaleProject.client.Square;
 public class DoubleGameGridControl{
 
 	private static final int GRID_DIMENSION = 10;
-	TurniControl turni;
+	public TurniControl turni;
 	boolean salta=false;
 	public DoubleGameGridView grid;
 	JPanel clickedPanel;
@@ -589,13 +589,15 @@ public class DoubleGameGridControl{
 					}
 
 				}while(r==true);
-				return null;
+				
+		turni= new TurniControl(indirizzo,grid);
+		System.out.println("inizio turno");
+		turni.turno();
+		return null;
 			}
 		};
-
 		worker.execute();
-		turni= new TurniControl(indirizzo,grid);
-		turni.turno();
+		
 		//grid.waitPanelCreation();
 
 

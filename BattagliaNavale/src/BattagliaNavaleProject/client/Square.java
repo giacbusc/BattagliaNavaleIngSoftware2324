@@ -84,4 +84,9 @@ public class Square extends JPanel
 	{
 		this.setBackground(Color.white);
 	}
+
+	public void setAcqua() {
+		this.setBackground(Color.blue);
+		
+	}
 }

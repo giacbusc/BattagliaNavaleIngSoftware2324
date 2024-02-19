@@ -54,14 +54,13 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
-	private TurniControl turni;
 	private String username;
 
 
 	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
 	private JPanel panel_1;
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run()
 			{
@@ -80,7 +79,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 
 
 
-	}
+	}*/
 
 	/*public DoubleGameGridGUI()
 	{
@@ -404,7 +403,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		}
 			else if(clickedSquare.getName().equals("opponentBoard")) {
 				try {
-					turni.colpoClick(e);
+					DGGC.turni.colpoClick(e);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

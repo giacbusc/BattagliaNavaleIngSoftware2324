@@ -1,6 +1,7 @@
 package BattagliaNavaleProject.formGui;
 import javax.swing.*;
 
+import BattagliaNavaleProject.Control.ConnectionControl;
 import BattagliaNavaleProject.Control.MenuPrincipaleControl;
 
 import java.awt.*;
@@ -73,11 +74,11 @@ public class MenuPrincipaleView extends JFrame {
         Image scaledImage = image.getScaledInstance(160, 160, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         
-        final JLabel multiplayerTextLabel= new JLabel("Multiplayer");
-        multiplayerTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        multiplayerTextLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
-        multiplayerTextLabel.setBounds(590,160,282,70);
-        backgroundPanel.add(multiplayerTextLabel);
+        final JLabel pcSoloLabel= new JLabel("Gioca su un solo PC");
+        pcSoloLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        pcSoloLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
+        pcSoloLabel.setBounds(590,160,282,70);
+        backgroundPanel.add(pcSoloLabel);
        
         JLabel logoLabel = new JLabel(scaledIcon);
         logoLabel.setPreferredSize(new Dimension(200,200));
@@ -118,35 +119,37 @@ public class MenuPrincipaleView extends JFrame {
 	    backgroundPanel.add(imageLabel3);
 	    
 
-	    final JButton multiplayerButton = new JButton("");
-	    multiplayerButton.setPreferredSize(new Dimension(370, 150));
-	    multiplayerButton.setBackground(new Color(0, 0, 0, 0));
-		multiplayerButton.setOpaque(false);
-	    multiplayerButton.setBounds(550, 154, 350, 90);//275 70
-	    backgroundPanel.add(multiplayerButton);
+	    final JButton pcSoloButton = new JButton();
+	    pcSoloButton.setName("Solo");
 	    
-	    multiplayerButton.addActionListener(new MenuPrincipaleControl(this));
+	    pcSoloButton.setPreferredSize(new Dimension(370, 150));
+	    pcSoloButton.setBackground(new Color(0, 0, 0, 0));
+		pcSoloButton.setOpaque(false);
+	    pcSoloButton.setBounds(550, 154, 350, 90);//275 70
+	    backgroundPanel.add(pcSoloButton);
+	    
+	    pcSoloButton.addActionListener(new MenuPrincipaleControl(this));
 		 
 	    
-	    multiplayerButton.addMouseListener(new MouseListener()
+	    pcSoloButton.addMouseListener(new MouseListener()
 	    {
 	    	public void mouseEntered(MouseEvent e)
 	    	{
 	    		imageLabel.setVisible(true);
-	    		multiplayerTextLabel.setForeground(new Color(0, 128, 255));
-	    		multiplayerTextLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
+	    		pcSoloLabel.setForeground(new Color(0, 128, 255));
+	    		pcSoloLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 	    		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 17));
-	    		multiplayerButton.repaint();
+	    		pcSoloButton.repaint();
 	    	}
 	    
 	    
 	    public void mouseExited(MouseEvent e)
 	    {
 	    	imageLabel.setVisible(false);
-	    	multiplayerTextLabel.setForeground(new Color(0, 0, 0));
-	    	multiplayerTextLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
+	    	pcSoloLabel.setForeground(new Color(0, 0, 0));
+	    	pcSoloLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
 	    	lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 15));
-            multiplayerButton.repaint();
+            pcSoloButton.repaint();
              
 	    }
 
@@ -173,42 +176,43 @@ public class MenuPrincipaleView extends JFrame {
 
 	    });
 	    
-	    final JLabel singleplayerTextLabel= new JLabel("Singleplayer");
-        singleplayerTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        singleplayerTextLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
-        singleplayerTextLabel.setBounds(600,320,282,70);
-        backgroundPanel.add(singleplayerTextLabel);
+	    final JLabel pcMutliLabel= new JLabel("Gioca su piu' pc");
+        pcMutliLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        pcMutliLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
+        pcMutliLabel.setBounds(600,320,282,70);
+        backgroundPanel.add(pcMutliLabel);
         
-	    final JButton singleplayer = new JButton("");
-	    singleplayer.setBackground(new Color(0, 0, 255));
-	    singleplayer.setBackground(new Color(0, 0, 0, 0));
-		singleplayer.setOpaque(false);
-	    singleplayer.setPreferredSize(new Dimension(170, 50));
-	    singleplayer.setBounds(550, 317, 350, 90);
-	    backgroundPanel.add(singleplayer);
+	    final JButton pcMultiButton = new JButton("  ");
+	    pcMultiButton.setName("Multi");
+	    pcMultiButton.setBackground(new Color(0, 0, 255));
+	    pcMultiButton.setBackground(new Color(0, 0, 0, 0));
+		pcMultiButton.setOpaque(false);
+	    pcMultiButton.setPreferredSize(new Dimension(170, 50));
+	    pcMultiButton.setBounds(550, 317, 350, 90);
+	    backgroundPanel.add(pcMultiButton);
 	    
 	    
 	   // singleplayer.addActionListener(new MenuPrincipaleControl(this));
 	    
-	    singleplayer.addMouseListener(new MouseListener()
+	    pcMultiButton.addMouseListener(new MouseListener()
 	    {
 	    	public void mouseEntered(MouseEvent e)
 	    	{
 	    		imageLabel2.setVisible(true);
-	    		singleplayerTextLabel.setForeground(new Color(0, 128, 255));
-	    		singleplayerTextLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
+	    		pcMutliLabel.setForeground(new Color(0, 128, 255));
+	    		pcMutliLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 	    		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 17));
-	    		singleplayer.repaint();
+	    		pcMultiButton.repaint();
 	    	}
 	    
 	    
 	    public void mouseExited(MouseEvent e)
 	    {
 	    	imageLabel2.setVisible(false);
-	    	singleplayerTextLabel.setForeground(new Color(0, 0, 0));
-	    	singleplayerTextLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
+	    	pcMutliLabel.setForeground(new Color(0, 0, 0));
+	    	pcMutliLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
 	    	lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 15));
-            singleplayer.repaint();
+            pcMultiButton.repaint();
              
 	    }
 
@@ -325,19 +329,26 @@ public class MenuPrincipaleView extends JFrame {
 	}
 
 
-	public void open() throws IOException {
+	public void open( ) throws IOException {
 		// TODO Auto-generated method stub
-	 try {
-		SceltaGiocoView s= new SceltaGiocoView(userName);
-		s.setVisible(true);
+		
+		final SchermataAttesaView sin= new SchermataAttesaView("ATTESA AVVERSARIO", userName);
+		sin.setVisible(true);
 		dispose();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		//ConnectionControl c = new ConnectionControl(sin, userName);
+		
+		
+		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+	        @Override
+	        protected Void doInBackground() throws Exception {
+	            // Esegui le operazioni di connessione qui
+	            ConnectionControl c = new ConnectionControl(sin, userName);
+	            return null;
+	        }
+	    };
+
+	    worker.execute();
 	}
 	 
-}
+
 }
