@@ -33,6 +33,8 @@ public class ServerSocket {
 	private ServerSocket() {
 		socketServer = context.createSocket(SocketType.REP);
 	}
+	
+	
 
 	public void startServer(String indirizzo) {
 
@@ -127,22 +129,21 @@ public class ServerSocket {
 				piazzamentoBarca(turno);
 
 			}
+			
+			System.out.println("inizio giocooooo");
+			reply = socketServer.recv(0);
+			messaggio = new String(reply, ZMQ.CHARSET);
+			System.out.println("ricevuto: " + messaggio);
+			if (messaggio.equals("ATA")) {
+				String responseMessage = "GIOCA";
+				socketServer.send(responseMessage.getBytes(), 0);
+				System.out.println("Inviato: " + responseMessage);
+			}
+			
+			Partita a = new Partita();
+			a.inizioGioco();
 		}
 		
-		/*
-		System.out.println("inizio giocooooo");
-		byte[] reply = socketServer.recv(0);
-		String messaggio = new String(reply, ZMQ.CHARSET);
-		System.out.println("ricevuto: " + messaggio);
-		if (messaggio.equals("ATA")) {
-			String responseMessage = "GIOCA";
-			socketServer.send(responseMessage.getBytes(), 0);
-			System.out.println("Inviato: " + responseMessage);
-		}
-		
-		Partita a = new Partita();
-		a.inizioGioco();
-		*/
 
 	}
 
@@ -699,4 +700,12 @@ public class ServerSocket {
 			}
 
 	}
+
+		public ZMQ.Socket getSocketServer() {
+			return socketServer;
+		}
+
+		public void setSocketServer(ZMQ.Socket socketServer) {
+			this.socketServer = socketServer;
+		}
 }
