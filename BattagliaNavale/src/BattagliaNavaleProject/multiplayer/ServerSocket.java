@@ -127,6 +127,7 @@ public class ServerSocket {
 
 			}
 		}
+		
 		System.out.println("inizio giocooooo");
 
 	}
@@ -311,167 +312,18 @@ public class ServerSocket {
 			break;
 		}
 		case 2: {
-
-			// **OVEST** DEVE AVERE d=3
-			if (checkFuoriGriglia(x, y, l, 3, turno)) {
-				if (cellaLibera(x, y - 1, turno) == true) {
-
-					spedire[6] = "0";
-					spedire[2] = "1";
-				}
-			}
-
-			// **SUD** DEVE AVERE d=2
-			if (checkFuoriGriglia(x, y, l, 2, turno)) {
-				if (cellaLibera(x + 1, y, turno) == true) { // est
-					spedire[5] = "0";
-					spedire[2] = "1";
-				}
-			}
-
-			// **EST** DEVE AVERE d=1
-			if (checkFuoriGriglia(x, y, l, 1, turno)) {
-				if (cellaLibera(x, y + 1, turno) == true) {
-					spedire[4] = "0";
-					spedire[2] = "1";
-				}
-			}
-
-			// **NORD** DEVE AVERE d=0
-			if (checkFuoriGriglia(x, y, l, 0, turno)) {
-				if (cellaLibera(x - 1, y, turno) == true) { // ovest
-					spedire[3] = "0";
-					spedire[2] = "1";
-				}
-			}
-
-			break;
+                 Case2ControllaCella(x,y,l,turno);
+                 break;
 		}
 
 		case 3: {
-			int contaCelleVere = 0;
-
-			// **SUD**
-			if (checkFuoriGriglia(x, y, l, 2, turno)) {
-				for (int i = x; i < x + 3; i++) {
-					if (cellaLibera(i, y, turno) == true) {
-						contaCelleVere++;
-					}
-				}
-				if (contaCelleVere == 3) {
-					spedire[5] = "0";
-					spedire[2] = "1";
-				}
-				contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
+			 Case3ControllaCella(x,y,l,turno);
+             break;
 			}
-			// **NORD**
-			if (checkFuoriGriglia(x, y, l, 0, turno)) {
-				for (int i = x; i > x - 3; i--) {
-					if (cellaLibera(i, y, turno) == true) {
-						contaCelleVere++;
-					}
-				}
-				if (contaCelleVere == 3) {
-					spedire[3] = "0";
-					spedire[2] = "1";
-
-				}
-				contaCelleVere = 0;
-			}
-			// **OVEST**
-			if (checkFuoriGriglia(x, y, l, 3, turno)) {
-				for (int i = y; i > y - 3; i--) {
-					if (cellaLibera(x, i, turno) == true) {
-						contaCelleVere++;
-					}
-				}
-				if (contaCelleVere == 3) {
-					spedire[6] = "0";
-					spedire[2] = "1";
-
-				}
-				contaCelleVere = 0;
-			}
-			// **EST**
-			if (checkFuoriGriglia(x, y, l, 1, turno)) {
-				for (int i = y; i < y + 3; i++) {
-					if (cellaLibera(x, i, turno) == true) {
-						contaCelleVere++;
-					}
-				}
-				if (contaCelleVere == 3) {
-					spedire[4] = "0";
-					spedire[2] = "1";
-
-				}
-				contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
-			}
-		}
-
-			break;
 
 		case 4: {
-
-			int contaCelleVere = 0;
-
-			// **SUD**
-			if (checkFuoriGriglia(x, y, l, 2, turno)) {
-				for (int i = x; i < x + 4; i++) {
-					if (cellaLibera(i, y, turno) == true) {
-						contaCelleVere++;
-					}
-				}
-				if (contaCelleVere == 4) {
-					spedire[5] = "0";
-					spedire[2] = "1";
-				}
-				contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
-			}
-			// **NORD**
-			if (checkFuoriGriglia(x, y, l, 0, turno)) {
-				for (int i = x; i > x - 4; i--) {
-					if (cellaLibera(i, y, turno) == true) {
-						contaCelleVere++;
-					}
-				}
-				if (contaCelleVere == 4) {
-					spedire[3] = "0";
-					spedire[2] = "1";
-
-				}
-				contaCelleVere = 0;
-			}
-			// **OVEST**
-			if (checkFuoriGriglia(x, y, l, 3, turno)) {
-				for (int i = y; i > y - 4; i--) {
-					if (cellaLibera(x, i, turno) == true) {
-						contaCelleVere++;
-					}
-				}
-				if (contaCelleVere == 4) {
-					spedire[6] = "0";
-					spedire[2] = "1";
-
-				}
-				contaCelleVere = 0;
-			}
-			// **EST**
-			if (checkFuoriGriglia(x, y, l, 1, turno)) {
-				for (int i = y; i < y + 4; i++) {
-					if (cellaLibera(x, i, turno) == true) {
-						contaCelleVere++;
-					}
-				}
-				if (contaCelleVere == 4) {
-					spedire[4] = "0";
-					spedire[2] = "1";
-
-				}
-				contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
-			}
-
-			break;
-
+			 Case4ControllaCella(x,y,l,turno);
+             break;
 		}
 
 		}
@@ -487,6 +339,168 @@ public class ServerSocket {
 		String compostaFinale = composta.toString().trim();
 		return compostaFinale;
 	}
+
+	private void Case4ControllaCella(int x, int y, int l, int turno) {
+		// TODO Auto-generated method stub
+		int contaCelleVere = 0;
+
+		// **SUD**
+		if (checkFuoriGriglia(x, y, l, 2, turno)) {
+			for (int i = x; i < x + 4; i++) {
+				if (cellaLibera(i, y, turno) == true) {
+					contaCelleVere++;
+				}
+			}
+			if (contaCelleVere == 4) {
+				spedire[5] = "0";
+				spedire[2] = "1";
+			}
+			contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
+		}
+		// **NORD**
+		if (checkFuoriGriglia(x, y, l, 0, turno)) {
+			for (int i = x; i > x - 4; i--) {
+				if (cellaLibera(i, y, turno) == true) {
+					contaCelleVere++;
+				}
+			}
+			if (contaCelleVere == 4) {
+				spedire[3] = "0";
+				spedire[2] = "1";
+
+			}
+			contaCelleVere = 0;
+		}
+		// **OVEST**
+		if (checkFuoriGriglia(x, y, l, 3, turno)) {
+			for (int i = y; i > y - 4; i--) {
+				if (cellaLibera(x, i, turno) == true) {
+					contaCelleVere++;
+				}
+			}
+			if (contaCelleVere == 4) {
+				spedire[6] = "0";
+				spedire[2] = "1";
+
+			}
+			contaCelleVere = 0;
+		}
+		// **EST**
+		if (checkFuoriGriglia(x, y, l, 1, turno)) {
+			for (int i = y; i < y + 4; i++) {
+				if (cellaLibera(x, i, turno) == true) {
+					contaCelleVere++;
+				}
+			}
+			if (contaCelleVere == 4) {
+				spedire[4] = "0";
+				spedire[2] = "1";
+
+			}
+			contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
+		}
+		
+	}
+
+	private void Case3ControllaCella(int x, int y, int l, int turno) {
+		// TODO Auto-generated method stub
+		int contaCelleVere = 0;
+
+		// **SUD**
+		if (checkFuoriGriglia(x, y, l, 2, turno)) {
+			for (int i = x; i < x + 3; i++) {
+				if (cellaLibera(i, y, turno) == true) {
+					contaCelleVere++;
+				}
+			}
+			if (contaCelleVere == 3) {
+				spedire[5] = "0";
+				spedire[2] = "1";
+			}
+			contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
+		}
+		// **NORD**
+		if (checkFuoriGriglia(x, y, l, 0, turno)) {
+			for (int i = x; i > x - 3; i--) {
+				if (cellaLibera(i, y, turno) == true) {
+					contaCelleVere++;
+				}
+			}
+			if (contaCelleVere == 3) {
+				spedire[3] = "0";
+				spedire[2] = "1";
+
+			}
+			contaCelleVere = 0;
+		}
+		// **OVEST**
+		if (checkFuoriGriglia(x, y, l, 3, turno)) {
+			for (int i = y; i > y - 3; i--) {
+				if (cellaLibera(x, i, turno) == true) {
+					contaCelleVere++;
+				}
+			}
+			if (contaCelleVere == 3) {
+				spedire[6] = "0";
+				spedire[2] = "1";
+
+			}
+			contaCelleVere = 0;
+		}
+		// **EST**
+		if (checkFuoriGriglia(x, y, l, 1, turno)) {
+			for (int i = y; i < y + 3; i++) {
+				if (cellaLibera(x, i, turno) == true) {
+					contaCelleVere++;
+				}
+			}
+			if (contaCelleVere == 3) {
+				spedire[4] = "0";
+				spedire[2] = "1";
+
+			}
+			contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
+		}
+	
+	}
+
+	private void Case2ControllaCella(int x, int y, int l, int turno) {
+		// **OVEST** DEVE AVERE d=3
+					if (checkFuoriGriglia(x, y, l, 3, turno)) {
+						if (cellaLibera(x, y - 1, turno) == true) {
+
+							spedire[6] = "0";
+							spedire[2] = "1";
+						}
+					}
+
+					// **SUD** DEVE AVERE d=2
+					if (checkFuoriGriglia(x, y, l, 2, turno)) {
+						if (cellaLibera(x + 1, y, turno) == true) { // est
+							spedire[5] = "0";
+							spedire[2] = "1";
+						}
+					}
+
+					// **EST** DEVE AVERE d=1
+					if (checkFuoriGriglia(x, y, l, 1, turno)) {
+						if (cellaLibera(x, y + 1, turno) == true) {
+							spedire[4] = "0";
+							spedire[2] = "1";
+						}
+					}
+
+					// **NORD** DEVE AVERE d=0
+					if (checkFuoriGriglia(x, y, l, 0, turno)) {
+						if (cellaLibera(x - 1, y, turno) == true) { // ovest
+							spedire[3] = "0";
+							spedire[2] = "1";
+						}
+					}
+
+		
+	}
+	
 
 	public boolean cellaLibera(int x, int y, int turno) {
 		if (turno == 1) {
