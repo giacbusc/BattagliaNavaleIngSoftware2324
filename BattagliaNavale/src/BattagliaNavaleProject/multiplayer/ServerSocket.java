@@ -700,4 +700,12 @@ public class ServerSocket {
 			}
 
 	}
+
+		public ZMQ.Socket getSocketServer() {
+			return socketServer;
+		}
+
+		public void setSocketServer(ZMQ.Socket socketServer) {
+			this.socketServer = socketServer;
+		}
 }
