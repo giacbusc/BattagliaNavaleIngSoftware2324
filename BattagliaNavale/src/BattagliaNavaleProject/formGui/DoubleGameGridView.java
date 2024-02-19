@@ -55,7 +55,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
 	
-	private TurniControl turni= new TurniControl();
+	private TurniControl turni;
 	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
 	
 	public static void main(String[] args) {
