@@ -380,39 +380,8 @@ public class DoubleGameGridControl{
 
 			}
 		}
-
-
-		
 		 coloragrigio();
-	
-			if(arrayRisposta[3]!=0&&arrayRisposta[4]!=0&&arrayRisposta[5]!=0&&arrayRisposta[6]!=0&& !(arraymsg[2].contains("Submarine"))) {
-				clickedPanel.setVisible(true);
-				for(int i = 0; i < 10; i++)
-				{
-					for(int j = 0; j < 10; j++)
-					{
-						grid.yourBoard[i][j].removeMouseListener(grid);
-					}
-
-				}
-				
-				for(int i = 0; i < 10; i++)
-				{
-					for(int j = 0; j < 10; j++)
-					{
-						if(grid.yourBoard[i][j].getColor()!=Color.orange){
-							grid.yourBoard[i][j].removeMouseListener(grid);
-						}
-
-					}
-
-				}
-				aggiungiPanel();
-				vai=false;
-				salta=true;
-			}
-		
-
+		 errorePosizionamento();
 		if(vai==true) {
 			for(int i = 0; i < 10; i++)
 			{
@@ -432,7 +401,34 @@ public class DoubleGameGridControl{
 		salta=false;
 
 }
-	
+	public void errorePosizionamento() {
+		if(arrayRisposta[3]!=0&&arrayRisposta[4]!=0&&arrayRisposta[5]!=0&&arrayRisposta[6]!=0&& !(arraymsg[2].contains("Submarine"))) {
+			clickedPanel.setVisible(true);
+			for(int i = 0; i < 10; i++)
+			{
+				for(int j = 0; j < 10; j++)
+				{
+					grid.yourBoard[i][j].removeMouseListener(grid);
+				}
+
+			}
+			
+			for(int i = 0; i < 10; i++)
+			{
+				for(int j = 0; j < 10; j++)
+				{
+					if(grid.yourBoard[i][j].getColor()!=Color.orange){
+						grid.yourBoard[i][j].removeMouseListener(grid);
+					}
+
+				}
+
+			}
+			aggiungiPanel();
+			vai=false;
+			salta=true;
+		}
+	}
 	public void coloragrigio() {
 		if(arrayRisposta[6]==0) {
 
