@@ -212,6 +212,7 @@ public class ServerSocket {
 				String fiocco2=riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
 						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno);
 				System.out.println("CONTAAAA DEL 2 CLICK: " + countB);
+				
 				if(countB==9)
 				{
 					fiocco2=fiocco2 + "1";//Per indicare che il posizionamento è terminato al client
@@ -233,6 +234,7 @@ public class ServerSocket {
 				String fiocco = controllaCella(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l, turno);
 				dividimex = fiocco.split(",");
 				System.out.println("CONTAAAA: " + countB);
+				
 				if(l==1 && countB==9)
 				{
 					fiocco=fiocco + "1";//Per indicare che il posizionamento è terminato al client
@@ -244,28 +246,29 @@ public class ServerSocket {
 				}
 				socketServer.send(fiocco.getBytes(), 0);
 				System.out.println("Inviato fiocco: " + fiocco);
-				if(l>1 && dividimex[2].equals("-1") && dividimex[3].equals("-1") && dividimex[4].equals("-1") && dividimex[5].equals("-1"))
-				{
+					
+				
+				if(l>1 && dividimex[6].equals("-1") && dividimex[3].equals("-1") && dividimex[4].equals("-1") && dividimex[5].equals("-1")){ 
+					
+					System.out.println("ricambio lo stato della cella "+Integer.valueOf(x).intValue()+" "+Integer.valueOf(y).intValue());
 					if(turno==1)
 					{
-						player1[Integer.parseInt(dividimex[0])][Integer.parseInt(dividimex[1])].setStato(0);
+						aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(),turno,0);
+						
 					}
 					else
 					{
-						player2[Integer.parseInt(dividimex[0])][Integer.parseInt(dividimex[1])].setStato(0);
+						aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(),turno,0);
+					}
+				}else{
+					aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), turno,1);
+					if (l == 1) {
+						countB++;
 					}
 				}
-				aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), turno);
-				
-				
-				
+			
 				stampaGriglia(turno);
-				if (l == 1) {
-					countB++;
-				}
-
 				
-	
 
 			}
 			
@@ -285,8 +288,8 @@ public class ServerSocket {
 			}
 			else
 			{
-				mexprec[2]="errorposition";
-				countB--;
+				mexprec[2]="errorposition"; //serve per non contare la barca nel mexprec[2].equals(NomeBarca)
+				//countB--;
 			}
 				
 			
@@ -295,13 +298,13 @@ public class ServerSocket {
 
 	}
 
-	private void aggiornaGriglia(int x, int y, int turno) {
+	private void aggiornaGriglia(int x, int y, int turno,int s) {
 		if (turno == 1) {
 
-			player1[x][y].setStato(1);
+			player1[x][y].setStato(s);
 		} 
 		else {
-			player2[x][y].setStato(1);
+			player2[x][y].setStato(s);
 		}
 	}
 
@@ -578,7 +581,7 @@ public class ServerSocket {
 					if(turno==1)
 						player1[i][yp].setStato(1);
 					else
-						player1[i][yp].setStato(1);
+						player2[i][yp].setStato(1);
 
 				}
 				spedire[0]=Integer.toString(xp-l+1);

@@ -26,7 +26,7 @@ public SceltaGiocoControl( SceltaGiocoView s) {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String tcp= "tcp://172.16.128.175:5528";
-		String local="tcp://localhost:5547";
+		String local="tcp://localhost:5543";
 		String[] parti = local.split(":");
 		
 		
