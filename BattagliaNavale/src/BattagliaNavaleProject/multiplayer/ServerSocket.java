@@ -708,4 +708,20 @@ public class ServerSocket {
 		public void setSocketServer(ZMQ.Socket socketServer) {
 			this.socketServer = socketServer;
 		}
+
+		public Square[][] getPlayer1() {
+			return player1;
+		}
+
+		public void setPlayer1(Square[][] player1) {
+			this.player1 = player1;
+		}
+
+		public Square[][] getPlayer2() {
+			return player2;
+		}
+
+		public void setPlayer2(Square[][] player2) {
+			this.player2 = player2;
+		}
 }
