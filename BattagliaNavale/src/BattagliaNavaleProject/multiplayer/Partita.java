@@ -117,7 +117,7 @@ public class Partita {
 		}
 
 		String compostaFinale = composta.toString().trim();
-		String fiocco = compostaFinale;
+		String fiocco = compostaFinale.substring(0, compostaFinale.length()-1);
 		socketServer.send(fiocco.getBytes(), 0);
 		System.out.println("Inviato fiocco: " + fiocco);
 		INVIATO = true;

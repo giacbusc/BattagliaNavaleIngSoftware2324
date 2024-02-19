@@ -116,7 +116,6 @@ public class ServerSocket {
 			 * }
 			 */
 	
-		
 		if (turno == 2) {
 			byte[] reply = socketServer.recv(0);
 			String messaggio = new String(reply, ZMQ.CHARSET);
