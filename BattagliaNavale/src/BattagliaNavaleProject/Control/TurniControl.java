@@ -63,7 +63,7 @@ public TurniControl(String indirizzo,DoubleGameGridView DGGV) {
 			
 			arraymsg[1]=clickedSquare.gety();
 			arraymsg[0]=clickedSquare.getx();
-			String msgserver=(""+arraymsg[0]+","+arraymsg[1]);
+			String msgserver=(""+arraymsg[0]+","+arraymsg[1]+",");
 			System.out.println("Inviato " + msgserver);
 
 			socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
