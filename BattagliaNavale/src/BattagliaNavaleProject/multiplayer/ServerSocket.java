@@ -244,7 +244,17 @@ public class ServerSocket {
 				}
 				socketServer.send(fiocco.getBytes(), 0);
 				System.out.println("Inviato fiocco: " + fiocco);
-				
+				if(l>1 && dividimex[2].equals("-1") && dividimex[3].equals("-1") && dividimex[4].equals("-1") && dividimex[5].equals("-1"))
+				{
+					if(turno==1)
+					{
+						player1[Integer.parseInt(dividimex[0])][Integer.parseInt(dividimex[1])].setStato(0);
+					}
+					else
+					{
+						player2[Integer.parseInt(dividimex[0])][Integer.parseInt(dividimex[1])].setStato(0);
+					}
+				}
 				aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), turno);
 				
 				
