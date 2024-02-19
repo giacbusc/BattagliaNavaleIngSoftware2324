@@ -579,10 +579,10 @@ public class DoubleGameGridControl{
 					Thread.sleep(5000);
 					String sendMsg = "ATA";
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
-					System.out.println(sendMsg);
+					System.out.println("Inviato" +sendMsg);
 
 					byte[] byteMsg = socket.recv(0);
-					System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
+					System.out.println("Ricevuto " + new String(byteMsg, ZMQ.CHARSET) + " ");
 					String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 					
 					if(rispostaMsg.equals("GIOCA")) {
