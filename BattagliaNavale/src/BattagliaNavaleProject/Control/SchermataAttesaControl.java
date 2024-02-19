@@ -35,7 +35,7 @@ public class SchermataAttesaControl {
 
 			if(rispostaMsg.equals("OK POS2")) {
 
-				DoubleGameGridView dggv= new DoubleGameGridView();
+				DoubleGameGridView dggv= new DoubleGameGridView(userName);
 				r=false;
 			}
 

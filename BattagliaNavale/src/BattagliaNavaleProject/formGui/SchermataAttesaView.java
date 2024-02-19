@@ -25,7 +25,6 @@ import javax.swing.SwingConstants;
 import org.zeromq.ZMQ.Socket;
 
 import BattagliaNavaleProject.Control.SchermataAttesaControl;
-import BattagliaNavaleProject.form.SchermataAttesaModel;
 
 import java.awt.BorderLayout;
 
@@ -100,7 +99,7 @@ String username;
 
 	public void close(Socket socket) {
 		try {
-			DoubleGameGridView DGGV= new DoubleGameGridView();
+			DoubleGameGridView DGGV= new DoubleGameGridView(username);
 			DGGV.setVisible(true);	
 			dispose();
 		} catch (IOException e) {
