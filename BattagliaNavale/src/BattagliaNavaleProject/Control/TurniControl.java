@@ -130,8 +130,8 @@ private void verificaLunghezza() {
 		System.out.println();
 
 
-		for(int i = 0; i < arrayStringhe.length; i++) 
-			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
+		for(int i1 = 0; i1 < arrayStringhe.length; i1++) 
+			arrayRisposta[i1] = Integer.parseInt(arrayStringhe[i1].trim());
 		System.out.println(
 				"Received msg 2 " + rispostamsg );
 		
