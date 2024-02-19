@@ -134,7 +134,14 @@ public class ServerSocket {
 			}
 		}
 		System.out.println("inizio giocooooo");
+		
+		
 	}
+	private void inGabbia(int turno) {
+		
+		
+	}
+
 	public String getIndirizzo() {
 		return indirizzo;
 	}
