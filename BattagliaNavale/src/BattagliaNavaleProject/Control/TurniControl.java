@@ -85,10 +85,11 @@ private void ricevi() throws IOException {
 	System.out.println(
 			"Received msg 2 " + rispostamsg );
 	
-	
+	stato= arrayRisposta[2];
+	lunghezza= arrayRisposta[3];
 	x= arrayRisposta[0];
 	y= arrayRisposta[1];
-	
+	controllastato();
 	
 	
 	
@@ -176,8 +177,8 @@ private void toglilistener() {
 	{
 		for(int j = 0; j < GRID_DIMENSION ; j++)
 		{
-			DGGV.yourBoard[i][j].removeMouseListener(DGGV);
-			DGGV.opponentBoard[i][j].addMouseListener(DGGV);
+			
+			DGGV.opponentBoard[i][j].removeMouseListener(DGGV);
 		}
 	}
 }
