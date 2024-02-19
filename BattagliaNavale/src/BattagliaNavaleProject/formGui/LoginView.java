@@ -178,41 +178,6 @@ public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
 
 	// TODO Auto-generated method stub
-try {
-		
-		model = getUserModel();
-		System.out.println(model.getUserName());
-		if(e.getSource() instanceof JButton ) {
-			JButton clickedButton= (JButton) e.getSource();
-			
-			if(clickedButton.getText().equals("Login")) 
-			{   
-                try {
-					if(control.checkUser(model)){
-						showMessage("Login succesfully!");
-						ConnectionDb conn = new ConnectionDb();
-						conn.closeConnection();
-					    openMenu();
-					    
-						
-					}else{
-					    showMessage("Invalid username and/or password!");
-					}
-				} catch (SQLException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} 
-            
-			}
-			if(clickedButton.getText().equals("Back")) {
-				close();
-			}
-		}
-		
-	}catch(Exception e3) {
-		e3.printStackTrace();	
-	}
-		
 	control.gestioneClick(e);
 	
 }

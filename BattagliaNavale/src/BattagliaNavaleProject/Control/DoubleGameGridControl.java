@@ -579,7 +579,7 @@ public class DoubleGameGridControl{
 					System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
 					String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 					
-					if(rispostaMsg.equals("Inizia Gioco")) {
+					if(rispostaMsg.equals("GIOCA")) {
 
 						grid.waitPanel.setVisible(false);
 						
