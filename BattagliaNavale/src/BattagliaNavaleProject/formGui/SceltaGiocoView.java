@@ -17,23 +17,41 @@ import java.awt.event.ActionEvent;
 
 public class SceltaGiocoView extends JFrame {
 	private JLabel infoPlayerLabel_1;
-	private String userName;
+	private static String userName;
 	
 	
 	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run()
+			{
+				try 
+				{
+					SceltaGiocoView frame = new SceltaGiocoView(userName);
+				    frame.setVisible(true);
+			}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		});
+		
+	}
+
 	public SceltaGiocoView(String username) throws IOException, SQLException 
 	{
 		this.userName = username;
-		
+		setSize(1400,788);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    setSize(771, 600);
+
 	    Dimension dimensioniSchermo = Toolkit.getDefaultToolkit().getScreenSize();
 
         // Calcola le coordinate x e y per centrare la finestra
         int x = (dimensioniSchermo.width - getWidth()) / 2;
         int y = (dimensioniSchermo.height - getHeight()) / 2;
         
-        setBounds(x,y,771,600);
+        setBounds(x,y,1400,788);
 	    final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		
 		JPanel backgroundPanel = new JPanel() {
@@ -48,18 +66,18 @@ public class SceltaGiocoView extends JFrame {
 		
         ImageIcon icon = new ImageIcon("../docs/resources/Logo.png");
         Image image = icon.getImage();
-        Image scaledImage = image.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        Image scaledImage = image.getScaledInstance(160, 160, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         
         final JLabel pcsolo= new JLabel("Voglio giocare su un solo pc");
         pcsolo.setHorizontalAlignment(SwingConstants.CENTER);
         pcsolo.setFont(new Font("Tahoma", Font.BOLD, 20));
-        pcsolo.setBounds(237,174,313,78);
+        pcsolo.setBounds(237,174,350,90);
         backgroundPanel.add(pcsolo);
        
         JLabel logoLabel = new JLabel(scaledIcon);
-        logoLabel.setPreferredSize(new Dimension(80,80));
-        logoLabel.setBounds(0, 0, 119, 85);
+        logoLabel.setPreferredSize(new Dimension(200,200));
+        logoLabel.setBounds(0, 0, 200, 200);
         logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundPanel.add(logoLabel);
         
@@ -74,9 +92,9 @@ public class SceltaGiocoView extends JFrame {
        
         JLabel lblNewLabel_2 = new JLabel("BATTAGLIA NAVALE ");
         lblNewLabel_2.setForeground(new Color(0, 128, 255));
-        lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 42));
+        lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 70));
         lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_2.setBounds(129, 29, 499, 85);
+        lblNewLabel_2.setBounds(350, 0, 750, 85);
         backgroundPanel.add(lblNewLabel_2);
        
         final ImageIcon hoverIcon = new ImageIcon("../docs/resources/EffettoBottone.png");

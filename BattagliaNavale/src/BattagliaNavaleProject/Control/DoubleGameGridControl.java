@@ -22,7 +22,7 @@ import BattagliaNavaleProject.formGui.DoubleGameGridView;
 import BattagliaNavaleProject.client.InfoBoat;
 import BattagliaNavaleProject.client.Square;
 
-public class DoubleGameGridControl implements MouseListener, MouseMotionListener{
+public class DoubleGameGridControl{
 
 	private static final int GRID_DIMENSION = 10;
 	boolean salta=false;
@@ -56,8 +56,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		socket.connect(indirizzo);	
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void gestioneClick(MouseEvent e) {
 
 		assegnaPanel();
 		System.out.println("click");
@@ -187,8 +186,8 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 						{
 							for(int j = 0; j < 10; j++)
 							{
-								if(grid.yourBoard[i][j].getBackground()!=Color.orange)
-									grid.yourBoard[i][j].addMouseListener(this);
+								if(grid.yourBoard[i][j].getColor()!=Color.orange)
+									grid.yourBoard[i][j].addMouseListener(grid);
 
 							}
 						}
@@ -257,7 +256,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		System.out.println("quello che ho mandato prima y: "+y +" quello che ricevo: "+ arrayRisposta[1]);
 		if(arrayRisposta[6]==0) {
 			while(y!=arrayRisposta[1]) {
-				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
+				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
 				arrayRisposta[1]--;
 				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 
@@ -266,7 +265,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		}
 		if(arrayRisposta[5]==0) {
 			while(x!=arrayRisposta[0]) {
-				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
+				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
 				arrayRisposta[0]++;
 				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 
@@ -275,7 +274,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 
 		if(arrayRisposta[4]==0) {
 			while(y!=arrayRisposta[1]) {
-				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
+				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
 				arrayRisposta[1]++;
 				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 
@@ -284,7 +283,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 
 		if(arrayRisposta[3]==0) {
 			while(x!=arrayRisposta[0]) {
-				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
+				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
 				arrayRisposta[0]--;
 				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 
@@ -311,12 +310,12 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		{
 			for(int j = 0; j < 10; j++)
 			{
-				if( grid.yourBoard[i][j].getBackground()==Color.gray && grid.yourBoard[i][j].getStato()==0) {
+				if( grid.yourBoard[i][j].getColor()==Color.gray && grid.yourBoard[i][j].getStato()==0) {
 
 
-					grid.yourBoard[i][j].setBackground(Color.white);
+					grid.yourBoard[i][j].setReset();
 				}
-				grid.yourBoard[i][j].removeMouseListener(this);
+				grid.yourBoard[i][j].removeMouseListener(grid);
 
 			}
 
@@ -353,7 +352,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				"Received msg1" + rispostamsg );
 
 		if(arrayRisposta[2]!=-1) {
-			grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.ORANGE);
+			grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
 		}
 
 
@@ -385,14 +384,14 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 
 				for(int i=1;i<boatlenght;i++) { 
 					if(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].getStato()==0) {
-						grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setBackground(Color.gray);
+						grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]-i].setGrigio();
 					}
 				}
 			}
 			if(arrayRisposta[5]==0) {
 				for(int i=1;i<boatlenght;i++) {
 					if(grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].getStato()==0) {
-						grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setBackground(Color.gray);
+						grid.yourBoard[arrayRisposta[0]+i][arrayRisposta[1]].setGrigio();
 					}
 				}
 			}
@@ -400,7 +399,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 			if(arrayRisposta[4]==0) {
 				for(int i=1;i<boatlenght;i++) {
 					if(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].getStato()==0) {
-						grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setBackground(Color.gray);
+						grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]+i].setGrigio();
 					}
 				}
 			}
@@ -408,7 +407,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 			if(arrayRisposta[3]==0) {
 				for(int i=1;i<boatlenght;i++) {
 					if(grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].getStato()==0) {
-						grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setBackground(Color.gray);
+						grid.yourBoard[arrayRisposta[0]-i][arrayRisposta[1]].setGrigio();
 					}
 				}
 			}
@@ -419,7 +418,7 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				{
 					for(int j = 0; j < 10; j++)
 					{
-						grid.yourBoard[i][j].removeMouseListener(this);
+						grid.yourBoard[i][j].removeMouseListener(grid);
 					}
 
 				}
@@ -428,8 +427,8 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 				{
 					for(int j = 0; j < 10; j++)
 					{
-						if(grid.yourBoard[i][j].getBackground()!=Color.orange){
-							grid.yourBoard[i][j].removeMouseListener(this);
+						if(grid.yourBoard[i][j].getColor()!=Color.orange){
+							grid.yourBoard[i][j].removeMouseListener(grid);
 						}
 
 					}
@@ -446,8 +445,8 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 			{
 				for(int j = 0; j < 10; j++)
 				{
-					if(grid.yourBoard[i][j].getBackground()!=Color.gray){
-						grid.yourBoard[i][j].removeMouseListener(this);
+					if(grid.yourBoard[i][j].getColor()!=Color.gray){
+						grid.yourBoard[i][j].removeMouseListener(grid);
 					}
 
 				}
@@ -464,13 +463,13 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 
 	public void aggiungiPanel() {
 		for(int i=0;i<GRID_DIMENSION;i++) {
-			arrayPanel[i].addMouseListener(this);
+			arrayPanel[i].addMouseListener(grid);
 		}
 	}
 
 	public void togliPanel() {
 		for(int i=0;i<GRID_DIMENSION;i++) {
-			arrayPanel[i].removeMouseListener(this);
+			arrayPanel[i].removeMouseListener(grid);
 		}
 	}
 
@@ -593,39 +592,6 @@ public class DoubleGameGridControl implements MouseListener, MouseMotionListener
 		//grid.waitPanelCreation();
 
 
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub	
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 }

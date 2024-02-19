@@ -32,6 +32,7 @@ import java.awt.BorderLayout;
 public class SchermataAttesaView extends JFrame implements ActionListener{
 String msg;
 String username;
+
 	 public SchermataAttesaView(String msg,String userName) {
 		 this.msg=msg;
 		 this.username=userName;
