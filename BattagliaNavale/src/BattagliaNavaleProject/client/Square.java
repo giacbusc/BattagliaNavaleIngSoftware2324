@@ -20,18 +20,15 @@ public class Square extends JPanel
 		this.y = y;
 		this.stato = stato;
 	}
-	 public Square(int x, int y, int stato,String nome)
-		{
-			
-			setBackground(Color.white);
-			this.x = x;
-			this.y = y;
-			this.stato = stato;
-			this.nome=nome;
-		}
-	 
-	
-	
+
+	public Square(int x, int y, int stato, String nome) {
+		super();
+		setBackground(Color.white);
+		this.x = x;
+		this.y = y;
+		this.stato = stato;
+		this.nome = nome;
+	}
 	public String getNome() {
 		return nome;
 	}

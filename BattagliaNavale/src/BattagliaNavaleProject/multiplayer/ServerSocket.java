@@ -180,7 +180,7 @@ public class ServerSocket {
 			String x = mexSplit[0];
 			String y = mexSplit[1];
 			String nomeBarca = mexSplit[2];
-			System.out.println(x + " " + y + " " + nomeBarca);
+			//System.out.println(x + " " + y + " " + nomeBarca);
 			InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarca);
 			int l = boat.getLunghezza();
 			System.out.println("Lunghezza barca: " + l);
@@ -197,7 +197,7 @@ public class ServerSocket {
 						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno,
 						nomeBarca);
 				System.out.println("CONTAAAA DEL 2 CLICK: " + countB);
-
+                System.out.println("check nome2 "+nomeBarca);
 				if (countB == 9) {
 					fiocco2 = fiocco2 + "1";// Per indicare che il posizionamento è terminato al client
 
@@ -245,6 +245,7 @@ public class ServerSocket {
 					if (l == 1) {
 						countB++;
 					}
+					  System.out.println("check nome "+nomeBarca);
 				}
 
 				stampaGriglia(turno);
@@ -278,13 +279,13 @@ public class ServerSocket {
 			player1[x][y].setStato(s);
 			if (s == 1) {
 				player1[x][y].setNome(n);
-				System.out.println(player1[x][y].getNome());
+				//System.out.println(player1[x][y].getNome());
 			}
 		} else {
 			player2[x][y].setStato(s);
 			if (s == 1) {
 				player2[x][y].setNome(n);
-				System.out.println(player2[x][y].getNome());
+				//System.out.println(player2[x][y].getNome());
 			}
 		}
 
@@ -644,8 +645,8 @@ public class ServerSocket {
 		for (int i = 0; i < MAX_LENGTH; i++) {
 			for (int j = 0; j < MAX_LENGTH; j++) 
 			{
-				player1[i][j] = new Square(i, j, 0, "martin");
-				player2[i][j] = new Square(i, j, 0, "martin");
+				player1[i][j] = new Square(i, j, 0, "000000000");
+				player2[i][j] = new Square(i, j, 0, "000000000");
 				
 			}
 		}
@@ -666,9 +667,9 @@ public class ServerSocket {
 			for (int i = 0; i < MAX_LENGTH; i++) {
 				for (int j = 0; j < MAX_LENGTH; j++) {
 					if (turno == 1 )
-						System.out.print(player1[i][j].getName() + "\t");
+						System.out.print(player1[i][j].getNome() +"\t");
 					else
-						System.out.print(player2[i][j].getName() + "\t");
+						System.out.print(player2[i][j].getNome() + "\t");
 				}
 				System.out.println(); // Vai a capo dopo ogni riga
 			}
