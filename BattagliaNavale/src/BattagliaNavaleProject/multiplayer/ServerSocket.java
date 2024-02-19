@@ -129,7 +129,7 @@ public class ServerSocket {
 			}
 		}
 		
-		
+		/*
 		System.out.println("inizio giocooooo");
 		byte[] reply = socketServer.recv(0);
 		String messaggio = new String(reply, ZMQ.CHARSET);
@@ -139,6 +139,10 @@ public class ServerSocket {
 			socketServer.send(responseMessage.getBytes(), 0);
 			System.out.println("Inviato: " + responseMessage);
 		}
+		
+		Partita a = new Partita();
+		a.inizioGioco();
+		*/
 
 	}
 
