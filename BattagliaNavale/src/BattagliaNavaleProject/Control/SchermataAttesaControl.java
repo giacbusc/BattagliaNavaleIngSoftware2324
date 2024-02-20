@@ -24,7 +24,7 @@ public class SchermataAttesaControl {
 		socket.connect(indirizzo);
 
 		do {
-			Thread.sleep(3000);
+			Thread.sleep(200);
 			String sendMsg = "CODA";
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 			System.out.println("Ricevuto" + sendMsg);
