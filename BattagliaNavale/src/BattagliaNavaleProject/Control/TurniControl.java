@@ -51,7 +51,10 @@ public TurniControl(String indirizzo,DoubleGameGridView DGGV) {
 			for(int j = 0; j < GRID_DIMENSION ; j++)
 			{
 				DGGV.yourBoard[i][j].removeMouseListener(DGGV);
-				DGGV.opponentBoard[i][j].addMouseListener(DGGV);
+				if(DGGV.opponentBoard[i][j].getBackground()==Color.white) {
+					DGGV.opponentBoard[i][j].addMouseListener(DGGV);
+				}
+				
 			}
 		}
 	//aspetto che sia cliccata
