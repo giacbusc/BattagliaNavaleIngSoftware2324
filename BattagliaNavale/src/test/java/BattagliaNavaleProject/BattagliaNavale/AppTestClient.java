@@ -1,13 +1,13 @@
 package test.java.BattagliaNavaleProject.BattagliaNavale;
 
 
-import BattagliaNavaleProject.formGui.SchermataInizialeView;
+import BattagliaNavaleProject.Control.SchermataInizialeControl;
 
 public class AppTestClient 
 {
 	public static void main(String[] args)
 	{
-		SchermataInizialeView si = new SchermataInizialeView();
+		SchermataInizialeControl si = new SchermataInizialeControl();
 	}
 }
 
