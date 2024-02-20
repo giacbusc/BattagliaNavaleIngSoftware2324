@@ -103,10 +103,27 @@ private void controllastato() {
 	// TODO Auto-generated method stub
 	if(stato==2) {
 		DGGV.opponentBoard[x][y].setColpito();
+		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+			@Override
+			protected Void doInBackground() throws Exception {
+				DGGV.opponentBoard[x][y].setColpito();
+		
+				try {
+					cicloattesa();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+						e.printStackTrace();
+		}
+				return null;
+	
+		}
+		};
+		worker.execute();
 	}
-	else if(stato==3) {
+	if(stato==3) {
 		DGGV.opponentBoard[x][y].setAffondato();
 		verificaLunghezza();
+		
 	}
 	else if(stato==4) {
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
@@ -130,7 +147,11 @@ private void controllastato() {
 
 private void verificaLunghezza() {
 	// TODO Auto-generated method stub
-	for(int i=1;i<lunghezza;i++) {
+	
+	SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+		@Override
+		protected Void doInBackground() throws Exception {
+			for(int i=1;i<lunghezza;i++) {
 		String sendMsg = "AFFONDATO";
 		socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 		System.out.println(sendMsg);
@@ -155,7 +176,19 @@ private void verificaLunghezza() {
 		DGGV.opponentBoard[x][y].setAffondato();
 		
 	}
+			try {
+				cicloattesa();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+					e.printStackTrace();
+	}
+			return null;
+
+	}
+	};
+	worker.execute();
 }
+
 
 private void cicloattesa() throws InterruptedException {
 	// TODO Auto-generated method stub

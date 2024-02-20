@@ -522,7 +522,6 @@ public class DoubleGameGridControl {
 			@Override
 			protected Void doInBackground() throws Exception {
 				// Esegui le operazioni di connessione qui
-
 				boolean r = true;
 				do {
 					grid.waitPanel.setVisible(true);
