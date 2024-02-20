@@ -111,8 +111,8 @@ public class Partita {
 									for (int j = 0; j < MAX_LENGTH; j++) {
 										if (player2[i][j].getNome().equals(nomeBarcaColpita)) {
 											player2[i][j].setStato(3);
-											spedire[0] = x;
-											spedire[1] = y;
+											spedire[0] = String.valueOf(i);
+											spedire[1] = String.valueOf(j);
 											spedire[2] = "3";
 											spedire[3] = String.valueOf(l);
 											spedireMex(spedire);
@@ -169,8 +169,8 @@ public class Partita {
 									for (int j = 0; j < MAX_LENGTH; j++) {
 										if (player1[i][j].getNome().equals(nomeBarcaColpita)) {
 											player1[i][j].setStato(3);
-											spedire[0] = x;
-											spedire[1] = y;
+											spedire[0] = String.valueOf(i);
+											spedire[1] = String.valueOf(j);
 											spedire[2] = "3";
 											spedire[3] = String.valueOf(l);
 											spedireMex(spedire);
