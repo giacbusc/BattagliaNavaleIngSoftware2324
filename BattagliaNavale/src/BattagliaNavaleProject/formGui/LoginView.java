@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
 
 import BattagliaNavaleProject.Control.MenuPrincipaleControl;
+import BattagliaNavaleProject.Control.SchermataInizialeControl;
 import BattagliaNavaleProject.Database.ConnectionDb;
 import BattagliaNavaleProject.form.LoginModel;
 import java.awt.Dimension;
@@ -159,10 +160,18 @@ public class LoginView extends JFrame {
 	}
 	
 	public void close() {
-		SchermataInizialeView inizio;
-		inizio = new SchermataInizialeView(); 
-		dispose();
-		inizio.setVisible(true);
+		SchermataInizialeControl si = new SchermataInizialeControl();
+		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+
+			@Override
+			protected Void doInBackground() throws Exception {
+				// TODO Auto-generated method stub
+				dispose(); 
+				return null;
+			}
+			
+		};
+		worker.execute();
 	}
 
 

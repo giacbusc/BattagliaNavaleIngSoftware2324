@@ -29,7 +29,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 //pagina per loggarsi/registrarsi
-public class SchermataInizialeView extends JFrame implements ActionListener {
+public class SchermataInizialeView extends JFrame {
 	
 	JButton loginButton = new JButton("");
 	SchermataInizialeView frame;
@@ -100,7 +100,6 @@ public class SchermataInizialeView extends JFrame implements ActionListener {
 			loginButton.setName("Login");
 			
 			loginButton.setFont(new Font("Tahoma", Font.BOLD, 18));
-			loginButton.addActionListener(this);
 			
 			
 			final JLabel loginTextLabel= new JLabel("Login");
@@ -164,10 +163,6 @@ public class SchermataInizialeView extends JFrame implements ActionListener {
 	        
 	        
 			registerButton.setBounds(128, 163, 166, 62);
-	       
-			
-			
-			registerButton.addActionListener(this);
 			registerButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 			registerButton.setBackground(new Color(0, 0, 0, 0));
 			registerButton.setOpaque(false);
@@ -216,12 +211,6 @@ public class SchermataInizialeView extends JFrame implements ActionListener {
 				}
 
 			    });
-			
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 

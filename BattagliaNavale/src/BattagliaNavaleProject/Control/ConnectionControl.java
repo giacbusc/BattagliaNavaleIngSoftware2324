@@ -143,7 +143,7 @@ public class ConnectionControl
 					}
 					else if(rispostaMsg.equals("DUPL"))
 					{
-						SchermataInizialeView scv= new SchermataInizialeView();
+						SchermataInizialeControl si = new SchermataInizialeControl();
 						sav.close(socket);
 					}
 					
