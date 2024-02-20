@@ -223,9 +223,9 @@ Terminati i posizionamenti delle barche, il turno deve passare a colui che si er
 Il software abbiamo deciso di basarlo sullo stile architetturale MVC (Model-View-Control):
 -VIEW: la view è l'insieme delle gui che gestiscono l'interfaccia utente e attraverso le quali vengono inseriti gli input. Attraverso l'interfaccia l'utente durante il gioco manipola i dati. Tale manipolazione è realizzata del Control. (Ad esempio attraverso i click sulla caselle della griglia cambio lo stato della griglia.)
 -MODEL: rappresenta i dati e gestisce le loro modifiche. Il model gestisce poi la visualizzazione dell'interfaccia utente attraverso il controller.
-
-Esempio di utilizzo di MVC nel progetto:
-durante il gioco 
+<br>
+Esempio di utilizzo di MVC nel progetto:<br>
+durante il gioco un utente prova a colpire una barca dell'avversario sulla griglia a destra. L'utente cliccando da un input al programma che viene elaborato attraverso le classi di logica del control. Queste comunicano con il socket e verificano lo stato della casella. Nel momento in cui la casella viene controllata possiamo dire che lo stato della cella cambia. Può essere parte di una barca e quindi identificare che la barca è stata colpita, oppure che la barca è stata affondata. Lo stato della casella è all'interno del model e viene modificato dal control. Una modifica del model porta ad una modifica della View infatti la casella a seconda del suo stato cambia colore.<br>
 ## 9. Software Design
 
 ## 10. Software Testing
