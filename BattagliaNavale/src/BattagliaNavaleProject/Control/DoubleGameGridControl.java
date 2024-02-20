@@ -100,7 +100,7 @@ public class DoubleGameGridControl {
 					if (primo == 1) {
 						for (int i = 0; i < 10; i++) {
 							for (int j = 0; j < 10; j++) {
-								if (grid.yourBoard[i][j].getColor() != Color.orange)
+								if (grid.yourBoard[i][j].getStato()!=1)
 									grid.yourBoard[i][j].addMouseListener(grid);
 
 							}
@@ -227,7 +227,8 @@ public class DoubleGameGridControl {
 		System.out.println("quello che ho mandato prima y: " + y + " quello che ricevo: " + arrayRisposta[1]);
 		if (arrayRisposta[6] == 0) {
 			while (y != arrayRisposta[1]) {
-				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
+				colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
+				//grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
 				arrayRisposta[1]--;
 				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 
@@ -236,7 +237,8 @@ public class DoubleGameGridControl {
 		}
 		if (arrayRisposta[5] == 0) {
 			while (x != arrayRisposta[0]) {
-				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
+				colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
+				//grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
 				arrayRisposta[0]++;
 				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 
@@ -245,7 +247,8 @@ public class DoubleGameGridControl {
 
 		if (arrayRisposta[4] == 0) {
 			while (y != arrayRisposta[1]) {
-				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
+				colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
+				//grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
 				arrayRisposta[1]++;
 				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 
@@ -254,7 +257,8 @@ public class DoubleGameGridControl {
 
 		if (arrayRisposta[3] == 0) {
 			while (x != arrayRisposta[0]) {
-				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
+				colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
+				//grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
 				arrayRisposta[0]--;
 				grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setStato(1);
 
@@ -262,6 +266,28 @@ public class DoubleGameGridControl {
 		}
 		colorabianco();
 	}
+	private void colorebarca(Square square) {
+		String nome = arraymsg[2];
+		for (InfoBoat boat : InfoBoat.values()) {
+			if (boat.name().equalsIgnoreCase(nome)) {
+				boatlenght = boat.getLunghezza();
+			}
+		}
+		// TODO Auto-generated method stub
+		if(boatlenght==1) {
+			square.setColor(Color.decode("#00E6AC"));
+		}
+		if(boatlenght==2) {
+			square.setColor(Color.decode("#9AFF6B"));
+		}
+		if(boatlenght==3) {
+			square.setColor(Color.decode("#FFC20A"));
+		}
+		if(boatlenght==4) {
+			square.setColor(Color.decode("#D147D1"));
+		}
+	}
+
 	// tutto non cliccabile
 
 	private void colorabianco() throws InterruptedException, IOException {
@@ -306,7 +332,8 @@ public class DoubleGameGridControl {
 		System.out.println("Received msg1" + rispostamsg);
 
 		if (arrayRisposta[2] != -1) {
-			grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
+			colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
+			
 		}
 
 		String nome = arraymsg[2];
@@ -361,7 +388,7 @@ public class DoubleGameGridControl {
 
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					if (grid.yourBoard[i][j].getColor() != Color.orange) {
+					if (grid.yourBoard[i][j].getStato()!=1) {
 						grid.yourBoard[i][j].removeMouseListener(grid);
 					}
 

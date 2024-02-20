@@ -25,7 +25,7 @@ public class MenuPrincipaleControl implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		String tcp= "tcp://172.16.128.175:5528";
+		String tcp= "tcp://172.16.128.203:5530";
 		String local="tcp://localhost:5545";
 		String[] parti = local.split(":");
 		
