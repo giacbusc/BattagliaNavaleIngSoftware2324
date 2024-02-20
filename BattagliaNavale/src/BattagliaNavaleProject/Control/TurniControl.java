@@ -6,6 +6,8 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.lang.reflect.Array;
 
+import javax.swing.SwingWorker;
+
 import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
@@ -107,13 +109,22 @@ private void controllastato() {
 		verificaLunghezza();
 	}
 	else if(stato==4) {
-		DGGV.opponentBoard[x][y].setAcqua();
-		try {
-			cicloattesa();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+			@Override
+			protected Void doInBackground() throws Exception {
+				DGGV.opponentBoard[x][y].setAcqua();
+		
+				try {
+					cicloattesa();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+						e.printStackTrace();
 		}
+				return null;
+	
+		}
+		};
+		worker.execute();
 	}
 }
 
@@ -137,7 +148,7 @@ private void verificaLunghezza() {
 		System.out.println(
 				"Received msg 2 " + rispostamsg );
 		
-		lunghezza= arrayRisposta[4]; 
+		lunghezza= arrayRisposta[3]; 
 		stato=arrayRisposta[2];
 		x= arrayRisposta[0];
 		y= arrayRisposta[1];
