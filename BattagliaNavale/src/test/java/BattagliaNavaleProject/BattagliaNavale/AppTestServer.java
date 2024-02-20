@@ -15,7 +15,7 @@ public class AppTestServer
      */
 	public static void main(String[] args) throws InterruptedException
 	{
-		ServerSocket server = ServerSocket.getIstance();
+		ServerSocket server = ServerSocket.getInstance();
 		String tcp= "tcp://172.16.128.175:5530";
 		String local="tcp://localhost:5545";
 		server.startServer(local);

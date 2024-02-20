@@ -21,13 +21,13 @@ public class ServerSocket {
 	private ZContext context = new ZContext();
 	private ZMQ.Socket socketServer;
 	private int turno = 0;
-	private static ServerSocket istance = null;
+	private static ServerSocket instance = null;
 
-	public static ServerSocket getIstance() {
-		if (istance == null)
-			istance = new ServerSocket();
+	public static ServerSocket getInstance() {
+		if (instance == null)
+			instance = new ServerSocket();
 
-		return istance;
+		return instance;
 	}
 
 	private ServerSocket() {
@@ -133,6 +133,7 @@ public class ServerSocket {
 			reply = socketServer.recv(0);
 			messaggio = new String(reply, ZMQ.CHARSET);
 			System.out.println("ricevuto: " + messaggio);
+			
 			if (messaggio.equals("ATA")) {
 				String responseMessage = "GIOCA";
 				socketServer.send(responseMessage.getBytes(), 0);
