@@ -13,6 +13,7 @@ public class Partita {
 	Square[][] player2;
 	int MAX_LENGTH = 10;
 	boolean INVIATO = false;
+	boolean ATA2SET = false;
 
 	public void inizioGioco() {
 
@@ -21,9 +22,9 @@ public class Partita {
 		ZMQ.Socket socketServer = s.getSocketServer();
 		player1 = s.getPlayer1();
 		player2 = s.getPlayer2();
-		
+
 		stampaGriglia(1);
-		
+
 		while (true) {
 			byte[] reply = socketServer.recv(0);
 			String request = new String(reply, ZMQ.CHARSET);
@@ -31,101 +32,92 @@ public class Partita {
 
 			// BOOLEANO CHE ANDRA SETTATO PER RISPONDERGLI ANZICHE CON ATA CON GIOCA PER
 			// RISVEGLIARLO
-			if(request.equals("ATA2") && INVIATO==true)
-			{
+			if (request.equals("ATA2") && INVIATO == true) {
 				String responseMessage = "GIOCA";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
-				turno=1;
-				INVIATO=false;
+				turno = 1;
+				INVIATO = false;
 				continue;
 			}
-			/*if (request.equals("ATA2") && INVIATO==false) {
+
+			if (request.equals("ATA2") && INVIATO == false) {
 				String responseMessage = "ATA2";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
 				continue;
-			}*/
-			if (request.equals("ATA") && INVIATO==false) {
+			}
+
+			if (request.equals("ATA") && INVIATO == false) {
 				String responseMessage = "ATA";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
 				continue;
 			}
-			
-			if (request.equals("ATA") && INVIATO==true) {
+
+			if (request.equals("ATA") && INVIATO == true) {
+				System.out.println("Stai passando il turno!");
 				String responseMessage = "GIOCA";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
-				turno=2;
-				INVIATO=false;
+				turno = 2;
+				INVIATO = false;
 				continue;
 			}
-			
-		
-			if(!(request.equals("ATA")) )
-				{String[] mexSplit = request.split(",");
-				String x = mexSplit[0];
-				String y = mexSplit[1];
-				if (turno == 1) 
+
+			if (!request.equals(""))
+				if (!(request.equals("ATA") && !(request.equals("ATA2")))) 
 				{
-					for (int k = 0; k < spedire.length; k++) {
-						spedire[k] = "-1";
-					}
-					if (player2[Integer.valueOf(x).intValue()][Integer.valueOf(x).intValue()].getStato() == 0) {
-						spedire[0] = x;
-						spedire[1] = y;
-						spedire[2] = "4"; // ha colpito l'acqua
-						
-						/*
-						if(request.equals("ATA"))
-						{
-							String responseMessage = "GIOCA";
-							socketServer.send(responseMessage.getBytes(), 0);
-							System.out.println("Inviato: " + responseMessage);
-							continue;
-						}*/
-						
-						spedireMex(spedire);
-						
+					String[] mexSplit = request.split(",");
+					String x = mexSplit[0];
+					String y = mexSplit[1];
+					if (turno == 1) {
+						for (int k = 0; k < spedire.length; k++) {
+							spedire[k] = "-1";
+						}
+						if (player2[Integer.valueOf(x).intValue()][Integer.valueOf(y).intValue()].getStato() == 0) {
+							spedire[0] = x;
+							spedire[1] = y;
+							spedire[2] = "4"; // ha colpito l'acqua
 
-					} else {// colpito o affondato
-						spedireMex(spedire);
-					}
+							/*
+							 * if(request.equals("ATA")) { String responseMessage = "GIOCA";
+							 * socketServer.send(responseMessage.getBytes(), 0);
+							 * System.out.println("Inviato: " + responseMessage); continue; }
+							 */
+							INVIATO = true;
+							spedireMex(spedire);
 
-				}
-				else if(turno == 2)
-				{
-					for (int k = 0; k < spedire.length; k++) {
-						spedire[k] = "-1";
-					}
-					if (player2[Integer.valueOf(x).intValue()][Integer.valueOf(x).intValue()].getStato() == 0) {
-						spedire[0] = x;
-						spedire[1] = y;
-						spedire[2] = "4"; // ha colpito l'acqua
-						INVIATO = true;
-						
-						/*
-						if(request.equals("ATA"))
-						{
-							String responseMessage = "GIOCA";
-							socketServer.send(responseMessage.getBytes(), 0);
-							System.out.println("Inviato: " + responseMessage);
-							continue;
-						}*/
-						
-						spedireMex(spedire);
+						} else {// colpito o affondato
+							System.out.println("HAI CANNATO, NON ANCORA PROGRAMMATO");
+						}
 
-					} else {// colpito o affondato
-						spedireMex(spedire);
+					} else if (turno == 2) {
+						for (int k = 0; k < spedire.length; k++) {
+							spedire[k] = "-1";
+						}
+						if (player2[Integer.valueOf(x).intValue()][Integer.valueOf(x).intValue()].getStato() == 0) {
+							spedire[0] = x;
+							spedire[1] = y;
+							spedire[2] = "4"; // ha colpito l'acqua
+							INVIATO = true;
+
+							/*
+							 * if(request.equals("ATA")) { String responseMessage = "GIOCA";
+							 * socketServer.send(responseMessage.getBytes(), 0);
+							 * System.out.println("Inviato: " + responseMessage); continue; }
+							 */
+
+							spedireMex(spedire);
+
+						} else {// colpito o affondato
+							spedireMex(spedire);
+						}
 					}
 				}
 		}
-			}
 
-		}
-
-	
+	}
 
 	public void spedireMex(String[] spedire) {
 		s = ServerSocket.getInstance();
@@ -137,12 +129,12 @@ public class Partita {
 		}
 
 		String compostaFinale = composta.toString().trim();
-		String fiocco = compostaFinale.substring(0, compostaFinale.length()-1);
-		socketServer.send(fiocco.getBytes(), 0);
+		String fiocco = compostaFinale.substring(0, compostaFinale.length() - 1);
+		socketServer.send(fiocco.getBytes(), ZMQ.DONTWAIT);
 		System.out.println("Inviato fiocco: " + fiocco);
-		
+
 	}
-	
+
 	public void stampaGriglia(int turno) {
 		for (int i = 0; i < MAX_LENGTH; i++) {
 			for (int j = 0; j < MAX_LENGTH; j++) {

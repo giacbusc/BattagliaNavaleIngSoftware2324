@@ -33,8 +33,6 @@ public class ServerSocket {
 	private ServerSocket() {
 		socketServer = context.createSocket(SocketType.REP);
 	}
-	
-	
 
 	public void startServer(String indirizzo) {
 
@@ -67,6 +65,7 @@ public class ServerSocket {
 					socketServer.send(responseMessage.getBytes(), 0);
 					System.out.println("Inviato: " + responseMessage);
 				} else if (request.equals("attesa")) {
+					Thread.sleep(500);
 					String responseMessage = "MARTIN IN GABBIA";
 					socketServer.send(responseMessage.getBytes(), 0);
 					System.out.println("stampa " + responseMessage);
@@ -115,35 +114,38 @@ public class ServerSocket {
 			 * 
 			 * }
 			 */
-	
+
 		if (turno == 2) {
-			byte[] reply = socketServer.recv(0);
-			String messaggio = new String(reply, ZMQ.CHARSET);
-			System.out.println("ricevuto: " + messaggio);
+			boolean r = true;
+			while (r == true) {
+				byte[] reply = socketServer.recv(0);
+				String messaggio = new String(reply, ZMQ.CHARSET);
+				System.out.println("ricevuto: " + messaggio);
 
-			if (messaggio.equals("CODA")) {
-				String responseMessage = "OK POS2";
-				socketServer.send(responseMessage.getBytes(), 0);
-				System.out.println("Inviato: " + responseMessage);
-				piazzamentoBarca(turno);
+				if (messaggio.equals("CODA")) {
+					String responseMessage = "OK POS2";
+					socketServer.send(responseMessage.getBytes(), 0);
+					System.out.println("Inviato: " + responseMessage);
+					piazzamentoBarca(turno);
+					System.out.println("inizio giocooooo");
+					reply = socketServer.recv(0);
+					messaggio = new String(reply, ZMQ.CHARSET);
+					System.out.println("ricevuto: " + messaggio);
 
+					if (messaggio.equals("ATA")) 
+					{
+						r=false;
+						responseMessage = "GIOCA";
+						socketServer.send(responseMessage.getBytes(), 0);
+						System.out.println("Inviato AL PLAYER 1: " + responseMessage);
+						Partita a = new Partita();
+						a.inizioGioco();
+					}
+
+				}
 			}
-			
-			System.out.println("inizio giocooooo");
-			reply = socketServer.recv(0);
-			messaggio = new String(reply, ZMQ.CHARSET);
-			System.out.println("ricevuto: " + messaggio);
-			
-			if (messaggio.equals("ATA")) {
-				String responseMessage = "GIOCA";
-				socketServer.send(responseMessage.getBytes(), 0);
-				System.out.println("Inviato: " + responseMessage);
-				Partita a = new Partita();
-				a.inizioGioco();
-			}
-				
+
 		}
-		
 
 	}
 
@@ -177,12 +179,11 @@ public class ServerSocket {
 
 			if (messaggio.equals("CODA")) {
 				String responseMessage = "CODA";
-				socketServer.send(responseMessage.getBytes(), 0);
+				socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
 				System.out.println("Inviato: " + responseMessage);
 				continue;
 			}
-
-			if (messaggio.equals("ATA")) {
+			if (messaggio.equals("") || messaggio.equals("ATA")) {
 				String responseMessage = "ATA";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
@@ -194,7 +195,7 @@ public class ServerSocket {
 			String x = mexSplit[0];
 			String y = mexSplit[1];
 			String nomeBarca = mexSplit[2];
-			//System.out.println(x + " " + y + " " + nomeBarca);
+			// System.out.println(x + " " + y + " " + nomeBarca);
 			InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarca);
 			int l = boat.getLunghezza();
 			System.out.println("Lunghezza barca: " + l);
@@ -211,7 +212,7 @@ public class ServerSocket {
 						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno,
 						nomeBarca);
 				System.out.println("CONTAAAA DEL 2 CLICK: " + countB);
-                System.out.println("check nome2 "+nomeBarca);
+				System.out.println("check nome2 " + nomeBarca);
 				if (countB == 9) {
 					fiocco2 = fiocco2 + "1";// Per indicare che il posizionamento è terminato al client
 
@@ -259,11 +260,11 @@ public class ServerSocket {
 					if (l == 1) {
 						countB++;
 					}
-					  System.out.println("check nome "+nomeBarca);
+					System.out.println("check nome " + nomeBarca);
 				}
 
 				stampaGriglia(turno);
-				
+
 			}
 
 			// LOGICA DI SPEDIZIONE DEL MEX
@@ -291,13 +292,13 @@ public class ServerSocket {
 			player1[x][y].setStato(s);
 			if (s == 1) {
 				player1[x][y].setNome(n);
-				//System.out.println(player1[x][y].getNome());
+				// System.out.println(player1[x][y].getNome());
 			}
 		} else {
 			player2[x][y].setStato(s);
 			if (s == 1) {
 				player2[x][y].setNome(n);
-				//System.out.println(player2[x][y].getNome());
+				// System.out.println(player2[x][y].getNome());
 			}
 		}
 
@@ -323,19 +324,19 @@ public class ServerSocket {
 			break;
 		}
 		case 2: {
-                 Case2ControllaCella(x,y,l,turno);
-                 break;
-				}
+			Case2ControllaCella(x, y, l, turno);
+			break;
+		}
 
 		case 3: {
-			 Case3ControllaCella(x,y,l,turno);
-             break;
-			}
+			Case3ControllaCella(x, y, l, turno);
+			break;
+		}
 
 		case 4: {
-			 Case4ControllaCella(x,y,l,turno);
-             break;
-			}
+			Case4ControllaCella(x, y, l, turno);
+			break;
+		}
 
 		}
 
@@ -410,7 +411,7 @@ public class ServerSocket {
 			}
 			contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
 		}
-		
+
 	}
 
 	private void Case3ControllaCella(int x, int y, int l, int turno) {
@@ -472,46 +473,44 @@ public class ServerSocket {
 			}
 			contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
 		}
-	
+
 	}
 
 	private void Case2ControllaCella(int x, int y, int l, int turno) {
 		// **OVEST** DEVE AVERE d=3
-					if (checkFuoriGriglia(x, y, l, 3, turno)) {
-						if (cellaLibera(x, y - 1, turno) == true) {
+		if (checkFuoriGriglia(x, y, l, 3, turno)) {
+			if (cellaLibera(x, y - 1, turno) == true) {
 
-							spedire[6] = "0";
-							spedire[2] = "1";
-						}
-					}
+				spedire[6] = "0";
+				spedire[2] = "1";
+			}
+		}
 
-					// **SUD** DEVE AVERE d=2
-					if (checkFuoriGriglia(x, y, l, 2, turno)) {
-						if (cellaLibera(x + 1, y, turno) == true) { // est
-							spedire[5] = "0";
-							spedire[2] = "1";
-						}
-					}
+		// **SUD** DEVE AVERE d=2
+		if (checkFuoriGriglia(x, y, l, 2, turno)) {
+			if (cellaLibera(x + 1, y, turno) == true) { // est
+				spedire[5] = "0";
+				spedire[2] = "1";
+			}
+		}
 
-					// **EST** DEVE AVERE d=1
-					if (checkFuoriGriglia(x, y, l, 1, turno)) {
-						if (cellaLibera(x, y + 1, turno) == true) {
-							spedire[4] = "0";
-							spedire[2] = "1";
-						}
-					}
+		// **EST** DEVE AVERE d=1
+		if (checkFuoriGriglia(x, y, l, 1, turno)) {
+			if (cellaLibera(x, y + 1, turno) == true) {
+				spedire[4] = "0";
+				spedire[2] = "1";
+			}
+		}
 
-					// **NORD** DEVE AVERE d=0
-					if (checkFuoriGriglia(x, y, l, 0, turno)) {
-						if (cellaLibera(x - 1, y, turno) == true) { // ovest
-							spedire[3] = "0";
-							spedire[2] = "1";
-						}
-					}
+		// **NORD** DEVE AVERE d=0
+		if (checkFuoriGriglia(x, y, l, 0, turno)) {
+			if (cellaLibera(x - 1, y, turno) == true) { // ovest
+				spedire[3] = "0";
+				spedire[2] = "1";
+			}
+		}
 
-		
 	}
-	
 
 	public boolean cellaLibera(int x, int y, int turno) {
 		if (turno == 1) {
@@ -644,7 +643,7 @@ public class ServerSocket {
 					else {
 						player2[xp][i].setStato(1);
 						player2[xp][i].setNome(nomeBarca);
-						
+
 					}
 
 				}
@@ -668,11 +667,10 @@ public class ServerSocket {
 
 	public void inizializzaSquare() {
 		for (int i = 0; i < MAX_LENGTH; i++) {
-			for (int j = 0; j < MAX_LENGTH; j++) 
-			{
+			for (int j = 0; j < MAX_LENGTH; j++) {
 				player1[i][j] = new Square(i, j, 0, "0000000000");
 				player2[i][j] = new Square(i, j, 0, "0000000000");
-				
+
 			}
 		}
 	}
@@ -688,40 +686,41 @@ public class ServerSocket {
 			System.out.println(); // Vai a capo dopo ogni riga
 		}
 	}
-		public void stampaGriglia2(int turno) {
-			for (int i = 0; i < MAX_LENGTH; i++) {
-				for (int j = 0; j < MAX_LENGTH; j++) {
-					if (turno == 1 )
-						System.out.print(player1[i][j].getNome() +"\t");
-					else
-						System.out.print(player2[i][j].getNome() + "\t");
-				}
-				System.out.println(); // Vai a capo dopo ogni riga
+
+	public void stampaGriglia2(int turno) {
+		for (int i = 0; i < MAX_LENGTH; i++) {
+			for (int j = 0; j < MAX_LENGTH; j++) {
+				if (turno == 1)
+					System.out.print(player1[i][j].getNome() + "\t");
+				else
+					System.out.print(player2[i][j].getNome() + "\t");
 			}
+			System.out.println(); // Vai a capo dopo ogni riga
+		}
 
 	}
 
-		public ZMQ.Socket getSocketServer() {
-			return socketServer;
-		}
+	public ZMQ.Socket getSocketServer() {
+		return socketServer;
+	}
 
-		public void setSocketServer(ZMQ.Socket socketServer) {
-			this.socketServer = socketServer;
-		}
+	public void setSocketServer(ZMQ.Socket socketServer) {
+		this.socketServer = socketServer;
+	}
 
-		public Square[][] getPlayer1() {
-			return player1;
-		}
+	public Square[][] getPlayer1() {
+		return player1;
+	}
 
-		public void setPlayer1(Square[][] player1) {
-			this.player1 = player1;
-		}
+	public void setPlayer1(Square[][] player1) {
+		this.player1 = player1;
+	}
 
-		public Square[][] getPlayer2() {
-			return player2;
-		}
+	public Square[][] getPlayer2() {
+		return player2;
+	}
 
-		public void setPlayer2(Square[][] player2) {
-			this.player2 = player2;
-		}
+	public void setPlayer2(Square[][] player2) {
+		this.player2 = player2;
+	}
 }
