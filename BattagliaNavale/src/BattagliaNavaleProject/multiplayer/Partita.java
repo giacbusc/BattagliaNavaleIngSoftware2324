@@ -23,7 +23,7 @@ public class Partita {
 		player1 = s.getPlayer1();
 		player2 = s.getPlayer2();
 
-		stampaGriglia(1);
+		//stampaGriglia(1);
 
 		while (true) {
 			byte[] reply = socketServer.recv(0);
@@ -36,7 +36,10 @@ public class Partita {
 				String responseMessage = "GIOCA";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
-				turno = 1;
+				if(turno==2) {turno = 1;}
+				else {turno=2;}
+				
+				System.out.println("turno "+turno);
 				INVIATO = false;
 				continue;
 			}
@@ -61,6 +64,7 @@ public class Partita {
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
 				turno = 2;
+				System.out.println("turno "+turno);
 				INVIATO = false;
 				continue;
 			}
@@ -71,7 +75,8 @@ public class Partita {
 					String[] mexSplit = request.split(",");
 					String x = mexSplit[0];
 					String y = mexSplit[1];
-					if (turno == 1) {
+					if (turno == 1) { 
+						System.out.println("turno nell'if "+turno);
 						for (int k = 0; k < spedire.length; k++) {
 							spedire[k] = "-1";
 						}
@@ -79,12 +84,6 @@ public class Partita {
 							spedire[0] = x;
 							spedire[1] = y;
 							spedire[2] = "4"; // ha colpito l'acqua
-
-							/*
-							 * if(request.equals("ATA")) { String responseMessage = "GIOCA";
-							 * socketServer.send(responseMessage.getBytes(), 0);
-							 * System.out.println("Inviato: " + responseMessage); continue; }
-							 */
 							INVIATO = true;
 							spedireMex(spedire);
 
@@ -92,26 +91,21 @@ public class Partita {
 							System.out.println("HAI CANNATO, NON ANCORA PROGRAMMATO");
 						}
 
-					} else if (turno == 2) {
+					} else if (turno == 2) { 
+						System.out.println("turno nell'if "+turno);
 						for (int k = 0; k < spedire.length; k++) {
 							spedire[k] = "-1";
 						}
-						if (player2[Integer.valueOf(x).intValue()][Integer.valueOf(x).intValue()].getStato() == 0) {
+						if (player1[Integer.valueOf(x).intValue()][Integer.valueOf(y).intValue()].getStato() == 0) {
 							spedire[0] = x;
 							spedire[1] = y;
 							spedire[2] = "4"; // ha colpito l'acqua
 							INVIATO = true;
-
-							/*
-							 * if(request.equals("ATA")) { String responseMessage = "GIOCA";
-							 * socketServer.send(responseMessage.getBytes(), 0);
-							 * System.out.println("Inviato: " + responseMessage); continue; }
-							 */
-
 							spedireMex(spedire);
 
 						} else {// colpito o affondato
-							spedireMex(spedire);
+							System.out.println("HAI CANNATO, NON ANCORA PROGRAMMATO");
+							//spedireMex(spedire);
 						}
 					}
 				}
