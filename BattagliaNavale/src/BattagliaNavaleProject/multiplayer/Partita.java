@@ -100,6 +100,8 @@ public class Partita {
 								spedire[1] = y;
 								spedire[2] = "2";
 								player2[xpos][ypos].setStato(2);
+								INVIATO = true;
+								spedireMex(spedire);
 							} else { // è affondata
 								player2[xpos][ypos].setStato(3);
 								String nomeBarcaColpita = player2[xpos][ypos].getNome();
@@ -123,13 +125,14 @@ public class Partita {
 												String requestAffondato = new String(reply, ZMQ.CHARSET);
 												System.out.println("Messaggio ricevuto: " + request);
 
-												if (!replyAffondato.equals("AFFONDATO"))
+												if (!requestAffondato.equals("AFFONDATO"))
 													System.out.println("ERRORE NON STAI RICEVENDO AFFONDATO");
 											}
 
 										}
 									}
 								}
+								INVIATO = true;
 							}
 
 						}
@@ -155,6 +158,8 @@ public class Partita {
 								spedire[1] = y;
 								spedire[2] = "2";
 								player1[xpos][ypos].setStato(2);
+								INVIATO = true;
+								spedireMex(spedire);
 							} else { // è affondata
 								player1[xpos][ypos].setStato(3);
 								String nomeBarcaColpita = player1[xpos][ypos].getNome();
@@ -185,6 +190,7 @@ public class Partita {
 										}
 									}
 								}
+								INVIATO = true;
 							}
 
 						}
