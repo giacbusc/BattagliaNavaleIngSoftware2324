@@ -228,36 +228,7 @@ public class SchermataInizialeView extends JFrame {
 		// TODO Auto-generated method stub
    	  dispose();
 	}
-	public void openRegistration() {
-		  
-        RegistrationControl reg = new RegistrationControl();
-       
-        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-	        @Override
-	        protected Void doInBackground() throws Exception {
-	            // Esegui le operazioni di connessione qui
-	        	dispose(); 
-	            return null;
-	        }
-	    };
-
-	    worker.execute(); 
-	}
-	public void openLogin() {
-		  
-        LoginControl login = new LoginControl();
-        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-	        @Override
-	        protected Void doInBackground() throws Exception {
-	            // Esegui le operazioni di connessione qui
-	        	dispose(); 
-	            return null;
-	        }
-	    };
-
-	    worker.execute(); 
-		
-	}
+	
 
 }
 

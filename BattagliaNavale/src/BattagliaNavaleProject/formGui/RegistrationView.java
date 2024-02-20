@@ -23,11 +23,12 @@ import javax.swing.SwingWorker;
 
 import BattagliaNavaleProject.Control.LoginControl;
 import BattagliaNavaleProject.Control.RegistrationControl;
+import BattagliaNavaleProject.client.Observer;
 import BattagliaNavaleProject.form.RegistrationModel;
 
 
 
-public class RegistrationView extends JFrame  {
+public class RegistrationView extends JFrame  implements Observer{
 	
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNickname;
@@ -35,7 +36,7 @@ public class RegistrationView extends JFrame  {
 	private JTextField txtSurname;
     private JPasswordField txtPassword;
     
-  
+    private Observer obs;
     private JButton btnRegistration;
     private JButton backbutton;
     private RegistrationModel model;
@@ -145,10 +146,8 @@ public class RegistrationView extends JFrame  {
         JOptionPane.showMessageDialog(this, msg);
     }
     public void close() {
-    	  SchermataInizialeView inizio;
-    	  inizio = new SchermataInizialeView(); 
     	  dispose();
-    	  inizio.setVisible(true);
+    	  obs.update();
          }
     
     public void addRecListener(ActionListener log) {
@@ -184,5 +183,18 @@ public class RegistrationView extends JFrame  {
 
 	    worker.execute(); 
 	}
+	
+	
+	public void setObserver(Observer obs)
+	{
+		this.obs = obs;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 	

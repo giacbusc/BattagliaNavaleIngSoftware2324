@@ -2,6 +2,7 @@ package BattagliaNavaleProject.formGui;
 import javax.swing.*;
 
 import BattagliaNavaleProject.Control.ConnectionControl;
+import BattagliaNavaleProject.client.Observer;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -14,7 +15,7 @@ public class MenuPrincipaleView extends JFrame {
 	private static String userName;
 	private JButton pcSoloButton;
 	private JButton pcMultiButton;
-	
+	private Observer obs;
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run()
@@ -34,10 +35,10 @@ public class MenuPrincipaleView extends JFrame {
 	}*/
 
 	
-	public MenuPrincipaleView(String username) throws IOException, SQLException 
+	public MenuPrincipaleView(String username, Observer obs) throws IOException, SQLException 
 	{
 		this.userName = username;
-		
+		this.obs = obs;
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setSize(1400, 788);
 	    final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
@@ -319,7 +320,8 @@ public class MenuPrincipaleView extends JFrame {
         backgroundPanel.add(radioPanel);*/
 	                    
 	}
-	
+
+
 	public void addActionMulti(ActionListener act)
 	{
 		pcMultiButton.addActionListener(act);
@@ -344,7 +346,7 @@ public class MenuPrincipaleView extends JFrame {
 	        @Override
 	        protected Void doInBackground() throws Exception {
 	            // Esegui le operazioni di connessione qui
-	            ConnectionControl c = new ConnectionControl(sin, userName);
+	            ConnectionControl c = new ConnectionControl(sin, userName, obs);
 	            return null;
 	        }
 	    };

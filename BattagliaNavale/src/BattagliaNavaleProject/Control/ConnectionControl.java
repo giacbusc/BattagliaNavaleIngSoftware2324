@@ -9,6 +9,7 @@ import org.zeromq.ZMQ;
 import BattagliaNavaleProject.formGui.DoubleGameGridView;
 import BattagliaNavaleProject.formGui.SchermataAttesaView;
 import BattagliaNavaleProject.formGui.SchermataInizialeView;
+import BattagliaNavaleProject.client.Observer;
 import BattagliaNavaleProject.form.LoginModel;
 
 public class ConnectionControl 
@@ -69,7 +70,7 @@ public class ConnectionControl
 			}
 	}*/
 	
-	public ConnectionControl(SchermataAttesaView sav, String userName) throws IOException
+	public ConnectionControl(SchermataAttesaView sav, String userName, Observer obs) throws IOException
 	{
 		this.sav = sav;
 		this.userName = userName;
@@ -110,8 +111,8 @@ public class ConnectionControl
 				}
 				else if(rispostaMsg.equals("DUPL"))
 				{
-					SchermataInizialeView scv= new SchermataInizialeView();
-					sav.close(socket);
+					obs.update();
+					sav.dispose();
 				}
 				
 			
@@ -143,8 +144,8 @@ public class ConnectionControl
 					}
 					else if(rispostaMsg.equals("DUPL"))
 					{
-						SchermataInizialeControl si = new SchermataInizialeControl();
-						sav.close(socket);
+						obs.update();
+						sav.dispose();
 					}
 					
 				}

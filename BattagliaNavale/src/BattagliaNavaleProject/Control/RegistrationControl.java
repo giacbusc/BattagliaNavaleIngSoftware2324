@@ -123,4 +123,9 @@ public class RegistrationControl implements ActionListener {
 		return true;
 
       }
+
+	public RegistrationView getView() {
+		// TODO Auto-generated method stub
+		return view;
+	}
 }

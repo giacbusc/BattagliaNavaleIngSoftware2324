@@ -26,10 +26,11 @@ import javax.swing.SwingWorker;
 import BattagliaNavaleProject.Control.MenuPrincipaleControl;
 import BattagliaNavaleProject.Control.SchermataInizialeControl;
 import BattagliaNavaleProject.Database.ConnectionDb;
+import BattagliaNavaleProject.client.Observer;
 import BattagliaNavaleProject.form.LoginModel;
 import java.awt.Dimension;
 
-public class LoginView extends JFrame {
+public class LoginView extends JFrame implements Observer {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel usernameLabel, passwordLabel;
@@ -38,7 +39,7 @@ public class LoginView extends JFrame {
 	private JButton loginButton;
 	private LoginModel model;
 	private JButton backButton;
-	
+	private Observer obs;
 	/**
 	 * Launch the application.
 	 */
@@ -160,18 +161,8 @@ public class LoginView extends JFrame {
 	}
 	
 	public void close() {
-		SchermataInizialeControl si = new SchermataInizialeControl();
-		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-
-			@Override
-			protected Void doInBackground() throws Exception {
-				// TODO Auto-generated method stub
-				dispose(); 
-				return null;
-			}
-			
-		};
-		worker.execute();
+		dispose();
+		obs.update();
 	}
 
 
@@ -180,7 +171,7 @@ public class LoginView extends JFrame {
 public void openMenu() throws IOException, SQLException {
 	
 	model = getUserModel();
-	MenuPrincipaleControl menu = new MenuPrincipaleControl(model.getUserName());
+	MenuPrincipaleControl menu = new MenuPrincipaleControl(model.getUserName(), obs);
     //MenuPrincipaleView menu = new MenuPrincipaleView(model.getUserName()); 
 	//menu.setVisible(true);
 	
@@ -197,5 +188,20 @@ public void openMenu() throws IOException, SQLException {
 	worker.execute();
 	
 }
+
+public void setObserver(Observer obs)
+{
+	this.obs = obs;
+}
+
+
+
+@Override
+public void update() {
+	// TODO Auto-generated method stub
+	
+}
+
+
 
 }

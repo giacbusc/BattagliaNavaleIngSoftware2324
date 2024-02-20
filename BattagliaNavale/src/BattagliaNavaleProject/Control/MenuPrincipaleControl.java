@@ -9,14 +9,15 @@ import javax.swing.JButton;
 
 import org.h2.tools.Server;
 
+import BattagliaNavaleProject.client.Observer;
 import BattagliaNavaleProject.formGui.MenuPrincipaleView;
 import BattagliaNavaleProject.multiplayer.ServerSocket;
 
 public class MenuPrincipaleControl implements ActionListener{
 	private MenuPrincipaleView menu;
-	
-	public MenuPrincipaleControl(String username) throws IOException, SQLException {
-		menu= new MenuPrincipaleView(username);
+	public MenuPrincipaleControl(String username, Observer obs) throws IOException, SQLException {
+		menu= new MenuPrincipaleView(username,obs);
+		
 		System.out.println("Sono entrato");
 		menu.setVisible(true);
 		menu.addActionMulti(this);
@@ -25,7 +26,7 @@ public class MenuPrincipaleControl implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		String tcp= "tcp://172.16.128.203:5530";
+		String tcp= "tcp://172.16.128.203:5535";
 		String local="tcp://localhost:5545";
 		String[] parti = local.split(":");
 		

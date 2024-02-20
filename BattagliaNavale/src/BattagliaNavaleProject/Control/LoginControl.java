@@ -103,6 +103,12 @@ public class LoginControl implements ActionListener
 		}
 	}
 
+
+	public LoginView getView() {
+		// TODO Auto-generated method stub
+		return gui;
+	}
+
 }     
 
 
