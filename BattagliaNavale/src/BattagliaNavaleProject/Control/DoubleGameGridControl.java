@@ -527,7 +527,7 @@ public class DoubleGameGridControl {
 					grid.waitPanel.setVisible(true);
 					Thread.sleep(500);
 					String sendMsg = "ATA";
-					socket.send(sendMsg.getBytes(ZMQ.CHARSET), ZMQ.DONTWAIT);
+					socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 					System.out.println("Inviato " + sendMsg);
 
 					byte[] byteMsg = socket.recv(0);

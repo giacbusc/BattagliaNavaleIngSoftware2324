@@ -185,7 +185,7 @@ public class ServerSocket {
 			}
 			if (messaggio.equals("") || messaggio.equals("ATA")) {
 				String responseMessage = "ATA";
-				socketServer.send(responseMessage.getBytes(), 0);
+				socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
 				System.out.println("Inviato: " + responseMessage);
 				continue;
 			}
