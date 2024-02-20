@@ -61,9 +61,12 @@ public class Square extends JPanel
 	{
 		return this.getBackground();
 	}
-	public void setColor()
+	public void setColor(Color c)
 	{
-		this.setBackground(Color.orange);
+		if(c!=Color.white) {
+		this.stato=1;
+		}
+		this.setBackground(c);
 	}
 	
 	public void setColpito()

@@ -150,7 +150,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		//getContentPane().add(backgroundPanel);
 
 		JLabel usernameLabel = new JLabel(""+username);
-		centralTopPanel.setBackground(Color.BLUE);
+		centralTopPanel.setBackground(Color.decode("#5C99D6"));
 		centralTopPanel.setPreferredSize(new Dimension(50, 50));
 		getContentPane().add(centralTopPanel, BorderLayout.NORTH);
 		
@@ -176,7 +176,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		shipsPanel.setLayout(new FlowLayout());
 		JLabel selectorLabel;
 		int boatLength;
-		shipsPanel.setBackground(Color.blue);
+		shipsPanel.setBackground(Color.decode("#5C99D6"));
 		shipsPanel.setPreferredSize(new Dimension(100,100));
 		//centralPanel.add(shipsPanel);
 		c2.gridx = 0 ;
@@ -195,25 +195,25 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 			if(boatLength == 4)
 			{
 				panel[i].setPreferredSize(new Dimension(220,40));
-				panel[i].setBackground(Color.RED); // 4 quadretti = rosso
+				panel[i].setBackground(Color.decode("#D147D1")); // 4 quadretti = rosso
 				shipsPanel.add(panel[i]);
 
 			}else if(boatLength == 3)
 			{
 				panel[i].setPreferredSize(new Dimension(165,40));
-				panel[i].setBackground(Color.GREEN);
+				panel[i].setBackground(Color.decode("#FFC20A"));
 				shipsPanel.add(panel[i]);
 			}
 			else if(boatLength == 2)
 			{
 				panel[i].setPreferredSize(new Dimension(110,40));
-				panel[i].setBackground(Color.ORANGE);
+				panel[i].setBackground(Color.decode("#9AFF6B"));
 				shipsPanel.add(panel[i]);
 			}
 			else if(boatLength == 1)
 			{
 				panel[i].setPreferredSize(new Dimension(55,40));
-				panel[i].setBackground(Color.MAGENTA);
+				panel[i].setBackground(Color.decode("#00E6AC"));
 				shipsPanel.add(panel[i]);
 			}
 
