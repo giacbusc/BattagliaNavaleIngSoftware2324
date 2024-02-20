@@ -120,7 +120,7 @@ private void controllastato() {
 private void verificaLunghezza() {
 	// TODO Auto-generated method stub
 	for(int i=1;i<lunghezza;i++) {
-		String sendMsg = "affondato";
+		String sendMsg = "AFFONDATO";
 		socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 		System.out.println(sendMsg);
 		
@@ -150,6 +150,7 @@ private void cicloattesa() throws InterruptedException {
 	// TODO Auto-generated method stub
 	boolean r=true;
 	do {
+		DGGV.turnoPanel.setVisible(false);
 		toglilistener();
 		Thread.sleep(1300);
 		String sendMsg = "ATA2";
@@ -162,8 +163,8 @@ private void cicloattesa() throws InterruptedException {
 		String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 		
 		if(rispostaMsg.equals("GIOCA")) {
-
-			DGGV.waitPanel.setVisible(false);
+			DGGV.turnoPanelCreation();
+			
 			turno();
 			r=false;
 		}
