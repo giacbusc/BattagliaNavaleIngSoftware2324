@@ -12,16 +12,19 @@ import BattagliaNavaleProject.Database.ConnectionDb;
 import BattagliaNavaleProject.form.LoginModel;
 import BattagliaNavaleProject.formGui.LoginView;
 
-public class LoginControl 
+public class LoginControl implements ActionListener
 {
 	
 	private LoginView gui;
 	public LoginModel model;
 	
 	
-	public LoginControl(LoginView gui)
+	public LoginControl() 
 	{	
-		this.gui = gui;
+		gui = new LoginView();
+		gui.setVisible(true);
+		gui.addActionBack(this);
+		gui.addActionLogin(this);
 		
 	}
 	
@@ -60,51 +63,45 @@ public class LoginControl
 		
 		return true;
 	}
-
-	public void gestioneClick(ActionEvent e) {
-
-try {
-		
-		model = gui.getUserModel();
-		System.out.println(model.getUserName());
-		if(e.getSource() instanceof JButton ) {
-			JButton clickedButton= (JButton) e.getSource();
+    
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		try {
 			
-			if(clickedButton.getText().equals("Login")) 
-			{   
-                try {
-					if(checkUser(model)){
-						gui.showMessage("Login succesfully!");
-						ConnectionDb conn = new ConnectionDb();
-						conn.closeConnection();
-					    gui.openMenu();
-					    
-						
-					}else{
-					    gui.showMessage("Invalid username and/or password!");
-					}
-				} catch (SQLException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} 
-            
+			model = gui.getUserModel();
+			System.out.println(model.getUserName());
+			if(e.getSource() instanceof JButton ) {
+				JButton clickedButton= (JButton) e.getSource();
+				
+				if(clickedButton.getText().equals("Login")) 
+				{   
+	                try {
+						if(checkUser(model)){
+							gui.showMessage("Login succesfully!");
+							ConnectionDb conn = new ConnectionDb();
+							conn.closeConnection();
+						    gui.openMenu();
+						    
+							
+						}else{
+						    gui.showMessage("Invalid username and/or password!");
+						}
+					} catch (SQLException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} 
+	            
+				}
+				if(clickedButton.getText().equals("Back")) {
+					gui.close();
+				}
 			}
-			if(clickedButton.getText().equals("Back")) {
-				gui.close();
-			}
+			
+		}catch(Exception e3) {
+			e3.printStackTrace();	
 		}
-		
-	}catch(Exception e3) {
-		e3.printStackTrace();	
 	}
-		
-	}
-
-	
-
-	
-
-	
 
 }     
 

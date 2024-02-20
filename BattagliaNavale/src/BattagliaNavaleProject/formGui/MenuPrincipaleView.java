@@ -2,7 +2,6 @@ package BattagliaNavaleProject.formGui;
 import javax.swing.*;
 
 import BattagliaNavaleProject.Control.ConnectionControl;
-import BattagliaNavaleProject.Control.MenuPrincipaleControl;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -12,12 +11,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class MenuPrincipaleView extends JFrame {
-	private JLabel infoPlayerLabel_1;
 	private static String userName;
 	private JButton pcSoloButton;
 	private JButton pcMultiButton;
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run()
 			{
@@ -33,7 +31,7 @@ public class MenuPrincipaleView extends JFrame {
 			}
 		});
 		
-	}
+	}*/
 
 	
 	public MenuPrincipaleView(String username) throws IOException, SQLException 
@@ -131,7 +129,7 @@ public class MenuPrincipaleView extends JFrame {
 	    pcSoloButton.setBounds(550, 154, 350, 90);//275 70
 	    backgroundPanel.add(pcSoloButton);
 	    
-	    pcSoloButton.addActionListener(new MenuPrincipaleControl(this));
+	    //pcSoloButton.addActionListener(new MenuPrincipaleControl(this));
 		 
 	    
 	    pcSoloButton.addMouseListener(new MouseListener()
@@ -185,7 +183,7 @@ public class MenuPrincipaleView extends JFrame {
         pcMutliLabel.setBounds(600,320,282,70);
         backgroundPanel.add(pcMutliLabel);
         
-	    final JButton pcMultiButton = new JButton("  ");
+	    pcMultiButton = new JButton("  ");
 	    pcMultiButton.setName("Multi");
 	    pcMultiButton.setBackground(new Color(0, 0, 255));
 	    pcMultiButton.setBackground(new Color(0, 0, 0, 0));
@@ -195,7 +193,7 @@ public class MenuPrincipaleView extends JFrame {
 	    backgroundPanel.add(pcMultiButton);
 	    
 	    
-	   pcMultiButton.addActionListener(new MenuPrincipaleControl(this));
+	   //pcMultiButton.addActionListener(new MenuPrincipaleControl(this));
 	    
 	    pcMultiButton.addMouseListener(new MouseListener()
 	    {
@@ -319,15 +317,6 @@ public class MenuPrincipaleView extends JFrame {
         radioPanel.add(engRadioButton);
         
         backgroundPanel.add(radioPanel);*/
-        
-        JPanel panel = new JPanel();
-        panel.setBounds(629, 26, 109, 30);
-        backgroundPanel.add(panel);
-        LoginView gui= new LoginView();
-        infoPlayerLabel_1 = 
-        		new JLabel(gui.getUser());
-        panel.add(infoPlayerLabel_1);
-        infoPlayerLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 	                    
 	}
 	
@@ -363,5 +352,9 @@ public class MenuPrincipaleView extends JFrame {
 	    worker.execute();
 	}
 	 
+	public void setConnectionIndirizzo(String indirizzo)
+	{
+		ConnectionControl.setIndirizzo(indirizzo);
+	}
 
 }

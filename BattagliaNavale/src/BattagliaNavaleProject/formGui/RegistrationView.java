@@ -19,7 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingWorker;
 
+import BattagliaNavaleProject.Control.LoginControl;
 import BattagliaNavaleProject.Control.RegistrationControl;
 import BattagliaNavaleProject.form.RegistrationModel;
 
@@ -108,13 +110,13 @@ public class RegistrationView extends JFrame  {
 		btnRegistration.setBounds(5, 307, 99, 35);
         backgroundPanel.add(btnRegistration);
         //btnRegistration.addActionListener(this);
-        btnRegistration.addActionListener(new RegistrationControl(this));
+        //btnRegistration.addActionListener(new RegistrationControl(this));
         
 		backbutton = new JButton("back");
 		backbutton.setBounds(382, 307, 99, 35);
         backgroundPanel.add(backbutton);
         //backbutton.addActionListener(this);
-        backbutton.addActionListener(new RegistrationControl(this));
+        //backbutton.addActionListener(new RegistrationControl(this));
        
  
         this.addWindowListener(new WindowAdapter(){
@@ -124,6 +126,15 @@ public class RegistrationView extends JFrame  {
         });
     }
   
+    public void addActionReg(ActionListener act)
+    {
+    	btnRegistration.addActionListener(act);
+    }
+    
+    public void addActionBack(ActionListener act)
+    {
+    	backbutton.addActionListener(act);
+    }
 
     public RegistrationModel getUser(){
         model = new RegistrationModel(txtName.getText(),txtSurname.getText(),txtNickname.getText(),txtPassword.getText());
@@ -161,11 +172,17 @@ public class RegistrationView extends JFrame  {
 
 	public void openLogin() {
 			  
-        LoginView login;
-        login = new LoginView(); 
-        login.setVisible(true);
-        dispose(); 
-		
+        LoginControl log = new LoginControl();
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+	        @Override
+	        protected Void doInBackground() throws Exception {
+	            // Esegui le operazioni di connessione qui
+	        	dispose(); 
+	            return null;
+	        }
+	    };
+
+	    worker.execute(); 
 	}
 }
 	

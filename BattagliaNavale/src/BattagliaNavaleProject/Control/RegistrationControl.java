@@ -18,8 +18,9 @@ public class RegistrationControl implements ActionListener {
     private RegistrationView view;
     
  
-    public RegistrationControl(RegistrationView view ){
-        this.view = view;
+    public RegistrationControl( ){
+        view = new RegistrationView();
+        view.setVisible(true);
         //view.addRecListener(this);
     }
     

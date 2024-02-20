@@ -21,13 +21,14 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingWorker;
 
-import BattagliaNavaleProject.Control.LoginControl;
+import BattagliaNavaleProject.Control.MenuPrincipaleControl;
 import BattagliaNavaleProject.Database.ConnectionDb;
 import BattagliaNavaleProject.form.LoginModel;
 import java.awt.Dimension;
 
-public class LoginView extends JFrame implements ActionListener  {
+public class LoginView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel usernameLabel, passwordLabel;
@@ -35,7 +36,6 @@ public class LoginView extends JFrame implements ActionListener  {
 	private JPasswordField passwordField;
 	private JButton loginButton;
 	private LoginModel model;
-	private LoginControl control;
 	private JButton backButton;
 	
 	/**
@@ -59,7 +59,6 @@ public class LoginView extends JFrame implements ActionListener  {
 	
 	public LoginView() 
 	{
-		control=new LoginControl(this);
 		//LoginModel model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -125,13 +124,19 @@ public class LoginView extends JFrame implements ActionListener  {
         backButton.setBounds(391, 232, 85, 21);
         backgroundPanel.add(backButton);
        
-		loginButton.addActionListener(this);
-		backButton.addActionListener(this);
+		
         
        
        
 	}
-        
+        public void addActionLogin(ActionListener act)
+        {
+        	loginButton.addActionListener(act);
+        }
+        public void addActionBack(ActionListener act)
+        {
+        	backButton.addActionListener(act);
+        }
         
 		public LoginModel getUserModel(){
             model = new LoginModel(usernameField.getText(), passwordField.getText());
@@ -166,18 +171,22 @@ public class LoginView extends JFrame implements ActionListener  {
 public void openMenu() throws IOException, SQLException {
 	
 	model = getUserModel();
-    MenuPrincipaleView menu = new MenuPrincipaleView(model.getUserName()); 
-	menu.setVisible(true);
-	dispose(); 
-}
+	MenuPrincipaleControl menu = new MenuPrincipaleControl(model.getUserName());
+    //MenuPrincipaleView menu = new MenuPrincipaleView(model.getUserName()); 
+	//menu.setVisible(true);
+	
+	SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 
-
-
-@Override
-public void actionPerformed(ActionEvent e) {
-	// TODO Auto-generated method stub
-
-	control.gestioneClick(e);
+		@Override
+		protected Void doInBackground() throws Exception {
+			// TODO Auto-generated method stub
+			dispose(); 
+			return null;
+		}
+		
+	};
+	worker.execute();
 	
 }
+
 }

@@ -10,8 +10,11 @@ public class SchermataInizialeControl implements ActionListener{
 	
     private SchermataInizialeView schermata;
     
-    public SchermataInizialeControl(SchermataInizialeView schermata ){
-        this.schermata = schermata;
+    public SchermataInizialeControl(){
+    	schermata = new SchermataInizialeView();
+    	schermata.setVisible(true);
+    	schermata.addActionLog(this);
+    	schermata.addActionReg(this);
         //view.addRecListener(this);
     }
 
@@ -29,7 +32,7 @@ public class SchermataInizialeControl implements ActionListener{
 	                }
 	                
 	                
-	                if(clickedButton.getName().equals("Register")) 
+	                else if(clickedButton.getName().equals("Register")) 
 	                {   
 	                   
 	                    schermata.openRegistration();
