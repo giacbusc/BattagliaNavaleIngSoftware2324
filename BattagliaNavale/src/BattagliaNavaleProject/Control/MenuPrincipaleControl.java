@@ -6,11 +6,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
+import javax.swing.SwingWorker;
 
 import org.h2.tools.Server;
 
 import BattagliaNavaleProject.client.Observer;
 import BattagliaNavaleProject.formGui.MenuPrincipaleView;
+import BattagliaNavaleProject.formGui.SchermataAttesaView;
 import BattagliaNavaleProject.multiplayer.ServerSocket;
 
 public class MenuPrincipaleControl implements ActionListener{
@@ -45,13 +47,16 @@ public class MenuPrincipaleControl implements ActionListener{
 				ServerSocket.setIndirizzo(tcp);
 				DoubleGameGridControl.setIndirizzo(tcp);
 				//ConnectionControl.setIndirizzo(tcp);
-				menu.setConnectionIndirizzo(tcp);
+				setConnectionIndirizzo(tcp);
 				SchermataAttesaControl.setIndirizzo(tcp);
 				System.out.println("tanti pc");
 				try {
-					menu.open();
+					open();
 					
 				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -59,13 +64,16 @@ public class MenuPrincipaleControl implements ActionListener{
 			else if(clickedButton.getText().equals("")) {
 				ServerSocket.setIndirizzo("tcp://*:" + parti[2]);
 				//ConnectionControl.setIndirizzo(local);
-				menu.setConnectionIndirizzo(local);
+				setConnectionIndirizzo(local);
 				DoubleGameGridControl.setIndirizzo(local);
 				SchermataAttesaControl.setIndirizzo(local);
 				System.out.println("un pc");
 				try {
-					menu.open();
+					open();
 				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -75,4 +83,28 @@ public class MenuPrincipaleControl implements ActionListener{
 	}
 	}
 
+	public void open( ) throws IOException, InterruptedException {
+		// TODO Auto-generated method stub
+		
+		final SchermataAttesaControl sac= new SchermataAttesaControl("ATTESA AVVERSARIO", menu.getUsername());
+		menu.dispose();
+		//ConnectionControl c = new ConnectionControl(sin, userName);
+		
+		
+		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+	        @Override
+	        protected Void doInBackground() throws Exception {
+	            // Esegui le operazioni di connessione qui
+	            ConnectionControl c = new ConnectionControl(sac, menu.getUsername(), menu.getObserver());
+	            return null;
+	        }
+	    };
+
+	    worker.execute();
+	}
+	 
+	public void setConnectionIndirizzo(String indirizzo)
+	{
+		ConnectionControl.setIndirizzo(indirizzo);
+	}
 }

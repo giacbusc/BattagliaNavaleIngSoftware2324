@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JButton;
+import javax.swing.SwingWorker;
 
 import BattagliaNavaleProject.Database.ConnectionDb;
 import BattagliaNavaleProject.form.LoginModel;
@@ -81,7 +82,7 @@ public class LoginControl implements ActionListener
 							gui.showMessage("Login succesfully!");
 							ConnectionDb conn = new ConnectionDb();
 							conn.closeConnection();
-						    gui.openMenu();
+						    openMenu();
 						    
 							
 						}else{
@@ -109,6 +110,26 @@ public class LoginControl implements ActionListener
 		return gui;
 	}
 
+	public void openMenu() throws IOException, SQLException {
+		
+		model = gui.getUserModel();
+		MenuPrincipaleControl menu = new MenuPrincipaleControl(model.getUserName(), gui.getObserver());
+	    //MenuPrincipaleView menu = new MenuPrincipaleView(model.getUserName()); 
+		//menu.setVisible(true);
+		
+		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+
+			@Override
+			protected Void doInBackground() throws Exception {
+				// TODO Auto-generated method stub
+				gui.dispose(); 
+				return null;
+			}
+			
+		};
+		worker.execute();
+		
+	}
 }     
 
 

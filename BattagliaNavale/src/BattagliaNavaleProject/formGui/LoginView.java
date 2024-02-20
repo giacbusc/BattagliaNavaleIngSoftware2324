@@ -166,32 +166,14 @@ public class LoginView extends JFrame implements Observer {
 	}
 
 
-
-
-public void openMenu() throws IOException, SQLException {
-	
-	model = getUserModel();
-	MenuPrincipaleControl menu = new MenuPrincipaleControl(model.getUserName(), obs);
-    //MenuPrincipaleView menu = new MenuPrincipaleView(model.getUserName()); 
-	//menu.setVisible(true);
-	
-	SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-
-		@Override
-		protected Void doInBackground() throws Exception {
-			// TODO Auto-generated method stub
-			dispose(); 
-			return null;
-		}
-		
-	};
-	worker.execute();
-	
-}
-
 public void setObserver(Observer obs)
 {
 	this.obs = obs;
+}
+
+public Observer getObserver()
+{
+	return obs;
 }
 
 

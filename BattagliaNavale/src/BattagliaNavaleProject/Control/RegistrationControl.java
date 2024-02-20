@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
+import javax.swing.SwingWorker;
 
 import BattagliaNavaleProject.Database.ConnectionDb;
 import BattagliaNavaleProject.form.RegistrationModel;
@@ -82,7 +83,7 @@ public class RegistrationControl implements ActionListener {
                         if(checkUser(model)) 
                         {
                             view.showMessage("Registration complete!");
-                           view.openLogin();
+                            openLogin();
                             
                         } 
                         else 
@@ -128,4 +129,20 @@ public class RegistrationControl implements ActionListener {
 		// TODO Auto-generated method stub
 		return view;
 	}
+	
+	public void openLogin() {
+		  
+        LoginControl log = new LoginControl();
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+	        @Override
+	        protected Void doInBackground() throws Exception {
+	            // Esegui le operazioni di connessione qui
+	        	view.dispose(); 
+	            return null;
+	        }
+	    };
+
+	    worker.execute(); 
+	}
+	
 }

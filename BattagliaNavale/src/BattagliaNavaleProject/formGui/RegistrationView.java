@@ -169,20 +169,6 @@ public class RegistrationView extends JFrame  implements Observer{
         });
     }
 
-	public void openLogin() {
-			  
-        LoginControl log = new LoginControl();
-        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-	        @Override
-	        protected Void doInBackground() throws Exception {
-	            // Esegui le operazioni di connessione qui
-	        	dispose(); 
-	            return null;
-	        }
-	    };
-
-	    worker.execute(); 
-	}
 	
 	
 	public void setObserver(Observer obs)

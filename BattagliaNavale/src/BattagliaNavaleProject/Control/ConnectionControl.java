@@ -19,7 +19,7 @@ public class ConnectionControl
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	String[] arrayMsg = null;
 	private static LoginModel model;
-	static private SchermataAttesaView sav;
+	static private SchermataAttesaControl sac;
 	private String userName;
 	
 	/*public ConnectionControl(SchermataAttesaView sav, String userName) throws IOException
@@ -70,9 +70,9 @@ public class ConnectionControl
 			}
 	}*/
 	
-	public ConnectionControl(SchermataAttesaView sav, String userName, Observer obs) throws IOException
+	public ConnectionControl(SchermataAttesaControl sac, String userName, Observer obs) throws IOException, InterruptedException
 	{
-		this.sav = sav;
+		this.sac = sac;
 		this.userName = userName;
 		
 		try  {
@@ -101,7 +101,8 @@ public class ConnectionControl
 				
 				if(rispostaMsg.equals("OK"))
 				{
-					sav= new SchermataAttesaView("ATTESA POSIZIONAMENTO", userName);
+					sac.chiudi();
+					sac= new SchermataAttesaControl("ATTESA POSIZIONAMENTO", userName);
 				}
 				else if(rispostaMsg.equals("ERROR"))
 				{
@@ -112,7 +113,7 @@ public class ConnectionControl
 				else if(rispostaMsg.equals("DUPL"))
 				{
 					obs.update();
-					sav.dispose();
+					sac.chiudi();
 				}
 				
 			
@@ -129,7 +130,7 @@ public class ConnectionControl
 					if(rispostaMsg.equals("OK POS1")) {
 						try {
 							DoubleGameGridView DGGV = new DoubleGameGridView(userName);
-							sav.dispose();
+							sac.chiudi();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							//dario
@@ -145,7 +146,7 @@ public class ConnectionControl
 					else if(rispostaMsg.equals("DUPL"))
 					{
 						obs.update();
-						sav.dispose();
+						sac.chiudi();
 					}
 					
 				}

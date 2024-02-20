@@ -321,7 +321,15 @@ public class MenuPrincipaleView extends JFrame {
 	                    
 	}
 
-
+	public String getUsername()
+	{
+		return userName;
+	}
+	
+	public Observer getObserver()
+	{
+		return obs;
+	}
 	public void addActionMulti(ActionListener act)
 	{
 		pcMultiButton.addActionListener(act);
@@ -332,31 +340,5 @@ public class MenuPrincipaleView extends JFrame {
 		pcSoloButton.addActionListener(act);
 	}
 
-
-	public void open( ) throws IOException {
-		// TODO Auto-generated method stub
-		
-		final SchermataAttesaView sin= new SchermataAttesaView("ATTESA AVVERSARIO", userName);
-		sin.setVisible(true);
-		dispose();
-		//ConnectionControl c = new ConnectionControl(sin, userName);
-		
-		
-		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-	        @Override
-	        protected Void doInBackground() throws Exception {
-	            // Esegui le operazioni di connessione qui
-	            ConnectionControl c = new ConnectionControl(sin, userName, obs);
-	            return null;
-	        }
-	    };
-
-	    worker.execute();
-	}
-	 
-	public void setConnectionIndirizzo(String indirizzo)
-	{
-		ConnectionControl.setIndirizzo(indirizzo);
-	}
 
 }

@@ -7,6 +7,7 @@ import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
 import BattagliaNavaleProject.formGui.DoubleGameGridView;
+import BattagliaNavaleProject.formGui.SchermataAttesaView;
 
 public class SchermataAttesaControl {
 	String userName;
@@ -15,7 +16,17 @@ public class SchermataAttesaControl {
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	String[] arrayMsg = null;
-
+	SchermataAttesaView sv;
+	
+	public SchermataAttesaControl(String msg, String username) throws IOException, InterruptedException
+	{
+		sv = new SchermataAttesaView(msg, username);
+		sv.setVisible(true);
+		
+		if(msg.equals("ATTESA POSIZIONAMENTO")) {
+    		attesa(userName);
+    	}
+	}
 	public void attesa(String user) throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
 		System.out.println("Connecting to th server");
@@ -51,5 +62,8 @@ public class SchermataAttesaControl {
 		indirizzo = ind;
 	}
 
-
+	public void chiudi()
+	{
+		sv.dispose();
+	}
 }

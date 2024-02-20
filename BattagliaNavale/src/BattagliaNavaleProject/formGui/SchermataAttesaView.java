@@ -28,14 +28,13 @@ import BattagliaNavaleProject.Control.SchermataAttesaControl;
 
 import java.awt.BorderLayout;
 
-public class SchermataAttesaView extends JFrame implements ActionListener{
+public class SchermataAttesaView extends JFrame {
 String msg;
 String username;
 
 	 public SchermataAttesaView(String msg,String userName) {
 		 this.msg=msg;
 		 this.username=userName;
-		 SchermataAttesaControl sac= new SchermataAttesaControl();
 		 try {
 	    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -64,10 +63,6 @@ String username;
 	    	backgroundPanel.setLayout(null);
 	    	
 	    	JLabel attesaserver = new JLabel(msg);
-	    	
-	    	if(msg.equals("ATTESA POSIZIONAMENTO")) {
-	    		sac.attesa(userName);
-	    	}
 	    	attesaserver.setFont(new Font("Tahoma", Font.PLAIN, 42));
 			attesaserver.setBounds(29, 135, 450, 93);
 			backgroundPanel.add(attesaserver, BorderLayout.CENTER);
@@ -91,12 +86,7 @@ String username;
 	        });
 	    }
 	    */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	 
 	public void close(Socket socket) {
 		try {
 			DoubleGameGridView DGGV= new DoubleGameGridView(username);
