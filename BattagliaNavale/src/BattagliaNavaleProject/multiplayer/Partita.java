@@ -40,13 +40,13 @@ public class Partita {
 				INVIATO=false;
 				continue;
 			}
-			/*if (request.equals("ATA2")&& INVIATO==false) {
+			/*if (request.equals("ATA2") && INVIATO==false) {
 				String responseMessage = "ATA2";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
 				continue;
 			}*/
-			if (request.equals("ATA")&& INVIATO==false) {
+			if (request.equals("ATA") && INVIATO==false) {
 				String responseMessage = "ATA";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
@@ -63,7 +63,7 @@ public class Partita {
 			}
 			
 		
-			if(!(request.contains("ATA")) )
+			if(!(request.equals("ATA")) )
 				{String[] mexSplit = request.split(",");
 				String x = mexSplit[0];
 				String y = mexSplit[1];
@@ -103,6 +103,7 @@ public class Partita {
 						spedire[0] = x;
 						spedire[1] = y;
 						spedire[2] = "4"; // ha colpito l'acqua
+						INVIATO = true;
 						
 						/*
 						if(request.equals("ATA"))
@@ -139,7 +140,7 @@ public class Partita {
 		String fiocco = compostaFinale.substring(0, compostaFinale.length()-1);
 		socketServer.send(fiocco.getBytes(), 0);
 		System.out.println("Inviato fiocco: " + fiocco);
-		INVIATO = true;
+		
 	}
 	
 	public void stampaGriglia(int turno) {
