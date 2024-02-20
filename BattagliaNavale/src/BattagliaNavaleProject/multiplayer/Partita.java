@@ -17,7 +17,7 @@ public class Partita {
 	public void inizioGioco() {
 
 		turno = 1;
-		ServerSocket s = ServerSocket.getIstance();
+		ServerSocket s = ServerSocket.getInstance();
 		ZMQ.Socket socketServer = s.getSocketServer();
 		player1 = s.getPlayer1();
 		player2 = s.getPlayer2();
@@ -127,7 +127,7 @@ public class Partita {
 	
 
 	public void spedireMex(String[] spedire) {
-		s = ServerSocket.getIstance();
+		s = ServerSocket.getInstance();
 		ZMQ.Socket socketServer = s.getSocketServer();
 		StringBuilder composta = new StringBuilder();
 		for (String e : spedire) {
