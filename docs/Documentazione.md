@@ -220,7 +220,12 @@ Terminati i posizionamenti delle barche, il turno deve passare a colui che si er
 ## 7. Modelling
 
 ## 8. Software Architecture
+Il software abbiamo deciso di basarlo sullo stile architetturale MVC (Model-View-Control):
+-VIEW: la view è l'insieme delle gui che gestiscono l'interfaccia utente e attraverso le quali vengono inseriti gli input. Attraverso l'interfaccia l'utente durante il gioco manipola i dati. Tale manipolazione è realizzata del Control. (Ad esempio attraverso i click sulla caselle della griglia cambio lo stato della griglia.)
+-MODEL: rappresenta i dati e gestisce le loro modifiche. Il model gestisce poi la visualizzazione dell'interfaccia utente attraverso il controller.
 
+Esempio di utilizzo di MVC nel progetto:
+durante il gioco 
 ## 9. Software Design
 
 ## 10. Software Testing
