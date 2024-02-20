@@ -1,8 +1,6 @@
 package BattagliaNavaleProject.multiplayer;
 
 import org.zeromq.ZMQ;
-import org.zeromq.ZMQ.Socket;
-
 import BattagliaNavaleProject.client.InfoBoat;
 import BattagliaNavaleProject.client.Square;
 
@@ -122,8 +120,8 @@ public class Partita {
 											// RICEZIONE DELL'AFFONDATO
 											if (contaAffondati < l) {
 												byte[] replyAffondato = socketServer.recv(0);
-												String requestAffondato = new String(reply, ZMQ.CHARSET);
-												System.out.println("Messaggio ricevuto: " + request);
+												String requestAffondato = new String(replyAffondato, ZMQ.CHARSET);
+												System.out.println("Messaggio ricevuto: " + requestAffondato);
 
 												if (!requestAffondato.equals("AFFONDATO"))
 													System.out.println("ERRORE NON STAI RICEVENDO AFFONDATO");
@@ -180,8 +178,8 @@ public class Partita {
 											// RICEZIONE DELL'AFFONDATO
 											if (contaAffondati < l) {
 												byte[] replyAffondato = socketServer.recv(0);
-												String requestAffondato = new String(reply, ZMQ.CHARSET);
-												System.out.println("Messaggio ricevuto: " + request);
+												String requestAffondato = new String(replyAffondato, ZMQ.CHARSET);
+												System.out.println("Messaggio ricevuto: " + requestAffondato);
 
 												if (!replyAffondato.equals("AFFONDATO"))
 													System.out.println("ERRORE NON STAI RICEVENDO AFFONDATO");
@@ -206,8 +204,6 @@ public class Partita {
 		InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarcaColpita);
 		int l = boat.getLunghezza();
 		player[x][y].setStato(2);
-
-		boolean affondata = true; // mi basta che una cella non sia stata colpita per avere la barca non affondata
 		for (int i = 0; i < MAX_LENGTH; i++) {
 			for (int j = 0; j < MAX_LENGTH; j++) {
 				if (player[i][j].getNome().equals(nomeBarcaColpita)) {
