@@ -436,6 +436,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 			}
 		}
 		else if(e.getSource()instanceof JPanel) {
+			
 			DGGC.gestioneClick(e);
 		}
 	}

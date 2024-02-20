@@ -18,7 +18,7 @@ public class AppTestServer
 		ServerSocket server = ServerSocket.getInstance();
 		String tcp= "tcp://172.16.128.203:5530";
 		String local="tcp://localhost:5545";
-		server.startServer(tcp);
+		server.startServer(local);
 
 	}
 	

@@ -35,13 +35,13 @@ public class DoubleGameGridControl {
 	int x;
 	int y;
 	private int ataconta = 0;
-	private int[] arrayRisposta = new int[8];
+	public int[] arrayRisposta = new int[8];
 	int primo = 0;
 	int boatlenght;
 	static String indirizzo;
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
-
+	public String rispostamsg;
 	String[] arraymsg = new String[3];
 	int dim = 3;
 
@@ -212,7 +212,7 @@ public class DoubleGameGridControl {
 	public void ricevi2msg(ZMQ.Socket socket, int x, int y) throws InterruptedException, IOException {
 
 		byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
-		String rispostamsg = new String(reply, ZMQ.CHARSET);
+		rispostamsg = new String(reply, ZMQ.CHARSET);
 
 		String[] arrayStringhe = rispostamsg.split(",");
 		System.out.println();

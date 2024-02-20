@@ -200,7 +200,7 @@ private void cicloattesa() throws InterruptedException {
 		toglilistener();
 		Thread.sleep(1300);
 		String sendMsg = "ATA2";
-		
+		DGGV.turnoPanel.setVisible(true);
 		socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 		System.out.println("inviata attesa del turno " + sendMsg);
 
@@ -210,6 +210,7 @@ private void cicloattesa() throws InterruptedException {
 		
 		if(rispostaMsg.equals("GIOCA")) {
 			DGGV.turnoPanelCreation();
+			DGGV.turnoPanel.setVisible(true);
 			
 			turno();
 			r=false;
