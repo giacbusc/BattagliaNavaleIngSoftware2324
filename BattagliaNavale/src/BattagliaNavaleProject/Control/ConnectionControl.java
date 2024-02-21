@@ -10,6 +10,7 @@ import BattagliaNavaleProject.formGui.DoubleGameGridView;
 import BattagliaNavaleProject.formGui.SchermataAttesaView;
 import BattagliaNavaleProject.formGui.SchermataInizialeView;
 import BattagliaNavaleProject.client.Observer;
+import BattagliaNavaleProject.client.SoundEffect;
 import BattagliaNavaleProject.form.LoginModel;
 
 public class ConnectionControl 
@@ -129,6 +130,10 @@ public class ConnectionControl
 					
 					if(rispostaMsg.equals("OK POS1")) {
 						try {
+							
+							String filepath = "./music/Background_game_music.wav";
+							SoundEffect se = new SoundEffect();
+							se.playMusic(filepath);
 							DoubleGameGridView DGGV = new DoubleGameGridView(userName);
 							sac.chiudi();
 						} catch (IOException e) {

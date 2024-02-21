@@ -1,25 +1,21 @@
 package BattagliaNavaleProject.Control;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
-
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
-
 import org.h2.tools.Server;
-
 import BattagliaNavaleProject.client.Observer;
+import BattagliaNavaleProject.client.SoundEffect;
 import BattagliaNavaleProject.formGui.MenuPrincipaleView;
-import BattagliaNavaleProject.formGui.SchermataAttesaView;
 import BattagliaNavaleProject.multiplayer.ServerSocket;
 
 public class MenuPrincipaleControl implements ActionListener{
 	private MenuPrincipaleView menu;
+
 	public MenuPrincipaleControl(String username, Observer obs) throws IOException, SQLException {
 		menu= new MenuPrincipaleView(username,obs);
-		
 		System.out.println("Sono entrato");
 		menu.setVisible(true);
 		menu.addActionMulti(this);
@@ -31,12 +27,13 @@ public class MenuPrincipaleControl implements ActionListener{
 		String tcp= "tcp://172.16.128.203:5535";
 		String local="tcp://localhost:5545";
 		String[] parti = local.split(":");
-		
-		
-		
-		
+		String filepath = "./music/sceltaMenu3.wav";
+	    SoundEffect s = new SoundEffect();
+	    s.playMusic(filepath);
+
 		if(e.getSource() instanceof JButton ) {
 			JButton clickedButton= (JButton) e.getSource();
+			
 			if(clickedButton.getText().equals("  ")) {
 				try {
 					Server.createTcpServer().start();
@@ -50,7 +47,7 @@ public class MenuPrincipaleControl implements ActionListener{
 				setConnectionIndirizzo(tcp);
 				SchermataAttesaControl.setIndirizzo(tcp);
 				System.out.println("tanti pc");
-				try {
+				try { 
 					open();
 					
 				} catch (IOException e1) {
@@ -85,7 +82,6 @@ public class MenuPrincipaleControl implements ActionListener{
 
 	public void open( ) throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
-		
 		final SchermataAttesaControl sac= new SchermataAttesaControl("ATTESA AVVERSARIO", menu.getUsername());
 		menu.dispose();
 		//ConnectionControl c = new ConnectionControl(sin, userName);
