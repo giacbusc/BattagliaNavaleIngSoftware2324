@@ -133,7 +133,7 @@ public class TurniControl {
 
 					String filepath = "./music/waterSplash.wav";
 					SoundEffect se = new SoundEffect();
-					se.playMusic(filepath);
+					se.playMusic(filepath, true);
 
 					try {
 						cicloattesa();

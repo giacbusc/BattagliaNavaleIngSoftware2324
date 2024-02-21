@@ -6,7 +6,7 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-
+import BattagliaNavaleProject.client.Observer;
 import BattagliaNavaleProject.client.SoundEffect;
 
 import BattagliaNavaleProject.formGui.DoubleGameGridView;

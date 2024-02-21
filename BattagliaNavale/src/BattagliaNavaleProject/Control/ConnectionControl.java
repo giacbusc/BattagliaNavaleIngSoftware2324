@@ -137,7 +137,7 @@ public class ConnectionControl
 							SoundEffect se = new SoundEffect();
 
 							se.playMusic(filepath,true);
-							DoubleGameGridView DGGV = new DoubleGameGridView(userName);
+							DoubleGameGridView DGGV = new DoubleGameGridView(userName,obs);
 
 							sac.chiudi();
 						} catch (IOException e) {
