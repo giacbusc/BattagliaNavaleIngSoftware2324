@@ -427,11 +427,8 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	}
 	 */
 	
-	public void togli(JPanel panel) {
-		if(panel==turnoPanel) {
-			turno.setForeground(Color.white);
-		}
-	}
+	
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub

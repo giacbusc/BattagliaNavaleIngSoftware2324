@@ -526,6 +526,7 @@ public class DoubleGameGridControl {
 				boolean r = true;
 				do {
 					grid.waitPanel.setVisible(true);
+					grid.waitPanel.setForeground(Color.DARK_GRAY);
 					Thread.sleep(500);
 					String sendMsg = "ATA";
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), ZMQ.DONTWAIT);
@@ -540,6 +541,7 @@ public class DoubleGameGridControl {
 						SoundEffect se = new SoundEffect();
 						se.playMusic(filepath,false);
 						grid.waitPanel.setVisible(false);
+						//grid.waitPanel.setForeground(Color.WHITE);
 
 						r = false;
 					}
@@ -548,10 +550,10 @@ public class DoubleGameGridControl {
 
 				turni = new TurniControl(indirizzo, grid);
 				System.out.println("inizio turno");
-				grid.waitPanel.setVisible(false);
+				
 				grid.turnoPanel.setVisible(true);
-				grid.turnoPanelCreation();
-				grid.turnoPanel.setVisible(true);
+				grid.turnoPanel.setForeground(Color.DARK_GRAY);
+		
 				turni.turno();
 				return null;
 			}
