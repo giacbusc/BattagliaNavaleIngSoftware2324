@@ -43,7 +43,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	public Square[][] opponentBoard;
 	private JPanel shipsPanel;
 	private JPanel gridPanel;
-	private JLabel turno;
+	public JLabel turno;
 	public JPanel waitPanel;
 	private GridBagConstraints c;
 	private GridBagConstraints c1;

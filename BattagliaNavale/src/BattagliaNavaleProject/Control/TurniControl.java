@@ -203,7 +203,8 @@ public class TurniControl {
 		// TODO Auto-generated method stub
 		boolean r = true;
 		do {
-			DGGV.turnoPanel.setForeground(Color.white);
+			DGGV.turno.setForeground(Color.white);
+			DGGV.turnoPanel.setVisible(false);
 			toglilistener();
 			Thread.sleep(1300);
 			String sendMsg = "ATA2";
@@ -221,7 +222,7 @@ public class TurniControl {
 				se.playMusic(filepath,false);
 				DGGV.turnoPanelCreation();
 				DGGV.turnoPanel.setVisible(true);
-				DGGV.turnoPanel.setForeground(Color.DARK_GRAY);
+				DGGV.turno.setForeground(Color.DARK_GRAY);
 				turno();
 				r = false;
 			}
