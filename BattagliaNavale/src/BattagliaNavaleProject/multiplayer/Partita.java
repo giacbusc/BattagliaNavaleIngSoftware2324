@@ -135,7 +135,7 @@ public class Partita {
 											spedire[2] = "3";
 											spedire[3] = String.valueOf(l);
 											contaAffondati++;
-											if (contaAffondati == l && contaBarcheP1 == 10) {
+											if (contaAffondati == (l-1) && contaBarcheP1 == 10) {
 												System.out.println("ha vinto p1 ");
 												spedire[0] = "-1";
 												spedire[1] = "-1";
@@ -209,7 +209,7 @@ public class Partita {
 											spedire[2] = "3";
 											spedire[3] = String.valueOf(l);
 											contaAffondati++;
-											if (contaAffondati == l && contaBarcheP2 == 10) {
+											if (contaAffondati == (l-1) && contaBarcheP2 == 10) {
 												System.out.println("ha vinto p2 ");
 												spedire[0] = "-1";
 												spedire[1] = "-1";
