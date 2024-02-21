@@ -357,7 +357,7 @@ public class ServerSocket {
 		int contaCelleVere = 0;
 
 		// **SUD**
-		if (checkFuoriGriglia(x, y, l, 2, turno)) {
+		if (checkFuoriGriglia(x, y, l, 2)) {
 			for (int i = x; i < x + 4; i++) {
 				if (cellaLibera(i, y, turno) == true) {
 					contaCelleVere++;
@@ -370,7 +370,7 @@ public class ServerSocket {
 			contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
 		}
 		// **NORD**
-		if (checkFuoriGriglia(x, y, l, 0, turno)) {
+		if (checkFuoriGriglia(x, y, l, 0)) {
 			for (int i = x; i > x - 4; i--) {
 				if (cellaLibera(i, y, turno) == true) {
 					contaCelleVere++;
@@ -384,7 +384,7 @@ public class ServerSocket {
 			contaCelleVere = 0;
 		}
 		// **OVEST**
-		if (checkFuoriGriglia(x, y, l, 3, turno)) {
+		if (checkFuoriGriglia(x, y, l, 3)) {
 			for (int i = y; i > y - 4; i--) {
 				if (cellaLibera(x, i, turno) == true) {
 					contaCelleVere++;
@@ -398,7 +398,7 @@ public class ServerSocket {
 			contaCelleVere = 0;
 		}
 		// **EST**
-		if (checkFuoriGriglia(x, y, l, 1, turno)) {
+		if (checkFuoriGriglia(x, y, l, 1)) {
 			for (int i = y; i < y + 4; i++) {
 				if (cellaLibera(x, i, turno) == true) {
 					contaCelleVere++;
@@ -419,7 +419,7 @@ public class ServerSocket {
 		int contaCelleVere = 0;
 
 		// **SUD**
-		if (checkFuoriGriglia(x, y, l, 2, turno)) {
+		if (checkFuoriGriglia(x, y, l, 2)) {
 			for (int i = x; i < x + 3; i++) {
 				if (cellaLibera(i, y, turno) == true) {
 					contaCelleVere++;
@@ -432,7 +432,7 @@ public class ServerSocket {
 			contaCelleVere = 0; // azzero cosi posso riutilizzarlo per gli altri casi
 		}
 		// **NORD**
-		if (checkFuoriGriglia(x, y, l, 0, turno)) {
+		if (checkFuoriGriglia(x, y, l, 0)) {
 			for (int i = x; i > x - 3; i--) {
 				if (cellaLibera(i, y, turno) == true) {
 					contaCelleVere++;
@@ -446,7 +446,7 @@ public class ServerSocket {
 			contaCelleVere = 0;
 		}
 		// **OVEST**
-		if (checkFuoriGriglia(x, y, l, 3, turno)) {
+		if (checkFuoriGriglia(x, y, l, 3)) {
 			for (int i = y; i > y - 3; i--) {
 				if (cellaLibera(x, i, turno) == true) {
 					contaCelleVere++;
@@ -460,7 +460,7 @@ public class ServerSocket {
 			contaCelleVere = 0;
 		}
 		// **EST**
-		if (checkFuoriGriglia(x, y, l, 1, turno)) {
+		if (checkFuoriGriglia(x, y, l, 1)) {
 			for (int i = y; i < y + 3; i++) {
 				if (cellaLibera(x, i, turno) == true) {
 					contaCelleVere++;
@@ -478,7 +478,7 @@ public class ServerSocket {
 
 	private void Case2ControllaCella(int x, int y, int l, int turno) {
 		// **OVEST** DEVE AVERE d=3
-		if (checkFuoriGriglia(x, y, l, 3, turno)) {
+		if (checkFuoriGriglia(x, y, l, 3)) {
 			if (cellaLibera(x, y - 1, turno) == true) {
 
 				spedire[6] = "0";
@@ -487,7 +487,7 @@ public class ServerSocket {
 		}
 
 		// **SUD** DEVE AVERE d=2
-		if (checkFuoriGriglia(x, y, l, 2, turno)) {
+		if (checkFuoriGriglia(x, y, l, 2)) {
 			if (cellaLibera(x + 1, y, turno) == true) { // est
 				spedire[5] = "0";
 				spedire[2] = "1";
@@ -495,7 +495,7 @@ public class ServerSocket {
 		}
 
 		// **EST** DEVE AVERE d=1
-		if (checkFuoriGriglia(x, y, l, 1, turno)) {
+		if (checkFuoriGriglia(x, y, l, 1)) {
 			if (cellaLibera(x, y + 1, turno) == true) {
 				spedire[4] = "0";
 				spedire[2] = "1";
@@ -503,7 +503,7 @@ public class ServerSocket {
 		}
 
 		// **NORD** DEVE AVERE d=0
-		if (checkFuoriGriglia(x, y, l, 0, turno)) {
+		if (checkFuoriGriglia(x, y, l, 0)) {
 			if (cellaLibera(x - 1, y, turno) == true) { // ovest
 				spedire[3] = "0";
 				spedire[2] = "1";
@@ -528,7 +528,7 @@ public class ServerSocket {
 		return false;
 	}
 
-	public boolean checkFuoriGriglia(int x, int y, int l, int d, int turno) {
+	public boolean checkFuoriGriglia(int x, int y, int l, int d) {
 		if (d == 0) // nord
 		{
 			if (x - l + 1 < 0)
