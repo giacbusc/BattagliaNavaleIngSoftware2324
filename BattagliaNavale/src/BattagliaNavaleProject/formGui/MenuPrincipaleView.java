@@ -5,6 +5,7 @@ import BattagliaNavaleProject.Control.ConnectionControl;
 import BattagliaNavaleProject.client.Observer;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -35,9 +36,9 @@ public class MenuPrincipaleView extends JFrame {
 	}*/
 
 	
-	public MenuPrincipaleView(String username, Observer obs) throws IOException, SQLException 
+	public MenuPrincipaleView(String userName, Observer obs) throws IOException, SQLException 
 	{
-		this.userName = username;
+		this.userName = userName;
 		this.obs = obs;
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setSize(1400, 788);
@@ -278,6 +279,8 @@ public class MenuPrincipaleView extends JFrame {
             tutorialButton.repaint();
              
 	    }
+	    
+	    
 
 
 		@Override
@@ -301,6 +304,34 @@ public class MenuPrincipaleView extends JFrame {
 		}
 
 	    });
+	    /*
+	    JButton classificaButton = new JButton("Classifica");
+        classificaButton.setPreferredSize(new Dimension(350, 90));
+        classificaButton.setBackground(new Color(0, 0, 0, 0));
+        classificaButton.setOpaque(false);
+        classificaButton.setBounds(550, 640, 350, 90);
+        backgroundPanel.add(classificaButton);
+
+        classificaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Chiudi il frame attuale
+                dispose();
+
+                // Apri il frame della classifica
+                try {
+                    ClassificaControl classificaFrame = new ClassificaControl(userName, obs);
+                    classificaFrame.setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+			@Override
+			
+        });
+        */
+
 	    
 	    /*JPanel radioPanel= new JPanel();
 	    radioPanel.setBounds(800,435,100,100);
