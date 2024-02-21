@@ -723,4 +723,8 @@ public class ServerSocket {
 	public void setPlayer2(Square[][] player2) {
 		this.player2 = player2;
 	}
+
+	public ArrayList<String> getConnectedclients() {
+		return connectedClients;
+	}
 }

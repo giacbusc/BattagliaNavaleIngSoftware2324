@@ -1,6 +1,12 @@
 package BattagliaNavaleProject.multiplayer;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import org.zeromq.ZMQ;
+
+import BattagliaNavaleProject.Database.ConnectionDb;
 import BattagliaNavaleProject.client.InfoBoat;
 import BattagliaNavaleProject.client.Square;
 
@@ -13,6 +19,7 @@ public class Partita {
 	int MAX_LENGTH = 10;
 	boolean INVIATO = false;
 	public static int contaBarcheP1 = 0, contaBarcheP2 = 0;
+	private ArrayList<String> username = new ArrayList<>();
 
 	public void inizioGioco() {
 
@@ -239,14 +246,15 @@ public class Partita {
 			socketServer.send(responseMessage.getBytes(), 0);
 			System.out.println("Inviato: " + responseMessage);
 		}
+		username = s.getConnectedclients();
 		
 		if(contaBarcheP1==10)
 		{
-			registraVincita(1);
+			registraVincita(username.get(0), username.get(1));
 		}
 		else if(contaBarcheP2==10)
 		{
-			registraVincita(2);
+			registraVincita(username.get(1), username.get(0));
 		}
 
 	}
@@ -300,9 +308,26 @@ public class Partita {
 		}
 	}
 	
-	public void registraVincita(int i)
+	public void registraVincita(String usernameVincitore, String usernameSconfitto)
 	{
+		String sql = "INSERT INTO PARTITA VALUES (?,?,?)";
+    	
+		ConnectionDb conn = new ConnectionDb();
+		PreparedStatement pstmt;
+		try {
+			pstmt = conn.getConnection().prepareStatement(sql);
+			pstmt.setString(1, usernameVincitore);
+			pstmt.setString(2, usernameSconfitto);
+			pstmt.setString(3, usernameVincitore);
+			boolean resultSet = pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		
+		
+
 	}
 
 }
