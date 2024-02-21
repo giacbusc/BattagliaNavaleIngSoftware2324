@@ -54,24 +54,6 @@ public class MenuPrincipaleView extends JFrame {
         getContentPane().add(backgroundPanel);
 		backgroundPanel.setLayout(null);
 		
-		final JLabel lblNewLabel_3 = new JLabel("Don't play alone, it's funnier with friends!");
-        lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 17));
-        lblNewLabel_3.setBounds(515, 233, 425, 40);
-        lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-        backgroundPanel.add(lblNewLabel_3);
-        
-        final JLabel lblNewLabel_4 = new JLabel("Ready to play?");
-        lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 15));
-        lblNewLabel_4.setBounds(515, 400, 425, 40);
-        lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-        backgroundPanel.add(lblNewLabel_4);
-        
-        final JLabel lblNewLabel_5 = new JLabel("Learn how to play with this tutorial");
-        lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 15));
-        lblNewLabel_5.setBounds(515, 560, 425, 40);
-        lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
-        backgroundPanel.add(lblNewLabel_5);
-		
         ImageIcon icon = new ImageIcon("../docs/resources/Logo.png");
         Image image = icon.getImage();
         Image scaledImage = image.getScaledInstance(160, 160, Image.SCALE_SMOOTH);
@@ -112,8 +94,8 @@ public class MenuPrincipaleView extends JFrame {
 	    final JLabel imageLabel2 =new JLabel(new ImageIcon(scaledButtonImage));
 	    final JLabel imageLabel3 =new JLabel(new ImageIcon(scaledButtonImage));
 	    imageLabel.setBounds(455,154,100,100);
-	    imageLabel2.setBounds(515,315,90,90);
-	    imageLabel3.setBounds(545,480,90,90);
+	    imageLabel2.setBounds(455,315,100,100);
+	    imageLabel3.setBounds(545,480,100,100);
 	    imageLabel.setVisible(false);
 	    imageLabel2.setVisible(false);
 	    imageLabel3.setVisible(false);
@@ -141,7 +123,6 @@ public class MenuPrincipaleView extends JFrame {
 	    		imageLabel.setVisible(true);
 	    		pcSoloLabel.setForeground(new Color(0, 128, 255));
 	    		pcSoloLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
-	    		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 20));
 	    		pcSoloButton.repaint();
 	    	}
 	    
@@ -151,7 +132,6 @@ public class MenuPrincipaleView extends JFrame {
 	    	imageLabel.setVisible(false);
 	    	pcSoloLabel.setForeground(new Color(0, 0, 0));
 	    	pcSoloLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
-	    	lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 17));
             pcSoloButton.repaint();
              
 	    }
@@ -182,7 +162,7 @@ public class MenuPrincipaleView extends JFrame {
 	    final JLabel pcMutliLabel= new JLabel("Gioca su piu' pc");
         pcMutliLabel.setHorizontalAlignment(SwingConstants.CENTER);
         pcMutliLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
-        pcMutliLabel.setBounds(600,320,282,70);
+        pcMutliLabel.setBounds(523,320,425,70);
         backgroundPanel.add(pcMutliLabel);
         
 	    pcMultiButton = new JButton("  ");
@@ -191,7 +171,7 @@ public class MenuPrincipaleView extends JFrame {
 	    pcMultiButton.setBackground(new Color(0, 0, 0, 0));
 		pcMultiButton.setOpaque(false);
 	    pcMultiButton.setPreferredSize(new Dimension(170, 50));
-	    pcMultiButton.setBounds(550, 317, 350, 90);
+	    pcMultiButton.setBounds(461, 317, 538, 90);
 	    backgroundPanel.add(pcMultiButton);
 	    
 	    
@@ -204,7 +184,6 @@ public class MenuPrincipaleView extends JFrame {
 	    		imageLabel2.setVisible(true);
 	    		pcMutliLabel.setForeground(new Color(0, 128, 255));
 	    		pcMutliLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
-	    		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 20));
 	    		pcMultiButton.repaint();
 	    	}
 	    
@@ -214,7 +193,6 @@ public class MenuPrincipaleView extends JFrame {
 	    	imageLabel2.setVisible(false);
 	    	pcMutliLabel.setForeground(new Color(0, 0, 0));
 	    	pcMutliLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
-	    	lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 17));
             pcMultiButton.repaint();
              
 	    }
@@ -254,7 +232,7 @@ public class MenuPrincipaleView extends JFrame {
 	    tutorialButton.setBackground(new Color(0, 0, 0, 0));
 		tutorialButton.setOpaque(false);
 	    //tutorialButton.setBorderPainted(false);
-	    tutorialButton.setBounds(550, 480, 350, 90);
+	    tutorialButton.setBounds(461, 480, 538, 90);
 	    tutorialButton.setPreferredSize(new Dimension(170, 50)); // Set the button size in pixels
 	    backgroundPanel.add(tutorialButton);
 	    
@@ -265,7 +243,6 @@ public class MenuPrincipaleView extends JFrame {
 	    		imageLabel3.setVisible(true);
 	    		tutorialTextLabel.setForeground(new Color(0, 128, 255));
 	    		tutorialTextLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
-	    		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 17));
 	    		tutorialButton.repaint();
 	    	}
 	    
@@ -275,7 +252,6 @@ public class MenuPrincipaleView extends JFrame {
 	    	imageLabel3.setVisible(false);
 	    	tutorialTextLabel.setForeground(new Color(0, 0, 0));
 	    	tutorialTextLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
-	    	lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 15));
             tutorialButton.repaint();
              
 	    }
