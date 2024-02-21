@@ -41,9 +41,9 @@ public class Partita {
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
 				if (turno == 2) {
-					turno = 1; System.out.println("turno " + turno + "username :" + username.get(turno - 1));
+					turno = 1; System.out.println("turno " + turno);
 				} else {
-					turno = 2; System.out.println("turno " + turno + "username :" + username.get(turno - 1));
+					turno = 2; System.out.println("turno " + turno);
 				}
 
 				System.out.println("turno " + turno);
@@ -71,7 +71,7 @@ public class Partita {
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
 				turno = 2;
-				System.out.println("turno " + turno + "username :" + username.get(turno - 1));
+				System.out.println("turno " + turno );
 
 				INVIATO = false;
 				continue;
@@ -86,7 +86,7 @@ public class Partita {
 					int ypos = Integer.valueOf(y).intValue();
 					// STA GIOCANDO IL PLAYER CHE HA POSIZIONATO LE BARCHE PER PRIMO
 					if (turno == 1) {
-						System.out.println("turno nell'if" + turno + "username :" + username.get(turno - 1));
+						System.out.println("turno nell'if" + turno);
 						System.out.println("conta barche p1: " + contaBarcheP1);
 						for (int k = 0; k < spedire.length; k++) {
 							spedire[k] = "-1";
