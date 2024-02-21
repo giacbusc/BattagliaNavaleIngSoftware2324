@@ -82,7 +82,7 @@ public class MenuPrincipaleControl implements ActionListener{
 
 	public void open( ) throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
-		final SchermataAttesaControl sac= new SchermataAttesaControl("ATTESA AVVERSARIO", menu.getUsername());
+		final SchermataAttesaControl sac= new SchermataAttesaControl("ATTESA AVVERSARIO", menu.getUsername(),menu.getObserver());
 		menu.dispose();
 		//ConnectionControl c = new ConnectionControl(sin, userName);
 		

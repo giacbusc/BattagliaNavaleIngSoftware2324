@@ -22,6 +22,7 @@ public class ConnectionControl
 	private static LoginModel model;
 	static private SchermataAttesaControl sac;
 	private String userName;
+	Observer obs;
 	
 	/*public ConnectionControl(SchermataAttesaView sav, String userName) throws IOException
 	{
@@ -75,6 +76,7 @@ public class ConnectionControl
 	{
 		this.sac = sac;
 		this.userName = userName;
+		this.obs=obs;
 		
 		try  {
 	        System.out.println("Connecting to th server");
@@ -103,7 +105,7 @@ public class ConnectionControl
 				if(rispostaMsg.equals("OK"))
 				{
 					sac.chiudi();
-					sac= new SchermataAttesaControl("ATTESA POSIZIONAMENTO", userName);
+					sac= new SchermataAttesaControl("ATTESA POSIZIONAMENTO", userName,obs);
 				}
 				else if(rispostaMsg.equals("ERROR"))
 				{
@@ -134,7 +136,7 @@ public class ConnectionControl
 							String filepath = "./music/Background_game_music.wav";
 							SoundEffect se = new SoundEffect();
 							se.playMusic(filepath);
-							DoubleGameGridView DGGV = new DoubleGameGridView(userName);
+							DoubleGameGridView DGGV = new DoubleGameGridView(userName, obs);
 							sac.chiudi();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
@@ -163,6 +165,9 @@ public class ConnectionControl
 		
 		
 	}finally {}
+	}
+	public Observer getObserver() {
+		return obs;
 	}
 
 	public static void setIndirizzo(String ind) {

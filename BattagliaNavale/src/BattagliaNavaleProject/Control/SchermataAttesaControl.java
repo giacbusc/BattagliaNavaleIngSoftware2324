@@ -6,6 +6,7 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
+import BattagliaNavaleProject.client.Observer;
 import BattagliaNavaleProject.formGui.DoubleGameGridView;
 import BattagliaNavaleProject.formGui.SchermataAttesaView;
 
@@ -17,10 +18,12 @@ public class SchermataAttesaControl {
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	String[] arrayMsg = null;
 	SchermataAttesaView sv;
+	Observer obs;
 	
-	public SchermataAttesaControl(String msg, String username) throws IOException, InterruptedException
+	public SchermataAttesaControl(String msg, String username, Observer observer) throws IOException, InterruptedException
 	{
-		sv = new SchermataAttesaView(msg, username);
+		this.obs=observer;
+		sv = new SchermataAttesaView(msg, username,obs);
 		sv.setVisible(true);
 		
 		if(msg.equals("ATTESA POSIZIONAMENTO")) {
@@ -46,7 +49,7 @@ public class SchermataAttesaControl {
 
 			if(rispostaMsg.equals("OK POS2")) {
 
-				DoubleGameGridView dggv= new DoubleGameGridView(userName);
+				DoubleGameGridView dggv= new DoubleGameGridView(userName,obs);
 				r=false;
 			}
 

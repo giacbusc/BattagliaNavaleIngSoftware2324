@@ -2,47 +2,60 @@
 package BattagliaNavaleProject.Control;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
 
-import org.h2.tools.Server;
-
 import BattagliaNavaleProject.client.Observer;
-import BattagliaNavaleProject.form.LoginModel;
 import BattagliaNavaleProject.formGui.FinePartitaView;
 import BattagliaNavaleProject.formGui.MenuPrincipaleView;
-import BattagliaNavaleProject.formGui.SchermataAttesaView;
-import BattagliaNavaleProject.multiplayer.ServerSocket;
-
 public class FinePartitaControl  {
 	private FinePartitaView fpv;
 	private String user;
-	public FinePartitaControl(String userName) {
+	Observer obs;
+	 private MenuPrincipaleView menu;
+	public FinePartitaControl(String userName,Observer observer) {
 		user=userName;
+		this.obs=observer;
 	}
 		
 		
-		public void gestisciClick(ActionEvent e) {
+		public void gestisciClick(ActionEvent e ) {
 			// TODO Auto-generated method stub
 			try {
 				if(e.getSource() instanceof JButton ) {
 					JButton clickedButton= (JButton) e.getSource();
 					
-					if(clickedButton.getText().equals("MENU")) 
+					if(clickedButton.getText().equals("")) 
 					{   
 		                try {
-							    openMenu();
+
+		           		 MenuPrincipaleView menu =new MenuPrincipaleView(user,obs); 
+		           		MenuPrincipaleControl menuc = new MenuPrincipaleControl(user, obs);
+		           	   
+		           		menu.setVisible(true);
+		           		
+		           		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+
+		           			@Override
+		           			protected Void doInBackground() throws Exception {
+		           				// TODO Auto-generated method stub
+		           				fpv.dispose(); 
+		           				return null;
+		           			}
+		           			
+		           		};
+		           		worker.execute();
+		           		
 						} catch (SQLException | IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						} 
 		            
 					}
-					if(clickedButton.getText().equals("EXIT")) {
+					if(clickedButton.getText().equals(".")) {
 						System.exit(0);
 						fpv.dispose();
 					}
@@ -57,25 +70,7 @@ public class FinePartitaControl  {
 		
 
 
-		public void openMenu() throws IOException, SQLException {
-			 MenuPrincipaleView menu = new MenuPrincipaleView(user,menu.getObserver()); 
-			MenuPrincipaleControl menuc = new MenuPrincipaleControl(user, menu.getObserver());
-		   
-			menu.setVisible(true);
-			
-			SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-
-				@Override
-				protected Void doInBackground() throws Exception {
-					// TODO Auto-generated method stub
-					fpv.dispose(); 
-					return null;
-				}
-				
-			};
-			worker.execute();
-			
-		}
+	
 	}     
 
 

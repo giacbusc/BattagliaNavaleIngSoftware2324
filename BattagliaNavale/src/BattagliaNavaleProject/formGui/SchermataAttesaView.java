@@ -25,15 +25,18 @@ import javax.swing.SwingConstants;
 import org.zeromq.ZMQ.Socket;
 
 import BattagliaNavaleProject.Control.SchermataAttesaControl;
+import BattagliaNavaleProject.client.Observer;
 
 import java.awt.BorderLayout;
 
 public class SchermataAttesaView extends JFrame {
 String msg;
 String username;
+Observer obs;
 
-	 public SchermataAttesaView(String msg,String userName) {
+	 public SchermataAttesaView(String msg,String userName, Observer obs) {
 		 this.msg=msg;
+		 this.obs=obs;
 		 this.username=userName;
 		 try {
 	    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,7 +66,7 @@ String username;
 	    	backgroundPanel.setLayout(null);
 	    	
 	    	JLabel attesaserver = new JLabel(msg);
-	    	attesaserver.setFont(new Font("Tahoma", Font.PLAIN, 42));
+	    	attesaserver.setFont(new Font("Tahoma", Font.PLAIN, 30));
 			attesaserver.setBounds(29, 135, 450, 93);
 			backgroundPanel.add(attesaserver, BorderLayout.CENTER);
 			
@@ -89,7 +92,7 @@ String username;
 	 
 	public void close(Socket socket) {
 		try {
-			DoubleGameGridView DGGV= new DoubleGameGridView(username);
+			DoubleGameGridView DGGV= new DoubleGameGridView(username,obs);
 			DGGV.setVisible(true);	
 			dispose();
 		} catch (IOException e) {
@@ -97,6 +100,11 @@ String username;
 			e.printStackTrace();
 		}
 	
+	}
+
+	public Observer getObserver() {
+		// TODO Auto-generated method stub
+		return obs;
 	}
 	
 	

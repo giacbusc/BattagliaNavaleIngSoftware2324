@@ -19,27 +19,14 @@ public class FinePartitaView extends JFrame implements ActionListener {
 	private static String msg;
 	private JButton menuButton;
 	private JButton exitButton;
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run()
-			{
-				try 
-				{
-					FinePartitaView frame = new FinePartitaView(userName, "HAI VINTO");
-				    frame.setVisible(true);
-			}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-		
-	}
-
+	static DoubleGameGridView DGGV;
+	 MenuPrincipaleView menu;
 	
-	public FinePartitaView(String userName, String messaggio) throws IOException, SQLException 
-	{
+	
+	
+	public FinePartitaView(String userName, String messaggio, DoubleGameGridView dGGV) throws IOException, SQLException 
+	{	
+		DGGV=dGGV;
 		this.userName = userName;
 		this.msg=messaggio;
 		
@@ -74,11 +61,11 @@ public class FinePartitaView extends JFrame implements ActionListener {
         Image scaledImage = image.getScaledInstance(160, 160, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         
-        final JLabel pcSoloLabel= new JLabel("TORNA AL MENU");
-        pcSoloLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        pcSoloLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
-        pcSoloLabel.setBounds(545,286,367,80);
-        backgroundPanel.add(pcSoloLabel);
+        final JLabel menuLabel= new JLabel("TORNA AL MENU");
+        menuLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        menuLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
+        menuLabel.setBounds(545,286,367,80);
+        backgroundPanel.add(menuLabel);
         
         
        //ImageIcon icon2 = new ImageIcon("2.png");
@@ -109,7 +96,7 @@ public class FinePartitaView extends JFrame implements ActionListener {
 	    backgroundPanel.add(imageLabel3);
 	    
 
-	    menuButton = new JButton();
+	    menuButton = new JButton("");
 	    menuButton.setName("menu");
 	    
 	    menuButton.setPreferredSize(new Dimension(370, 150));
@@ -126,8 +113,8 @@ public class FinePartitaView extends JFrame implements ActionListener {
 	    	public void mouseEntered(MouseEvent e)
 	    	{
 	    		imageLabel2.setVisible(true);
-	    		pcSoloLabel.setForeground(new Color(0, 128, 255));
-	    		pcSoloLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
+	    		menuLabel.setForeground(new Color(0, 128, 255));
+	    		menuLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 	    		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 17));
 	    		menuButton.repaint();
 	    	}
@@ -136,8 +123,8 @@ public class FinePartitaView extends JFrame implements ActionListener {
 	    public void mouseExited(MouseEvent e)
 	    {
 	    	imageLabel2.setVisible(false);
-	    	pcSoloLabel.setForeground(new Color(0, 0, 0));
-	    	pcSoloLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
+	    	menuLabel.setForeground(new Color(0, 0, 0));
+	    	menuLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
 	    	lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 15));
             menuButton.repaint();
              
@@ -166,13 +153,13 @@ public class FinePartitaView extends JFrame implements ActionListener {
 
 	    });
 	    
-	    final JLabel pcMutliLabel= new JLabel("EXIT");
-        pcMutliLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        pcMutliLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
-        pcMutliLabel.setBounds(588,482,306,76);
-        backgroundPanel.add(pcMutliLabel);
+	    final JLabel esciLabel= new JLabel("EXIT");
+        esciLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        esciLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
+        esciLabel.setBounds(588,482,306,76);
+        backgroundPanel.add(esciLabel);
         
-	    exitButton = new JButton("  ");
+	    exitButton = new JButton(".");
 	    exitButton.setName("esci");
 	    exitButton.setBackground(new Color(0, 0, 255));
 	    exitButton.setBackground(new Color(0, 0, 0, 0));
@@ -182,15 +169,15 @@ public class FinePartitaView extends JFrame implements ActionListener {
 	    backgroundPanel.add(exitButton);
 	    
 	    
-	   //pcMultiButton.addActionListener(new MenuPrincipaleControl(this));
+	   exitButton.addActionListener(this);
 	    
 	    exitButton.addMouseListener(new MouseListener()
 	    {
 	    	public void mouseEntered(MouseEvent e)
 	    	{
 	    		imageLabel3.setVisible(true);
-	    		pcMutliLabel.setForeground(new Color(0, 128, 255));
-	    		pcMutliLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
+	    		esciLabel.setForeground(new Color(0, 128, 255));
+	    		esciLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 	    		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 17));
 	    		exitButton.repaint();
 	    	}
@@ -199,8 +186,8 @@ public class FinePartitaView extends JFrame implements ActionListener {
 	    public void mouseExited(MouseEvent e)
 	    {
 	    	imageLabel3.setVisible(false);
-	    	pcMutliLabel.setForeground(new Color(0, 0, 0));
-	    	pcMutliLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
+	    	esciLabel.setForeground(new Color(0, 0, 0));
+	    	esciLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
 	    	lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 15));
             exitButton.repaint();
              
@@ -236,12 +223,11 @@ public class FinePartitaView extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		FinePartitaControl fpc= new FinePartitaControl(userName);
+		FinePartitaControl fpc= new FinePartitaControl(userName,DGGV.getObserver());
 		fpc.gestisciClick(e);
 	}
 	    
-
-
+	
 
 	
 	                    

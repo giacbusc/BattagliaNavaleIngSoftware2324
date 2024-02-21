@@ -27,6 +27,7 @@ import org.zeromq.ZMQ;
 
 import BattagliaNavaleProject.Control.DoubleGameGridControl;
 import BattagliaNavaleProject.Control.TurniControl;
+import BattagliaNavaleProject.client.Observer;
 import BattagliaNavaleProject.client.Square;
 
 public class DoubleGameGridView extends JFrame implements MouseListener{
@@ -55,6 +56,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
 	private String username;
+	Observer obs;
 
 
 	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
@@ -123,8 +125,9 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		setVisible(true);
 	}*/
 
-	public DoubleGameGridView(String username) throws IOException 
+	public DoubleGameGridView(String username, Observer obs) throws IOException 
 	{
+		this.obs=obs;
 		this.username = username;
 		this.frame = new JFrame("Battaglia Navale");
 		setSize(1400,788);
@@ -466,6 +469,9 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	}
 	public void setPanel(JPanel[] panel) {
 		this.panel = panel;
+	}
+	public Observer getObserver() {
+		return obs;
 	}
 
 	public String getUsername() {
