@@ -43,6 +43,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	public Square[][] opponentBoard;
 	private JPanel shipsPanel;
 	private JPanel gridPanel;
+	private JLabel turno;
 	public JPanel waitPanel;
 	private GridBagConstraints c;
 	private GridBagConstraints c1;
@@ -402,15 +403,15 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		c3.gridx = 1 ;
 		c3.gridy = 1;
 		c3.weightx = 2;
-		gridPanel.add(waitPanel,c3);
-		GridBagLayout gbl_waitPanel = new GridBagLayout();
-		gbl_waitPanel.columnWidths = new int[]{0};
-		gbl_waitPanel.rowHeights = new int[]{0};
-		gbl_waitPanel.columnWeights = new double[]{Double.MIN_VALUE};
-		gbl_waitPanel.rowWeights = new double[]{Double.MIN_VALUE};
-		waitPanel.setLayout(gbl_waitPanel);
+		gridPanel.add(turnoPanel,c3);
+		GridBagLayout gbl_turnoPanel = new GridBagLayout();
+		gbl_turnoPanel.columnWidths = new int[]{0};
+		gbl_turnoPanel.rowHeights = new int[]{0};
+		gbl_turnoPanel.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_turnoPanel.rowWeights = new double[]{Double.MIN_VALUE};
+		waitPanel.setLayout(gbl_turnoPanel);
 
-		JLabel turno= new JLabel("E' il tuo turno! Cerca di colpire l'avversario");
+		turno= new JLabel("E' il tuo turno! Cerca di colpire l'avversario");
 		turno.setForeground(Color.GRAY);
 		turno.setFont(new Font("Tahoma", Font.BOLD, 22));
 		turno.setHorizontalAlignment(SwingConstants.CENTER);
@@ -424,6 +425,12 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 
 	}
 	 */
+	
+	public void togli(JPanel panel) {
+		if(panel==turnoPanel) {
+			turno.setForeground(Color.white);
+		}
+	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
