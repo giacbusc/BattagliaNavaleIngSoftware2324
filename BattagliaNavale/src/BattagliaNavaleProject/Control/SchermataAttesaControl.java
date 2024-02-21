@@ -29,7 +29,7 @@ public class SchermataAttesaControl {
 		sv.setVisible(true);
 		
 		if(msg.equals("ATTESA POSIZIONAMENTO")) {
-    		attesa(userName);
+    		attesa(username);
     	}
 	}
 	public void attesa(String user) throws IOException, InterruptedException {
