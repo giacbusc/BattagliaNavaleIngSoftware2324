@@ -149,8 +149,7 @@ public class Partita {
 													System.out.println("ERRORE NON STAI RICEVENDO AFFONDATO");
 											}
 											
-											
-
+			
 										}
 										if (contaAffondati == l && contaBarcheP1 == 10) {
 											System.out.println("ha vinto p1 ");

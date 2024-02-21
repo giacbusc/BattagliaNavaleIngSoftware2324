@@ -20,4 +20,5 @@ public class TestJunit {
 	control.ricevimsg(null);
 	assertEquals(0,v.yourBoard[1][1].getStato());
 }
+
 }

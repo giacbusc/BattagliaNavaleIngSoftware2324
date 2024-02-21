@@ -555,10 +555,8 @@ public class ServerSocket {
 	}
 
 //riempire le celle dopo il secondo click
-	public String riempiCelle(int x, int y, int l, int xp, int yp, int turno, String nomeBarca) // x e y posizioni
-																								// secondo click,mentre
+	public String riempiCelle(int x, int y, int l, int xp, int yp, int turno, String nomeBarca) // x e y posizioni																				// secondo click,mentre
 																								// xp e yp
-
 	// posizioni primo click
 	{
 		if (x != xp) // CASO NORD o SUD

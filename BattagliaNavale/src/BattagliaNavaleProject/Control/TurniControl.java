@@ -107,7 +107,7 @@ public class TurniControl {
 					DGGV.opponentBoard[x][y].setColpito();
 					String filepath = "./music/ColpitaSound.wav";
 					SoundEffect se = new SoundEffect();
-					se.playMusic(filepath,true);
+					se.playMusic(filepath, true);
 
 					try {
 						cicloattesa();
@@ -173,7 +173,7 @@ public class TurniControl {
 					lunghezza = arrayRisposta[3];
 					stato = arrayRisposta[2];
 					if (stato == 5) {
-						FinePartitaView fsv = new FinePartitaView(DGGV.getUsername(), "HAI VINTO",DGGV);
+						FinePartitaView fsv = new FinePartitaView(DGGV.getUsername(), "HAI VINTO", DGGV);
 						DGGV.dispose();
 					}
 					x = arrayRisposta[0];
@@ -184,7 +184,7 @@ public class TurniControl {
 
 				String filepath = "./music/AffondataSound.wav";
 				SoundEffect se = new SoundEffect();
-				se.playMusic(filepath,true);
+				se.playMusic(filepath, true);
 
 				try {
 					cicloattesa();
@@ -208,7 +208,7 @@ public class TurniControl {
 			toglilistener();
 			Thread.sleep(1300);
 			String sendMsg = "ATA2";
-			
+
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 			System.out.println("inviata attesa del turno " + sendMsg);
 
@@ -219,7 +219,7 @@ public class TurniControl {
 			if (rispostaMsg.equals("GIOCA")) {
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
-				se.playMusic(filepath,false);
+				se.playMusic(filepath, false);
 				DGGV.turnoPanelCreation();
 				DGGV.turnoPanel.setVisible(true);
 				DGGV.turno.setForeground(Color.DARK_GRAY);
@@ -230,7 +230,7 @@ public class TurniControl {
 			if (rispostaMsg.equals("HAI PERSO")) {
 				r = false;
 				DGGV.dispose();
-				FinePartitaView sfp = new FinePartitaView(DGGV.getUsername(), "HAI PERSO",DGGV);
+				FinePartitaView sfp = new FinePartitaView(DGGV.getUsername(), "HAI PERSO", DGGV);
 			}
 
 		} while (r == true);
