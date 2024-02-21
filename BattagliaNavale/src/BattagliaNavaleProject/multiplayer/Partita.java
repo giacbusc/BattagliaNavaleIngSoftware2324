@@ -320,6 +320,7 @@ public class Partita {
 			pstmt.setString(2, usernameSconfitto);
 			pstmt.setString(3, usernameVincitore);
 			boolean resultSet = pstmt.execute();
+			System.out.println("VINCITA AGGIUNTA CON SUCCESSO");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
