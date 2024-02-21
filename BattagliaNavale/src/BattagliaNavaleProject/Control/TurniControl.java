@@ -107,7 +107,7 @@ public class TurniControl {
 					DGGV.opponentBoard[x][y].setColpito();
 					String filepath = "./music/ColpitaSound.wav";
 					SoundEffect se = new SoundEffect();
-					se.playMusic(filepath);
+					se.playMusic(filepath,true);
 
 					try {
 						cicloattesa();
@@ -184,7 +184,7 @@ public class TurniControl {
 
 				String filepath = "./music/AffondataSound.wav";
 				SoundEffect se = new SoundEffect();
-				se.playMusic(filepath);
+				se.playMusic(filepath,true);
 
 				try {
 					cicloattesa();
@@ -216,6 +216,9 @@ public class TurniControl {
 			String rispostaMsg = new String(byteMsg, ZMQ.CHARSET);
 
 			if (rispostaMsg.equals("GIOCA")) {
+				String filepath = "./music/Background_game_music.wav";
+				SoundEffect se = new SoundEffect();
+				se.playMusic(filepath,false);
 				DGGV.turnoPanelCreation();
 				DGGV.turnoPanel.setVisible(true);
 

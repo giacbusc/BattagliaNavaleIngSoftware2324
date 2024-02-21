@@ -6,7 +6,9 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.client.Observer;
+
+import BattagliaNavaleProject.client.SoundEffect;
+
 import BattagliaNavaleProject.formGui.DoubleGameGridView;
 import BattagliaNavaleProject.formGui.SchermataAttesaView;
 
@@ -49,7 +51,11 @@ public class SchermataAttesaControl {
 
 			if(rispostaMsg.equals("OK POS2")) {
 
-				DoubleGameGridView dggv= new DoubleGameGridView(userName,obs);
+				String filepath = "./music/Background_game_music.wav";
+				SoundEffect se = new SoundEffect();
+				se.playMusic(filepath,true);
+				DoubleGameGridView dggv= new DoubleGameGridView(userName, obs);
+
 				r=false;
 			}
 

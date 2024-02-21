@@ -135,8 +135,10 @@ public class ConnectionControl
 							
 							String filepath = "./music/Background_game_music.wav";
 							SoundEffect se = new SoundEffect();
-							se.playMusic(filepath);
-							DoubleGameGridView DGGV = new DoubleGameGridView(userName, obs);
+
+							se.playMusic(filepath,true);
+							DoubleGameGridView DGGV = new DoubleGameGridView(userName);
+
 							sac.chiudi();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block

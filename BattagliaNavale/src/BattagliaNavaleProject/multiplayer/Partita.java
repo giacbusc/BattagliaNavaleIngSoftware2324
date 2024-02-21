@@ -86,6 +86,7 @@ public class Partita {
 					// STA GIOCANDO IL PLAYER CHE HA POSIZIONATO LE BARCHE PER PRIMO
 					if (turno == 1) {
 						System.out.println("turno nell'if " + turno);
+						System.out.println("conta barche p1: "+contaBarcheP1);
 						for (int k = 0; k < spedire.length; k++) {
 							spedire[k] = "-1";
 						}
@@ -109,10 +110,9 @@ public class Partita {
 								spedireMex(spedire);
 							} else { // è affondata
 								contaBarcheP1++;
-								System.out.println("conta barche p1: "+contaBarcheP1);
 								player2[xpos][ypos].setStato(3);
 								String nomeBarcaColpita = player2[xpos][ypos].getNome();
-								InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarcaColpita);
+								InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarcaColpita); 
 								int l = boat.getLunghezza();
 
 								if (contaBarcheP1 == 10)
@@ -166,6 +166,7 @@ public class Partita {
 						// STA GIOCANDO IL PLAYER CHE HA POSIZIONATO LE BARCHE PER SECONDO --> il P2
 					} else if (turno == 2) {
 						System.out.println("turno nell'if " + turno);
+						System.out.println("conta barche p2: "+contaBarcheP2);
 						for (int k = 0; k < spedire.length; k++) {
 							spedire[k] = "-1";
 						}
@@ -189,7 +190,6 @@ public class Partita {
 								spedireMex(spedire);
 							} else { // è affondata
 								contaBarcheP2++;
-								System.out.println("conta barche p2: "+contaBarcheP2);
 								player1[xpos][ypos].setStato(3);
 								String nomeBarcaColpita = player1[xpos][ypos].getNome();
 								InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarcaColpita);
