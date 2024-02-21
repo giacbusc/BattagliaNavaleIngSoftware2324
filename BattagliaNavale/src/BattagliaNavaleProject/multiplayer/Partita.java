@@ -136,13 +136,6 @@ public class Partita {
 											spedire[2] = "3";
 											spedire[3] = String.valueOf(l);
 											contaAffondati++;
-											if (contaAffondati == (l - 1) && contaBarcheP1 == 10) {
-												System.out.println("ha vinto p1 ");
-												spedire[0] = "-1";
-												spedire[1] = "-1";
-												spedire[2] = "5"; // lo stato a 5 indica che il player ha vinto!
-												spedire[3] = String.valueOf(l);
-											}
 											spedireMex(spedire);
 											// contaAffondati++;
 
@@ -155,6 +148,15 @@ public class Partita {
 												if (!requestAffondato.equals("AFFONDATO"))
 													System.out.println("ERRORE NON STAI RICEVENDO AFFONDATO");
 											}
+											if (contaAffondati == l && contaBarcheP1 == 10) {
+												System.out.println("ha vinto p1 ");
+												spedire[0] = "-1";
+												spedire[1] = "-1";
+												spedire[2] = "5"; // lo stato a 5 indica che il player ha vinto!
+												spedire[3] = String.valueOf(l);
+												spedireMex(spedire);
+											}
+											
 
 										}
 									}
@@ -166,7 +168,7 @@ public class Partita {
 						}
 						// STA GIOCANDO IL PLAYER CHE HA POSIZIONATO LE BARCHE PER SECONDO --> il P2
 					} else if (turno == 2) {
-						System.out.println("turno nell'if " + turno + "username :" + username.get(turno - 1));
+						System.out.println("turno nell'if " + turno);
 						System.out.println("conta barche p2: " + contaBarcheP2);
 						for (int k = 0; k < spedire.length; k++) {
 							spedire[k] = "-1";
@@ -210,13 +212,6 @@ public class Partita {
 											spedire[2] = "3";
 											spedire[3] = String.valueOf(l);
 											contaAffondati++;
-											if (contaAffondati == (l - 1) && contaBarcheP2 == 10) {
-												System.out.println("ha vinto p2 ");
-												spedire[0] = "-1";
-												spedire[1] = "-1";
-												spedire[2] = "5"; // lo stato a 5 indica che il player2 ha vinto!
-												spedire[3] = String.valueOf(l);
-											}
 											spedireMex(spedire);
 
 											// RICEZIONE DELL'AFFONDATO
@@ -227,6 +222,14 @@ public class Partita {
 
 												if (!requestAffondato.equals("AFFONDATO"))
 													System.out.println("ERRORE NON STAI RICEVENDO AFFONDATO");
+											}
+											if (contaAffondati == l  && contaBarcheP2 == 10) {
+												System.out.println("ha vinto p2 ");
+												spedire[0] = "-1";
+												spedire[1] = "-1";
+												spedire[2] = "5"; // lo stato a 5 indica che il player2 ha vinto!
+												spedire[3] = String.valueOf(l);
+												spedireMex(spedire);
 											}
 
 										}
