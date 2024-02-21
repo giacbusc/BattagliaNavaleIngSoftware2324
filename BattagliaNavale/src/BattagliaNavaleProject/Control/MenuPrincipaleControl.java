@@ -3,12 +3,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
-
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
-
 import org.h2.tools.Server;
-
 import BattagliaNavaleProject.client.Observer;
 import BattagliaNavaleProject.client.SoundEffect;
 import BattagliaNavaleProject.formGui.MenuPrincipaleView;
@@ -16,10 +13,9 @@ import BattagliaNavaleProject.multiplayer.ServerSocket;
 
 public class MenuPrincipaleControl implements ActionListener{
 	private MenuPrincipaleView menu;
-	private SoundEffect s;
+
 	public MenuPrincipaleControl(String username, Observer obs) throws IOException, SQLException {
 		menu= new MenuPrincipaleView(username,obs);
-		s = new SoundEffect();
 		System.out.println("Sono entrato");
 		menu.setVisible(true);
 		menu.addActionMulti(this);

@@ -2,19 +2,14 @@ package BattagliaNavaleProject.Control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
-
 import BattagliaNavaleProject.client.Observer;
 import BattagliaNavaleProject.client.SoundEffect;
 import BattagliaNavaleProject.formGui.SchermataInizialeView;
 
 public class SchermataInizialeControl implements ActionListener, Observer{
-	private SoundEffect s;
+
 	private SchermataInizialeView schermata;
 
 	public SchermataInizialeControl(){
