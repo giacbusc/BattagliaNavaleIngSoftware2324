@@ -21,6 +21,14 @@ lm.setPassword("");
 lm.setUserName("fedegerva");
 assertFalse(lc.verificaCampi(lm));
 
+}
+
+@Test public void Test2() throws IOException, InterruptedException, SQLException {
+LoginControl lc= new LoginControl();
+
+LoginModel lm=new LoginModel();
+lm.setUserName("fedegerva");;
+
 lm.setPassword("1234");
 assertTrue(lc.checkUser(lm));
 }
