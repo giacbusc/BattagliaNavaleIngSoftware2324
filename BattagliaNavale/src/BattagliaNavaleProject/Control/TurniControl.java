@@ -134,7 +134,7 @@ public class TurniControl {
 					String filepath = "./music/waterSplash.wav";
 					SoundEffect se = new SoundEffect();
 					se.playMusic(filepath, true);
-
+					DGGV.turnoPanel.setVisible(false);
 					try {
 						cicloattesa();
 					} catch (InterruptedException e) {

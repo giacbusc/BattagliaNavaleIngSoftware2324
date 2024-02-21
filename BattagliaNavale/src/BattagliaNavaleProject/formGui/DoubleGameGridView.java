@@ -154,7 +154,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
         };*/
 		//getContentPane().add(backgroundPanel);
 
-		JLabel usernameLabel = new JLabel(""+username);
+		JLabel usernameLabel = new JLabel(username);
 		centralTopPanel.setBackground(Color.decode("#5C99D6"));
 		centralTopPanel.setPreferredSize(new Dimension(50, 50));
 		getContentPane().add(centralTopPanel, BorderLayout.NORTH);

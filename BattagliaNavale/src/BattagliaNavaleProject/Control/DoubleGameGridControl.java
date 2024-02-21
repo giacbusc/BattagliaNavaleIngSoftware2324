@@ -548,6 +548,8 @@ public class DoubleGameGridControl {
 
 				turni = new TurniControl(indirizzo, grid);
 				System.out.println("inizio turno");
+				grid.waitPanel.setVisible(false);
+				grid.turnoPanel.setVisible(true);
 				turni.turno();
 				return null;
 			}
