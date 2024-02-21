@@ -22,7 +22,7 @@ public class FinePartitaView extends JFrame implements ActionListener {
 	static DoubleGameGridView DGGV;
 	 MenuPrincipaleView menu;
 	
-	
+
 	
 	public FinePartitaView(String userName, String messaggio, DoubleGameGridView dGGV) throws IOException, SQLException 
 	{	

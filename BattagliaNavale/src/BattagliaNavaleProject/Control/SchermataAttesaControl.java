@@ -54,7 +54,7 @@ public class SchermataAttesaControl {
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
 				se.playMusic(filepath,true);
-				DoubleGameGridView dggv= new DoubleGameGridView(userName, obs);
+				DoubleGameGridView dggv= new DoubleGameGridView(user, obs);
 
 				r=false;
 			}
