@@ -1,32 +1,20 @@
 package BattagliaNavaleProject.formGui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingWorker;
-
-import BattagliaNavaleProject.Control.ConnectionControl;
-import BattagliaNavaleProject.Control.LoginControl;
-import BattagliaNavaleProject.Control.RegistrationControl;
-import BattagliaNavaleProject.Control.SchermataInizialeControl;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Toolkit;
-
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 
 //pagina per loggarsi/registrarsi
 public class SchermataInizialeView extends JFrame {
@@ -61,7 +49,7 @@ public class SchermataInizialeView extends JFrame {
 		        int x = (dimensioniSchermo.width - getWidth()) / 2;
 		        int y = (dimensioniSchermo.height - getHeight()) / 2;
 		        
-		        setBounds(x-(450/2),y-(150),450,300);
+		        setBounds(x-(650/2),y-(366/2),650,366);
 			
 			final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 			
@@ -79,19 +67,23 @@ public class SchermataInizialeView extends JFrame {
 	        backgroundPanel.setLayout(null);
 		    
 		    final JLabel infoLabel = new JLabel("New player? Start here!");
-			infoLabel.setBounds(128, 144, 166, 16);
+			infoLabel.setBounds(226, 179, 166, 16);
 			infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			infoLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
 			backgroundPanel.add(infoLabel);
 			
 			final JLabel titleLabel = new JLabel("Welcome in BattleShip game");
-			titleLabel.setBounds(55, 10, 354, 40);
+			titleLabel.setBounds(99, 10, 438, 40);
 			titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			titleLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
+			titleLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 			titleLabel.setForeground(new Color(0, 128, 255));
 			backgroundPanel.add(titleLabel);
+			loginButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
 		    
-			loginButton.setBounds(128, 60, 166, 62);
+			loginButton.setBounds(226, 84, 166, 62);
 			loginButton.setName("Login");
 			
 			loginButton.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -100,7 +92,7 @@ public class SchermataInizialeView extends JFrame {
 			final JLabel loginTextLabel= new JLabel("Login");
 			loginTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			loginTextLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-			loginTextLabel.setBounds(138,77,142,30);
+			loginTextLabel.setBounds(236,101,142,30);
 			backgroundPanel.add(loginTextLabel);
 			loginButton.setBackground(new Color(0, 0, 0, 0));
 			loginButton.setOpaque(false);
@@ -153,11 +145,11 @@ public class SchermataInizialeView extends JFrame {
 			final JLabel registerTextLabel= new JLabel("Register");
 			registerTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			registerTextLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-			registerTextLabel.setBounds(138,177,142,30);
+			registerTextLabel.setBounds(236,212,142,30);
 	        backgroundPanel.add(registerTextLabel);
 	        
 	        
-			registerButton.setBounds(128, 163, 166, 62);
+			registerButton.setBounds(226, 198, 166, 62);
 			registerButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 			registerButton.setBackground(new Color(0, 0, 0, 0));
 			registerButton.setOpaque(false);

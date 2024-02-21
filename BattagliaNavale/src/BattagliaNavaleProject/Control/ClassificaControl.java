@@ -2,6 +2,7 @@ package BattagliaNavaleProject.Control;
 
 import javax.swing.*;
 
+import BattagliaNavaleProject.Database.ConnectionDb;
 import BattagliaNavaleProject.client.Observer;
 
 import java.awt.*;
@@ -21,8 +22,8 @@ public class ClassificaControl extends JFrame {
         // Codice per ottenere i dati della classifica dal database
         StringBuilder classificaText = new StringBuilder();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/nome_database", "username", "password");
-            Statement stmt = conn.createStatement();
+            ConnectionDb conn = new ConnectionDb();
+            Statement stmt = conn.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT NICKNAME, COUNT(*) AS NumeroVittorie FROM PARTITA WHERE GIOCATOREVINCITORE IS NOT NULL GROUP BY GIOCATOREVINCITORE ORDER BY COUNT(*) DESC");
 
             classificaText.append("Classifica:\n");
@@ -52,7 +53,7 @@ public class ClassificaControl extends JFrame {
             // Chiudi le risorse
             rs.close();
             stmt.close();
-            conn.close();
+            conn.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
