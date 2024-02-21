@@ -409,12 +409,13 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		gbl_turnoPanel.rowHeights = new int[]{0};
 		gbl_turnoPanel.columnWeights = new double[]{Double.MIN_VALUE};
 		gbl_turnoPanel.rowWeights = new double[]{Double.MIN_VALUE};
-		waitPanel.setLayout(gbl_turnoPanel);
+		turnoPanel.setLayout(gbl_turnoPanel);
 
 		turno= new JLabel("E' il tuo turno! Cerca di colpire l'avversario");
 		turno.setForeground(Color.GRAY);
 		turno.setFont(new Font("Tahoma", Font.BOLD, 22));
 		turno.setHorizontalAlignment(SwingConstants.CENTER);
+		turno.setVerticalAlignment(SwingConstants.CENTER);
 		turnoPanel.add(turno);
 		turnoPanel.setVisible(true);
 	}
