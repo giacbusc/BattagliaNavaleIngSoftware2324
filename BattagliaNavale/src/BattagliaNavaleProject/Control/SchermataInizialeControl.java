@@ -9,14 +9,16 @@ import javax.swing.JButton;
 import javax.swing.SwingWorker;
 
 import BattagliaNavaleProject.client.Observer;
+import BattagliaNavaleProject.client.SoundEffect;
 import BattagliaNavaleProject.formGui.SchermataInizialeView;
 
 public class SchermataInizialeControl implements ActionListener, Observer{
-
+	private SoundEffect s;
 	private SchermataInizialeView schermata;
 
 	public SchermataInizialeControl(){
 		schermata = new SchermataInizialeView();
+		s = new SoundEffect();
 		schermata.setVisible(true);
 		schermata.addActionLog(this);
 		schermata.addActionReg(this);
@@ -29,7 +31,7 @@ public class SchermataInizialeControl implements ActionListener, Observer{
 
 			if(e.getSource() instanceof JButton ) {
 				JButton clickedButton= (JButton) e.getSource();
-
+				s.musica();
 				if(clickedButton.getName().equals("Login")) {
 
 					openLogin();
