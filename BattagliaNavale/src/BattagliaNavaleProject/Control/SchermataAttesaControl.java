@@ -13,7 +13,7 @@ import BattagliaNavaleProject.formGui.DoubleGameGridView;
 import BattagliaNavaleProject.formGui.SchermataAttesaView;
 
 public class SchermataAttesaControl {
-	String userName;
+	
 	boolean r=true;
 	static String indirizzo;
 	static ZContext context = new ZContext();
