@@ -1,3 +1,5 @@
+package BattagliaNavaleProject.Control;
+
 import javax.swing.*;
 
 import BattagliaNavaleProject.client.Observer;
