@@ -204,7 +204,7 @@ public class TurniControl {
 		boolean r = true;
 		do {
 			DGGV.turno.setForeground(Color.white);
-			DGGV.turnoPanel.setVisible(false);
+			//DGGV.turnoPanel.setVisible(false);
 			toglilistener();
 			Thread.sleep(1300);
 			String sendMsg = "ATA2";

@@ -14,7 +14,7 @@ import BattagliaNavaleProject.formGui.SchermataAttesaView;
 
 public class SchermataAttesaControl {
 	
-	boolean r=true;
+	public boolean r=true;
 	static String indirizzo;
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
