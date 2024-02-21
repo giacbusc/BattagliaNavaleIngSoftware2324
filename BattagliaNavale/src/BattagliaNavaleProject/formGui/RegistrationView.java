@@ -44,7 +44,7 @@ public class RegistrationView extends JFrame  implements Observer{
     public RegistrationView() {
    
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	setBounds(500,250,450,300);
+    	setBounds(500,250,650,366);
 		
 		final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		

@@ -2,10 +2,13 @@ package BattagliaNavaleProject.formGui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,8 +73,8 @@ public class LoginView extends JFrame implements Observer {
 	        int x = (dimensioniSchermo.width - getWidth()) / 2;
 	        int y = (dimensioniSchermo.height - getHeight()) / 2;
 	        
-	        setBounds(x-(450/2),y-(150),450,300);
-		
+	        setBounds(x-(650/2),y-(336/2),650,366);
+	        
 		final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoTest.jpeg");
 		
 		JPanel backgroundPanel = new JPanel() {
@@ -88,8 +91,8 @@ public class LoginView extends JFrame implements Observer {
         
         
         JLabel lblNewLabel_2 = new JLabel("Welcome Back");
-        lblNewLabel_2.setBounds(0, 0, 499, 85);
-        lblNewLabel_2.setForeground(new Color(0, 0, 255));
+        lblNewLabel_2.setBounds(0, 0, 620, 85);
+        lblNewLabel_2.setForeground(new Color(0, 128, 255));
         lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 30));
         lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
         
@@ -98,38 +101,134 @@ public class LoginView extends JFrame implements Observer {
 		
 		setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 300);
+        setSize(650, 366);
         //setLocationRelativeTo(null);
 
+        
+        ImageIcon icon = new ImageIcon("../docs/resources/Logo.png");
+        Image image = icon.getImage();
+        Image scaledImage = image.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        
+        JLabel logoLabel = new JLabel(scaledIcon);
+        logoLabel.setPreferredSize(new Dimension(80,80));
+        logoLabel.setBounds(0, 0, 90, 80);
+        logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        backgroundPanel.add(logoLabel);
+        
         usernameLabel = new JLabel("Username:");
-        usernameLabel.setBounds(30, 90, 80, 25);
+        usernameLabel.setBounds(118, 128, 108, 25);
+        usernameLabel.setForeground(new Color(0, 128, 255));
+        usernameLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+        usernameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundPanel.add(usernameLabel);
 
         usernameField = new JTextField(15);
-        usernameField.setBounds(110, 90, 150, 25);
+        usernameField.setBounds(236, 130, 150, 25);
         backgroundPanel.add(usernameField);
 
         passwordLabel = new JLabel("Password:");
-        passwordLabel.setBounds(30, 130, 80, 25);
+        passwordLabel.setBounds(118, 182, 108, 25);
+        passwordLabel.setForeground(new Color(0, 128, 255));
+        passwordLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+        passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundPanel.add(passwordLabel);
 
         passwordField = new JPasswordField(15);
-        passwordField.setBounds(110, 130, 150, 25);
+        passwordField.setBounds(236, 182, 150, 25);
         backgroundPanel.add(passwordField);
 
         loginButton = new JButton("Login");
-        loginButton.setBounds(110, 180, 80, 25);
+        loginButton.setBounds(69, 264, 108, 25);
+        loginButton.setBackground(new Color(0, 0, 0, 0));
+        loginButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+		loginButton.setOpaque(false);
         //loginButton.addActionListener(this);
         backgroundPanel.add(loginButton);
     	
-        backButton = new JButton("Back");
-        backButton.setBounds(391, 232, 85, 21);
-        backgroundPanel.add(backButton);
-       
-		
         
        
+		loginButton.addMouseListener(new MouseListener()
+		{
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				loginButton.setForeground(new Color(0, 128, 255));
+	    		loginButton.setFont(new Font("Tahoma", Font.BOLD, 18));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				loginButton.setForeground(new Color(0, 0, 0));
+	    		loginButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+			}
+			
+		});
+        
        
+		backButton = new JButton("Back");
+        backButton.setBounds(500, 266, 108, 25);
+        backButton.setBackground(new Color(0, 0, 0, 0));
+        backButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+		backButton.setOpaque(false);
+        backgroundPanel.add(backButton);
+        
+        backButton.addMouseListener(new MouseListener()
+        		{
+
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mousePressed(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						// TODO Auto-generated method stub
+						backButton.setForeground(new Color(0, 128, 255));
+			    		backButton.setFont(new Font("Tahoma", Font.BOLD, 18));
+					}
+
+					@Override
+					public void mouseExited(MouseEvent e) {
+						// TODO Auto-generated method stub
+						backButton.setForeground(new Color(0, 0, 0));
+			    		backButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+					}
+        	
+        		});
 	}
         public void addActionLogin(ActionListener act)
         {
