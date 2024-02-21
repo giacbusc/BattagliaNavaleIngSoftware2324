@@ -24,8 +24,7 @@ public class SoundEffect
 				Clip clip = AudioSystem.getClip(); //ottiene la stringa audio
 				clip.open(audioInput);
 				clip.start();
-				
-				JOptionPane.showMessageDialog(null, "Press OK to stop playing");
+		
 			}
 			else
 			{
