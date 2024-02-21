@@ -236,7 +236,8 @@ public class FinePartitaView extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		FinePartitaControl fpc= new FinePartitaControl();
+		FinePartitaControl fpc= new FinePartitaControl(userName);
+		fpc.gestisciClick(e);
 	}
 	    
 
