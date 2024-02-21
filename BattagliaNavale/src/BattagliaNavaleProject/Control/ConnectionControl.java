@@ -131,7 +131,7 @@ public class ConnectionControl
 					if(rispostaMsg.equals("OK POS1")) {
 						try {
 							
-							String filepath = "./music/Background_game_music.mkv";
+							String filepath = "./music/Background_game_music.wav";
 							SoundEffect se = new SoundEffect();
 							se.playMusic(filepath);
 							DoubleGameGridView DGGV = new DoubleGameGridView(userName);
