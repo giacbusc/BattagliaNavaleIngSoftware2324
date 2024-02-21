@@ -66,7 +66,8 @@ Observer obs;
 	    	backgroundPanel.setLayout(null);
 	    	
 	    	JLabel attesaserver = new JLabel(msg);
-	    	attesaserver.setFont(new Font("Tahoma", Font.PLAIN, 30));
+	    	attesaserver.setAlignmentX(CENTER_ALIGNMENT);
+	    	attesaserver.setFont(new Font("Tahoma", Font.PLAIN, 35));
 			attesaserver.setBounds(29, 135, 450, 93);
 			backgroundPanel.add(attesaserver, BorderLayout.CENTER);
 			

@@ -79,7 +79,7 @@ public class MenuPrincipaleView extends JFrame {
         
         final JLabel pcSoloLabel= new JLabel("Gioca su un solo PC");
         pcSoloLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        pcSoloLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
+        pcSoloLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
         pcSoloLabel.setBounds(590,160,282,70);
         backgroundPanel.add(pcSoloLabel);
        
@@ -181,7 +181,7 @@ public class MenuPrincipaleView extends JFrame {
 	    
 	    final JLabel pcMutliLabel= new JLabel("Gioca su piu' pc");
         pcMutliLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        pcMutliLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
+        pcMutliLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
         pcMutliLabel.setBounds(600,320,282,70);
         backgroundPanel.add(pcMutliLabel);
         
@@ -246,7 +246,7 @@ public class MenuPrincipaleView extends JFrame {
 	    
 	    final JLabel tutorialTextLabel= new JLabel("Tutorial");
         tutorialTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        tutorialTextLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
+        tutorialTextLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
         tutorialTextLabel.setBounds(630,495,200,50);
         backgroundPanel.add(tutorialTextLabel);
 	    
