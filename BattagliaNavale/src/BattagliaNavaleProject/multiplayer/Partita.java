@@ -41,9 +41,9 @@ public class Partita {
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
 				if (turno == 2) {
-					turno = 1;
+					turno = 1; System.out.println("turno " + turno + "username :" + username.get(turno - 1));
 				} else {
-					turno = 2;
+					turno = 2; System.out.println("turno " + turno + "username :" + username.get(turno - 1));
 				}
 
 				System.out.println("turno " + turno);
@@ -71,7 +71,8 @@ public class Partita {
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
 				turno = 2;
-				System.out.println("turno " + turno);
+				System.out.println("turno " + turno + "username :" + username.get(turno - 1));
+
 				INVIATO = false;
 				continue;
 			}
@@ -85,8 +86,8 @@ public class Partita {
 					int ypos = Integer.valueOf(y).intValue();
 					// STA GIOCANDO IL PLAYER CHE HA POSIZIONATO LE BARCHE PER PRIMO
 					if (turno == 1) {
-						System.out.println("turno nell'if " + turno);
-						System.out.println("conta barche p1: "+contaBarcheP1);
+						System.out.println("turno nell'if" + turno + "username :" + username.get(turno - 1));
+						System.out.println("conta barche p1: " + contaBarcheP1);
 						for (int k = 0; k < spedire.length; k++) {
 							spedire[k] = "-1";
 						}
@@ -112,7 +113,7 @@ public class Partita {
 								contaBarcheP1++;
 								player2[xpos][ypos].setStato(3);
 								String nomeBarcaColpita = player2[xpos][ypos].getNome();
-								InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarcaColpita); 
+								InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarcaColpita);
 								int l = boat.getLunghezza();
 
 								if (contaBarcheP1 == 10)
@@ -135,7 +136,7 @@ public class Partita {
 											spedire[2] = "3";
 											spedire[3] = String.valueOf(l);
 											contaAffondati++;
-											if (contaAffondati == (l-1) && contaBarcheP1 == 10) {
+											if (contaAffondati == (l - 1) && contaBarcheP1 == 10) {
 												System.out.println("ha vinto p1 ");
 												spedire[0] = "-1";
 												spedire[1] = "-1";
@@ -165,8 +166,8 @@ public class Partita {
 						}
 						// STA GIOCANDO IL PLAYER CHE HA POSIZIONATO LE BARCHE PER SECONDO --> il P2
 					} else if (turno == 2) {
-						System.out.println("turno nell'if " + turno);
-						System.out.println("conta barche p2: "+contaBarcheP2);
+						System.out.println("turno nell'if " + turno + "username :" + username.get(turno - 1));
+						System.out.println("conta barche p2: " + contaBarcheP2);
 						for (int k = 0; k < spedire.length; k++) {
 							spedire[k] = "-1";
 						}
@@ -209,7 +210,7 @@ public class Partita {
 											spedire[2] = "3";
 											spedire[3] = String.valueOf(l);
 											contaAffondati++;
-											if (contaAffondati == (l-1) && contaBarcheP2 == 10) {
+											if (contaAffondati == (l - 1) && contaBarcheP2 == 10) {
 												System.out.println("ha vinto p2 ");
 												spedire[0] = "-1";
 												spedire[1] = "-1";
@@ -238,24 +239,20 @@ public class Partita {
 					}
 				}
 		}
-		
+
 		byte[] reply = socketServer.recv(0);
 		String request = new String(reply, ZMQ.CHARSET);
 		System.out.println("Messaggio ricevuto: " + request);
-		if(request.equals("ATA2"))
-		{
+		if (request.equals("ATA2")) {
 			String responseMessage = "HAI PERSO";
 			socketServer.send(responseMessage.getBytes(), 0);
 			System.out.println("Inviato: " + responseMessage);
 		}
 		username = s.getConnectedclients();
-		
-		if(contaBarcheP1==10)
-		{
+
+		if (contaBarcheP1 == 10) {
 			registraVincita(username.get(0), username.get(1));
-		}
-		else if(contaBarcheP2==10)
-		{
+		} else if (contaBarcheP2 == 10) {
 			registraVincita(username.get(1), username.get(0));
 		}
 
@@ -309,11 +306,10 @@ public class Partita {
 			System.out.println(); // Vai a capo dopo ogni riga
 		}
 	}
-	
-	public void registraVincita(String usernameVincitore, String usernameSconfitto)
-	{
+
+	public void registraVincita(String usernameVincitore, String usernameSconfitto) {
 		String sql = "INSERT INTO PARTITA VALUES (?,?,?)";
-    	
+
 		ConnectionDb conn = new ConnectionDb();
 		PreparedStatement pstmt;
 		try {
@@ -327,9 +323,6 @@ public class Partita {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
 
 	}
 
