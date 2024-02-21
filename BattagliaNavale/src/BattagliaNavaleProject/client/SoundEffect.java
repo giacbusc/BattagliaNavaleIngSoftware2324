@@ -7,21 +7,30 @@ import javax.sound.sampled.Clip;
 
 public class SoundEffect 
 {
-	public void playMusic(String posizioneFile)
+	public void playMusic(String posizioneFile, boolean play)
 	{
 		try {
 			File pathMusica = new File(posizioneFile);
+			AudioInputStream audioInput = AudioSystem.getAudioInputStream(pathMusica);
+			Clip clip = AudioSystem.getClip(); //ottiene la stringa audio
 			
-			if(pathMusica.exists())
+			if(play==true)
 			{
-				AudioInputStream audioInput = AudioSystem.getAudioInputStream(pathMusica);
-				Clip clip = AudioSystem.getClip(); //ottiene la stringa audio
-				clip.open(audioInput);
-				clip.start();
+				if(pathMusica.exists())
+				{
+					
+					clip.open(audioInput);
+					clip.start();
+				}
+				else
+				{
+					System.out.println("File musica non trovato");
+				
+				}
 			}
-			else
+			else if(play==false)
 			{
-				System.out.println("File musica non trovato");
+				clip.stop();
 			}
 			
 		}catch(Exception e)
@@ -29,5 +38,6 @@ public class SoundEffect
 			e.printStackTrace();
 		}
 	}
+	
 
 }
