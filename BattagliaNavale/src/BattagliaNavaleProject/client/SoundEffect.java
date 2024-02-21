@@ -44,7 +44,7 @@ public class SoundEffect
 		    Clip clip;
 
 		    try {
-		        audio = AudioSystem.getAudioInputStream(new File("C:\\Users\\signo\\Documents\\GitHub\\BattagliaNavaleIngSoftware2324\\BattagliaNavale\\music\\sceltaMenu2.wav").getAbsoluteFile());
+		        audio = AudioSystem.getAudioInputStream(new File("C:\\Users\\signo\\Documents\\GitHub\\BattagliaNavaleIngSoftware2324\\BattagliaNavale\\music\\sceltaMenu3.wav").getAbsoluteFile());
 		        clip = AudioSystem.getClip();
 		        clip.open(audio);
 		        clip.start();
