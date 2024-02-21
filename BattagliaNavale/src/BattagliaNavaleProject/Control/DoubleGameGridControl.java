@@ -19,6 +19,7 @@ import org.zeromq.ZMQ;
 
 import BattagliaNavaleProject.formGui.DoubleGameGridView;
 import BattagliaNavaleProject.client.InfoBoat;
+import BattagliaNavaleProject.client.SoundEffect;
 import BattagliaNavaleProject.client.Square;
 
 public class DoubleGameGridControl {
@@ -535,7 +536,9 @@ public class DoubleGameGridControl {
 					String rispostaMsg = new String(byteMsg, ZMQ.CHARSET);
 
 					if (rispostaMsg.equals("GIOCA")) {
-
+						String filepath = "./music/Background_game_music.wav";
+						SoundEffect se = new SoundEffect();
+						se.playMusic(filepath,false);
 						grid.waitPanel.setVisible(false);
 
 						r = false;

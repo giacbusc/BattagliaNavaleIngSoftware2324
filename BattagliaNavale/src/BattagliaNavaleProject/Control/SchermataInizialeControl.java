@@ -24,7 +24,7 @@ public class SchermataInizialeControl implements ActionListener, Observer{
 	public void actionPerformed(ActionEvent e) {
 		String filepath = "./music/sceltaMenu3.wav";
 	    SoundEffect s = new SoundEffect();
-	    s.playMusic(filepath);
+	    s.playMusic(filepath,true);
 		try {
 
 			if(e.getSource() instanceof JButton ) {

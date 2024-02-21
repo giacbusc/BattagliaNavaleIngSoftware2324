@@ -29,7 +29,7 @@ public class MenuPrincipaleControl implements ActionListener{
 		String[] parti = tcp.split(":");
 		String filepath = "./music/sceltaMenu3.wav";
 	    SoundEffect s = new SoundEffect();
-	    s.playMusic(filepath);
+	    s.playMusic(filepath,true);
 
 		if(e.getSource() instanceof JButton ) {
 			JButton clickedButton= (JButton) e.getSource();

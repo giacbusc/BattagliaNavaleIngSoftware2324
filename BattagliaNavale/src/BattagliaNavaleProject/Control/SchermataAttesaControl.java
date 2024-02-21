@@ -48,7 +48,7 @@ public class SchermataAttesaControl {
 			if(rispostaMsg.equals("OK POS2")) {
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
-				se.playMusic(filepath);
+				se.playMusic(filepath,true);
 				DoubleGameGridView dggv= new DoubleGameGridView(userName);
 				r=false;
 			}
