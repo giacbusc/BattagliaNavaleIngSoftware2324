@@ -124,7 +124,7 @@ public class ServerSocket {
 
 				if (messaggio.equals("CODA")) {
 					String responseMessage = "OK POS2";
-					socketServer.send(responseMessage.getBytes(), 0);
+					socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
 					System.out.println("Inviato: " + responseMessage);
 					piazzamentoBarca(turno);
 					System.out.println("inizio giocooooo");
@@ -136,7 +136,7 @@ public class ServerSocket {
 					{
 						r=false;
 						responseMessage = "GIOCA";
-						socketServer.send(responseMessage.getBytes(), 0);
+						socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
 						System.out.println("Inviato AL PLAYER 1: " + responseMessage);
 						Partita a = new Partita();
 						a.inizioGioco();
