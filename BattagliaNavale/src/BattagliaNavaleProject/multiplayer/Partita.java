@@ -109,6 +109,7 @@ public class Partita {
 								spedireMex(spedire);
 							} else { // è affondata
 								contaBarcheP1++;
+								System.out.println("conta barche p1: "+contaBarcheP1);
 								player2[xpos][ypos].setStato(3);
 								String nomeBarcaColpita = player2[xpos][ypos].getNome();
 								InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarcaColpita);
@@ -135,6 +136,7 @@ public class Partita {
 											spedire[3] = String.valueOf(l);
 											contaAffondati++;
 											if (contaAffondati == l && contaBarcheP1 == 10) {
+												System.out.println("ha vinto p1 ");
 												spedire[0] = "-1";
 												spedire[1] = "-1";
 												spedire[2] = "5"; // lo stato a 5 indica che il player ha vinto!
@@ -187,6 +189,7 @@ public class Partita {
 								spedireMex(spedire);
 							} else { // è affondata
 								contaBarcheP2++;
+								System.out.println("conta barche p2: "+contaBarcheP2);
 								player1[xpos][ypos].setStato(3);
 								String nomeBarcaColpita = player1[xpos][ypos].getNome();
 								InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarcaColpita);
@@ -207,6 +210,7 @@ public class Partita {
 											spedire[3] = String.valueOf(l);
 											contaAffondati++;
 											if (contaAffondati == l && contaBarcheP2 == 10) {
+												System.out.println("ha vinto p2 ");
 												spedire[0] = "-1";
 												spedire[1] = "-1";
 												spedire[2] = "5"; // lo stato a 5 indica che il player2 ha vinto!

@@ -24,9 +24,9 @@ public class MenuPrincipaleControl implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		String tcp= "tcp://172.16.128.203:5535";
+		String tcp= "tcp://172.16.128.203:5536";
 		String local="tcp://localhost:5545";
-		String[] parti = local.split(":");
+		String[] parti = tcp.split(":");
 		String filepath = "./music/sceltaMenu3.wav";
 	    SoundEffect s = new SoundEffect();
 	    s.playMusic(filepath);
