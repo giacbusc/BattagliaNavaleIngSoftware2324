@@ -550,6 +550,8 @@ public class DoubleGameGridControl {
 				System.out.println("inizio turno");
 				grid.waitPanel.setVisible(false);
 				grid.turnoPanel.setVisible(true);
+				grid.turnoPanelCreation();
+				grid.turnoPanel.setVisible(true);
 				turni.turno();
 				return null;
 			}

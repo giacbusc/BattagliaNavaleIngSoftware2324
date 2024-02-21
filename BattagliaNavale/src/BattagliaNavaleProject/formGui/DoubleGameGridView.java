@@ -155,7 +155,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		//getContentPane().add(backgroundPanel);
 
 		JLabel usernameLabel = new JLabel(username);
-		usernameLabel.setBackground(Color.white);
+		usernameLabel.setForeground(Color.white);
 		usernameLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
 		centralTopPanel.setBackground(Color.decode("#5C99D6"));
 		centralTopPanel.setPreferredSize(new Dimension(50, 50));
@@ -389,7 +389,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		waitPanel.setLayout(gbl_waitPanel);
 
 		JLabel attesa = new JLabel("Attendi che l'avversario finisca il posizionamento");
-		attesa.setForeground(new Color(0, 128, 255));
+		attesa.setForeground(Color.GRAY);
 		attesa.setFont(new Font("Tahoma", Font.BOLD, 28));
 		attesa.setHorizontalAlignment(SwingConstants.CENTER);
 		waitPanel.add(attesa);
@@ -411,7 +411,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		waitPanel.setLayout(gbl_waitPanel);
 
 		JLabel turno= new JLabel("E' il tuo turno! Cerca di colpire l'avversario");
-		turno.setForeground(new Color(0, 128, 255));
+		turno.setForeground(Color.GRAY);
 		turno.setFont(new Font("Tahoma", Font.BOLD, 22));
 		turno.setHorizontalAlignment(SwingConstants.CENTER);
 		turnoPanel.add(turno);

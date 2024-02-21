@@ -207,7 +207,7 @@ public class TurniControl {
 			toglilistener();
 			Thread.sleep(1300);
 			String sendMsg = "ATA2";
-			DGGV.turnoPanel.setVisible(true);
+			
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 			System.out.println("inviata attesa del turno " + sendMsg);
 
