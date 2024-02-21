@@ -31,16 +31,13 @@ public class MenuPrincipaleControl implements ActionListener{
 		String tcp= "tcp://172.16.128.203:5535";
 		String local="tcp://localhost:5545";
 		String[] parti = local.split(":");
-		
+		String filepath = "./music/sceltaMenu3.wav";
+	    SoundEffect s = new SoundEffect();
+	    s.playMusic(filepath);
 
 		if(e.getSource() instanceof JButton ) {
 			JButton clickedButton= (JButton) e.getSource();
-			try {
-				s.musica();
-			} catch (IOException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
+			
 			if(clickedButton.getText().equals("  ")) {
 				try {
 					Server.createTcpServer().start();
