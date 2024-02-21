@@ -3,9 +3,7 @@ package BattagliaNavaleProject.multiplayer;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import org.zeromq.ZMQ;
-
 import BattagliaNavaleProject.Database.ConnectionDb;
 import BattagliaNavaleProject.client.InfoBoat;
 import BattagliaNavaleProject.client.Square;
