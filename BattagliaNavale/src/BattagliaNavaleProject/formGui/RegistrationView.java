@@ -241,10 +241,6 @@ public class RegistrationView extends JFrame  implements Observer{
 	public void showMessage(String msg){
 		JOptionPane.showMessageDialog(this, msg);
 	}
-	public void close() {
-		dispose();
-		obs.update();
-	}
 
 	public void addRecListener(ActionListener log) {
 		btnRegistration.addActionListener(log);
@@ -276,6 +272,11 @@ public class RegistrationView extends JFrame  implements Observer{
 	public void update() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public Observer getObserver() {
+		// TODO Auto-generated method stub
+		return obs;
 	}
 
 }

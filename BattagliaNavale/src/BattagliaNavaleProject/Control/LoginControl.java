@@ -95,7 +95,7 @@ public class LoginControl implements ActionListener
 	            
 				}
 				if(clickedButton.getText().equals("Back")) {
-					gui.close();
+					close();
 				}
 			}
 			
@@ -130,6 +130,12 @@ public class LoginControl implements ActionListener
 		worker.execute();
 		
 	}
+	
+	public void close() {
+		gui.dispose();
+		gui.getObserver().update();
+	}
+
 }     
 
 

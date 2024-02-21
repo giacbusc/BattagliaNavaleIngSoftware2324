@@ -22,7 +22,8 @@ public class RegistrationControl implements ActionListener {
     public RegistrationControl( ){
         view = new RegistrationView();
         view.setVisible(true);
-        //view.addRecListener(this);
+        view.addRecListener(this);
+        view.addActionBack(this);
     }
     
     public boolean verificaCampi(RegistrationModel user){
@@ -68,9 +69,9 @@ public class RegistrationControl implements ActionListener {
             if(e.getSource() instanceof JButton ) {
                 JButton clickedButton= (JButton) e.getSource();
                 
-                if(clickedButton.getText().equals("back")) {
+                if(clickedButton.getText().equals("Back")) {
                 	System.out.println("martin");
-                    view.close();
+                    close();
                 }
                 
                 
@@ -145,4 +146,8 @@ public class RegistrationControl implements ActionListener {
 	    worker.execute(); 
 	}
 	
+	public void close() {
+		view.dispose();
+		view.getObserver().update();
+	}
 }

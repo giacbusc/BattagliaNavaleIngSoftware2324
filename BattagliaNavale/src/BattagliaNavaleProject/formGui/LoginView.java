@@ -258,12 +258,6 @@ public class LoginView extends JFrame implements Observer {
 			return "DEFAULTUSER";
 		}
 	}
-	
-	public void close() {
-		dispose();
-		obs.update();
-	}
-
 
 public void setObserver(Observer obs)
 {
