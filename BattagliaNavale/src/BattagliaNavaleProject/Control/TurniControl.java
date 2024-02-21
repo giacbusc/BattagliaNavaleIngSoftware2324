@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.sql.SQLException;
 
 import javax.swing.SwingWorker;
 
@@ -12,8 +13,10 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
+import BattagliaNavaleProject.client.SoundEffect;
 import BattagliaNavaleProject.client.Square;
 import BattagliaNavaleProject.formGui.DoubleGameGridView;
+import BattagliaNavaleProject.formGui.FinePartitaView;
 
 public class TurniControl  {
 DoubleGameGridView DGGV;
@@ -110,6 +113,9 @@ private void controllastato() {
 			@Override
 			protected Void doInBackground() throws Exception {
 				DGGV.opponentBoard[x][y].setColpito();
+				String filepath = "./music/ColpitoSound.wav";
+			       SoundEffect se = new SoundEffect();
+			       se.playMusic(filepath);
 		
 				try {
 					cicloattesa();
@@ -133,6 +139,10 @@ private void controllastato() {
 			@Override
 			protected Void doInBackground() throws Exception {
 				DGGV.opponentBoard[x][y].setAcqua();
+
+				String filepath = "./music/waterSplash.wav";
+	       SoundEffect se = new SoundEffect();
+	       se.playMusic(filepath);
 		
 				try {
 					cicloattesa();
@@ -173,11 +183,20 @@ private void verificaLunghezza() {
 		
 		lunghezza= arrayRisposta[3]; 
 		stato=arrayRisposta[2];
+		if(stato==5) {
+			FinePartitaView fsv= new FinePartitaView(DGGV.getUsername(),"HAI VINTO");
+			DGGV.dispose();
+		}
 		x= arrayRisposta[0];
 		y= arrayRisposta[1];
 		DGGV.opponentBoard[x][y].setAffondato();
 		
 	}
+
+			String filepath = "./music/AffondataSound.mkv";
+       SoundEffect se = new SoundEffect();
+       se.playMusic(filepath);
+       
 			try {
 				cicloattesa();
 			} catch (InterruptedException e) {
@@ -192,7 +211,7 @@ private void verificaLunghezza() {
 }
 
 
-private void cicloattesa() throws InterruptedException {
+private void cicloattesa() throws InterruptedException, IOException, SQLException {
 	// TODO Auto-generated method stub
 	boolean r=true;
 	do {
@@ -214,6 +233,12 @@ private void cicloattesa() throws InterruptedException {
 			
 			turno();
 			r=false;
+		}
+		
+		if(rispostaMsg.equals("HAI PERSO")) {
+			r=false;
+			DGGV.dispose();
+			FinePartitaView sfp = new FinePartitaView(DGGV.getUsername(),"HAI PERSO");
 		}
 
 	}while(r==true);
