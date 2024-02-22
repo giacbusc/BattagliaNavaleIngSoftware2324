@@ -76,7 +76,7 @@ public class SchermataInizialeView extends JFrame {
 			titleLabel.setBounds(99, 10, 438, 40);
 			titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			titleLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
-			titleLabel.setForeground(new Color(0, 128, 255));
+			titleLabel.setForeground(Color.decode("#3380CC"));
 			backgroundPanel.add(titleLabel);
 			loginButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -104,7 +104,7 @@ public class SchermataInizialeView extends JFrame {
 		    {
 		    	public void mouseEntered(MouseEvent e)
 		    	{
-		    		loginTextLabel.setForeground(new Color(0, 128, 255));
+		    		loginTextLabel.setForeground(Color.decode("#3380CC"));
 		    		loginTextLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
 		    		registerButton.repaint();
 		    	}
@@ -160,7 +160,7 @@ public class SchermataInizialeView extends JFrame {
 			    {
 			    	public void mouseEntered(MouseEvent e)
 			    	{
-			    		registerTextLabel.setForeground(new Color(0, 128, 255));
+			    		registerTextLabel.setForeground(Color.decode("#3380CC"));
 			    		registerTextLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
 			    		infoLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 			    		registerButton.repaint();

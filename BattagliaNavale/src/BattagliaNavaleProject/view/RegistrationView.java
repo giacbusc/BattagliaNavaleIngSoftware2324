@@ -74,60 +74,60 @@ public class RegistrationView extends JFrame  implements Observer{
 
 		JLabel titleLabel = new JLabel("Registration");
 		titleLabel.setBounds(100, 0, 412, 55);
-		titleLabel.setForeground(new Color(0, 128, 255));
+		titleLabel.setForeground(Color.decode("#3380CC"));
 		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		backgroundPanel.add(titleLabel);
 
-		JLabel nicknameLabel = new JLabel("Nickname:");
-		nicknameLabel.setForeground(new Color(0, 128, 255));
+		JLabel nicknameLabel = new JLabel("NICKNAME:");
+		nicknameLabel.setForeground(Color.decode("#3380CC"));
 		nicknameLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
-		nicknameLabel.setBounds(114, 175, 99, 13);
+		nicknameLabel.setBounds(114, 175, 128, 24);
 		backgroundPanel.add(nicknameLabel);
 
-		JLabel passwordLabel = new JLabel("Password:");
-		passwordLabel.setBounds(114, 229, 99, 13);
-		passwordLabel.setForeground(new Color(0, 128, 255));
+		JLabel passwordLabel = new JLabel("PASSWORD:");
+		passwordLabel.setBounds(114, 229, 128, 24);
+		passwordLabel.setForeground(Color.decode("#3380CC"));
 		passwordLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
 		backgroundPanel.add(passwordLabel);
 
 		txtName = new JTextField(20);
-		txtName.setBounds(232, 68, 154, 19);
+		txtName.setBounds(264, 74, 154, 19);
 		backgroundPanel.add(txtName);
 		txtName.setColumns(10);
 
 		txtSurname = new JTextField(20);
-		txtSurname.setBounds(232, 121, 154, 19);
+		txtSurname.setBounds(264, 121, 154, 19);
 		backgroundPanel.add(txtSurname);
 		txtSurname.setColumns(10);
 
 
 		txtNickname = new JTextField(20);
-		txtNickname.setBounds(232, 175, 154, 19);
+		txtNickname.setBounds(264, 175, 154, 19);
 		backgroundPanel.add(txtNickname);
 		txtNickname.setColumns(10);
 
-		JLabel nameLabel = new JLabel("Name:");
+		JLabel nameLabel = new JLabel("NAME:");
 		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
-		nameLabel.setForeground(new Color(0, 128, 255));
-		nameLabel.setBounds(148, 68, 65, 13);
+		nameLabel.setForeground(Color.decode("#3380CC"));
+		nameLabel.setBounds(148, 68, 94, 24);
 		backgroundPanel.add(nameLabel);
 
-		JLabel surnameLabel = new JLabel("Surname:");
-		surnameLabel.setBounds(123, 121, 99, 13);
-		surnameLabel.setForeground(new Color(0, 128, 255));
+		JLabel surnameLabel = new JLabel("SURNAME:");
+		surnameLabel.setBounds(123, 121, 119, 24);
+		surnameLabel.setForeground(Color.decode("#3380CC"));
 		surnameLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
 		backgroundPanel.add(surnameLabel);
 
 		txtPassword = new JPasswordField(20);
-		txtPassword.setBounds(232, 229, 154, 19);
+		txtPassword.setBounds(264, 229, 154, 19);
 		txtPassword.setEchoChar('*');
 		backgroundPanel.add(txtPassword);
 		txtPassword.setColumns(10);
 
 		btnRegistration = new JButton("Save");
 		btnRegistration.setContentAreaFilled(false);
-		btnRegistration.setBounds(30, 284, 108, 25);
+		btnRegistration.setBounds(31, 284, 108, 25);
 		btnRegistration.setBackground(new Color(0, 0, 0, 0));
 		btnRegistration.setFont(new Font("Tahoma", Font.BOLD, 14));
 		backgroundPanel.add(btnRegistration);
@@ -172,7 +172,7 @@ public class RegistrationView extends JFrame  implements Observer{
 
 		backbutton = new JButton("Back");
 		backbutton.setContentAreaFilled(false);
-		backbutton.setBounds(527, 284, 108, 25);
+		backbutton.setBounds(528, 284, 108, 25);
 		backbutton.setBackground(new Color(0, 0, 0, 0));
 		backbutton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		backgroundPanel.add(backbutton);
@@ -201,7 +201,7 @@ public class RegistrationView extends JFrame  implements Observer{
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				backbutton.setForeground(new Color(0, 128, 255));
+				backbutton.setForeground(Color.decode("#3380CC"));
 	    		backbutton.setFont(new Font("Tahoma", Font.BOLD, 18));
 			}
 
