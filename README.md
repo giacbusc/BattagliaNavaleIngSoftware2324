@@ -8,10 +8,10 @@
 ### Anno accademico 2023-2024
 
 ### Progetto a cura di:
-Buscaglia Giacomo, matricola 1078804 <br>
-Ciancio Luca, matricola <br>
-Gervasoni Federica, matricola 1078966<br>
-Signori Giulia, matricola 1078801<br>
+[Buscaglia Giacomo, matricola 1078804](https://github.com/buscst)<br>
+[Ciancio Luca, matricola1079291](https://github.com/LucaCiancio)<br>
+[Gervasoni Federica, matricola 1078966](https://github.com/fgervasoni7) <br>
+[Signori Giulia, matricola 1078801](https://github.com/giessse)<br>
 
 Il software che abbiamo sviluppato è un'implementazione del noto gioco "Battaglia Navale" attraverso interfacce grafiche (GUI). Il gioco sviluppato è un gioco distribuito quindi che implementa il meccanismo dei Socket (libreria ZeroMQ) per permettere la comunicazione tra diversi client. Il gioco permette di essere testato e di giocare anche in locale su un unico pc. <br>
 
