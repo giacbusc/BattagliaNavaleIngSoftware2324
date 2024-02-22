@@ -211,7 +211,7 @@ public class TurniControl {
 		boolean r = true;
 		do {
 			toglilistener();
-			Thread.sleep(1300);
+			Thread.sleep(500);
 			String sendMsg = "MIAO"+miaoconta;
 			
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
