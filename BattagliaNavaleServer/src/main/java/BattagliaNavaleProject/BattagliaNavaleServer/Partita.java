@@ -36,10 +36,9 @@ public class Partita {
 			byte[] reply = socketServer.recv(0);
 			String request = new String(reply, ZMQ.CHARSET);
 			System.out.println("Messaggio ricevuto: " + request);
-
 			// BOOLEANO CHE ANDRA SETTATO PER RISPONDERGLI ANZICHE CON ATA CON GIOCA PER
 			// RISVEGLIARLO
-			if (request.equals("ATA2") && INVIATO == true) {
+			if (request.equals("MIAO") && INVIATO == true) {
 				String responseMessage = "GIOCA";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
@@ -54,21 +53,21 @@ public class Partita {
 				continue;
 			}
 
-			if (request.equals("ATA2") && INVIATO == false) {
-				String responseMessage = "ATA2";
+			if (request.equals("MIAO") && INVIATO == false) {
+				String responseMessage = "MIAO";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
 				continue;
 			}
-
-			if (request.equals("ATA") && INVIATO == false) {
+			 String mexATA = request.substring(0, 3);
+			if (mexATA.equals("ATA") && INVIATO == false) {
 				String responseMessage = "ATA";
 				socketServer.send(responseMessage.getBytes(), 0);
 				System.out.println("Inviato: " + responseMessage);
 				continue;
 			}
 
-			if (request.equals("ATA") && INVIATO == true) {
+			if (mexATA.equals("ATA") && INVIATO == true) {
 				System.out.println("Stai passando il turno!");
 				String responseMessage = "GIOCA";
 				socketServer.send(responseMessage.getBytes(), 0);
@@ -81,7 +80,7 @@ public class Partita {
 			}
 
 			if (!request.equals(""))
-				if (!(request.equals("ATA") && !(request.equals("ATA2")))) {
+				if (!(mexATA.equals("ATA") && !(request.equals("MIAO")))) {
 					String[] mexSplit = request.split(",");
 					String x = mexSplit[0];
 					String y = mexSplit[1];
@@ -249,7 +248,7 @@ public class Partita {
 		byte[] reply = socketServer.recv(0);
 		String request = new String(reply, ZMQ.CHARSET);
 		System.out.println("Messaggio ricevuto: " + request);
-		if (request.equals("ATA2")) {
+		if (request.equals("MIAO")) {
 			String responseMessage = "HAI PERSO";
 			socketServer.send(responseMessage.getBytes(), 0);
 			System.out.println("Inviato: " + responseMessage);

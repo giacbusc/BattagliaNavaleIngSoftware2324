@@ -133,14 +133,15 @@ public class ServerSocket {
 						reply = socketServer.recv(0);
 						messaggio = new String(reply, ZMQ.CHARSET);
 						System.out.println("ricevuto: " + messaggio);
-					
-						String numeroATA = messaggio.substring(3,3);
+						String messaggioATA2 = messaggio.substring(0, 3);
+						String numeroATA = messaggio.substring(3);
 						int numattuale = Integer.parseInt(numeroATA);
 						System.out.println("num attuale: "+numattuale);
-						String numeroATAprecedente = ataprecedente.substring(3,3);
+						String numeroATAprecedente = ataprecedente.substring(3);
 						int numprecedente = Integer.parseInt(numeroATAprecedente);
 						System.out.println("num precedente: "+numprecedente);
-						if (messaggio.equals("ATA") && numattuale > numprecedente ) 
+						
+						if (messaggioATA2.equals("ATA") && numattuale > numprecedente ) 
 						{
 							r=false;
 							responseMessage = "GIOCA";
@@ -149,6 +150,13 @@ public class ServerSocket {
 							Partita a = new Partita();
 							a.inizioGioco();
 							break;
+						}
+						else
+						{
+							responseMessage = "ATA";
+							socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
+							System.out.println("Inviato AL PLAYER 2: " + responseMessage);
+
 						}
 					}	
 					
@@ -194,7 +202,7 @@ public class ServerSocket {
 				System.out.println("Inviato: " + responseMessage);
 				continue;
 			}
-			String messaggioATA = messaggio.substring(0, 2);
+			String messaggioATA = messaggio.substring(0, 3);
 			if (messaggioATA.equals("") || messaggioATA.equals("ATA")) {
 				ataprecedente = messaggio;
 				String responseMessage = "ATA";
