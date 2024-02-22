@@ -36,7 +36,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 	boolean entra = false;
 	int x;
 	int y;
-	private int ataconta = 0;
+	private int ataconta = 3;
 	public int[] arrayRisposta = new int[8];
 	int primo = 0;
 	int boatlenght;
@@ -368,8 +368,9 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 			if (boat.name().equalsIgnoreCase(nome)) {
 				boatlenght = boat.getLunghezza();
 			}
-
-			if (boatlenght != 1) {
+	
+		}
+		if (boatlenght != 1) {
 				togliPanel();
 			}
 			if (boatlenght == 1) {
@@ -382,7 +383,6 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 				}
 
 			}
-		}
 		coloragrigio();
 		errorePosizionamento();
 		if (vai == true) {
@@ -540,7 +540,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	public void terminaPosizionamento() throws InterruptedException, IOException {
 
-		ataconta++;
+		
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
