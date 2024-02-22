@@ -20,9 +20,11 @@ public class SchermataAttesaControl {
 	String[] arrayMsg = null;
 	SchermataAttesaView sv;
 	Observer obs;
+	TornaMenuPrincipale tmp;
 	
-	public SchermataAttesaControl(String msg, String username, Observer observer) throws IOException, InterruptedException
+	public SchermataAttesaControl(String msg, String username, Observer observer, TornaMenuPrincipale tmp) throws IOException, InterruptedException
 	{
+		this.tmp = tmp;
 		this.obs=observer;
 		sv = new SchermataAttesaView(msg, username,obs);
 		sv.setVisible(true);
@@ -53,7 +55,7 @@ public class SchermataAttesaControl {
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
 				se.playMusic(filepath,true);
-				DoubleGameGridControl dggc= new DoubleGameGridControl(user);
+				DoubleGameGridControl dggc= new DoubleGameGridControl(user, tmp);
 				sv.dispose();
 				r=false;
 			}

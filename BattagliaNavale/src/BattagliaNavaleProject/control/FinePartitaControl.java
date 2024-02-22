@@ -17,7 +17,9 @@ public class FinePartitaControl  implements ActionListener{
 	private String user;
 	private String messaggio;
 	Observer obs;
-	public FinePartitaControl(String userName, String messaggio) throws IOException, SQLException {
+	private TornaMenuPrincipale tmp;
+	public FinePartitaControl(String userName, String messaggio, TornaMenuPrincipale tmp) throws IOException, SQLException {
+		this.tmp = tmp;
 		this.user=userName;
 		this.messaggio = messaggio;
 		fpv = new FinePartitaView(user, messaggio);
@@ -27,9 +29,10 @@ public class FinePartitaControl  implements ActionListener{
 	}
 	public static void main(String[] args) throws IOException, SQLException
 	{
+		TornaMenuPrincipale tmp = null;
 		String msg = "lucaCiancio";
 		String msg1= "Hai vinto";
-		FinePartitaControl fp = new FinePartitaControl(msg, msg1);
+		FinePartitaControl fp = new FinePartitaControl(msg, msg1, tmp);
 	}
 
 	public void actionPerformed (ActionEvent e ) {
@@ -40,25 +43,19 @@ public class FinePartitaControl  implements ActionListener{
 
 				if(clickedButton.getText().equals("")) 
 				{   
-					try {
-						MenuPrincipaleControl menuc = new MenuPrincipaleControl(user, obs);
+					tmp.torna(user, obs);
+					
+					SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 
-						SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+						@Override
+						protected Void doInBackground() throws Exception {
+							// TODO Auto-generated method stub
+							fpv.dispose(); 
+							return null;
+						}
 
-							@Override
-							protected Void doInBackground() throws Exception {
-								// TODO Auto-generated method stub
-								fpv.dispose(); 
-								return null;
-							}
-
-						};
-						worker.execute();
-
-					} catch (SQLException | IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} 
+					};
+					worker.execute(); 
 
 				}
 				if(clickedButton.getText().equals(".")) {

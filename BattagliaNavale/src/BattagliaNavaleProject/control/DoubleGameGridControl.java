@@ -47,12 +47,14 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 	private String username;
 	String[] arraymsg = new String[3];
 	int dim = 3;
+	private TornaMenuPrincipale tmp;
 	// System.out.println("Connecting to th server");
 
 	// Socket to talk to server
 
-	public DoubleGameGridControl(String username) throws IOException {
-
+	public DoubleGameGridControl(String username, TornaMenuPrincipale tmp) throws IOException {
+		
+		this.tmp = tmp;
 		this.username = username;
 		grid = new DoubleGameGridView(username);
 		grid.addMouseGriglia(this);
@@ -589,7 +591,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	public void creazioneTurni()
 	{
-		turni = new TurniControl(indirizzo, grid,  this);
+		turni = new TurniControl(indirizzo, grid, this, tmp);
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
