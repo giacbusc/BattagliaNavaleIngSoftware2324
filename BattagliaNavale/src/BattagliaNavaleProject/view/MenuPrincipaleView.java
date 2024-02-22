@@ -1,8 +1,7 @@
-package BattagliaNavaleProject.formGui;
+package BattagliaNavaleProject.view;
 import javax.swing.*;
 
-import BattagliaNavaleProject.Control.ConnectionControl;
-import BattagliaNavaleProject.client.Observer;
+import BattagliaNavaleProject.control.ConnectionControl;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

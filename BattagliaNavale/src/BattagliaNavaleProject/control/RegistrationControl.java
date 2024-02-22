@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.Control;
+package BattagliaNavaleProject.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
 
-import BattagliaNavaleProject.Database.ConnectionDb;
-import BattagliaNavaleProject.form.RegistrationModel;
-import BattagliaNavaleProject.formGui.RegistrationView;
+import BattagliaNavaleProject.database.ConnectionDb;
+import BattagliaNavaleProject.formModel.RegistrationModel;
+import BattagliaNavaleProject.view.RegistrationView;
 
 public class RegistrationControl implements ActionListener {
 	

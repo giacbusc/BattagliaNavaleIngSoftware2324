@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.Control;
+package BattagliaNavaleProject.control;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -17,11 +17,11 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.formGui.AggiuntaListener;
-import BattagliaNavaleProject.formGui.DoubleGameGridView;
-import BattagliaNavaleProject.client.InfoBoat;
-import BattagliaNavaleProject.client.SoundEffect;
-import BattagliaNavaleProject.client.Square;
+import BattagliaNavaleProject.doubleGameGridModel.InfoBoat;
+import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
+import BattagliaNavaleProject.doubleGameGridModel.Square;
+import BattagliaNavaleProject.view.AggiuntaListener;
+import BattagliaNavaleProject.view.DoubleGameGridView;
 
 public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 

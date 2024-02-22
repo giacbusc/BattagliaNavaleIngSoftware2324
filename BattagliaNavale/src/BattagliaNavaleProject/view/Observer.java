@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.client;
+package BattagliaNavaleProject.view;
 
 public interface Observer {
 	void update();

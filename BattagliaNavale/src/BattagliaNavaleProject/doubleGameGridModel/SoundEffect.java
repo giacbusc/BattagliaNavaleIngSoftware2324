@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.client;
+package BattagliaNavaleProject.doubleGameGridModel;
 
 import java.io.File;
 import javax.sound.sampled.AudioInputStream;

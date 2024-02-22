@@ -4,8 +4,8 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.client.InfoBoat;
-import BattagliaNavaleProject.client.Square;
+import BattagliaNavaleProject.doubleGameGridModel.InfoBoat;
+import BattagliaNavaleProject.doubleGameGridModel.Square;
 
 import java.util.ArrayList;
 

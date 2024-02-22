@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.Control;
+package BattagliaNavaleProject.control;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -13,11 +13,11 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.client.SoundEffect;
-import BattagliaNavaleProject.client.Square;
-import BattagliaNavaleProject.formGui.AggiuntaListener;
-import BattagliaNavaleProject.formGui.DoubleGameGridView;
-import BattagliaNavaleProject.formGui.FinePartitaView;
+import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
+import BattagliaNavaleProject.doubleGameGridModel.Square;
+import BattagliaNavaleProject.view.AggiuntaListener;
+import BattagliaNavaleProject.view.DoubleGameGridView;
+import BattagliaNavaleProject.view.FinePartitaView;
 
 public class TurniControl {
 	DoubleGameGridView DGGV;

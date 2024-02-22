@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.formGui;
+package BattagliaNavaleProject.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,9 +24,8 @@ import javax.swing.SwingConstants;
 
 import org.zeromq.ZMQ.Socket;
 
-import BattagliaNavaleProject.Control.DoubleGameGridControl;
-import BattagliaNavaleProject.Control.SchermataAttesaControl;
-import BattagliaNavaleProject.client.Observer;
+import BattagliaNavaleProject.control.DoubleGameGridControl;
+import BattagliaNavaleProject.control.SchermataAttesaControl;
 
 import java.awt.BorderLayout;
 

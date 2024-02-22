@@ -1,12 +1,13 @@
-package BattagliaNavaleProject.Control;
+package BattagliaNavaleProject.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
-import BattagliaNavaleProject.client.Observer;
-import BattagliaNavaleProject.client.SoundEffect;
-import BattagliaNavaleProject.formGui.SchermataInizialeView;
+
+import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
+import BattagliaNavaleProject.view.Observer;
+import BattagliaNavaleProject.view.SchermataInizialeView;
 
 public class SchermataInizialeControl implements ActionListener, Observer{
 

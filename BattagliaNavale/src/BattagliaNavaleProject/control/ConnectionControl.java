@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.Control;
+package BattagliaNavaleProject.control;
 
 import java.io.IOException;
 
@@ -6,12 +6,12 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.formGui.DoubleGameGridView;
-import BattagliaNavaleProject.formGui.SchermataAttesaView;
-import BattagliaNavaleProject.formGui.SchermataInizialeView;
-import BattagliaNavaleProject.client.Observer;
-import BattagliaNavaleProject.client.SoundEffect;
-import BattagliaNavaleProject.form.LoginModel;
+import BattagliaNavaleProject.formModel.LoginModel;
+import BattagliaNavaleProject.view.DoubleGameGridView;
+import BattagliaNavaleProject.view.Observer;
+import BattagliaNavaleProject.view.SchermataAttesaView;
+import BattagliaNavaleProject.view.SchermataInizialeView;
+import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 
 public class ConnectionControl {
 	static String indirizzo;

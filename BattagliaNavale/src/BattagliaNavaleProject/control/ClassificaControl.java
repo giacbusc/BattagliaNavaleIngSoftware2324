@@ -1,9 +1,9 @@
-package BattagliaNavaleProject.Control;
+package BattagliaNavaleProject.control;
 
 import javax.swing.*;
 
-import BattagliaNavaleProject.Database.ConnectionDb;
-import BattagliaNavaleProject.client.Observer;
+import BattagliaNavaleProject.database.ConnectionDb;
+import BattagliaNavaleProject.view.Observer;
 
 import java.awt.*;
 import java.sql.*;

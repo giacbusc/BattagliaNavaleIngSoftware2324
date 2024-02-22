@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.formGui;
+package BattagliaNavaleProject.view;
 
 
 import java.awt.BorderLayout;
@@ -26,10 +26,9 @@ import javax.swing.border.Border;
 
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.Control.DoubleGameGridControl;
-import BattagliaNavaleProject.Control.TurniControl;
-import BattagliaNavaleProject.client.Observer;
-import BattagliaNavaleProject.client.Square;
+import BattagliaNavaleProject.control.DoubleGameGridControl;
+import BattagliaNavaleProject.control.TurniControl;
+import BattagliaNavaleProject.doubleGameGridModel.Square;
 
 public class DoubleGameGridView extends JFrame {
 

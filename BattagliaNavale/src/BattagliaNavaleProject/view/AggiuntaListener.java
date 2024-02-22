@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.formGui;
+package BattagliaNavaleProject.view;
 
 import java.awt.event.MouseListener;
 

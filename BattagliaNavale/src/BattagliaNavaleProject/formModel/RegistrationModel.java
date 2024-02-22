@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.form;
+package BattagliaNavaleProject.formModel;
 
 public class RegistrationModel {
 	private String name;

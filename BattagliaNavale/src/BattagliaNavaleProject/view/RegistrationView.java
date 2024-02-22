@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.formGui;
+package BattagliaNavaleProject.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,10 +25,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
 
-import BattagliaNavaleProject.Control.LoginControl;
-import BattagliaNavaleProject.Control.RegistrationControl;
-import BattagliaNavaleProject.client.Observer;
-import BattagliaNavaleProject.form.RegistrationModel;
+import BattagliaNavaleProject.control.LoginControl;
+import BattagliaNavaleProject.control.RegistrationControl;
+import BattagliaNavaleProject.formModel.RegistrationModel;
 
 
 

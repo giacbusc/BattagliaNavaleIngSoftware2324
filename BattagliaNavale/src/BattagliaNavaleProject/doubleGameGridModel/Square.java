@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.client;
+package BattagliaNavaleProject.doubleGameGridModel;
 
 import java.awt.Color;
 import javax.swing.JPanel;

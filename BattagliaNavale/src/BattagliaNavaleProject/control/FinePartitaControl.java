@@ -1,5 +1,5 @@
 
-package BattagliaNavaleProject.Control;
+package BattagliaNavaleProject.control;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
 
-import BattagliaNavaleProject.client.Observer;
-import BattagliaNavaleProject.formGui.FinePartitaView;
-import BattagliaNavaleProject.formGui.MenuPrincipaleView;
+import BattagliaNavaleProject.view.FinePartitaView;
+import BattagliaNavaleProject.view.MenuPrincipaleView;
+import BattagliaNavaleProject.view.Observer;
 public class FinePartitaControl  {
 	private FinePartitaView fpv;
 	private String user;

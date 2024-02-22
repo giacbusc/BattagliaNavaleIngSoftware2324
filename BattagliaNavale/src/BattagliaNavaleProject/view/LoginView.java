@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.formGui;
+package BattagliaNavaleProject.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,11 +26,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
 
-import BattagliaNavaleProject.Control.MenuPrincipaleControl;
-import BattagliaNavaleProject.Control.SchermataInizialeControl;
-import BattagliaNavaleProject.Database.ConnectionDb;
-import BattagliaNavaleProject.client.Observer;
-import BattagliaNavaleProject.form.LoginModel;
+import BattagliaNavaleProject.control.MenuPrincipaleControl;
+import BattagliaNavaleProject.control.SchermataInizialeControl;
+import BattagliaNavaleProject.database.ConnectionDb;
+import BattagliaNavaleProject.formModel.LoginModel;
+
 import java.awt.Dimension;
 
 public class LoginView extends JFrame implements Observer {

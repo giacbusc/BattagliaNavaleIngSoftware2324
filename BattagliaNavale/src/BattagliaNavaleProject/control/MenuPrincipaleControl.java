@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.Control;
+package BattagliaNavaleProject.control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -6,10 +6,11 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
 import org.h2.tools.Server;
-import BattagliaNavaleProject.client.Observer;
-import BattagliaNavaleProject.client.SoundEffect;
-import BattagliaNavaleProject.formGui.MenuPrincipaleView;
+
+import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 import BattagliaNavaleProject.multiplayer.ServerSocket;
+import BattagliaNavaleProject.view.MenuPrincipaleView;
+import BattagliaNavaleProject.view.Observer;
 
 public class MenuPrincipaleControl implements ActionListener{
 	private MenuPrincipaleView menu;

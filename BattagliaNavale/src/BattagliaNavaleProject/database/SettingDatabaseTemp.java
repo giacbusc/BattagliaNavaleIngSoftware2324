@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.Database;
+package BattagliaNavaleProject.database;
 
 import java.sql.SQLException;
 

@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.formGui;
+package BattagliaNavaleProject.view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.Control;
+package BattagliaNavaleProject.control;
 
 import java.io.IOException;
 
@@ -6,11 +6,10 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.client.Observer;
-import BattagliaNavaleProject.client.SoundEffect;
-
-import BattagliaNavaleProject.formGui.DoubleGameGridView;
-import BattagliaNavaleProject.formGui.SchermataAttesaView;
+import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
+import BattagliaNavaleProject.view.DoubleGameGridView;
+import BattagliaNavaleProject.view.Observer;
+import BattagliaNavaleProject.view.SchermataAttesaView;
 
 public class SchermataAttesaControl {
 	

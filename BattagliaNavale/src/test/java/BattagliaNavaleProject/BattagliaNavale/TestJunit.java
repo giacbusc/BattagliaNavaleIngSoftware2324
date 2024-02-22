@@ -6,10 +6,10 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import BattagliaNavaleProject.Control.DoubleGameGridControl;
-import BattagliaNavaleProject.client.Square;
-import BattagliaNavaleProject.formGui.DoubleGameGridView;
+import BattagliaNavaleProject.control.DoubleGameGridControl;
+import BattagliaNavaleProject.doubleGameGridModel.Square;
 import BattagliaNavaleProject.multiplayer.Partita;
+import BattagliaNavaleProject.view.DoubleGameGridView;
 
 public class TestJunit {
 	@Test

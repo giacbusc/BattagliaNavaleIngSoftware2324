@@ -1,7 +1,7 @@
 package test.java.BattagliaNavaleProject.BattagliaNavale;
 
 
-import BattagliaNavaleProject.Control.SchermataInizialeControl;
+import BattagliaNavaleProject.control.SchermataInizialeControl;
 
 public class AppTestClient 
 {
