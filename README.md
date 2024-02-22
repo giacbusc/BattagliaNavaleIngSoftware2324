@@ -21,15 +21,15 @@ Il project Plan del progetto si trovva nella cartella docs della repository.<br>
 
 ### Documentazione
 La documentazione del progetto è racchiusa in unico file chiamato [Documentazione](https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Documentazione.md).<br>
-All'interno della documentazione si trova:
--la [specifica dei requisiti](https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Documentazione.md#6-requirement-engineering)
--la descrizionde del modello di sviluppo utilizzata
--la specifica della gestione della configurazione
--la specifica dell'organizzazione del team e delle varie fasi dello sviluppo
--la descrizione della struttura e dei design
--la rappresentazione tramite modelli del software e delle sue funzionalità
--il piano di test 
--una specifica per la menutenzione del software
+All'interno della documentazione si trova:<br>
+-la [specifica dei requisiti](https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Documentazione.md#6-requirement-engineering)<br>
+-la descrizionde del modello di sviluppo utilizzata<br>
+-la specifica della gestione della configurazione<br>
+-la specifica dell'organizzazione del team e delle varie fasi dello sviluppo<br>
+-la descrizione della struttura e dei design<br>
+-la rappresentazione tramite modelli del software e delle sue funzionalità<br>
+-il piano di test <br>
+-una specifica per la menutenzione del software <br>
 
 
 ### UML
