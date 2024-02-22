@@ -66,7 +66,7 @@ public class Partita {
 					continue;
 				}
 			}
-			else
+			else if(mexATA.equals("MIA"))
 			{
 				String messaggioMiao = request.substring(0, 4);
 				String numeroMiao = request.substring(4);
@@ -119,8 +119,6 @@ public class Partita {
 			
 			//SPACCHETTAMENTO MIAO ricevuto per ultimo
 			
-			
-
 			if (!request.equals(""))
 			{
 					String[] mexSplit = request.split(",");
