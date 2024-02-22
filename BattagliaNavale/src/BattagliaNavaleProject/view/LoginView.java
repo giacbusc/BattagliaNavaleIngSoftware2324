@@ -26,9 +26,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
 
+
 import BattagliaNavaleProject.control.MenuPrincipaleControl;
 import BattagliaNavaleProject.control.SchermataInizialeControl;
-import BattagliaNavaleProject.database.ConnectionDb;
 import BattagliaNavaleProject.formModel.LoginModel;
 
 import java.awt.Dimension;

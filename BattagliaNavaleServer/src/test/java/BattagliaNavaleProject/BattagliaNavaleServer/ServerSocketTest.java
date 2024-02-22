@@ -1,10 +1,10 @@
-package test.java.BattagliaNavaleProject.BattagliaNavale;
+package BattagliaNavaleProject.BattagliaNavaleServer;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import BattagliaNavaleProject.multiplayer.ServerSocket;
+import BattagliaNavaleProject.BattagliaNavaleServer.ServerSocket;
 
 public class ServerSocketTest {
 

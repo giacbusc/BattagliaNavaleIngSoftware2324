@@ -7,8 +7,8 @@ import javax.swing.JButton;
 import javax.swing.SwingWorker;
 import org.h2.tools.Server;
 
+import BattagliaNavaleProject.BattagliaNavaleServer.ServerSocket;
 import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
-import BattagliaNavaleProject.multiplayer.ServerSocket;
 import BattagliaNavaleProject.view.MenuPrincipaleView;
 import BattagliaNavaleProject.view.Observer;
 

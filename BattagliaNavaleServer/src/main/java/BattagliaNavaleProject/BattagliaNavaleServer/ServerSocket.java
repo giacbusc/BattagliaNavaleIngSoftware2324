@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.multiplayer;
+package BattagliaNavaleProject.BattagliaNavaleServer;
 
 import org.zeromq.SocketType;
 import org.zeromq.ZContext;

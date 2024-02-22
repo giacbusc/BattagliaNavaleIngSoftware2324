@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
 
-import BattagliaNavaleProject.database.ConnectionDb;
+import BattagliaNavaleProject.BattagliaNavaleServer.database.ConnectionDb;
 import BattagliaNavaleProject.formModel.LoginModel;
 import BattagliaNavaleProject.view.LoginView;
 

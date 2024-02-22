@@ -2,6 +2,8 @@ package BattagliaNavaleProject.database;
 
 import java.sql.SQLException;
 
+import BattagliaNavaleProject.BattagliaNavaleServer.database.ConnectionDb;
+
 public class SettingDatabaseTemp 
 {
 	public static void main(String[] args) throws SQLException

@@ -1,13 +1,16 @@
-package BattagliaNavaleProject.multiplayer;
+package BattagliaNavaleProject.BattagliaNavaleServer;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.database.ConnectionDb;
+import BattagliaNavaleProject.BattagliaNavaleServer.database.ConnectionDb;
 import BattagliaNavaleProject.doubleGameGridModel.InfoBoat;
 import BattagliaNavaleProject.doubleGameGridModel.Square;
+
+
 
 public class Partita {
 	ServerSocket s;
@@ -262,7 +265,7 @@ public class Partita {
 
 	}
 
-	private boolean controllaAffondata(Square[][] player, int x, int y) { // nome della barca da cercare
+	public boolean controllaAffondata(Square[][] player, int x, int y) { // nome della barca da cercare
 		String nomeBarcaColpita = player[x][y].getNome();
 		int conta = 0;
 		InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarcaColpita);

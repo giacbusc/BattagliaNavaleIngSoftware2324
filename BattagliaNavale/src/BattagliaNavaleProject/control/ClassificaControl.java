@@ -2,7 +2,7 @@ package BattagliaNavaleProject.control;
 
 import javax.swing.*;
 
-import BattagliaNavaleProject.database.ConnectionDb;
+import BattagliaNavaleProject.BattagliaNavaleServer.database.ConnectionDb;
 import BattagliaNavaleProject.view.Observer;
 
 import java.awt.*;
