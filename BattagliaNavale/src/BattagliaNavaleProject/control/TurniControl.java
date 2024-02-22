@@ -176,7 +176,7 @@ public class TurniControl {
 					lunghezza = arrayRisposta[3];
 					stato = arrayRisposta[2];
 					if (stato == 5) {
-						FinePartitaView fsv = new FinePartitaView(DGGV.getUsername(), "HAI VINTO",DGGV);
+						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO");
 						DGGV.dispose();
 					}
 					x = arrayRisposta[0];
@@ -233,7 +233,7 @@ public class TurniControl {
 			if (rispostaMsg.equals("HAI PERSO")) {
 				r = false;
 				DGGV.dispose();
-				FinePartitaView sfp = new FinePartitaView(DGGV.getUsername(), "HAI PERSO",DGGV);
+				FinePartitaControl sfp = new FinePartitaControl(DGGV.getUsername(), "HAI PERSO");
 			}
 
 		} while (r == true);

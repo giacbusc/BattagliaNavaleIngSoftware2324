@@ -54,7 +54,7 @@ public class SchermataAttesaControl {
 				SoundEffect se = new SoundEffect();
 				se.playMusic(filepath,true);
 				DoubleGameGridControl dggc= new DoubleGameGridControl(user);
-
+				sv.dispose();
 				r=false;
 			}
 
