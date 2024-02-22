@@ -16,14 +16,24 @@ Signori Giulia, matricola 1078801<br>
 Il software che abbiamo sviluppato è un'implementazione del noto gioco "Battaglia Navale" attraverso interfacce grafiche (GUI). Il gioco sviluppato è un gioco distribuito quindi che implementa il meccanismo dei Socket (libreria ZeroMQ) per permettere la comunicazione tra diversi client. Il gioco permette di essere testato e di giocare anche in locale su un unico pc. <br>
 
 ### Project Plan
-Il Project plan è stato da noi redatto prima della realizzazione del software, lo abbiamo infatti utilizzato come linea guida nello sviluppo iniziale del progetto.Lo abbiamo successivamente modificato in quanto come era prevedibile nel corso della progettazione e dello sviluppo ci siamo imbattuti in nuove problematiche che ci hanno portato a rivedere i nostri piani iniziali.<br>
+Il [project plan](https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Project%20Plan.md) è stato da noi redatto prima della realizzazione del software, lo abbiamo infatti utilizzato come linea guida nello sviluppo iniziale del progetto.Lo abbiamo successivamente modificato in quanto come era prevedibile nel corso della progettazione e dello sviluppo ci siamo imbattuti in nuove problematiche che ci hanno portato a rivedere i nostri piani iniziali.<br>
 Il project Plan del progetto si trovva nella cartella docs della repository.<br>
 
 ### Documentazione
-Tutta a documentazione, compresa l'analisi dei requisiti, per la progettazione del problema è stata scritta in un unico file chiamato Documentazione del progetto.<br>
+La documentazione del progetto è racchiusa in unico file chiamato [Documentazione](https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Documentazione.md).<br>
+All'interno della documentazione si trova:
+-la [specifica dei requisiti](https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Documentazione.md#6-requirement-engineering)
+-la descrizionde del modello di sviluppo utilizzata
+-la specifica della gestione della configurazione
+-la specifica dell'organizzazione del team e delle varie fasi dello sviluppo
+-la descrizione della struttura e dei design
+-la rappresentazione tramite modelli del software e delle sue funzionalità
+-il piano di test 
+-una specifica per la menutenzione del software
+
 
 ### UML
-Per una documentazione migliore e maggiormente esplicativa delle diverse funzionalità del software abbiamo realizzato vari diagrammi UML, questi si trovano sia all'interno della documentazione stessa ma anche in una loro cartella all'interno della cartella docs della repository.<br>
+Per una documentazione migliore e maggiormente esplicativa delle diverse funzionalità del software abbiamo realizzato vari diagrammi UML, questi si trovano sia all'interno della [documentazione](https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Documentazione.md#7-modelling) stessa ma anche in una loro cartella all'interno della cartella UML nei documenti della repository.<br>
 
 ### Installazione e Avviamento
 
