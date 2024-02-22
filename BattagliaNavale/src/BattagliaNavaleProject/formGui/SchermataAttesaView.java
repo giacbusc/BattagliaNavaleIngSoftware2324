@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 
 import org.zeromq.ZMQ.Socket;
 
+import BattagliaNavaleProject.Control.DoubleGameGridControl;
 import BattagliaNavaleProject.Control.SchermataAttesaControl;
 import BattagliaNavaleProject.client.Observer;
 
@@ -90,18 +91,6 @@ Observer obs;
 	        });
 	    }
 	    */
-	 
-	public void close(Socket socket) {
-		try {
-			DoubleGameGridView DGGV= new DoubleGameGridView(username,obs);
-			DGGV.setVisible(true);	
-			dispose();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-	}
 
 	public Observer getObserver() {
 		// TODO Auto-generated method stub

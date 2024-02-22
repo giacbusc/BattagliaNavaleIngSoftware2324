@@ -112,7 +112,7 @@ public class ConnectionControl {
 							SoundEffect se = new SoundEffect();
 
 							se.playMusic(filepath, true);
-							DoubleGameGridView DGGV = new DoubleGameGridView(userName, obs);
+							DoubleGameGridControl DGGV = new DoubleGameGridControl(userName);
 
 							sac.chiudi();
 						} catch (IOException e) {

@@ -15,6 +15,7 @@ import org.zeromq.ZMQ;
 
 import BattagliaNavaleProject.client.SoundEffect;
 import BattagliaNavaleProject.client.Square;
+import BattagliaNavaleProject.formGui.AggiuntaListener;
 import BattagliaNavaleProject.formGui.DoubleGameGridView;
 import BattagliaNavaleProject.formGui.FinePartitaView;
 
@@ -31,11 +32,13 @@ public class TurniControl {
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	int[] arraymsg = new int[2];
 	int[] arrayRisposta = new int[4];
+	private AggiuntaListener al;
 
-	public TurniControl(String indirizzo, DoubleGameGridView DGGV) {
+	public TurniControl(String indirizzo, DoubleGameGridView DGGV, AggiuntaListener al) {
 		// TODO Auto-generated constructor stub
 		this.indirizzo = indirizzo;
 		this.DGGV = DGGV;
+		this.al = al;
 		socket.connect(indirizzo);
 	}
 
@@ -49,9 +52,9 @@ public class TurniControl {
 		// rendo la griglia cliccabile
 		for (int i = 0; i < GRID_DIMENSION; i++) {
 			for (int j = 0; j < GRID_DIMENSION; j++) {
-				DGGV.yourBoard[i][j].removeMouseListener(DGGV);
+				al.removeMouseListener(DGGV,i,j);
 				if (DGGV.opponentBoard[i][j].getBackground() == Color.white) {
-					DGGV.opponentBoard[i][j].addMouseListener(DGGV);
+					al.addListenerOpponentGriglia(DGGV,i , j);
 				}
 
 			}
@@ -107,7 +110,7 @@ public class TurniControl {
 					DGGV.opponentBoard[x][y].setColpito();
 					String filepath = "./music/ColpitaSound.wav";
 					SoundEffect se = new SoundEffect();
-					se.playMusic(filepath, true);
+					se.playMusic(filepath,true);
 
 					try {
 						cicloattesa();
@@ -173,7 +176,7 @@ public class TurniControl {
 					lunghezza = arrayRisposta[3];
 					stato = arrayRisposta[2];
 					if (stato == 5) {
-						FinePartitaView fsv = new FinePartitaView(DGGV.getUsername(), "HAI VINTO", DGGV);
+						FinePartitaView fsv = new FinePartitaView(DGGV.getUsername(), "HAI VINTO",DGGV);
 						DGGV.dispose();
 					}
 					x = arrayRisposta[0];
@@ -184,7 +187,7 @@ public class TurniControl {
 
 				String filepath = "./music/AffondataSound.wav";
 				SoundEffect se = new SoundEffect();
-				se.playMusic(filepath, true);
+				se.playMusic(filepath,true);
 
 				try {
 					cicloattesa();
@@ -204,11 +207,11 @@ public class TurniControl {
 		boolean r = true;
 		do {
 			DGGV.turno.setForeground(Color.white);
-			DGGV.turnoPanel.setVisible(false);
+			//DGGV.turnoPanel.setVisible(false);
 			toglilistener();
 			Thread.sleep(1300);
 			String sendMsg = "ATA2";
-
+			
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 			System.out.println("inviata attesa del turno " + sendMsg);
 
@@ -219,7 +222,7 @@ public class TurniControl {
 			if (rispostaMsg.equals("GIOCA")) {
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
-				se.playMusic(filepath, false);
+				se.playMusic(filepath,false);
 				DGGV.turnoPanelCreation();
 				DGGV.turnoPanel.setVisible(true);
 				DGGV.turno.setForeground(Color.DARK_GRAY);
@@ -230,7 +233,7 @@ public class TurniControl {
 			if (rispostaMsg.equals("HAI PERSO")) {
 				r = false;
 				DGGV.dispose();
-				FinePartitaView sfp = new FinePartitaView(DGGV.getUsername(), "HAI PERSO", DGGV);
+				FinePartitaView sfp = new FinePartitaView(DGGV.getUsername(), "HAI PERSO",DGGV);
 			}
 
 		} while (r == true);
@@ -243,7 +246,7 @@ public class TurniControl {
 		for (int i = 0; i < GRID_DIMENSION; i++) {
 			for (int j = 0; j < GRID_DIMENSION; j++) {
 
-				DGGV.opponentBoard[i][j].removeMouseListener(DGGV);
+				al.removeListenerOpponent(DGGV, i ,j);
 			}
 		}
 	}

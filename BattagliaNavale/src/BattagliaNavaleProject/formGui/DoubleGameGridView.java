@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -30,7 +31,7 @@ import BattagliaNavaleProject.Control.TurniControl;
 import BattagliaNavaleProject.client.Observer;
 import BattagliaNavaleProject.client.Square;
 
-public class DoubleGameGridView extends JFrame implements MouseListener{
+public class DoubleGameGridView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static final int GRID_DIMENSION = 10;
@@ -56,12 +57,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
-	private String username;
-	Observer obs;
-
-
-	private DoubleGameGridControl DGGC= new DoubleGameGridControl(this);
-	
+	private String username;	
 	public JPanel turnoPanel;
 	
 
@@ -126,9 +122,8 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		setVisible(true);
 	}*/
 
-	public DoubleGameGridView(String username, Observer obs) throws IOException 
+	public DoubleGameGridView(String username) throws IOException 
 	{
-		this.obs=obs;
 		this.username = username;
 		this.frame = new JFrame("Battaglia Navale");
 		setSize(1400,788);
@@ -197,7 +192,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 		{
 			panel[i]= new JPanel();
 			panel[i].setFocusable(true);
-			panel[i].addMouseListener(this);
+			//panel[i].addMouseListener(this);
 			panel[i].setName(""+i);
 			boatLength = dim.get(i);
 
@@ -330,7 +325,7 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 				else
 				{
 					yourBoard[i][j]= new Square(i,j,0);
-					yourBoard[i][j].addMouseListener(this);//
+					//yourBoard[i][j].addMouseListener(this);//
 					yourBoard[i][j].setName("yourBoard");//
 					yourBoardPanel.add(yourBoard[i][j]);
 					opponentBoard[i][j]= new Square(i,j,0);
@@ -426,64 +421,81 @@ public class DoubleGameGridView extends JFrame implements MouseListener{
 
 	}
 	 */
-	
-	
-	
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource()instanceof Square) {
-			Square clickedSquare= (Square) e.getSource();
-			if(clickedSquare.getName().equals("yourBoard")) {
-			DGGC.gestioneClick(e);
-		}
-			else if(clickedSquare.getName().equals("opponentBoard")) {
-				try {
-					DGGC.turni.colpoClick(e);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		}
-		else if(e.getSource()instanceof JPanel) {
-			
-			DGGC.gestioneClick(e);
-		}
-	}
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
 	public JPanel[] getPanel() {
 		return panel;
 	}
 	public void setPanel(JPanel[] panel) {
 		this.panel = panel;
 	}
-	public Observer getObserver() {
-		return obs;
-	}
-
+	
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return username;
 	}
+	
+	public void addMouseBarche(MouseListener act)
+	{
+		ArrayList<Integer> dim = getDimNavi();
+		for(int i = 0; i < dim.size();i++)
+		{
+			panel[i].addMouseListener(act);
+		}
+		System.out.println("sono entrato");
+	}
+	
+	public void removeMouseBarche(MouseListener act)
+	{
+		ArrayList<Integer> dim = getDimNavi();
+		for(int i = 0; i < dim.size();i++)
+		{
+			panel[i].removeMouseListener(act);
+		}
+	}
 
+	public void addMouseGriglia(MouseListener act)
+	{
+		for(int i = 0; i<GRID_DIMENSION; i++)
+		{
+			for(int j = 0; j < GRID_DIMENSION; j++)
+			{
+				if(yourBoard[i][j].getName().equals("yourBoard"));
+					yourBoard[i][j].addMouseListener(act);
+			}
+		}
+	}
+	
+	public void removeMouseMiaGrigilia(MouseListener act)
+	{
+		for(int i = 0; i<GRID_DIMENSION; i++)
+		{
+			for(int j = 0; j < GRID_DIMENSION; j++)
+			{
+				if(yourBoard[i][j].getName().equals("yourBoard"));
+					yourBoard[i][j].removeMouseListener(act);
+			}
+		}
+	}
+	
+	public void addListenerOpponentGriglia(MouseListener act, int i, int j)
+	{
+		opponentBoard[i][j].addMouseListener(act);
+	}
+	public void addListenerCasellaVuota(MouseListener act, int i, int j)
+	{
+		if(yourBoard[i][j].getStato()!=1)
+		{
+			yourBoard[i][j].addMouseListener(act);
+		}
+	}
+	
+	public void removeMouseListener(MouseListener act, int i, int j)
+	{
+		yourBoard[i][j].removeMouseListener(act);
+	}
+	
+	
+	public void removeListenerOpponent(MouseListener act, int i, int j)
+	{
+		opponentBoard[i][j].removeMouseListener(act);
+	}
 }

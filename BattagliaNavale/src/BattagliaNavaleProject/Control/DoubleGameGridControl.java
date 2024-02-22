@@ -17,12 +17,13 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
+import BattagliaNavaleProject.formGui.AggiuntaListener;
 import BattagliaNavaleProject.formGui.DoubleGameGridView;
 import BattagliaNavaleProject.client.InfoBoat;
 import BattagliaNavaleProject.client.SoundEffect;
 import BattagliaNavaleProject.client.Square;
 
-public class DoubleGameGridControl {
+public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	private static final int GRID_DIMENSION = 10;
 	public TurniControl turni;
@@ -43,16 +44,42 @@ public class DoubleGameGridControl {
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	public String rispostamsg;
+	private String username;
 	String[] arraymsg = new String[3];
 	int dim = 3;
-
 	// System.out.println("Connecting to th server");
 
 	// Socket to talk to server
 
-	public DoubleGameGridControl(DoubleGameGridView grid) {
-		this.grid = grid;
+	public DoubleGameGridControl(String username) throws IOException {
+
+		this.username = username;
+		grid = new DoubleGameGridView(username);
+		grid.addMouseGriglia(this);
+		grid.addMouseBarche(this);
 		socket.connect(indirizzo);
+	}
+
+	public void mouseClicked(MouseEvent e)
+	{
+		if(e.getSource()instanceof Square) {
+			Square clickedSquare= (Square) e.getSource();
+			if(clickedSquare.getName().equals("yourBoard")) {
+				gestioneClick(e);
+			}
+			else if(clickedSquare.getName().equals("opponentBoard")) {
+				try {
+					System.out.println("Ho cliccato la opponent board ");
+					turni.colpoClick(e);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
+		else if(e.getSource()instanceof JPanel) {
+			gestioneClick(e);
+		}
 	}
 
 	public void gestioneClick(MouseEvent e) {
@@ -101,8 +128,7 @@ public class DoubleGameGridControl {
 					if (primo == 1) {
 						for (int i = 0; i < 10; i++) {
 							for (int j = 0; j < 10; j++) {
-								if (grid.yourBoard[i][j].getStato()!=1)
-									grid.yourBoard[i][j].addMouseListener(grid);
+								grid.addListenerCasellaVuota(this,i,j);
 
 							}
 						}
@@ -300,7 +326,7 @@ public class DoubleGameGridControl {
 
 					grid.yourBoard[i][j].setReset();
 				}
-				grid.yourBoard[i][j].removeMouseListener(grid);
+				grid.removeMouseListener(this, i, j);
 
 			}
 
@@ -334,7 +360,7 @@ public class DoubleGameGridControl {
 
 		if (arrayRisposta[2] != -1) {
 			colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
-			
+
 		}
 
 		String nome = arraymsg[2];
@@ -363,7 +389,7 @@ public class DoubleGameGridControl {
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
 					if (grid.yourBoard[i][j].getColor() != Color.gray) {
-						grid.yourBoard[i][j].removeMouseListener(grid);
+						grid.removeMouseListener(this, i ,j);
 					}
 
 				}
@@ -382,7 +408,7 @@ public class DoubleGameGridControl {
 			clickedPanel.setVisible(true);
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					grid.yourBoard[i][j].removeMouseListener(grid);
+					grid.removeMouseListener(this, i ,j);
 				}
 
 			}
@@ -390,7 +416,7 @@ public class DoubleGameGridControl {
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
 					if (grid.yourBoard[i][j].getStato()!=1) {
-						grid.yourBoard[i][j].removeMouseListener(grid);
+						grid.removeMouseListener(this, i, j);
 					}
 
 				}
@@ -441,15 +467,11 @@ public class DoubleGameGridControl {
 	}
 
 	public void aggiungiPanel() {
-		for (int i = 0; i < GRID_DIMENSION; i++) {
-			arrayPanel[i].addMouseListener(grid);
-		}
+		grid.addMouseBarche(this);
 	}
 
 	public void togliPanel() {
-		for (int i = 0; i < GRID_DIMENSION; i++) {
-			arrayPanel[i].removeMouseListener(grid);
-		}
+		grid.removeMouseBarche(this);
 	}
 
 	private void assegnaPanel() {
@@ -548,13 +570,14 @@ public class DoubleGameGridControl {
 
 				} while (r == true);
 
-				turni = new TurniControl(indirizzo, grid);
-				System.out.println("inizio turno");
+				creazioneTurni();
 				
+				System.out.println("inizio turno");
+
 				grid.turnoPanel.setVisible(true);
 				grid.turnoPanel.setForeground(Color.DARK_GRAY);
-		
 				turni.turno();
+				
 				return null;
 			}
 		};
@@ -562,5 +585,51 @@ public class DoubleGameGridControl {
 
 		// grid.waitPanelCreation();
 
+	}
+
+	public void creazioneTurni()
+	{
+		turni = new TurniControl(indirizzo, grid,  this);
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void addListenerOpponentGriglia(DoubleGameGridView v, int i, int j) {
+		// TODO Auto-generated method stub
+		v.addListenerOpponentGriglia(this, i, j);
+	}
+
+	@Override
+	public void removeMouseListener(DoubleGameGridView v,int i, int j) {
+		// TODO Auto-generated method stub
+		v.removeMouseListener(this,i,j);
+	}
+
+	@Override
+	public void removeListenerOpponent(DoubleGameGridView v, int i, int j) {
+		// TODO Auto-generated method stub
+		v.removeListenerOpponent(this, i, j);
 	}
 }
