@@ -80,7 +80,7 @@ public class MenuPrincipaleView extends JFrame {
 		}
        
         JLabel lblNewLabel_2 = new JLabel("BATTAGLIA NAVALE ");
-        lblNewLabel_2.setForeground(new Color(0, 128, 255));
+        lblNewLabel_2.setForeground(Color.decode("#3380CC"));
         lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 70));
         lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel_2.setBounds(350, 0, 750, 85);
@@ -120,7 +120,7 @@ public class MenuPrincipaleView extends JFrame {
 	    	public void mouseEntered(MouseEvent e)
 	    	{
 	    		imageLabel.setVisible(true);
-	    		pcSoloLabel.setForeground(new Color(0, 128, 255));
+	    		pcSoloLabel.setForeground(Color.decode("#3380CC"));
 	    		pcSoloLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 	    		pcSoloButton.repaint();
 	    	}
@@ -181,7 +181,7 @@ public class MenuPrincipaleView extends JFrame {
 	    	public void mouseEntered(MouseEvent e)
 	    	{
 	    		imageLabel2.setVisible(true);
-	    		pcMutliLabel.setForeground(new Color(0, 128, 255));
+	    		pcMutliLabel.setForeground(Color.decode("#3380CC"));
 	    		pcMutliLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 	    		pcMultiButton.repaint();
 	    	}
@@ -240,7 +240,7 @@ public class MenuPrincipaleView extends JFrame {
 	    	public void mouseEntered(MouseEvent e)
 	    	{
 	    		imageLabel3.setVisible(true);
-	    		tutorialTextLabel.setForeground(new Color(0, 128, 255));
+	    		tutorialTextLabel.setForeground(Color.decode("#3380CC"));
 	    		tutorialTextLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 	    		tutorialButton.repaint();
 	    	}

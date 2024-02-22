@@ -92,7 +92,7 @@ public class LoginView extends JFrame implements Observer {
         
         JLabel lblNewLabel_2 = new JLabel("Welcome Back");
         lblNewLabel_2.setBounds(0, 0, 620, 85);
-        lblNewLabel_2.setForeground(new Color(0, 128, 255));
+        lblNewLabel_2.setForeground(Color.decode("#3380CC"));
         lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 30));
         lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
         
@@ -116,26 +116,26 @@ public class LoginView extends JFrame implements Observer {
         logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundPanel.add(logoLabel);
         
-        usernameLabel = new JLabel("Username:");
-        usernameLabel.setBounds(118, 128, 108, 25);
-        usernameLabel.setForeground(new Color(0, 128, 255));
-        usernameLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+        usernameLabel = new JLabel("USERNAME:");
+        usernameLabel.setBounds(106, 128, 162, 25);
+        usernameLabel.setForeground(Color.decode("#3380CC"));
+        usernameLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
         usernameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundPanel.add(usernameLabel);
 
         usernameField = new JTextField(15);
-        usernameField.setBounds(236, 130, 150, 25);
+        usernameField.setBounds(278, 128, 150, 25);
         backgroundPanel.add(usernameField);
 
-        passwordLabel = new JLabel("Password:");
-        passwordLabel.setBounds(118, 182, 108, 25);
-        passwordLabel.setForeground(new Color(0, 128, 255));
-        passwordLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+        passwordLabel = new JLabel("PASSWORD:");
+        passwordLabel.setBounds(106, 182, 162, 25);
+        passwordLabel.setForeground(Color.decode("#3380CC"));
+        passwordLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
         passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundPanel.add(passwordLabel);
 
         passwordField = new JPasswordField(15);
-        passwordField.setBounds(236, 182, 150, 25);
+        passwordField.setBounds(278, 182, 150, 25);
         backgroundPanel.add(passwordField);
 
         loginButton = new JButton("Login");
@@ -217,7 +217,7 @@ public class LoginView extends JFrame implements Observer {
 					@Override
 					public void mouseEntered(MouseEvent e) {
 						// TODO Auto-generated method stub
-						backButton.setForeground(new Color(0, 128, 255));
+						backButton.setForeground(Color.decode("#3380CC"));
 			    		backButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 					}
 
