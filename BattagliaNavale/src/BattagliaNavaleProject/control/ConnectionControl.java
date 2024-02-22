@@ -112,7 +112,7 @@ public class ConnectionControl {
 							SoundEffect se = new SoundEffect();
 
 							se.playMusic(filepath, true);
-							DoubleGameGridControl DGGV = new DoubleGameGridControl(userName);
+							DoubleGameGridControl DGGC = new DoubleGameGridControl(userName);
 
 							sac.chiudi();
 						} catch (IOException e) {
