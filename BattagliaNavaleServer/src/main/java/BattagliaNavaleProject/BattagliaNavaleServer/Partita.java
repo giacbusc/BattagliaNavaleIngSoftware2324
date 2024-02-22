@@ -21,6 +21,7 @@ public class Partita {
 	boolean INVIATO = false;
 	public static int contaBarcheP1 = 0, contaBarcheP2 = 0;
 	private ArrayList<String> username = new ArrayList<>();
+	public String mexprecedente="-1";
 
 	public void inizioGioco() {
 
@@ -32,55 +33,96 @@ public class Partita {
 
 		// stampaGriglia(1);
 
-		while ((contaBarcheP1 != 10) || (contaBarcheP2 != 10)) {
+		while ((contaBarcheP1 != 10) || (contaBarcheP2 != 10)) 
+		{
 			byte[] reply = socketServer.recv(0);
 			String request = new String(reply, ZMQ.CHARSET);
 			System.out.println("Messaggio ricevuto: " + request);
 			// BOOLEANO CHE ANDRA SETTATO PER RISPONDERGLI ANZICHE CON ATA CON GIOCA PER
 			// RISVEGLIARLO
-			if (request.equals("MIAO") && INVIATO == true) {
-				String responseMessage = "GIOCA";
-				socketServer.send(responseMessage.getBytes(), 0);
-				System.out.println("Inviato: " + responseMessage);
-				if (turno == 2) {
-					turno = 1; System.out.println("turno " + turno);
-				} else {
-					turno = 2; System.out.println("turno " + turno);
+			
+			String mexATA = request.substring(0, 3);
+			
+			if(mexATA.equals("ATA"))
+			{
+				if(INVIATO==true)
+				{
+					System.out.println("Stai passando il turno!");
+					String responseMessage = "GIOCA";
+					socketServer.send(responseMessage.getBytes(), 0);
+					System.out.println("Inviato: " + responseMessage);
+					turno = 2;
+					System.out.println("turno " + turno );
+
+					INVIATO = false;
+					continue;
 				}
-
-				System.out.println("turno " + turno);
-				INVIATO = false;
-				continue;
+			
+				if(INVIATO == false)
+				{
+					String responseMessage = "ATA";
+					socketServer.send(responseMessage.getBytes(), 0);
+					System.out.println("Inviato: " + responseMessage);
+					continue;
+				}
 			}
+			else
+			{
+				String messaggioMiao = request.substring(0, 4);
+				String numeroMiao = request.substring(4);
+				int numattuale = Integer.parseInt(numeroMiao);
+				
+				String numeroMIAOprecedente = mexprecedente.substring(4);
+				int numprecedente = Integer.parseInt(numeroMIAOprecedente);
 
-			if (request.equals("MIAO") && INVIATO == false) {
-				String responseMessage = "MIAO";
-				socketServer.send(responseMessage.getBytes(), 0);
-				System.out.println("Inviato: " + responseMessage);
-				continue;
-			}
-			 String mexATA = request.substring(0, 3);
-			if (mexATA.equals("ATA") && INVIATO == false) {
-				String responseMessage = "ATA";
-				socketServer.send(responseMessage.getBytes(), 0);
-				System.out.println("Inviato: " + responseMessage);
-				continue;
-			}
+				System.out.println("miao attuale: "+numattuale);
+				System.out.println("miao precedente: "+numprecedente);
+				if (messaggioMiao.equals("MIAO") && INVIATO == true) 
+				{
+					if(numattuale>numprecedente)
+					{
+						String responseMessage = "GIOCA";
+						socketServer.send(responseMessage.getBytes(), 0);
+						System.out.println("Inviato: " + responseMessage);
+						if (turno == 2) {
+							turno = 1; System.out.println("turno " + turno);
+						} else {
+							turno = 2; System.out.println("turno " + turno);
+						}
 
-			if (mexATA.equals("ATA") && INVIATO == true) {
-				System.out.println("Stai passando il turno!");
-				String responseMessage = "GIOCA";
-				socketServer.send(responseMessage.getBytes(), 0);
-				System.out.println("Inviato: " + responseMessage);
-				turno = 2;
-				System.out.println("turno " + turno );
+						System.out.println("turno " + turno);
+						INVIATO = false;
+						continue;
+					}
+					else
+					{
+						String responseMessage = "MIAO";
+						socketServer.send(responseMessage.getBytes(), 0);
+						System.out.println("Inviato: " + responseMessage);
+						INVIATO = true;
+						continue;
+					}
+					
+				}
+				
 
-				INVIATO = false;
-				continue;
+				if (messaggioMiao.equals("MIAO") && INVIATO == false) 
+				{	
+					mexprecedente = request;
+					String responseMessage = "MIAO";
+					socketServer.send(responseMessage.getBytes(), 0);
+					System.out.println("Inviato: " + responseMessage);
+					continue;
+				}
+				
 			}
+			
+			//SPACCHETTAMENTO MIAO ricevuto per ultimo
+			
+			
 
 			if (!request.equals(""))
-				if (!(mexATA.equals("ATA") && !(request.equals("MIAO")))) {
+			{
 					String[] mexSplit = request.split(",");
 					String x = mexSplit[0];
 					String y = mexSplit[1];

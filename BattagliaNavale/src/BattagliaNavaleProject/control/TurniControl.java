@@ -207,10 +207,9 @@ public class TurniControl {
 
 	private void cicloattesa() throws InterruptedException, IOException, SQLException {
 		// TODO Auto-generated method stub
+		DGGV.turnoPanel.setVisible(false);
 		boolean r = true;
 		do {
-			DGGV.turno.setForeground(Color.white);
-			//DGGV.turnoPanel.setVisible(false);
 			toglilistener();
 			Thread.sleep(1300);
 			String sendMsg = "MIAO"+miaoconta;
@@ -226,9 +225,7 @@ public class TurniControl {
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
 				se.playMusic(filepath,false);
-				DGGV.turnoPanelCreation();
 				DGGV.turnoPanel.setVisible(true);
-				DGGV.turno.setForeground(Color.DARK_GRAY);
 				turno();
 				r = false;
 			}
