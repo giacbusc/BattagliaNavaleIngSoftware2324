@@ -1,5 +1,5 @@
 # BattagliaNavaleIngSoftware2324
-![Logo](/docs/resources/Logo.png)
+<img src="/docs/resources/Logo.png" alt="Logo" width="315" height="315">
 ## Progetto di ingegneria del software
 ### Anno accademico 2023-2024
 
