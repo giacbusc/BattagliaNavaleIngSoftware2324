@@ -204,9 +204,6 @@ public class ServerSocket {
 			if (mexprec[2].equals(nomeBarca)) { // secondo click della barca
 												// RIEMPI CELLE
 												// setto spedire a -1
-				for (int k = 0; k < spedire.length; k++) {
-					spedire[k] = "-1";
-				}
 				dividimex[2] = "1";
 				String fiocco2 = riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
 						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno,
@@ -558,7 +555,9 @@ public class ServerSocket {
 	public String riempiCelle(int x, int y, int l, int xp, int yp, int turno, String nomeBarca) // x e y posizioni																				// secondo click,mentre
 																								// xp e yp
 	// posizioni primo click
-	{
+	{	for (int k = 0; k < spedire.length; k++) {
+		spedire[k] = "-1";
+	}
 		if (x != xp) // CASO NORD o SUD
 		{
 			if (xp < x) // caso sud

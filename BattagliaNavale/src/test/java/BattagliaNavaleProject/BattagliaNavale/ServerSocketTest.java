@@ -70,7 +70,7 @@ public class ServerSocketTest {
 		serverSocket.inizializzaSquare();
 		//spedire è inizializzato a -1
 		String result = serverSocket.riempiCelle(2, 2, 3, 0, 2, 1, "Destroyer1");
-		assertEquals("2,2,1,0,null ,null ,null,", result);
+		assertEquals("2,2,1,0,-1,-1,-1,", result);
 	}
 
 	@Test
@@ -79,7 +79,7 @@ public class ServerSocketTest {
 		serverSocket.inizializzaSquare();
 		//spedire è inizializzato a -1
 		String result = serverSocket.riempiCelle(3, 3, 2, 5, 3, 1, "Cruiser2");
-		assertEquals("4,3,1,null,null,0,null,", result);
+		assertEquals("4,3,1,-1,-1,0,-1,", result);
 	}
 
 	@Test
@@ -89,7 +89,7 @@ public class ServerSocketTest {
 		serverSocket.inizializzaSquare();
 		//spedire è inizializzato a -1
 		String result = serverSocket.riempiCelle(3, 3, 4, 3, 6, 1, "Aircraft1");
-		assertEquals("3,3,1,null ,0,null ,null,", result);
+		assertEquals("3,3,1,-1,0,-1,-1,", result);
 	}
 
 	@Test
@@ -99,7 +99,7 @@ public class ServerSocketTest {
 		serverSocket.inizializzaSquare();
 		//spedire è inizializzato a -1
 		String result = serverSocket.riempiCelle(3, 5, 2, 3, 1, 1, "Cruiser");
-		assertEquals("3,2,1,null, null, null,0, ", result);
+		assertEquals("3,2,1,-1,-1,-1,0,", result);
 	}
 
 }
