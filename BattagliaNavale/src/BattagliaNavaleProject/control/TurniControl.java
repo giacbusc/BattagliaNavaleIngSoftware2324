@@ -33,12 +33,14 @@ public class TurniControl {
 	int[] arraymsg = new int[2];
 	int[] arrayRisposta = new int[4];
 	private AggiuntaListener al;
+	private int miaoconta;
 
 	public TurniControl(String indirizzo, DoubleGameGridView DGGV, AggiuntaListener al) {
 		// TODO Auto-generated constructor stub
 		this.indirizzo = indirizzo;
 		this.DGGV = DGGV;
 		this.al = al;
+		
 		socket.connect(indirizzo);
 	}
 
@@ -49,6 +51,7 @@ public class TurniControl {
 	 * array risposta x y stato lunghezza N E S O
 	 */
 	public void turno() {
+		miaoconta=0;
 		// rendo la griglia cliccabile
 		for (int i = 0; i < GRID_DIMENSION; i++) {
 			for (int j = 0; j < GRID_DIMENSION; j++) {
@@ -210,11 +213,11 @@ public class TurniControl {
 			//DGGV.turnoPanel.setVisible(false);
 			toglilistener();
 			Thread.sleep(1300);
-			String sendMsg = "MIAO";
+			String sendMsg = "MIAO"+miaoconta;
 			
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 			System.out.println("inviata attesa del turno " + sendMsg);
-
+			miaoconta++;
 			byte[] byteMsg = socket.recv(0);
 			System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
 			String rispostaMsg = new String(byteMsg, ZMQ.CHARSET);
