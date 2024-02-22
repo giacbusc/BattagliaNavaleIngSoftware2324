@@ -1,7 +1,7 @@
 # BattagliaNavaleIngSoftware2324
-![Logo](docs/resources/logo.png)
+![Logo](/docs/resources/Logo.png)
 ## Progetto di ingegneria del software
-### Anno accademico 2022-2023
+### Anno accademico 2023-2024
 
 ### Progetto a cura di:
 Buscaglia Giacomo, matricola 1078804 <br>
