@@ -411,7 +411,8 @@ public class DoubleGameGridView extends JFrame {
 		turno.setHorizontalAlignment(SwingConstants.CENTER);
 		turno.setVerticalAlignment(SwingConstants.CENTER);
 		turnoPanel.add(turno);
-		turnoPanel.setVisible(true);
+		turno.setVisible(true);
+		turnoPanel.setVisible(false);
 	}
 
 	/*public void mostra() {

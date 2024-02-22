@@ -576,7 +576,6 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 				System.out.println("inizio turno");
 
 				grid.turnoPanel.setVisible(true);
-				grid.turnoPanel.setForeground(Color.DARK_GRAY);
 				turni.turno();
 				
 				return null;
