@@ -35,8 +35,9 @@ public class LoginControl implements ActionListener
 		
 		//LoginView gui = new LoginView();
     	ConnectionDb conn1 = new ConnectionDb();
-    	
+    	System.out.println(conn1.getConnection()); 
     	String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";
+    	
         PreparedStatement pstmt = conn1.getConnection().prepareStatement(sql);
         pstmt.setString(1, model.getUserName().trim());
         pstmt.setString(2, model.getPassword());

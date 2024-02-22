@@ -319,12 +319,14 @@ public class Partita {
 		ConnectionDb conn = new ConnectionDb();
 		PreparedStatement pstmt;
 		try {
-			pstmt = conn.getConnection().prepareStatement(sql);
+			pstmt = conn.getConnectionServer().prepareStatement(sql);
 			pstmt.setString(1, usernameVincitore);
 			pstmt.setString(2, usernameSconfitto);
 			pstmt.setString(3, usernameVincitore);
 			boolean resultSet = pstmt.execute();
 			System.out.println("VINCITA AGGIUNTA CON SUCCESSO");
+			
+			conn.closeConnectionServer();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
