@@ -547,10 +547,11 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 				// Esegui le operazioni di connessione qui
 				boolean r = true;
 				do {
+					ataconta++;
 					grid.waitPanel.setVisible(true);
 					grid.waitPanel.setForeground(Color.DARK_GRAY);
 					Thread.sleep(500);
-					String sendMsg = "ATA";
+					String sendMsg = "ATA"+ataconta;
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), ZMQ.DONTWAIT);
 					System.out.println("Inviato " + sendMsg);
 

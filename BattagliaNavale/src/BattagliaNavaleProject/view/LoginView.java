@@ -172,7 +172,7 @@ public class LoginView extends JFrame implements Observer {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				loginButton.setForeground(new Color(0, 128, 255));
+				loginButton.setForeground(Color.decode("#3380CC"));
 	    		loginButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 			}
 
