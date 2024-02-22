@@ -4,7 +4,6 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-
 import java.util.ArrayList;
 
 public class ServerSocket {
@@ -12,6 +11,7 @@ public class ServerSocket {
 	private Square[][] player1 = new Square[MAX_LENGTH][MAX_LENGTH];
 	private Square[][] player2 = new Square[MAX_LENGTH][MAX_LENGTH];
 	private String[] spedire = new String[7];
+	private String ataprecedente;
 	static String indirizzo;
 	private String[] mexprec = new String[3];
 	private boolean sveglia = false;
@@ -126,19 +126,32 @@ public class ServerSocket {
 					System.out.println("Inviato: " + responseMessage);
 					piazzamentoBarca(turno);
 					System.out.println("inizio giocooooo");
-					reply = socketServer.recv(0);
-					messaggio = new String(reply, ZMQ.CHARSET);
-					System.out.println("ricevuto: " + messaggio);
-
-					if (messaggio.equals("ATA")) 
+					
+					
+					while(true)
 					{
-						r=false;
-						responseMessage = "GIOCA";
-						socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
-						System.out.println("Inviato AL PLAYER 1: " + responseMessage);
-						Partita a = new Partita();
-						a.inizioGioco();
-					}
+						reply = socketServer.recv(0);
+						messaggio = new String(reply, ZMQ.CHARSET);
+						System.out.println("ricevuto: " + messaggio);
+					
+						String numeroATA = messaggio.substring(3,3);
+						int numattuale = Integer.parseInt(numeroATA);
+						System.out.println("num attuale: "+numattuale);
+						String numeroATAprecedente = ataprecedente.substring(3,3);
+						int numprecedente = Integer.parseInt(numeroATAprecedente);
+						System.out.println("num precedente: "+numprecedente);
+						if (messaggio.equals("ATA") && numattuale > numprecedente ) 
+						{
+							r=false;
+							responseMessage = "GIOCA";
+							socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
+							System.out.println("Inviato AL PLAYER 1: " + responseMessage);
+							Partita a = new Partita();
+							a.inizioGioco();
+							break;
+						}
+					}	
+					
 
 				}
 			}
@@ -181,7 +194,9 @@ public class ServerSocket {
 				System.out.println("Inviato: " + responseMessage);
 				continue;
 			}
-			if (messaggio.equals("") || messaggio.equals("ATA")) {
+			String messaggioATA = messaggio.substring(0, 2);
+			if (messaggioATA.equals("") || messaggioATA.equals("ATA")) {
+				ataprecedente = messaggio;
 				String responseMessage = "ATA";
 				socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
 				System.out.println("Inviato: " + responseMessage);
@@ -550,12 +565,14 @@ public class ServerSocket {
 	}
 
 //riempire le celle dopo il secondo click
-	public String riempiCelle(int x, int y, int l, int xp, int yp, int turno, String nomeBarca) // x e y posizioni																				// secondo click,mentre
+	public String riempiCelle(int x, int y, int l, int xp, int yp, int turno, String nomeBarca) // x e y posizioni //
+																								// secondo click,mentre
 																								// xp e yp
 	// posizioni primo click
-	{	for (int k = 0; k < spedire.length; k++) {
-		spedire[k] = "-1";
-	}
+	{
+		for (int k = 0; k < spedire.length; k++) {
+			spedire[k] = "-1";
+		}
 		if (x != xp) // CASO NORD o SUD
 		{
 			if (xp < x) // caso sud
