@@ -1,4 +1,5 @@
 package BattagliaNavaleProject.control;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -13,9 +14,9 @@ import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 import BattagliaNavaleProject.view.MenuPrincipaleView;
 import BattagliaNavaleProject.view.Observer;
 
-public class MenuPrincipaleControl implements ActionListener{
+public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipale{
 	private MenuPrincipaleView menu;
-
+	private SchermataAttesaControl sac;
 	public MenuPrincipaleControl(String username, Observer obs) throws IOException, SQLException {
 		menu= new MenuPrincipaleView(username,obs);
 		System.out.println("Sono entrato");
@@ -84,7 +85,7 @@ public class MenuPrincipaleControl implements ActionListener{
 
 	public void open( ) throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
-		final SchermataAttesaControl sac= new SchermataAttesaControl("ATTESA AVVERSARIO", menu.getUsername(),menu.getObserver());
+		sac= new SchermataAttesaControl("ATTESA AVVERSARIO", menu.getUsername(),menu.getObserver(), this);
 		menu.dispose();
 		//ConnectionControl c = new ConnectionControl(sin, userName);
 		
@@ -93,16 +94,26 @@ public class MenuPrincipaleControl implements ActionListener{
 	        @Override
 	        protected Void doInBackground() throws Exception {
 	            // Esegui le operazioni di connessione qui
-	            ConnectionControl c = new ConnectionControl(sac, menu.getUsername(), menu.getObserver());
+	        	creaConnectionControl();
 	            return null;
 	        }
 	    };
 
 	    worker.execute();
 	}
+	
+	public void creaConnectionControl() throws IOException, InterruptedException
+	{
+		 ConnectionControl c = new ConnectionControl(sac, menu.getUsername(), menu.getObserver(), this);
+	}
 	 
 	public void setConnectionIndirizzo(String indirizzo)
 	{
 		ConnectionControl.setIndirizzo(indirizzo);
+	}
+	@Override
+	public void torna(String username, Observer obs) throws IOException, SQLException {
+		// TODO Auto-generated method stub
+		MenuPrincipaleControl mp = new MenuPrincipaleControl(username, obs);
 	}
 }

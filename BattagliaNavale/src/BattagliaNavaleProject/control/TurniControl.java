@@ -33,10 +33,12 @@ public class TurniControl {
 	int[] arraymsg = new int[2];
 	int[] arrayRisposta = new int[4];
 	private AggiuntaListener al;
+	private TornaMenuPrincipale tmp;
 	private int miaoconta;
 
-	public TurniControl(String indirizzo, DoubleGameGridView DGGV, AggiuntaListener al) {
+	public TurniControl(String indirizzo, DoubleGameGridView DGGV, AggiuntaListener al, TornaMenuPrincipale tmp) {
 		// TODO Auto-generated constructor stub
+		this.tmp = tmp;
 		this.indirizzo = indirizzo;
 		this.DGGV = DGGV;
 		this.al = al;
@@ -179,7 +181,7 @@ public class TurniControl {
 					lunghezza = arrayRisposta[3];
 					stato = arrayRisposta[2];
 					if (stato == 5) {
-						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO");
+						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO", tmp);
 						DGGV.dispose();
 					}
 					x = arrayRisposta[0];
@@ -233,7 +235,7 @@ public class TurniControl {
 			if (rispostaMsg.equals("HAI PERSO")) {
 				r = false;
 				DGGV.dispose();
-				FinePartitaControl sfp = new FinePartitaControl(DGGV.getUsername(), "HAI PERSO");
+				FinePartitaControl sfp = new FinePartitaControl(DGGV.getUsername(), "HAI PERSO", tmp);
 			}
 
 		} while (r == true);

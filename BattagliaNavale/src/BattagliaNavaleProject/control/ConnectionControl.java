@@ -22,6 +22,7 @@ public class ConnectionControl {
 	static private SchermataAttesaControl sac;
 	private String userName;
 	Observer obs;
+	TornaMenuPrincipale tmp;
 
 	/*
 	 * public ConnectionControl(SchermataAttesaView sav, String userName) throws
@@ -55,8 +56,9 @@ public class ConnectionControl {
 	 * SchermataInizialeView(); sav.close(socket); } }
 	 */
 
-	public ConnectionControl(SchermataAttesaControl sac, String userName, Observer obs)
+	public ConnectionControl(SchermataAttesaControl sac, String userName, Observer obs, TornaMenuPrincipale tmp)
 			throws IOException, InterruptedException {
+		this.tmp = tmp;
 		this.sac = sac;
 		this.userName = userName;
 		this.obs = obs;
@@ -84,7 +86,7 @@ public class ConnectionControl {
 
 			if (rispostaMsg.equals("OK")) {
 				sac.chiudi();
-				sac = new SchermataAttesaControl("ATTESA POSIZIONAMENTO", userName, obs);
+				sac = new SchermataAttesaControl("ATTESA POSIZIONAMENTO", userName, obs, tmp);
 			} else if (rispostaMsg.equals("ERROR")) {
 				// Qui dobbiamo chiamare una funzione che faccia uscire a video nella schermata
 				// di attesa che qualcosa
@@ -112,7 +114,7 @@ public class ConnectionControl {
 							SoundEffect se = new SoundEffect();
 
 							se.playMusic(filepath, true);
-							DoubleGameGridControl DGGC = new DoubleGameGridControl(userName);
+							DoubleGameGridControl DGGC = new DoubleGameGridControl(userName, tmp);
 
 							sac.chiudi();
 						} catch (IOException e) {
