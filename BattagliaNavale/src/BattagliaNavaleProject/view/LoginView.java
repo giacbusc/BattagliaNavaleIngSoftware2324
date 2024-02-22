@@ -46,7 +46,7 @@ public class LoginView extends JFrame implements Observer {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -58,7 +58,7 @@ public class LoginView extends JFrame implements Observer {
 				}
 			}
 		});
-	}
+	}*/
 	
 
 	
