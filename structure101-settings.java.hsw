@@ -19,9 +19,9 @@
   </classpath>
   <pom-root-files />
   <modules>
-    <module name="BattagliaNavale" kind="ide-project" />
-    <module name="BattagliaNavaleServer" kind="ide-project">
-      <requires name="BattagliaNavale" kind="ide-project" />
+    <module name="BattagliaNavaleServer" kind="ide-project" />
+    <module name="BattagliaNavale" kind="ide-project">
+      <requires name="BattagliaNavaleServer" kind="ide-project" />
     </module>
   </modules>
   <modules-in-scope>

@@ -26,9 +26,9 @@ import javax.swing.border.Border;
 
 import org.zeromq.ZMQ;
 
+import BattagliaNavaleProject.BattagliaNavaleServer.Square;
 import BattagliaNavaleProject.control.DoubleGameGridControl;
 import BattagliaNavaleProject.control.TurniControl;
-import BattagliaNavaleProject.doubleGameGridModel.Square;
 
 public class DoubleGameGridView extends JFrame {
 

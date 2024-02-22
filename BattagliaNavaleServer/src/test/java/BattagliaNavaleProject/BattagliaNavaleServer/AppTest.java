@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import BattagliaNavaleProject.doubleGameGridModel.Square;
+
 
 /**
  * Unit test for simple App.

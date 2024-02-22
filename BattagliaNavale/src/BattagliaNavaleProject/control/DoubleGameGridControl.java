@@ -17,9 +17,9 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.doubleGameGridModel.InfoBoat;
+import BattagliaNavaleProject.BattagliaNavaleServer.InfoBoat;
+import BattagliaNavaleProject.BattagliaNavaleServer.Square;
 import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
-import BattagliaNavaleProject.doubleGameGridModel.Square;
 import BattagliaNavaleProject.view.AggiuntaListener;
 import BattagliaNavaleProject.view.DoubleGameGridView;
 

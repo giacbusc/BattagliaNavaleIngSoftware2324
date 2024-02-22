@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import org.zeromq.ZMQ;
 
 import BattagliaNavaleProject.BattagliaNavaleServer.database.ConnectionDb;
-import BattagliaNavaleProject.doubleGameGridModel.InfoBoat;
-import BattagliaNavaleProject.doubleGameGridModel.Square;
+
 
 
 
