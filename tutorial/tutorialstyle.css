@@ -43,56 +43,50 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
-}.image-scroll {
+    
+}
+
+.image-scroll {
     width: 100%;
-    overflow-x: hidden;
-    position: relative;
+    overflow-x: auto; /* Abilita lo scorrimento orizzontale */
+    white-space: nowrap; /* Impedisce il ritorno a capo degli elementi */
     margin-top: 20px;
+    position: relative; /* Per posizionare le frecce */
 }
 
 .image-container {
-    white-space: nowrap;
-    width: 400%; /* larghezza totale delle immagini */
-    transition: transform 0.3s ease; /* animazione dello scorrimento */
+    display: inline-block; /* Posiziona le immagini orizzontalmente */
 }
 
 .image-container img {
-    max-width: 100%;
-    height: auto;
+    max-width: 100%; /* Assicura che le immagini non superino la larghezza del contenitore */
+    height: auto; /* Mantiene le proporzioni */
+    display: inline-block; /* Assicura che le immagini siano disposte orizzontalmente */
 }
 
-.image-selector {
-    display: none;
-}
-
-.slide-button {
-    display: inline-block;
-    width: 25%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    cursor: pointer;
-}
-
-/* Stile visivo dei pulsanti, ad esempio puoi aggiungere un'immagine di freccia */
-.slide-button::after {
-    content: '→';
-    font-size: 24px;
-    color: #0077b6;
+.arrow {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    opacity: 0; /* Inizialmente nascosto */
+    transition: opacity 0.3s ease;
 }
 
-/* Nascondi i pulsanti */
-.image-selector:checked + .slide-button {
-    display: none;
+.arrow.left {
+    left: 0;
 }
 
-/* Gestione della posizione delle immagini */
-#image1:checked ~ .image-container { transform: translateX(0%); }
-#image2:checked ~ .image-container { transform: translateX(-25%); }
-#image3:checked ~ .image-container { transform: translateX(-50%); }
-#image4:checked ~ .image-container { transform: translateX(-75%); }
+.arrow.right {
+    right: 0;
+}
+
+.image-scroll:hover .arrow {
+    opacity: 1; /* Mostra quando si passa sopra il contenitore */
+}
