@@ -42,7 +42,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 			JButton clickedButton= (JButton) e.getSource();
 			
 			if(clickedButton.getText().equals("  ")) {
-				/*try {
+				try {
 					Server.createTcpServer().start();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -63,7 +63,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}*/
+				}
 				SelezioneIndirizzoControl sic = new SelezioneIndirizzoControl(username,this,obs);
 			}
 			else if(clickedButton.getText().equals("")) {

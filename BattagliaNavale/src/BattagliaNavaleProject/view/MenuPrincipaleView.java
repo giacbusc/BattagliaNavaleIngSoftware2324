@@ -16,13 +16,13 @@ public class MenuPrincipaleView extends JFrame {
 	private JButton pcSoloButton;
 	private JButton pcMultiButton;
 	private Observer obs;
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run()
 			{
 				try 
 				{
-					MenuPrincipaleView frame = new MenuPrincipaleView(userName);
+					MenuPrincipaleView frame = new MenuPrincipaleView(userName,null);
 				    frame.setVisible(true);
 			}
 				catch(Exception e)
@@ -32,7 +32,7 @@ public class MenuPrincipaleView extends JFrame {
 			}
 		});
 		
-	}*/
+	}
 
 	
 	public MenuPrincipaleView(String userName, Observer obs) throws IOException, SQLException 
