@@ -31,17 +31,24 @@ public class Partita {
 
 		// stampaGriglia(1);
 
-		while (contaBarcheP1 < 10 || contaBarcheP2 < 10 || finito==false) {
+		while (finito==false) {
 			System.out.println("p1: " + contaBarcheP1 + " p2: " + contaBarcheP2);
 			byte[] reply = socketServer.recv(0);
 			String request = new String(reply, ZMQ.CHARSET);
 			System.out.println("Messaggio ricevuto: " + request);
 			// BOOLEANO CHE ANDRA SETTATO PER RISPONDERGLI ANZICHE CON ATA CON GIOCA PER
 			// RISVEGLIARLO
+			
+			
 
 			String mexATA = request.substring(0, 3);
+			
 
-			if (mexATA.equals("ATA")) {
+			if (mexATA.equals("ATA")) 
+			{
+				if(finito==true)
+					break;
+				
 				if (INVIATO == true) {
 					System.out.println("Stai passando il turno!");
 					String responseMessage = "GIOCA";
@@ -60,7 +67,11 @@ public class Partita {
 					System.out.println("Inviato: " + responseMessage);
 					continue;
 				}
-			} else if (mexATA.equals("MIA")) {
+			} else if (mexATA.equals("MIA")) 
+			{
+				if(finito==true)
+					break;
+				
 				String messaggioMiao = request.substring(0, 4);
 				String numeroMiao = request.substring(4);
 				int numattuale = Integer.parseInt(numeroMiao);
@@ -108,7 +119,10 @@ public class Partita {
 
 			// SPACCHETTAMENTO MIAO ricevuto per ultimo
 
-			if (!request.equals("")) {
+			if (!request.equals("")) 
+			{
+				if(finito==true)
+					break;
 				String[] mexSplit = request.split(",");
 				String x = mexSplit[0];
 				String y = mexSplit[1];
@@ -188,7 +202,6 @@ public class Partita {
 											spedireMex(spedire);
 											finito=true;
 											break;
-									
 										}
 									}
 
