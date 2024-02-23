@@ -36,6 +36,7 @@ public class SoundEffect
 			{
 				clip = AudioSystem.getClip();
 				clip.stop();
+				clip.close();
 			}
 			
 		}catch(Exception e)
