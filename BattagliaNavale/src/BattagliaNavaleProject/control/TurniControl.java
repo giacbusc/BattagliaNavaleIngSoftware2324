@@ -181,6 +181,9 @@ public class TurniControl {
 					lunghezza = arrayRisposta[3];
 					stato = arrayRisposta[2];
 					if (stato == 5) {
+						String filepath = "./music/Win.wav";
+						SoundEffect se = new SoundEffect();
+						se.playMusic(filepath,true);
 						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO", tmp);
 						DGGV.dispose();
 					}
@@ -234,7 +237,11 @@ public class TurniControl {
 
 			if (rispostaMsg.equals("HAI PERSO")) {
 				r = false;
+				
 				DGGV.dispose();
+				String filepath = "./music/gameover.wav";
+				SoundEffect se = new SoundEffect();
+				se.playMusic(filepath,true);
 				FinePartitaControl sfp = new FinePartitaControl(DGGV.getUsername(), "HAI PERSO", tmp);
 			}
 

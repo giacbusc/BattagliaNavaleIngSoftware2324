@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
 
+import BattagliaNavaleProject.BattagliaNavaleServer.ServerSocket;
 import BattagliaNavaleProject.view.FinePartitaView;
 import BattagliaNavaleProject.view.MenuPrincipaleView;
 import BattagliaNavaleProject.view.Observer;
@@ -16,8 +17,10 @@ public class FinePartitaControl  implements ActionListener{
 	private FinePartitaView fpv;
 	private String user;
 	private String messaggio;
+	private ServerSocket s;
 	Observer obs;
 	private TornaMenuPrincipale tmp;
+	
 	public FinePartitaControl(String userName, String messaggio, TornaMenuPrincipale tmp) throws IOException, SQLException {
 		this.tmp = tmp;
 		this.user=userName;
@@ -46,11 +49,12 @@ public class FinePartitaControl  implements ActionListener{
 					tmp.torna(user, obs);
 					
 					SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-
+					
 						@Override
 						protected Void doInBackground() throws Exception {
 							// TODO Auto-generated method stub
 							fpv.dispose(); 
+							//s.startServer(s.getIndirizzo());
 							return null;
 						}
 
