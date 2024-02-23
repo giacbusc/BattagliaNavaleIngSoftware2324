@@ -75,6 +75,7 @@ Tutto il lavoro svolto, che si tratti di documentazione o di codice, viene regol
 Il repository è strutturato nel seguente modo:
  - __branches__:
    - *main*: Contiene le versione alpha del codice
+   - *beta*: Contiene la versione beta del codice (su questo branch sono state eseguite la maggior parte delle azioni)
  - __cartelle__:
     - *code*:
     - *docs*: Contiene la documentazione del progetto
