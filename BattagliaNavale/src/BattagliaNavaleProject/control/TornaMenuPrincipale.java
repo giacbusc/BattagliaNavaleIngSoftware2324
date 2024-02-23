@@ -8,4 +8,5 @@ import BattagliaNavaleProject.view.Observer;
 public interface TornaMenuPrincipale {
 
 	void torna(String username, Observer obs) throws IOException, SQLException;
+	void chiudi();
 }

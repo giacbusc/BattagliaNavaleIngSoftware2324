@@ -17,8 +17,12 @@ import BattagliaNavaleProject.view.Observer;
 public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipale{
 	private MenuPrincipaleView menu;
 	private SchermataAttesaControl sac;
+	private String username;
+	private Observer obs;
 	public MenuPrincipaleControl(String username, Observer obs) throws IOException, SQLException {
 		menu= new MenuPrincipaleView(username,obs);
+		this.username = username;
+		this.obs = obs;
 		System.out.println("Sono entrato");
 		menu.setVisible(true);
 		menu.addActionMulti(this);
@@ -38,7 +42,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 			JButton clickedButton= (JButton) e.getSource();
 			
 			if(clickedButton.getText().equals("  ")) {
-				try {
+				/*try {
 					Server.createTcpServer().start();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -59,7 +63,8 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
+				}*/
+				SelezioneIndirizzoControl sic = new SelezioneIndirizzoControl(username,this,obs);
 			}
 			else if(clickedButton.getText().equals("")) {
 				ServerSocket.setIndirizzo("tcp://*:" + parti[2]);
@@ -115,5 +120,10 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	public void torna(String username, Observer obs) throws IOException, SQLException {
 		// TODO Auto-generated method stub
 		MenuPrincipaleControl mp = new MenuPrincipaleControl(username, obs);
+	}
+	@Override
+	public void chiudi() {
+		// TODO Auto-generated method stub
+		menu.dispose();
 	}
 }
