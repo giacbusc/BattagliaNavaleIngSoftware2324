@@ -43,4 +43,56 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+}.image-scroll {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    margin-top: 20px;
 }
+
+.image-container {
+    white-space: nowrap;
+    width: 400%; /* larghezza totale delle immagini */
+    transition: transform 0.3s ease; /* animazione dello scorrimento */
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.image-selector {
+    display: none;
+}
+
+.slide-button {
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+
+/* Stile visivo dei pulsanti, ad esempio puoi aggiungere un'immagine di freccia */
+.slide-button::after {
+    content: '→';
+    font-size: 24px;
+    color: #0077b6;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Nascondi i pulsanti */
+.image-selector:checked + .slide-button {
+    display: none;
+}
+
+/* Gestione della posizione delle immagini */
+#image1:checked ~ .image-container { transform: translateX(0%); }
+#image2:checked ~ .image-container { transform: translateX(-25%); }
+#image3:checked ~ .image-container { transform: translateX(-50%); }
+#image4:checked ~ .image-container { transform: translateX(-75%); }
