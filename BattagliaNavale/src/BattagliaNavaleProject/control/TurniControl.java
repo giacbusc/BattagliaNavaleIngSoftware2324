@@ -182,6 +182,9 @@ public class TurniControl {
 					lunghezza = arrayRisposta[3];
 					stato = arrayRisposta[2];
 					if (stato == 5) {
+						String filepath = "./music/Win.wav";
+						SoundEffect se = new SoundEffect();
+						se.playMusic(filepath,true);
 						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO", tmp);
 						DGGV.dispose();
 					}
@@ -229,7 +232,7 @@ public class TurniControl {
 			if (rispostaMsg.equals("GIOCA")) {
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
-				se.playMusic(filepath,false);
+				se.riduciVolume();
 				DGGV.turnoPanel.setVisible(true);
 				DGGV.shipsPanel.setBackground(Color.decode("#659feb"));
 				turno();
@@ -238,7 +241,11 @@ public class TurniControl {
 
 			if (rispostaMsg.equals("HAI PERSO")) {
 				r = false;
+				
 				DGGV.dispose();
+				String filepath = "./music/gameover.wav";
+				SoundEffect se = new SoundEffect();
+				se.playMusic(filepath,true);
 				FinePartitaControl sfp = new FinePartitaControl(DGGV.getUsername(), "HAI PERSO", tmp);
 			}
 
