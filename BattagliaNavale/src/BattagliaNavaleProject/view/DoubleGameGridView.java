@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,10 +39,12 @@ public class DoubleGameGridView extends JFrame {
 	private JFrame frame;
 	public JPanel yourBoardPanel;
 	public JPanel opponentBoardPanel;
+	private int a;
+	private int b;
 	private JPanel centralTopPanel;
 	public Square[][] yourBoard;
 	public Square[][] opponentBoard;
-	private JPanel shipsPanel;
+	public JPanel shipsPanel;
 	private JPanel gridPanel;
 	public JLabel turno;
 	public JPanel waitPanel;
@@ -284,6 +287,7 @@ public class DoubleGameGridView extends JFrame {
 		boatList(dim);
 		waitPanelCreation();
 		turnoPanelCreation();
+		//createIcon(a,b);
 		frame.pack();
 
 	}
@@ -383,7 +387,7 @@ public class DoubleGameGridView extends JFrame {
 		gbl_waitPanel.rowWeights = new double[]{Double.MIN_VALUE};
 		waitPanel.setLayout(gbl_waitPanel);
 
-		JLabel attesa = new JLabel("Attendi che l'avversario finisca il posizionamento");
+		JLabel attesa = new JLabel("Attendi che l'avversario finisca il suo turno");
 		attesa.setForeground(Color.GRAY);
 		attesa.setFont(new Font("Tahoma", Font.BOLD, 28));
 		attesa.setHorizontalAlignment(SwingConstants.CENTER);
@@ -406,13 +410,31 @@ public class DoubleGameGridView extends JFrame {
 		turnoPanel.setLayout(gbl_turnoPanel);
 
 		turno= new JLabel("E' il tuo turno! Cerca di colpire l'avversario");
-		turno.setForeground(Color.GRAY);
+		turno.setForeground(Color.decode("#659feb"));
 		turno.setFont(new Font("Tahoma", Font.BOLD, 22));
 		turno.setHorizontalAlignment(SwingConstants.CENTER);
 		turno.setVerticalAlignment(SwingConstants.CENTER);
 		turnoPanel.add(turno);
 		turno.setVisible(true);
 		turnoPanel.setVisible(false);
+	}
+	
+	public void createIcon(int a, int b){
+	    
+	        // Creazione di un frame
+	        
+	        
+	        // Creazione di un'icona
+	        ImageIcon icon = new ImageIcon("/docs/resources/iconabarca.jpg"); // Sostituisci "path_to_your_image_file.jpg" con il percorso del tuo file immagine
+	        
+	        // Creazione di una JLabel con l'icona
+	        JLabel label = new JLabel(icon);
+	        // Aggiunta della JLabel al frame
+	        opponentBoard[a][b].getRootPane().add(label, opponentBoard[a][b].getLayout());
+	        
+	        // Visualizzazione del frame
+	        opponentBoard[a][b].revalidate();
+	        opponentBoard[a][b].repaint();
 	}
 
 	/*public void mostra() {

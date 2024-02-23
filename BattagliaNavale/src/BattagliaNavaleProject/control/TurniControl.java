@@ -164,6 +164,7 @@ public class TurniControl {
 			protected Void doInBackground() throws Exception {
 				for (int i = 1; i < lunghezza; i++) {
 					String sendMsg = "AFFONDATO";
+					DGGV.createIcon(arrayRisposta[0],arrayRisposta[0] );
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), ZMQ.DONTWAIT);
 					System.out.println(sendMsg);
 
@@ -181,6 +182,9 @@ public class TurniControl {
 					lunghezza = arrayRisposta[3];
 					stato = arrayRisposta[2];
 					if (stato == 5) {
+						String filepath = "./music/Win.wav";
+						SoundEffect se = new SoundEffect();
+						se.playMusic(filepath,true);
 						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO", tmp);
 						DGGV.dispose();
 					}
@@ -195,6 +199,7 @@ public class TurniControl {
 				se.playMusic(filepath,true);
 
 				try {
+					Thread.sleep(100);
 					cicloattesa();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -215,6 +220,7 @@ public class TurniControl {
 			toglilistener();
 			Thread.sleep(500);
 			String sendMsg = "MIAO"+miaoconta;
+			DGGV.shipsPanel.setBackground(Color.decode("#5C99D6"));
 			
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 			System.out.println("inviata attesa del turno " + sendMsg);
@@ -228,13 +234,18 @@ public class TurniControl {
 				SoundEffect se = new SoundEffect();
 				se.riduciVolume();
 				DGGV.turnoPanel.setVisible(true);
+				DGGV.shipsPanel.setBackground(Color.decode("#659feb"));
 				turno();
 				r = false;
 			}
 
 			if (rispostaMsg.equals("HAI PERSO")) {
 				r = false;
+				
 				DGGV.dispose();
+				String filepath = "./music/gameover.wav";
+				SoundEffect se = new SoundEffect();
+				se.playMusic(filepath,true);
 				FinePartitaControl sfp = new FinePartitaControl(DGGV.getUsername(), "HAI PERSO", tmp);
 			}
 

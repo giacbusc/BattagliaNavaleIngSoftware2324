@@ -566,7 +566,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 						SoundEffect se = new SoundEffect();
 						se.playMusic(filepath,false);
 						grid.waitPanel.setVisible(false);
-						//grid.waitPanel.setForeground(Color.WHITE);
+						
 
 						r = false;
 					}
@@ -578,6 +578,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 				System.out.println("inizio turno");
 
 				grid.turnoPanel.setVisible(true);
+				grid.shipsPanel.setBackground(Color.decode("#659feb"));
 				turni.turno();
 				
 				return null;
@@ -588,6 +589,8 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 		// grid.waitPanelCreation();
 
 	}
+	
+	
 
 	public void creazioneTurni()
 	{
