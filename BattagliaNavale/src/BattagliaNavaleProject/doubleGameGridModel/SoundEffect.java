@@ -22,6 +22,7 @@ public class SoundEffect
 				if(pathMusica.exists())
 				{
 					AudioInputStream audioInput = AudioSystem.getAudioInputStream(pathMusica);
+					clip = AudioSystem.getClip();
 					clip.open(audioInput);
 					clip.start();
 				}
