@@ -22,6 +22,7 @@ import BattagliaNavaleProject.BattagliaNavaleServer.Square;
 import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 import BattagliaNavaleProject.view.AggiuntaListener;
 import BattagliaNavaleProject.view.DoubleGameGridView;
+import BattagliaNavaleProject.view.Observer;
 
 public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
@@ -48,12 +49,14 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 	String[] arraymsg = new String[3];
 	int dim = 3;
 	private TornaMenuPrincipale tmp;
+	private Observer obs;
 	// System.out.println("Connecting to th server");
 
 	// Socket to talk to server
 
-	public DoubleGameGridControl(String username, TornaMenuPrincipale tmp) throws IOException {
+	public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer bs) throws IOException {
 		
+		this.obs = obs;
 		this.tmp = tmp;
 		this.username = username;
 		grid = new DoubleGameGridView(username);
@@ -594,7 +597,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	public void creazioneTurni()
 	{
-		turni = new TurniControl(indirizzo, grid, this, tmp);
+		turni = new TurniControl(indirizzo, grid, this, tmp, obs);
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {

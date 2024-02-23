@@ -11,7 +11,6 @@ import javax.swing.SwingWorker;
 
 import BattagliaNavaleProject.BattagliaNavaleServer.ServerSocket;
 import BattagliaNavaleProject.view.FinePartitaView;
-import BattagliaNavaleProject.view.MenuPrincipaleView;
 import BattagliaNavaleProject.view.Observer;
 public class FinePartitaControl  implements ActionListener{
 	private FinePartitaView fpv;
@@ -21,7 +20,8 @@ public class FinePartitaControl  implements ActionListener{
 	Observer obs;
 	private TornaMenuPrincipale tmp;
 	
-	public FinePartitaControl(String userName, String messaggio, TornaMenuPrincipale tmp) throws IOException, SQLException {
+	public FinePartitaControl(String userName, String messaggio, TornaMenuPrincipale tmp, Observer obs) throws IOException, SQLException {
+		this.obs = obs;
 		this.tmp = tmp;
 		this.user=userName;
 		this.messaggio = messaggio;
@@ -29,13 +29,6 @@ public class FinePartitaControl  implements ActionListener{
 		fpv.setVisible(true);
 		fpv.aggiungiListenerMenu(this);
 		fpv.aggiungiListenerExit(this);
-	}
-	public static void main(String[] args) throws IOException, SQLException
-	{
-		TornaMenuPrincipale tmp = null;
-		String msg = "lucaCiancio";
-		String msg1= "Hai vinto";
-		FinePartitaControl fp = new FinePartitaControl(msg, msg1, tmp);
 	}
 
 	public void actionPerformed (ActionEvent e ) {

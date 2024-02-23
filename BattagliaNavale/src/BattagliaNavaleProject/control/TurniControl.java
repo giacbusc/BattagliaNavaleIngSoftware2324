@@ -18,6 +18,7 @@ import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 import BattagliaNavaleProject.view.AggiuntaListener;
 import BattagliaNavaleProject.view.DoubleGameGridView;
 import BattagliaNavaleProject.view.FinePartitaView;
+import BattagliaNavaleProject.view.Observer;
 
 public class TurniControl {
 	DoubleGameGridView DGGV;
@@ -35,9 +36,11 @@ public class TurniControl {
 	private AggiuntaListener al;
 	private TornaMenuPrincipale tmp;
 	private int miaoconta;
+	private Observer obs;
 
-	public TurniControl(String indirizzo, DoubleGameGridView DGGV, AggiuntaListener al, TornaMenuPrincipale tmp) {
+	public TurniControl(String indirizzo, DoubleGameGridView DGGV, AggiuntaListener al, TornaMenuPrincipale tmp, Observer obs) {
 		// TODO Auto-generated constructor stub
+		this.obs = obs;
 		this.tmp = tmp;
 		this.indirizzo = indirizzo;
 		this.DGGV = DGGV;
@@ -185,7 +188,7 @@ public class TurniControl {
 						String filepath = "./music/Win.wav";
 						SoundEffect se = new SoundEffect();
 						se.playMusic(filepath,true);
-						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO", tmp);
+						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO", tmp, obs);
 						DGGV.dispose();
 					}
 					x = arrayRisposta[0];
@@ -246,7 +249,7 @@ public class TurniControl {
 				String filepath = "./music/gameover.wav";
 				SoundEffect se = new SoundEffect();
 				se.playMusic(filepath,true);
-				FinePartitaControl sfp = new FinePartitaControl(DGGV.getUsername(), "HAI PERSO", tmp);
+				FinePartitaControl sfp = new FinePartitaControl(DGGV.getUsername(), "HAI PERSO", tmp, obs);
 			}
 
 		} while (r == true);
