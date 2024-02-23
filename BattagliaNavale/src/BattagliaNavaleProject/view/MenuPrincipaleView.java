@@ -70,7 +70,20 @@ public class MenuPrincipaleView extends JFrame {
         logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundPanel.add(logoLabel);
         
+        JPanel classifica = new JPanel();
+		classifica.setBounds(1100,100,280,600);
+		classifica.setOpaque(false);
+		classifica.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+		backgroundPanel.add(classifica);
         
+		
+		JLabel classificaLabel = new JLabel("Classifica");
+		classificaLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		classificaLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		classificaLabel.setBounds(30,5,100,43);
+		classifica.add(classificaLabel);
+		
+		
        //ImageIcon icon2 = new ImageIcon("2.png");
         JLabel infoPlayerLabel = null;
 		try {
