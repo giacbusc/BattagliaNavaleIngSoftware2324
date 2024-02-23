@@ -32,6 +32,8 @@ public class Partita {
 		ZMQ.Socket socketServer = isp.getSocketServer();
 		player1 = isp.getPlayer1();
 		player2 = isp.getPlayer2();
+		
+	
 
 		// stampaGriglia(1);
 
