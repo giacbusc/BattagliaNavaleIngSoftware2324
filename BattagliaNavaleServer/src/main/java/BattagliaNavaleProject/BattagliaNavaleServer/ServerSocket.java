@@ -6,7 +6,7 @@ import org.zeromq.ZMQ;
 
 import java.util.ArrayList;
 
-public class ServerSocket {
+public class ServerSocket implements InterfacciaServerPartita{
 	final static int MAX_LENGTH = 10;
 	private Square[][] player1 = new Square[MAX_LENGTH][MAX_LENGTH];
 	private Square[][] player2 = new Square[MAX_LENGTH][MAX_LENGTH];
@@ -21,12 +21,6 @@ public class ServerSocket {
 	private int turno = 0;
 	private static ServerSocket instance = null;
 
-	public static ServerSocket getInstance() {
-		if (instance == null)
-			instance = new ServerSocket();
-
-		return instance;
-	}
 
 	private ServerSocket() {
 		socketServer = context.createSocket(SocketType.REP);
@@ -147,7 +141,7 @@ public class ServerSocket {
 							responseMessage = "GIOCA";
 							socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
 							System.out.println("Inviato AL PLAYER 1: " + responseMessage);
-							Partita a = new Partita();
+							Partita a = new Partita(this);
 							a.inizioGioco();
 							break;
 						}
@@ -747,4 +741,12 @@ public class ServerSocket {
 	public ArrayList<String> getConnectedclients() {
 		return connectedClients;
 	}
+	
+	public static ServerSocket getInstance() {
+		if (instance == null)
+			instance = new ServerSocket();
+
+		return instance;
+	}
+
 }

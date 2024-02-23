@@ -10,7 +10,6 @@ import org.zeromq.ZMQ.Socket;
 import BattagliaNavaleProject.BattagliaNavaleServer.database.ConnectionDb;
 
 public class Partita {
-	ServerSocket s;
 	int turno;
 	private String[] spedire = new String[4];
 	Square[][] player1;
@@ -21,14 +20,18 @@ public class Partita {
 	private ArrayList<String> username = new ArrayList<>();
 	public String mexprecedente = "MIAO-1";
 	private boolean finito = false;
-
+	private InterfacciaServerPartita isp;
+	
+	public Partita(InterfacciaServerPartita isp)
+	{
+		this.isp = isp;
+	}
 	public void inizioGioco() {
 
 		turno = 1;
-		ServerSocket s = ServerSocket.getInstance();
-		ZMQ.Socket socketServer = s.getSocketServer();
-		player1 = s.getPlayer1();
-		player2 = s.getPlayer2();
+		ZMQ.Socket socketServer = isp.getSocketServer();
+		player1 = isp.getPlayer1();
+		player2 = isp.getPlayer2();
 
 		// stampaGriglia(1);
 
@@ -144,7 +147,7 @@ public class Partita {
 			socketServer.send(responseMessage.getBytes(), 0);
 			System.out.println("Inviato: " + responseMessage);
 		}
-		username = s.getConnectedclients();
+		username = isp.getConnectedclients();
 
 		if (contaBarcheP1 == 10) {
 			registraVincita(username.get(0), username.get(1));
@@ -338,8 +341,7 @@ public class Partita {
 	}
 
 	public void spedireMex(String[] spedire) {
-		s = ServerSocket.getInstance();
-		ZMQ.Socket socketServer = s.getSocketServer();
+		ZMQ.Socket socketServer = isp.getSocketServer();
 		StringBuilder composta = new StringBuilder();
 		for (String e : spedire) {
 			// Aggiungiamo l'elemento alla StringBuilder con uno spazio
