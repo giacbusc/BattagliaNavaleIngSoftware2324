@@ -195,6 +195,7 @@ public class TurniControl {
 				se.playMusic(filepath,true);
 
 				try {
+					Thread.sleep(100);
 					cicloattesa();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -215,6 +216,7 @@ public class TurniControl {
 			toglilistener();
 			Thread.sleep(500);
 			String sendMsg = "MIAO"+miaoconta;
+			DGGV.shipsPanel.setBackground(Color.decode("#5C99D6"));
 			
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 			System.out.println("inviata attesa del turno " + sendMsg);
@@ -228,6 +230,7 @@ public class TurniControl {
 				SoundEffect se = new SoundEffect();
 				se.playMusic(filepath,false);
 				DGGV.turnoPanel.setVisible(true);
+				DGGV.shipsPanel.setBackground(Color.decode("#659feb"));
 				turno();
 				r = false;
 			}

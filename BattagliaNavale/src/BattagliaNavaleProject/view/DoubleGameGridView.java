@@ -41,7 +41,7 @@ public class DoubleGameGridView extends JFrame {
 	private JPanel centralTopPanel;
 	public Square[][] yourBoard;
 	public Square[][] opponentBoard;
-	private JPanel shipsPanel;
+	public JPanel shipsPanel;
 	private JPanel gridPanel;
 	public JLabel turno;
 	public JPanel waitPanel;
@@ -383,7 +383,7 @@ public class DoubleGameGridView extends JFrame {
 		gbl_waitPanel.rowWeights = new double[]{Double.MIN_VALUE};
 		waitPanel.setLayout(gbl_waitPanel);
 
-		JLabel attesa = new JLabel("Attendi che l'avversario finisca il posizionamento");
+		JLabel attesa = new JLabel("Attendi che l'avversario finisca il suo turno");
 		attesa.setForeground(Color.GRAY);
 		attesa.setFont(new Font("Tahoma", Font.BOLD, 28));
 		attesa.setHorizontalAlignment(SwingConstants.CENTER);
@@ -406,7 +406,7 @@ public class DoubleGameGridView extends JFrame {
 		turnoPanel.setLayout(gbl_turnoPanel);
 
 		turno= new JLabel("E' il tuo turno! Cerca di colpire l'avversario");
-		turno.setForeground(Color.GRAY);
+		turno.setForeground(Color.decode("#659feb"));
 		turno.setFont(new Font("Tahoma", Font.BOLD, 22));
 		turno.setHorizontalAlignment(SwingConstants.CENTER);
 		turno.setVerticalAlignment(SwingConstants.CENTER);
