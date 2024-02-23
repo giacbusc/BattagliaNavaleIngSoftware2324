@@ -185,12 +185,15 @@ public class TurniControl {
 					lunghezza = arrayRisposta[3];
 					stato = arrayRisposta[2];
 					if (stato == 5) {
-						String filepath = "./music/Win.wav";
+						String filepath = "./music/Background_game_music.wav";
 						SoundEffect se = new SoundEffect();
 
-						se.playMusic(filepath,true);
+						se.playMusic(filepath, false);
+						 filepath = "./music/Win.wav";
+						 se = new SoundEffect();
+						se.playMusic(filepath, true);
 						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO", tmp, obs);
-						
+
 						DGGV.dispose();
 					}
 					x = arrayRisposta[0];
@@ -248,8 +251,11 @@ public class TurniControl {
 				r = false;
 
 				DGGV.dispose();
-				String filepath = "./music/gameover.wav";
+				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
+				se.playMusic(filepath, false);
+				 filepath = "./music/gameover.wav";
+				 se = new SoundEffect();
 				se.playMusic(filepath, true);
 				FinePartitaControl sfp = new FinePartitaControl(DGGV.getUsername(), "HAI PERSO", tmp, obs);
 
