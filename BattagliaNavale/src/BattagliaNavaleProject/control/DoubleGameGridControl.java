@@ -567,7 +567,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 					if (rispostaMsg.equals("GIOCA")) {
 						String filepath = "./music/Background_game_music.wav";
 						SoundEffect se = new SoundEffect();
-						se.playMusic(filepath,false);
+						se.playMusic(filepath,false,false);
 						grid.waitPanel.setVisible(false);
 						
 

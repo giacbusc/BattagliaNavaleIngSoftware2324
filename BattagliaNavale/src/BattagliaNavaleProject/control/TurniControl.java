@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.sql.SQLException;
 
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.SwingWorker;
 
 import org.zeromq.SocketType;
@@ -118,7 +119,7 @@ public class TurniControl {
 					DGGV.opponentBoard[x][y].setColpito();
 					String filepath = "./music/ColpitaSound.wav";
 					SoundEffect se = new SoundEffect();
-					se.playMusic(filepath, true);
+					se.playMusic(filepath, true,false);
 
 					try {
 						cicloattesa();
@@ -144,7 +145,7 @@ public class TurniControl {
 
 					String filepath = "./music/waterSplash.wav";
 					SoundEffect se = new SoundEffect();
-					se.playMusic(filepath, true);
+					se.playMusic(filepath, true,false);
 					DGGV.turnoPanel.setVisible(false);
 					try {
 						cicloattesa();
@@ -187,11 +188,10 @@ public class TurniControl {
 					if (stato == 5) {
 						String filepath = "./music/Background_game_music.wav";
 						SoundEffect se = new SoundEffect();
-
-						se.playMusic(filepath, false);
+						se.playMusic(filepath, false,false);
 						 filepath = "./music/Win.wav";
 						 se = new SoundEffect();
-						se.playMusic(filepath, true);
+						se.playMusic(filepath, true,false);
 						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO", tmp, obs);
 
 						DGGV.dispose();
@@ -204,7 +204,7 @@ public class TurniControl {
 
 				String filepath = "./music/AffondataSound.wav";
 				SoundEffect se = new SoundEffect();
-				se.playMusic(filepath, true);
+				se.playMusic(filepath, true,false);
 
 				try {
 					Thread.sleep(100);
@@ -240,7 +240,7 @@ public class TurniControl {
 			if (rispostaMsg.equals("GIOCA")) {
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
-				se.riduciVolume();
+				se.playMusic(filepath, true, true);	
 				DGGV.turnoPanel.setVisible(true);
 				DGGV.shipsPanel.setBackground(Color.decode("#659feb"));
 				turno();
@@ -253,10 +253,10 @@ public class TurniControl {
 				DGGV.dispose();
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
-				se.playMusic(filepath, false);
+				se.playMusic(filepath, false,false);
 				 filepath = "./music/gameover.wav";
 				 se = new SoundEffect();
-				se.playMusic(filepath, true);
+				se.playMusic(filepath, true,false);
 				FinePartitaControl sfp = new FinePartitaControl(DGGV.getUsername(), "HAI PERSO", tmp, obs);
 
 			}

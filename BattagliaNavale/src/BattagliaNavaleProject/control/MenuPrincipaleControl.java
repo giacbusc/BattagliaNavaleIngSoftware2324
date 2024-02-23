@@ -36,7 +36,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 		String[] parti = tcp.split(":");
 		String filepath = "./music/sceltaMenu3.wav";
 	    SoundEffect s = new SoundEffect();
-	    s.playMusic(filepath,true);
+	    s.playMusic(filepath,true,false);
 
 		if(e.getSource() instanceof JButton ) {
 			JButton clickedButton= (JButton) e.getSource();
