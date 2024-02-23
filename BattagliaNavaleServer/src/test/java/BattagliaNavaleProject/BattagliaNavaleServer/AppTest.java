@@ -28,7 +28,7 @@ public class AppTest {
 
 		assertEquals("Aircraft", player[1][1].getNome());
 
-		Partita p = new Partita();
+		Partita p = new Partita(null);
 		assertFalse(p.controllaAffondata(player, 1, 1));
 		// essendo che Aircraft è una barca con lunghezza 4 mi aspetto che ci siano 4
 		// celle con il nome "aircraft" settato

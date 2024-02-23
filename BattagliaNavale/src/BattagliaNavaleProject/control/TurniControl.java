@@ -226,7 +226,7 @@ public class TurniControl {
 			if (rispostaMsg.equals("GIOCA")) {
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
-				se.playMusic(filepath,false);
+				se.riduciVolume();
 				DGGV.turnoPanel.setVisible(true);
 				turno();
 				r = false;
