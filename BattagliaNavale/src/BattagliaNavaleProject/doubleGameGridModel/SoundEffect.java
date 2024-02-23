@@ -27,12 +27,13 @@ public class SoundEffect
 				}
 				else
 				{
-					clip = AudioSystem.getClip();
+					
 					System.out.println("File musica non trovato");
 				}
 			}
 			else if(play==false)
 			{
+				clip = AudioSystem.getClip();
 				clip.stop();
 			}
 			
