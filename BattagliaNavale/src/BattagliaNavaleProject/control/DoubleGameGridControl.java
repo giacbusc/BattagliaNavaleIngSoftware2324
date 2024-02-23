@@ -589,6 +589,8 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 		// grid.waitPanelCreation();
 
 	}
+	
+	
 
 	public void creazioneTurni()
 	{

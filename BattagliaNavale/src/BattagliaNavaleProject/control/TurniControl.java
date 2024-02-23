@@ -164,6 +164,7 @@ public class TurniControl {
 			protected Void doInBackground() throws Exception {
 				for (int i = 1; i < lunghezza; i++) {
 					String sendMsg = "AFFONDATO";
+					DGGV.createIcon(arrayRisposta[0],arrayRisposta[0] );
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), ZMQ.DONTWAIT);
 					System.out.println(sendMsg);
 
