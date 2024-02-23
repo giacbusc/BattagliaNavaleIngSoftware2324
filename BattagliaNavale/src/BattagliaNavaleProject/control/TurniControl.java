@@ -164,7 +164,7 @@ public class TurniControl {
 			protected Void doInBackground() throws Exception {
 				for (int i = 1; i < lunghezza; i++) {
 					String sendMsg = "AFFONDATO";
-					socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
+					socket.send(sendMsg.getBytes(ZMQ.CHARSET), ZMQ.DONTWAIT);
 					System.out.println(sendMsg);
 
 					byte[] byteMsg = socket.recv(0);
