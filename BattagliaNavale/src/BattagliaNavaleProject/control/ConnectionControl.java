@@ -114,7 +114,7 @@ public class ConnectionControl {
 							SoundEffect se = new SoundEffect();
 
 							se.playMusic(filepath, true);
-							DoubleGameGridControl DGGC = new DoubleGameGridControl(userName, tmp);
+							DoubleGameGridControl DGGC = new DoubleGameGridControl(userName, tmp, obs);
 
 							sac.chiudi();
 						} catch (IOException e) {
