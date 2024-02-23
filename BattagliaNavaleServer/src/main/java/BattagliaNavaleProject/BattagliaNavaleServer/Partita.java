@@ -151,11 +151,6 @@ public class Partita {
 		} else if (contaBarcheP2 == 10) {
 			registraVincita(username.get(1), username.get(0));
 		}
-		if (contaBarcheP1 != 10) {
-			registraVincita(username.get(1), username.get(0));
-		} else if (contaBarcheP2 != 10) {
-			registraVincita(username.get(0), username.get(1));
-		}
 
 	}
 
