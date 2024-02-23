@@ -196,6 +196,7 @@ public class Partita {
 					l = l + 1;
 
 				int contaAffondati = 0;
+				int contaRicezione = 0;
 				// PER INDICARE LA VINCITA PRIMA SI METTONO TUTTE LE BARCHE SETTATE NELLA
 				// GRIGLIA DOPODICHE
 				// SI VA A:
@@ -220,7 +221,15 @@ public class Partita {
 								byte[] replyAffondato = socketServer.recv(0);
 								String requestAffondato = new String(replyAffondato, ZMQ.CHARSET);
 								System.out.println("Messaggio ricevuto: " + requestAffondato);
+								if(requestAffondato.equals("AFFONDATO"))
+									contaRicezione++;
 							}
+							
+							if(contaAffondati!=contaRicezione)
+							{
+								spedireMex(spedire);
+							}
+							
 							System.out.println("affondati: " + contaAffondati + " barche: " + contaBarcheP1);
 							if (contaAffondati == (l - 1) && contaBarcheP1 == 10) {
 								System.out.println("ha vinto p1 ");
@@ -280,6 +289,7 @@ public class Partita {
 					l = l + 1;
 
 				int contaAffondati = 0;
+				int contaRicezione=0;
 
 				for (int i = 0; i < MAX_LENGTH; i++) {
 					for (int j = 0; j < MAX_LENGTH; j++) {
@@ -297,8 +307,15 @@ public class Partita {
 								byte[] replyAffondato = socketServer.recv(0);
 								String requestAffondato = new String(replyAffondato, ZMQ.CHARSET);
 								System.out.println("Messaggio ricevuto: " + requestAffondato);
-
+								if(requestAffondato.equals("AFFONDATO"))
+									contaRicezione++;
 							}
+							
+							if(contaAffondati!=contaRicezione)
+							{
+								spedireMex(spedire);
+							}
+							
 							System.out.println("affondati: " + contaAffondati + " barche: " + contaBarcheP2);
 							if (contaAffondati == (l - 1) && contaBarcheP2 == 10) {
 								System.out.println("ha vinto p2 ");
