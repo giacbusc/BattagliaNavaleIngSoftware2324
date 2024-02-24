@@ -113,7 +113,7 @@ public class ConnectionControl {
 							String filepath = "./music/Background_game_music.wav";
 							SoundEffect se = new SoundEffect();
 
-							se.playMusic(filepath, true,false);
+							se.playMusic2(filepath,false);
 							DoubleGameGridControl DGGC = new DoubleGameGridControl(userName, tmp, obs);
 
 							sac.chiudi();

@@ -7,43 +7,48 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 public class SoundEffect {
-    private Clip clip;
+	private Clip clip;
 
-    public void playMusic(String posizioneFile, boolean play, boolean volumeBasso) {
-        try {
-            File pathMusica = new File(posizioneFile);
+	public void playMusic(String posizioneFile) {
+		try {
+			File pathMusica = new File(posizioneFile);
 
-            if (play) {
-                if (pathMusica.exists()) {
-                    AudioInputStream audioInput = AudioSystem.getAudioInputStream(pathMusica);
-                    
-                    if (clip != null) {
-                        clip.stop();
-                        clip.close();
-                    }
+			if (pathMusica.exists()) {
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(pathMusica);
+				clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.start();
 
-                    clip = AudioSystem.getClip();
-                    clip.open(audioInput);
+			}
 
-                    if (volumeBasso) { //se il volume basso è true
-                        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-                        gainControl.setValue(-30.0f); // Riduci il volume di 30 decibel.
-                    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-                    clip.start();
-                } else {
-                    System.out.println("File musica non trovato");
-                }
-            } else {
-                if (clip != null) {
-                    clip.stop();
-                    clip.close();
-                }
-            }
+	public void playMusic2(String posizioneFile, boolean play) {
+		try {
+			File pathMusica = new File(posizioneFile);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+			if (play) {
+				if (pathMusica.exists()) {
+					AudioInputStream audioInput = AudioSystem.getAudioInputStream(pathMusica);
+					clip = AudioSystem.getClip();
+					clip.open(audioInput);
+					FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+					gainControl.setValue(-30.0f); // Riduci il volume di 30 decibel.
+					clip.start();
+
+				}
+
+			} else {
+				clip = AudioSystem.getClip();
+				clip.stop();
+				clip.close();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
-

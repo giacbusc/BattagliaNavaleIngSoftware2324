@@ -31,12 +31,12 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		String tcp= "tcp://172.16.128.203:5554";
+		String tcp= "tcp://192.168.1.4:5554";
 		String local="tcp://localhost:5545";
 		String[] parti = tcp.split(":");
 		String filepath = "./music/sceltaMenu3.wav";
 	    SoundEffect s = new SoundEffect();
-	    s.playMusic(filepath,true,false);
+	    s.playMusic(filepath);
 
 		if(e.getSource() instanceof JButton ) {
 			JButton clickedButton= (JButton) e.getSource();
