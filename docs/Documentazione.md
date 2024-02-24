@@ -1,4 +1,4 @@
-<p align="center">
+mi<p align="center">
   <img style="width: 200px;" src="resources/Logo.png">
    <img style="width: 550px;" src="resources/BATTAGLIA_NAVALE.png">
 </p>
@@ -266,7 +266,7 @@ Abbiamo quindi decomposto le funzioni di modo che fossero meno ingombranti, e ab
 ## 9. Software Design
 All'interno del nostro sistema abbiamo utilizzato diversi pattern a fronte di alcune problematiche:<br>
 **1.Singleton**
-Abbiamo utilizzato il pattern Singleton all'interno del server affinchè non fosse possibile istanziare, all'interno delle altre classi, la classe Singleton in modo ripetuto. >br>Attraverso il metodo *getInstance* del Server infatti facciamo in modo che ogni richiesta di istanziazione, qual'ora l'istanza del server non fosse nulla, si limiti alla sola restituzione dell'istanza già presente piuttosto che alla creazione di un'ulteriore istanza della classe Server.<br>
+Abbiamo utilizzato il pattern Singleton all'interno del server affinchè non fosse possibile istanziare, all'interno delle altre classi, la classe Singleton in modo ripetuto. <br>Attraverso il metodo *getInstance* del Server infatti facciamo in modo che ogni richiesta di istanziazione, qual'ora l'istanza del server non fosse nulla, si limiti alla sola restituzione dell'istanza già presente piuttosto che alla creazione di un'ulteriore istanza della classe Server.<br>
 **2:Observer**
 **3.Delegator**???
 
