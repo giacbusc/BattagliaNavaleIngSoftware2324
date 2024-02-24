@@ -29,8 +29,27 @@
   - 1.12 Budget e pianificazione
   - 1.13 Cambiamenti
   - 1.14 Consegna
-- __2. Struttura__
-- __3. Modelling__
+- __2. Software lifecycle__
+- __3. Configuration Management__
+  - 3.1 Struttura del progetto
+  - 3.2 Issues e Kanban Board
+- __4. People Management__
+- __5. Software Quality__
+- __6. Requirement Engineering__
+  - 6.1 Specifica dei Requisiti
+    -6.1.1 Schermata Iniziale e Accesso
+    -6.1.2 Scelta Metodologia di Gioco
+    -6.1.3 Posizionamento
+    -6.1.4 Gioco
+    -6.1.5
+- __7. Modelling__
+- __8. Software Architecture__
+  -8.1 Struttura MVC
+  -8.2 Structure 101
+- __9. Software Design__
+- __10. Softare Testing__
+- __11. Software Refactoring__
+- __12. Software Maintenance__
 
   
 ## Il progetto
@@ -55,7 +74,7 @@ A vincere è il primo giocatore che affonda tutte le navi dell'avversario.
 ## 1. Project plan
 https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Project%20Plan.md
 
-## 2. Software lifecylce
+## 2. Software lifecycle
 
 Per il processo di sviluppo del gioco si è deciso di sfruttare un approccio di tipo *agile*, in particolare abbiamo deciso di seguire i principi del modello RAD, Rapid Application  Development. <br>
 I principi sui quali ci siamo basati sono:
@@ -168,8 +187,12 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
 </table>
 
 ## 5. Software quality
-Come precedentemente specificato, il team si è prefissato di sviluppare un'applicazione che rispetti i parametri e gli attributi di qualità, In particolare il team si è impegnato per rispettare i requisiti di qualità tassonomici di McCall. Illustriamo gli attributi di qualità che descrivono il nostro sistema attraverso la suddivisione effettuata da McCall, il quale suddivide gli attributi di qualità legati alla produzione, revisione e transizione del codice.<br>
-1. Per quanto riguarda le linee guida di produzione del codice e dell'utilizzo del software una volta effettuata la consegna: <br>
+Come precedentemente specificato, il team si è prefissato di sviluppare un'applicazione che rispetti i parametri e gli attributi di qualità, In particolare il team si è impegnato per rispettare i requisiti di qualità tassonomici di McCall. Illustriamo gli attributi di qualità che descrivono il nostro sistema attraverso la suddivisione effettuata da McCall,  quale suddivide gli attributi di qualità legati alla produzione, revisione e transizione del codice.<br>
+
+ <img style="width: 550px;" src="resources/mccall.png">
+ <br>
+ 
+1.Per quanto riguarda la produzione del codice e l'utilizzo del software una volta effettuata la consegna, ci aspettiamo le seguenti qualità:
 - **Correttezza** : il software consegnato soddisfa i requisiti ed è stato sviluppato correttamente
 - **Affidabilità** : il software è affidabile in quanto è stato testato più e più volte, ed è stato conseganto col minor numero di bug possibili, il software svolge le funzioni richieste in modo corretto
 - **Efficienza** : per il funzionamento del software non è necessario l'uso di particolari risorse 
