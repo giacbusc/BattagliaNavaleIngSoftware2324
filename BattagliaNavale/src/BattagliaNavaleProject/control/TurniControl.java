@@ -39,7 +39,8 @@ public class TurniControl {
 	private int miaoconta;
 	private Observer obs;
 
-	public TurniControl(String indirizzo, DoubleGameGridView DGGV, AggiuntaListener al, TornaMenuPrincipale tmp, Observer obs) {
+	public TurniControl(String indirizzo, DoubleGameGridView DGGV, AggiuntaListener al, TornaMenuPrincipale tmp,
+			Observer obs) {
 		// TODO Auto-generated constructor stub
 		this.obs = obs;
 		this.tmp = tmp;
@@ -134,7 +135,9 @@ public class TurniControl {
 			worker.execute();
 		}
 		if (stato == 3) {
-			DGGV.opponentBoard[x][y].setAffondato();
+
+			// DGGV.opponentBoard[x][y].setAffondato();
+
 			verificaLunghezza();
 
 		} else if (stato == 4) {
@@ -166,7 +169,7 @@ public class TurniControl {
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
-				for (int i = 1; i < lunghezza; i++) {
+				for (int i = 0; i < lunghezza; i++) {
 					String sendMsg = "AFFONDATO";
 					DGGV.createIcon(arrayRisposta[0], arrayRisposta[0]);
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), ZMQ.DONTWAIT);
@@ -188,9 +191,9 @@ public class TurniControl {
 					if (stato == 5) {
 						String filepath = "./music/Background_game_music.wav";
 						SoundEffect se = new SoundEffect();
-						se.playMusic2(filepath,false);
-						 filepath = "./music/Win.wav";
-						 se = new SoundEffect();
+						se.playMusic2(filepath, false);
+						filepath = "./music/Win.wav";
+						se = new SoundEffect();
 						se.playMusic(filepath);
 						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO", tmp, obs);
 
@@ -238,7 +241,7 @@ public class TurniControl {
 			String rispostaMsg = new String(byteMsg, ZMQ.CHARSET);
 
 			if (rispostaMsg.equals("GIOCA")) {
-				
+
 				DGGV.turnoPanel.setVisible(true);
 				DGGV.shipsPanel.setBackground(Color.decode("#659feb"));
 				turno();
@@ -252,8 +255,8 @@ public class TurniControl {
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
 				se.playMusic2(filepath, false);
-				 filepath = "./music/gameover.wav";
-				 se = new SoundEffect();
+				filepath = "./music/gameover.wav";
+				se = new SoundEffect();
 				se.playMusic(filepath);
 				FinePartitaControl sfp = new FinePartitaControl(DGGV.getUsername(), "HAI PERSO", tmp, obs);
 

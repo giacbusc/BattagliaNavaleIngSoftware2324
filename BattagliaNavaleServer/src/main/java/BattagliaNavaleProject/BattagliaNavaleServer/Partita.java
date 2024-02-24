@@ -32,9 +32,6 @@ public class Partita {
 		ZMQ.Socket socketServer = isp.getSocketServer();
 		player1 = isp.getPlayer1();
 		player2 = isp.getPlayer2();
-		
-	
-
 		// stampaGriglia(1);
 
 		while (finito == false) {
@@ -160,8 +157,8 @@ public class Partita {
 	}
 
 	private void controlloT1(Socket socketServer, int xpos, int ypos, String x, String y) {
-		System.out.println("turno nell'if" + turno);
-		System.out.println("conta barche p1: " + contaBarcheP1);
+		//System.out.println("turno nell'if" + turno);
+		//System.out.println("conta barche p1: " + contaBarcheP1);
 		for (int k = 0; k < spedire.length; k++) {
 			spedire[k] = "-1";
 		}
@@ -224,7 +221,7 @@ public class Partita {
 
 							}
 						
-							System.out.println("affondati: " + contaAffondati + " barche: " + contaBarcheP1);
+							//System.out.println("affondati: " + contaAffondati + " barche: " + contaBarcheP1);
 							if (contaAffondati == (l - 1) && contaBarcheP1 == 10) {
 								System.out.println("ha vinto p1 ");
 								spedire[0] = "-1";
