@@ -274,50 +274,94 @@ public class Partita {
 				spedireMex(spedire);
 			} else { // è affondata
 				contaBarcheP2++;
-				player1[xpos][ypos].setStato(3);
 				String nomeBarcaColpita = player1[xpos][ypos].getNome();
 				InfoBoat boat = Enum.valueOf(InfoBoat.class, nomeBarcaColpita);
 				int l = boat.getLunghezza();
-
 				if (contaBarcheP2 == 10)
 					l = l + 1;
-
-				int contaAffondati = 0;
-
+				
+				spedire[0] = String.valueOf(xpos);
+				spedire[1] = String.valueOf(ypos);
+				spedire[2] = "3";
+				spedire[3] = String.valueOf(l);
+				player1[xpos][ypos].setStato(3);
+				spedireMex(spedire);
+				
+				ArrayList<String[]> celleAffondate = new ArrayList<String[]>();
 				for (int i = 0; i < MAX_LENGTH; i++) {
 					for (int j = 0; j < MAX_LENGTH; j++) {
 						if (player1[i][j].getNome().equals(nomeBarcaColpita)) {
-							player1[i][j].setStato(3);
-							spedire[0] = String.valueOf(i);
-							spedire[1] = String.valueOf(j);
-							spedire[2] = "3";
-							spedire[3] = String.valueOf(l);
-							contaAffondati++;
-							spedireMex(spedire);
-
-							// RICEZIONE DELL'AFFONDATO
-							if (contaAffondati < l) {
-								byte[] replyAffondato = socketServer.recv(0);
-								String requestAffondato = new String(replyAffondato, ZMQ.CHARSET);
-								System.out.println("Messaggio ricevuto: " + requestAffondato);
-									
-							}
-							System.out.println("affondati: " + contaAffondati + " barche: " + contaBarcheP2);
-							if (contaAffondati == (l - 1) && contaBarcheP2 == 10) {
-								System.out.println("ha vinto p2 ");
-								spedire[0] = "-1";
-								spedire[1] = "-1";
-								spedire[2] = "5"; // lo stato a 5 indica che il player2 ha vinto!
+							
+							if(i!=xpos && j!=ypos)
+							{
+								player1[i][j].setStato(3);
+								spedire[0] = String.valueOf(i);
+								spedire[1] = String.valueOf(j);
+								spedire[2] = "3";
 								spedire[3] = String.valueOf(l);
-								spedireMex(spedire);
-								finito = true;
-								break;
+								
+								celleAffondate.add(spedire);
 							}
-
 						}
 					}
 				}
-				INVIATO = true;
+				
+				int contaAffondati=-1;
+				if (contaBarcheP2 == 10)
+					l = l + 1;
+				while(true)
+				{
+					byte[] replyAffondato = socketServer.recv(0);
+					String requestAffondato = new String(replyAffondato, ZMQ.CHARSET);
+					System.out.println("Messaggio ricevuto: " + requestAffondato);
+					
+					if(requestAffondato.equals("AFFONDATO"))
+					{
+						contaAffondati++;
+						
+						if (contaAffondati == (l - 1) && contaBarcheP2 == 10) {
+							System.out.println("ha vinto p2 ");
+							spedire[0] = "-1";
+							spedire[1] = "-1";
+							spedire[2] = "5"; // lo stato a 5 indica che il player2 ha vinto!
+							spedire[3] = String.valueOf(l);
+							spedireMex(spedire);
+							finito = true;
+							break;
+						}
+						spedireMex(celleAffondate.get(contaAffondati));
+						
+						
+						if(contaAffondati==celleAffondate.size())
+						{
+							INVIATO = true;
+							break;
+						}
+					}
+					else if(requestAffondato.equals("MIAO"))
+					{
+						String responseMessage = "MIAO";
+						socketServer.send(responseMessage.getBytes(), 0);
+						System.out.println("Inviato IL MIAO DEL MARTIN: " + responseMessage);
+					}
+					
+				}
+				
+
+			
+
+
+				
+				
+
+
+							// RICEZIONE DELL'AFFONDATO
+				
+							System.out.println("affondati: " + contaAffondati + " barche: " + contaBarcheP2);
+							
+
+				
+			
 			}
 
 		}
