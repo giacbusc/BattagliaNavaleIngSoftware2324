@@ -168,20 +168,23 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
 </table>
 
 ## 5. Software quality
-Come precedentemente specificato, il team si è prefissato di sviluppare un'applicazione che rispetti i parametri e gli attributi di qualità, considerando fondamentale lo sviluppo di un software di qualità che garantisca: 
+Come precedentemente specificato, il team si è prefissato di sviluppare un'applicazione che rispetti i parametri e gli attributi di qualità, In particolare il team si è impegnato per rispettare i requisiti di qualità tassonomici di McCall. Illustriamo gli attributi di qualità che descrivono il nostro sistema attraverso la suddivisione effettuata da McCall, il quale suddivide gli attributi di qualità legati alla produzione, revisione e transizione del codice.<br>
+1. Per quanto riguarda le linee guida di produzione del codice e dell'utilizzo del software una volta effettuata la consegna: <br>
+- **Correttezza** : il software consegnato soddisfa i requisiti ed è stato sviluppato correttamente
+- **Affidabilità** : il software è affidabile in quanto è stato testato più e più volte, ed è stato conseganto col minor numero di bug possibili, il software svolge le funzioni richieste in modo corretto
+- **Efficienza** : per il funzionamento del software non è necessario l'uso di particolari risorse 
+- **Integrità** : il software permette l'accesso ai soli utenti che hanno effettuato la registrazione e sono inseriti nel database
+- **Usabilità** : il prodotto è semplice da utilizzare infatti non sono richieste, oltre che a risorse avanzate, nemmeno competenze e conoscenze particolari. Il team si è posto l'obiettivo di fornire una grafica semplice ed intuitiva. <br>
+L'interpretazione dell'output e l'immissione dell'input è facilitata dalla presenza di un Tutorial iniziale che è possibile consultare ogni volta che si apre il menu principale <br>
 
-- Correttezza : il software consegnato soddisfa i requisiti (identificati come i must have del progetto)
-- Affidabilità : abbiamo testato più e più volte la nostra applicazione presentandola col minor numero di bug possibili, il software svolge le funzioni richieste in modo corretto
-- Efficienza : per il funzionamento del software non è necessario l'uso di particolari risorse 
-- Integrità : il software permette l'accesso ai soli utenti che hanno effettuato la registrazione e sono inseriti nel database
-- Usabilità : il prodotto è semplice da utilizzare infatti non sono richieste, oltre che a risorse avanzate, nemmeno competenze e conoscenze particolari. L'interpretazione dell'output e l'immissione dell'input non dovrebbero richiedere sforzo particolare grazie alla presenza di un Tutorial iniziale che è possibile consultare ogni volta che si apre il menu principale
-
-Rispetto alla manutenibilità e all'interazione con l'ambiente, ci aspettiamo che rispetti le seguenti qualità:
-- Testabilità: le funzionalità incluse sono testabili in qualunque momento tramite test manuali implementati attraverso l'utilizzo di JUnit
-- Manutenibilità: il software è stato sviluppato con l'obbiettivo di essere chiaro, cosi da permettere l'individualizzazione e la risoluzione di eventuali errori. A questo fine è stato utilizzato JavaDoc
-- Flessibilità: il software si presenza incline all'implementazione di nuove funzionalità
-- Riusabilità: Sono state sfruttate e scritte librerie che possono essere riutilizzate in altri ambiti in quanto sono state sviluppate in modo indipendente dal contesto del gioco.
-- Portabilità: Il gioco è eseguibile sui più diffusi sistemi operativi desktop (Windows, Linux, MacOS) dotati di una connessione internet.
+2.Rispetto alla manutenibilità e all'interazione con l'ambiente, ci aspettiamo che rispetti le seguenti qualità:
+- **Testabilità**: le funzionalità incluse sono testabili in qualunque momento tramite test manuali implementati attraverso l'utilizzo di JUnit
+- Manutenibilità: il software è stato sviluppato con l'obbiettivo di essere chiaro, cosi da permettere l'individualizzazione e la risoluzione di eventuali errori. A questo fine il team si è impegnato a eseguire una suddivisione del codice nelle diverse parti: il server ed il client sono divisi e inoltre vi è una distinzione tra le classi di logica, di modello e di interfaccia che permette una gestione migliore del codice.
+- **Flessibilità**: il software si presenza incline all'implementazione di nuove funzionalità
+- **Riusabilità**: Sono state sfruttate e scritte librerie che possono essere riutilizzate in altri ambiti in quanto sono state sviluppate in modo indipendente dal contesto del gioco. <br>
+3. Infine,in riferimento alle qualità legate alla transizione del codice distinguiamo le qualità di:
+- **Portabilità**: Il gioco è eseguibile sui più diffusi sistemi operativi desktop (Windows, Linux, MacOS) dotati di una connessione internet.
+- **Riusabilità**: il codice è stato scritto in modo modulare, per poter essere riutilizzabile in futuro.
 <br>
 
 ## 6. Requirement Engineering
@@ -221,18 +224,55 @@ Terminati i posizionamenti delle barche, il turno deve passare a colui che si er
 ## 7. Modelling
 
 ## 8. Software Architecture
+### 8.1 Struttura MVC
 Il software abbiamo deciso di basarlo sullo stile architetturale MVC (Model-View-Control):
 -VIEW: la view è l'insieme delle gui che gestiscono l'interfaccia utente e attraverso le quali vengono inseriti gli input. Attraverso l'interfaccia l'utente durante il gioco manipola i dati. Tale manipolazione è realizzata del Control. (Ad esempio attraverso i click sulla caselle della griglia cambio lo stato della griglia.)
 -MODEL: rappresenta i dati e gestisce le loro modifiche. Il model gestisce poi la visualizzazione dell'interfaccia utente attraverso il controller.
 <br>
 Esempio di utilizzo di MVC nel progetto:<br>
 durante il gioco un utente prova a colpire una barca dell'avversario sulla griglia a destra. L'utente cliccando da un input al programma che viene elaborato attraverso le classi di logica del control. Queste comunicano con il socket e verificano lo stato della casella. Nel momento in cui la casella viene controllata possiamo dire che lo stato della cella cambia. Può essere parte di una barca e quindi identificare che la barca è stata colpita, oppure che la barca è stata affondata. Lo stato della casella è all'interno del model e viene modificato dal control. Una modifica del model porta ad una modifica della View infatti la casella a seconda del suo stato cambia colore.<br>
+### 8.2 Structure 101
+
+Durante la fase di implementazione e nella fase di refactoring abbiamo utilizzato Structure 101. <br>
+Structure101 è uno strumento di analisi e gestione della complessità del software. Esso fornisce una panoramica dettagliata dell'architettura del software, identificando dipendenze indesiderate, violazioni di regole di progettazione e altri problemi che possono compromettere la manutenibilità e la scalabilità del sistema nel tempo.
+Durante la fase di implementazione e nella fase di refactoring abbiamo utilizzato Structure 101
+Abbiamo, durante il refactoring, come spiegato al punto [11](https://github.com/buscst/BattagliaNavaleIngSoftware2324/edit/main/docs/Documentazione.md#11-refactoring) cercato di migliorare alcuni aspetti del codice,basandoci sulle percentuali fornite da Structure 101. <br>
+Attraverso l'implementazione di Structure 101 abbiamo notato che il codice presentava una percentuale di grasso troppo elevata e che quindi andava a nuocere alla qualità del sistema rendendolo meno manutenibile, più difficilmente testabili e meno comprensibile. <br>
+Abbiamo quindi decomposto le funzioni di modo che fossero meno ingombranti, e abbiamo raggiunto una percentuale di grasso pari a 0.
+
 ## 9. Software Design
+All'interno del nostro sistema abbiamo utilizzato diversi pattern a fronte di alcune problematiche:<br>
+**1.Singleton**
+Abbiamo utilizzato il pattern Singleton all'interno del server affinchè non fosse possibile istanziare, all'interno delle altre classi, la classe Singleton in modo ripetuto. >br>Attraverso il metodo *getInstance* del Server infatti facciamo in modo che ogni richiesta di istanziazione, qual'ora l'istanza del server non fosse nulla, si limiti alla sola restituzione dell'istanza già presente piuttosto che alla creazione di un'ulteriore istanza della classe Server.<br>
+**2:Observer**
+**3.Delegator**???
 
 ## 10. Software Testing
-
-## 11. Software Maintenance
 Durante lo sviluppo il corretto funzionamento del codice è stato testato costantemente con test pratici di esecuzione del programma e delle sue funzionalità. Questo è stato effettuato inserendo controlli di stampa,debug con break point e attraverso test di JUnit. <br>
 Nel momento in cui ci si è trovavi davanti un errore si è proceduto alla sua correzione, nel caso chiedendo anche agli altri membri un aiuto.<br>
 In seguito alla revisione del bug e del codice errato si è poi ripetuto il test per verificarne l'esito. <br>
 In alcuni casi, insieme alla correzione del bug è stato necessario fare anche delle modifiche più sostanziali al programma con un conseguente refactoring del codice per adattarlo alle nuove funzionalità. Queste modifiche essendo più invasive hanno spesso richiesto la creazione di un branch sul quale effettuare il lavoro. <br>
+
+## 11. Software Refactoring
+
+Il refactoring è un processo fondamentale nel ciclo di vita del software, in cui il codice viene esaminato e ottimizzato senza aggiungere nuove funzionalità, ma piuttosto migliorando la sua struttura interna per eliminare inefficienze, ridurre la complessità e migliorare la leggibilità e la manutenibilità nel tempo.
+Il team ha dedicato parte del suo tempo, soprattutto nella fase finale dello sviluppo, all'analisi del codice alla ricerca di aspetti migliorabili, tra questi:
+-> eliminazione utilizzo improprio della gerarchia delle classi
+-> evitare l'assenza di commenti per rendere più chiaro il codice e quindi più comprensibile e manutenibile
+-> miglioramento della coesione e diminuzione dell'accoppiamento
+-> eliminazione di elementi che ostacolino il cambiamento
+-> ristrutturazioni delle classi qualora fossero troppo grandi: se una classe diventa troppo complessa o ha troppe responsabilità, può essere utile suddividerla in classi più piccole e coese. Questo favorisce una migliore organizzazione del codice e una maggiore facilità di manutenzione.
+-> rinominazione variabili e metodi al fine di migliorare la comprensione del codice 
+-> decomposizione di lunghe funzioni le quali possono essere difficili da comprendere e testare. Suddividere queste funzioni in sottofunzioni più piccole, ognuna con una singola responsabilità, rende il codice più chiaro e facilita la verifica e la manutenzione.
+-> utilizzo di design pattern per migliorare la struttura e l'organizzazione del codice
+
+Per verificare che il lavoro di refactoring, l'evoluzione del codice ed il miglioramento delle metriche, abbiamo utilizzato Structure 101.
+
+## 12. Software Maintenance
+La manutenzione di un software rappresenta un processo fondamentale nell'assicurare il suo funzionamento ottimale e la sua continua adattabilità alle mutevoli esigenze degli utenti e dell'ambiente in cui opera. Tale processo si articola in diverse tipologie di intervento: la manutenzione correttiva, volta alla risoluzione tempestiva di errori e malfunzionamenti; la manutenzione adattiva, che si occupa di aggiornare il software per adeguarlo a modifiche nell'ambiente operativo o nei requisiti di sistema; la manutenzione perfettiva, finalizzata a implementare nuove funzionalità richieste dagli utenti o a ottimizzare le prestazioni dell'applicativo; infine, la manutenzione preventiva, che mira a prevenire futuri problemi e a migliorare la manutenibilità complessiva del software.
+
+Nel contesto di un software sviluppato seguendo il paradigma COTS (Commercial Off The Shelf), nel quale ci troviamo col nostro software il quale non ha un committente diretto, la manutenzione perfettiva assume un ruolo particolarmente rilevante. Contrariamente ai progetti su commissione, in cui le richieste di miglioramento provengono direttamente dal committente, nel caso dei software COTS, tali miglioramenti sono spesso determinati da cambiamenti nel mercato o dalle esigenze emergenti della vasta comunità di utenti. Pertanto, la capacità di rispondere prontamente a tali evoluzioni diventa cruciale per mantenere la rilevanza e la competitività del software nel tempo.
+
+La fase di manutenzione ha inizio sin dal momento della consegna dell'applicativo e si protrae per l'intera durata della sua vita utile. Questo implica un impegno continuo nell'aggiornamento, nell'ottimizzazione e nell'espansione delle funzionalità del software al fine di garantirne l'efficacia e la soddisfazione degli utenti nel lungo periodo.
+
+
