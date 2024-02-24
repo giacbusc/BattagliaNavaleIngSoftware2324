@@ -40,14 +40,8 @@ public class SelezioneIndirizzoControl implements ActionListener {
 		{
 			JButton clickedButton= (JButton) e.getSource();
 			if(clickedButton.getText().equals("Gioca"))
-			{
-				try {
-					Server.createTcpServer().start();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				ServerSocket.setIndirizzo(ind+siv.indirizzoField.getText());
+			{ 	System.out.println("gioca cliccato");
+				System.out.println(ind+siv.indirizzoField.getText());
 				DoubleGameGridControl.setIndirizzo(ind+siv.indirizzoField.getText());
 				//ConnectionControl.setIndirizzo(tcp);
 				setConnectionIndirizzo(ind+siv.indirizzoField.getText());
