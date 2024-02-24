@@ -44,8 +44,8 @@
     - 6.1.5
 - __7. Modelling__
 - __8. Software Architecture__
-  -8.1 Struttura MVC
-  -8.2 Structure 101
+  - 8.1 Struttura MVC
+  - 8.2 Structure 101
 - __9. Software Design__
 - __10. Softare Testing__
 - __11. Software Refactoring__
