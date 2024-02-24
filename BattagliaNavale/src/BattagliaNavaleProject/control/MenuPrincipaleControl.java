@@ -9,6 +9,7 @@ import javax.swing.SwingWorker;
 
 import org.h2.tools.Server;
 
+import BattagliaNavaleProject.BattagliaNavaleServer.AvviaServerH2;
 import BattagliaNavaleProject.BattagliaNavaleServer.ServerSocket;
 import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 import BattagliaNavaleProject.view.MenuPrincipaleView;
@@ -31,7 +32,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		String tcp= "tcp://192.168.1.4:5554";
+		String tcp= AvviaServerH2.getServerAddress();
 		String local="tcp://localhost:5545";
 		String[] parti = tcp.split(":");
 		String filepath = "./music/sceltaMenu3.wav";

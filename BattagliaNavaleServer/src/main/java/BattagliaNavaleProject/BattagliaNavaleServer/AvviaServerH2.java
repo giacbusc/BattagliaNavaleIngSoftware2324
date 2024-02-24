@@ -27,7 +27,10 @@ public class AvviaServerH2 {
         }
 		return serverAddress;
      }
-    
+	public static String getServerAddress() {
+		return serverAddress;
+	}
+	
     }
 
 
