@@ -41,7 +41,6 @@
     - 6.1.2 Scelta Metodologia di Gioco
     - 6.1.3 Posizionamento
     - 6.1.4 Gioco
-    - 6.1.5
 - __7. Modelling__
 - __8. Software Architecture__
   - 8.1 Struttura MVC
@@ -221,8 +220,8 @@ I requisiti sono stati decisi in fase di elicitazione, durante la quale abbiamo 
 * L'username è l'identificativo del client nel gioco multiplayer, si eseguono controlli durante il collegamento al server per verificare che il gioco avvenga sempre tra username diversi. <br>
 
 #### 6.1.2 Scelta Metodologia di Gioco
-*Una volta eseguito l'accesso si apre la schermata del menu principale, questa offre diverse opzioni: deve essere presente l'opzione di visualizzazione del Tutorial, così che l'utente inesperto possa apprendere ad utilizzare il gioco. <br>
-*Il gioco è solo orientato alla versione multiplayer, che può essere eseguita in due modi diversi:
+* Una volta eseguito l'accesso si apre la schermata del menu principale, questa offre diverse opzioni: deve essere presente l'opzione di visualizzazione del Tutorial, così che l'utente inesperto possa apprendere ad utilizzare il gioco. <br>
+* Il gioco è solo orientato alla versione multiplayer, che può essere eseguita in due modi diversi:
 - in locale su uno stesso pc
 - su pc diversi connessi alla stessa rete locale
 <br>
@@ -233,7 +232,7 @@ I requisiti sono stati decisi in fase di elicitazione, durante la quale abbiamo 
 * Una volta connessi due client al primo dei due si apre la griglia di gioco, mentre il secondo rimane in attesa che il primo effettui il posizionamento delle barche nella griglia. <br>
 * Il posizionamento delle barche inizia con la scelta della barca, una volta selezionata questa viene tolta dal pannello sottostante alla griglia e va posizionata in un punto. <br> 
 * Non deve essere possibile selezionare due barche di fila in questo momento. <br>
-Supponiamo che il primo click che si effettua sulla griglia inidichi un estremo della barca.<br>
+* Supponiamo che il primo click che si effettua sulla griglia inidichi un estremo della barca.<br>
 * Una volta iniziato il posizionamento della barca, se questa non è una barca da uno, viene calcolato dal server se la posizione scelta è corretta e viene mostrato sulla griglia come poter terminare il posizionamento. <br>
 * In questo momento sono stati gestite le varie eccezioni, così che non si possa cliccare qualcosa che non sia suggerito. <br>
 * In caso di errore di posizionamento la barca deve tornare visibile nella zona sottostante. <br>
@@ -241,8 +240,15 @@ Supponiamo che il primo click che si effettua sulla griglia inidichi un estremo 
 
 #### 6.1.4 Fase di Gioco
 * Terminati i posizionamenti delle barche, il turno deve passare a colui che si era connesso per primo. <br>
-* * Questo client ora deve cercare di colpire una barca dell'avversario cliccando sulla griglia alla sua destra. <br>
-
+* In questa fase la mia grilia non deve essere cliccabile, così come la grilia dell'avversario quando non è il mio turno <br>
+* Deve essere presente un pannello che indichi quando è il turno del client
+* Il client ora deve cercare di colpire una barca dell'avversario cliccando sulla griglia alla sua destra. <br>
+* Cliccata una cella bisogna verificare quale sia il suo stato nella griglia dell'avversario e settare la cella in base a questo:
+* * se la cella cliccata contiene una barca di lunghezza 1 la cella diventa nera perchè affondata
+  * se la cella cliccata contiene una barca di lunghezza maggiore di 1 diventa colpita, si effettua il controllo sullon stato delle caselle della barca, se sono tutte colpite allora la barca diventa affondata
+  * se la cella colpita non contiene barche diventa blu, indicando che è stata colpita l'acqua
+* Quando sono state affondate tutte le barche il gioco termina e compare la schermata finale
+* Dalla schermata finale posso tornare al menu per giocare ancora oppure uscire dal gioco
 ## 7. Modelling
 
 ## 8. Software Architecture
