@@ -215,34 +215,33 @@ I requisiti sono stati decisi in fase di elicitazione, durante la quale abbiamo 
 
 ### 6.1 Specifica dei Requisiti
 #### 6.1.1 Schermata Iniziale e Accesso
-Nonostante non presente nei requisiti iniziali è stata inserita una schermata che precede tutte le altre la quale è necessaria a fini statici per l'avviamento del gioco (quest'ultimo a seconda delle modalità che verranno utilizzate deve di fatti contenere indirizzi diversi).<br>
-La schermata iniziale è quella per l'accesso, che si distingue in due modalità: attraverso Login o Registrazione. <br>
-Un cliente che non è loggato può registrarsi inserendo il suo nome, il cognome, un username (il quale vogliamo che sia univoco) ed una password. Queste informazioni vengono salvate nel database e vengono poi verificate ogni volta che un utente esegue il login (con username e password). <br>
-Il login ha successo solo nel momento in cui l'username inserito ha un riscontro nel database. <br>
-L'username è l'identificativo del client nel gioco multiplayer, si eseguono controlli durante il collegamento al server per verificare che il gioco avvenga sempre tra username diversi. <br>
+* La schermata iniziale è quella per l'accesso, che si distingue in due modalità: attraverso Login o Registrazione. <br>
+* Un cliente che non è loggato può registrarsi inserendo il suo nome, il cognome, un username (il quale vogliamo che sia univoco) ed una password. Queste informazioni vengono salvate nel database e vengono poi verificate ogni volta che un utente esegue il login (con username e password). <br>
+* Il login ha successo solo nel momento in cui l'username inserito ha un riscontro nel database. <br>
+* L'username è l'identificativo del client nel gioco multiplayer, si eseguono controlli durante il collegamento al server per verificare che il gioco avvenga sempre tra username diversi. <br>
 
 #### 6.1.2 Scelta Metodologia di Gioco
-Una volta eseguito l'accesso si apre la schermata del menu principale, questa offre diverse opzioni: deve essere presente l'opzione di visualizzazione del Tutorial, così che l'utente inesperto possa apprendere ad utilizzare il gioco. <br>
-Il gioco è solo orientato alla versione multiplayer, che può essere eseguita in due modi diversi:
+*Una volta eseguito l'accesso si apre la schermata del menu principale, questa offre diverse opzioni: deve essere presente l'opzione di visualizzazione del Tutorial, così che l'utente inesperto possa apprendere ad utilizzare il gioco. <br>
+*Il gioco è solo orientato alla versione multiplayer, che può essere eseguita in due modi diversi:
 - in locale su uno stesso pc
 - su pc diversi connessi alla stessa rete locale
 <br>
-Questa scelta è anticipata da una schermata resa necessaria in quanto non è possibile a questo punto del gioco modificare gli indirizzi di avviamento.
-<br>
+
 
 #### 6.1.3 Posizionamento
-Una volta eseguito l'accesso e decisa la modalità di gioco, si apre una schermata di attesa. Questa rimane visibile fino al momento in cui non si connette al server un secondo client (il quale deve avere un username diverso dal primo).<br>
-Una volta connessi due client al primo dei due si apre la griglia di gioco, mentre il secondo rimane in attesa che il primo effettui il posizionamento delle barche nella griglia. <br>
-Il posizionamento delle barche inizia con la scelta della barca, una volta selezionata questa viene tolta dal pannello sottostante alla griglia e va posizionata in un punto. <br> 
-Non deve essere possibile selezionare due barche di fila in questo momento. <br>
+* Una volta eseguito l'accesso e decisa la modalità di gioco, si apre una schermata di attesa. Questa rimane visibile fino al momento in cui non si connette al server un secondo client (il quale deve avere un username diverso dal primo).<br>
+* Una volta connessi due client al primo dei due si apre la griglia di gioco, mentre il secondo rimane in attesa che il primo effettui il posizionamento delle barche nella griglia. <br>
+* Il posizionamento delle barche inizia con la scelta della barca, una volta selezionata questa viene tolta dal pannello sottostante alla griglia e va posizionata in un punto. <br> 
+* Non deve essere possibile selezionare due barche di fila in questo momento. <br>
 Supponiamo che il primo click che si effettua sulla griglia inidichi un estremo della barca.<br>
-Una volta iniziato il posizionamento della barca, se questa non è una barca da uno, viene calcolato dal server se la posizione scelta è corretta e viene mostrato sulla griglia come poter terminare il posizionamento. <br>
-In questo momento sono stati gestite le varie eccezioni, così che non si possa cliccare qualcosa che non sia suggerito. <br>
-In caso di errore di posizionamento la barca deve tornare visibile nella zona sottostante. <br>
-Una volta terminato il posizionamento del primo client può iniziare il secondo, il quale viene risvegliato dal server. <br>
+* Una volta iniziato il posizionamento della barca, se questa non è una barca da uno, viene calcolato dal server se la posizione scelta è corretta e viene mostrato sulla griglia come poter terminare il posizionamento. <br>
+* In questo momento sono stati gestite le varie eccezioni, così che non si possa cliccare qualcosa che non sia suggerito. <br>
+* In caso di errore di posizionamento la barca deve tornare visibile nella zona sottostante. <br>
+* Una volta terminato il posizionamento del primo client può iniziare il secondo, il quale viene risvegliato dal server. <br>
 
 #### 6.1.4 Fase di Gioco
-Terminati i posizionamenti delle barche, il turno deve passare a colui che si era connesso per primo. Questo client ora deve cercare di colpire una barca dell'avversario cliccando sulla griglia alla sua destra. <br>
+* Terminati i posizionamenti delle barche, il turno deve passare a colui che si era connesso per primo. <br>
+* * Questo client ora deve cercare di colpire una barca dell'avversario cliccando sulla griglia alla sua destra. <br>
 
 ## 7. Modelling
 
