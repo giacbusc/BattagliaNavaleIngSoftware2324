@@ -162,14 +162,6 @@ public class ServerSocket implements InterfacciaServerPartita{
 
 	}
 
-	public String getIndirizzo() {
-		return indirizzo;
-	}
-
-	public static void setIndirizzo(String ind) {
-		indirizzo = ind;
-	}
-
 	private static boolean isUsernameUnique(String username) {
 		for (String str : connectedClients) {
 			if (str.equals(username)) {
