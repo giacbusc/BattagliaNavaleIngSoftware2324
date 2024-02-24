@@ -6,20 +6,17 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
-
-import org.h2.tools.Server;
-
-import BattagliaNavaleProject.BattagliaNavaleServer.AvviaServerH2;
-import BattagliaNavaleProject.BattagliaNavaleServer.ServerSocket;
 import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 import BattagliaNavaleProject.view.MenuPrincipaleView;
 import BattagliaNavaleProject.view.Observer;
+import BattagliaNavaleProject.view.SelezioneIndirizzoView;
 
 public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipale{
 	private MenuPrincipaleView menu;
 	private SchermataAttesaControl sac;
 	private String username;
 	private Observer obs;
+
 	public MenuPrincipaleControl(String username, Observer obs) throws IOException, SQLException {
 		menu= new MenuPrincipaleView(username,obs);
 		this.username = username;
@@ -32,9 +29,9 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		String tcp= AvviaServerH2.getServerAddress();
+		//String tcp= "tcp://192.168.1.226:5545";
 		String local="tcp://localhost:5545";
-		String[] parti = tcp.split(":");
+		String[] parti = local.split(":");
 		String filepath = "./music/sceltaMenu3.wav";
 	    SoundEffect s = new SoundEffect();
 	    s.playMusic(filepath);
@@ -43,32 +40,12 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 			JButton clickedButton= (JButton) e.getSource();
 			
 			if(clickedButton.getText().equals("  ")) {
-				try {
-					Server.createTcpServer().start();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				ServerSocket.setIndirizzo(tcp);
-				DoubleGameGridControl.setIndirizzo(tcp);
-				//ConnectionControl.setIndirizzo(tcp);
-				setConnectionIndirizzo(tcp);
-				SchermataAttesaControl.setIndirizzo(tcp);
+			
 				System.out.println("tanti pc");
-				try { 
-					open();
-					
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+			
 				SelezioneIndirizzoControl sic = new SelezioneIndirizzoControl(username,this,obs);
 			}
 			else if(clickedButton.getText().equals("")) {
-				ServerSocket.setIndirizzo("tcp://*:" + parti[2]);
 				//ConnectionControl.setIndirizzo(local);
 				setConnectionIndirizzo(local);
 				DoubleGameGridControl.setIndirizzo(local);

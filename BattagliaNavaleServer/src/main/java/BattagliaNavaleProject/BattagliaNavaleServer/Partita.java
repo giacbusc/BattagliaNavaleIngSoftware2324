@@ -198,6 +198,14 @@ public class Partita {
 				spedireMex(spedire);
 
 				ArrayList<String[]> celleAffondate = new ArrayList<String[]>();
+				// PER INDICARE LA VINCITA PRIMA SI METTONO TUTTE LE BARCHE SETTATE NELLA
+				// GRIGLIA DOPODICHE
+				// SI VA A:
+				// 1) aumentare la lunghezza di 1 della barca cosicchè si possa mandare un
+				// ulteriore messaggio
+				// 2) si invia un nuovo stato speciale che risulta come 5 che indica la vittoria
+				// del player
+
 				for (int i = 0; i < MAX_LENGTH; i++) {
 					for (int j = 0; j < MAX_LENGTH; j++) {
 						if (player2[i][j].getNome().equals(nomeBarcaColpita)) {
@@ -316,7 +324,7 @@ public class Partita {
 				}
 
 				int contaAffondati = -1;
-				
+
 				while (true) {
 					byte[] replyAffondato = socketServer.recv(0);
 					String requestAffondato = new String(replyAffondato, ZMQ.CHARSET);
@@ -348,8 +356,12 @@ public class Partita {
 					}
 
 				}
-				
+
+
+				// RICEZIONE DELL'AFFONDATO
+
 				System.out.println("affondati: " + contaAffondati + " barche: " + contaBarcheP2);
+
 
 			}
 
