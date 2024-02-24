@@ -37,11 +37,11 @@
 - __5. Software Quality__
 - __6. Requirement Engineering__
   - 6.1 Specifica dei Requisiti
-    -6.1.1 Schermata Iniziale e Accesso
-    -6.1.2 Scelta Metodologia di Gioco
-    -6.1.3 Posizionamento
-    -6.1.4 Gioco
-    -6.1.5
+    - 6.1.1 Schermata Iniziale e Accesso
+    - 6.1.2 Scelta Metodologia di Gioco
+    - 6.1.3 Posizionamento
+    - 6.1.4 Gioco
+    - 6.1.5
 - __7. Modelling__
 - __8. Software Architecture__
   -8.1 Struttura MVC
