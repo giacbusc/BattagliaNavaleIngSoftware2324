@@ -20,6 +20,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	private SchermataAttesaControl sac;
 	private String username;
 	private Observer obs;
+
 	public MenuPrincipaleControl(String username, Observer obs) throws IOException, SQLException {
 		menu= new MenuPrincipaleView(username,obs);
 		this.username = username;
@@ -32,7 +33,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		String tcp= AvviaServerH2.getServerAddress();
+		String tcp= "tcp://192.168.1.226:5545";
 		String local="tcp://localhost:5545";
 		String[] parti = tcp.split(":");
 		String filepath = "./music/sceltaMenu3.wav";

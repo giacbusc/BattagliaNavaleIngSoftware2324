@@ -10,7 +10,7 @@ public class AvviaServerH2 {
     public static String avviaserver() {
         try {
             // Avvia il server H2 sulla porta specificata (es. 9092) e il percorso del database
-            String indirizzoIP = "192.168.1.4"; // Modifica con l'indirizzo IP appropriato
+            String indirizzoIP = "192.168.1.226"; // Modifica con l'indirizzo IP appropriato
             int porta = 5545; // Modifica con la porta appropriata
 
             Server server = Server.createTcpServer("-tcpPort", Integer.toString(porta), "-tcpAllowOthers", "-ifNotExists");
@@ -27,6 +27,7 @@ public class AvviaServerH2 {
         }
 		return serverAddress;
      }
+    
 	public static String getServerAddress() {
 		return serverAddress;
 	}
