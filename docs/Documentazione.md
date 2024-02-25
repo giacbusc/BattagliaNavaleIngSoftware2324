@@ -41,7 +41,14 @@
     - 6.1.2 Scelta Metodologia di Gioco
     - 6.1.3 Posizionamento
     - 6.1.4 Gioco
+  - 6.2 Moscow
+  - 6.3 Kano
 - __7. Modelling__
+    - 7.1 Diagramma di Stato
+    - 7.2 Diagramma di Sequenza
+    - 7.3 Diagramma di Attività
+    - 7.4 Diagramma dei Conponenti
+    - 7.5 Diagramma di Stato
 - __8. Software Architecture__
   - 8.1 Struttura MVC
   - 8.2 Structure 101
