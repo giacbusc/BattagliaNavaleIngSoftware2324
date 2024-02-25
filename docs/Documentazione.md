@@ -287,8 +287,25 @@ Il modello Kano identifica tre categorie principali di requisiti:
 Durante lo sviluppo del software abbiamo utilizzato dei diagrammi UML per la descrizione del sistema e di alcune sue parti. 
 ### 7.1 Diagramma dei casi d'uso
 Utlizzato in una fase iniziale di ingegneria dei requisiti per capire come il cliente potesse interfacciarsi al sistema, la sua stesura ha aiutato a comprendere come sviluppare il sistema e a quali parti dare maggior rilevanza.
-<img style="width: 550px;" src="docs/Diagrammi%20UML/Diagramma%20casi%20d'uso.jpg">
+<img style="width: 690px;" src="Diagrammi%20UML/Diagramma-casi-d'uso.jpg">
  <br>
+### 7.2 Diagramma di sequenza
+<img style="width: 750px;" src="Diagrammi%20UML/Diagramma%20di%20Sequenza.jpg">
+ <br>
+ 
+### 7.3 Diagramma delle attività
+<img style="width: 700px;" src="Diagrammi%20UML/Diagramma%20delle%20Attività.jpg">
+ <br>
+ 
+### 7.4 Diagramma dei componenti
+<img style="width: 720px;" src="Diagrammi%20UML/Diagramma%20dei%20Component.jpg">
+ <br>
+ 
+### 7.5 Diagramma di stato
+<img style="width: 700px;" src="Diagrammi%20UML/DiagrammaStato1.jpg">
+ <br>
+
+
  
 ## 8. Software Architecture
 ### 8.1 Struttura MVC
