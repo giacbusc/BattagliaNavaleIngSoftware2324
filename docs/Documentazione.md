@@ -211,6 +211,7 @@ L'interpretazione dell'output e l'immissione dell'input è facilitata dalla pres
 
 ## 6. Requirement Engineering
 I requisiti sono stati decisi in fase di elicitazione, durante la quale abbiamo utilizzato linguaggio formali e semiformali, cioè la descrizione in linguaggio naturale e la descrizione degli scenari attarverso diagrammmi UML (ad esempio lo use case lo abbiamo utilizzato per comprendere come l'utente potesse interagire col sistema). Abbiamo quindi redatto, a partire dai requisiti elicitati un documento identificato come Specifica dei Requisiti, il quale è stato alla base dell'attività di Validazione, necessaria per capire se stessimo costruendo nel modo giusto il nostro sistema. <br> 
+Di seguito sono riportati i requisiti che costituiscono i Must Have del progetto, nel dettaglio.
 
 ### 6.1 Specifica dei Requisiti
 #### 6.1.1 Schermata Iniziale e Accesso
@@ -249,8 +250,46 @@ I requisiti sono stati decisi in fase di elicitazione, durante la quale abbiamo 
   * se la cella colpita non contiene barche diventa blu, indicando che è stata colpita l'acqua
 * Quando sono state affondate tutte le barche il gioco termina e compare la schermata finale
 * Dalla schermata finale posso tornare al menu per giocare ancora oppure uscire dal gioco
-## 7. Modelling
 
+## 6.2 Moscow 
+I requisiti specificati nel punto 6.1 sono quelli che abbiamo concordato essere necessari per la buona riuscita del gioco, quindi i Must Have del nostro sistema. <br>
+Seguendo la classificazione Moscow, come già anticipato nel project plan, abbiamo etichettato anche altri vari requisiti, giudicati dal team come non fondamentali.<br>
+### 6.2.1 Should Have
+I requisiti ritenuti importanti ma non necessari, i quali abbiamo deciso di lasciare alla fine nel caso fosse stato possibile implementarli nel tempo a disposizione sono:
+* Visualizzazione di una classifica generale degli utenti tenendo in considerazione delle vittorie e delle sconfitte
+* Implementazione di suoni interattivi durante il gioco, e come sottofondo. Ad esempio associare un suono all'esito del colpo.
+* Rendere possibile la connessione di più di due giocatori per permettere di giocare un torneo invece che singole partite
+* Inserire un tutorial che aiuti la comprensione del gioco e migliori l'usabilità
+* Permettere la scelta della lingua delle schermate iniziali attarverso un bottone nella GUI
+### 6.2.2 Could Have
+I requisiti ritenuti come secondari ed omettibili, si trovano tra i could have. Non sono stati implementati e vengono lasciati come requisiti futuri, implementabili in versioni successive del gioco:
+* Rendere le navi più grafiche attraverso l'utilizzo di icone, le quali possono essere modificate dall'utente
+* Possibilità di scegliere il livello di difficoltà del gioco, inteso come grandezza della griglia sulla quale posizionare le navi
+* Implementazione gioco single Player contro la CPU
+* Animazioni grafiche
+### 6.2.3 Won't
+I requisiti Won't sono quei requisiti che dal principio reputavamo non implementabili in questa versione del gioco. Tra questi:
+* Applicazione Mobile
+* Web App
+* Potenziamento colpi con sistema shop che permetta ad esempio di affondare direttamente una barca quando la si colpisce
+## 6.3 KANO
+Il modello Kano dei requisiti è un approccio utilizzato per classificare e comprendere le preferenze dei clienti riguardo ai requisiti dei prodotti o dei servizi. Si basa sull'idea che non tutti i requisiti hanno lo stesso impatto sulla soddisfazione del cliente e che alcuni requisiti possono essere considerati fondamentali mentre altri sono visti come vantaggi aggiuntivi. <br>
+
+Il modello Kano identifica tre categorie principali di requisiti:
+
+- Requisiti *must have*: Questi sono i requisiti essenziali che i clienti danno per scontati. La mancanza di tali requisiti può portare a una significativa insoddisfazione del cliente, la loro soddisfazione invece porta il cliente ad una situazione di nautralità per la soddisfazione.
+
+- Requisiti *unidimensionali*: Questi sono i requisiti che aumentano linearmente la soddisfazione del cliente in base al loro livello di soddisfazione. Maggiore è il livello di soddisfazione di questi requisiti, maggiore sarà la soddisfazione complessiva del cliente.
+  
+- Requisiti *attraenti*: Questi sono i requisiti che sorprendono e deliziano i clienti, anche se non sono necessari. Aggiungono un valore aggiunto al prodotto o al servizio e possono differenziarlo dalla concorrenza. La loro mancata soddisfazione non porta insoddisfazione al cliente.
+  
+## 7. Modelling
+Durante lo sviluppo del software abbiamo utilizzato dei diagrammi UML per la descrizione del sistema e di alcune sue parti. 
+### 7.1 Diagramma dei casi d'uso
+Utlizzato in una fase iniziale di ingegneria dei requisiti per capire come il cliente potesse interfacciarsi al sistema, la sua stesura ha aiutato a comprendere come sviluppare il sistema e a quali parti dare maggior rilevanza.
+<img style="width: 550px;" src="docs/Diagrammi%20UML/Diagramma%20casi%20d'uso.jpg">
+ <br>
+ 
 ## 8. Software Architecture
 ### 8.1 Struttura MVC
 Il software abbiamo deciso di basarlo sullo stile architetturale MVC (Model-View-Control):
