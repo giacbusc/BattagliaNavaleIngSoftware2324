@@ -296,19 +296,33 @@ Durante lo sviluppo del software abbiamo utilizzato dei diagrammi UML per la des
 Utlizzato in una fase iniziale di ingegneria dei requisiti per capire come il cliente potesse interfacciarsi al sistema, la sua stesura ha aiutato a comprendere come sviluppare il sistema e a quali parti dare maggior rilevanza.
 <img style="width: 690px;" src="Diagrammi%20UML/Diagramma-casi-d'uso.jpg">
  <br>
+ Da questo grafico possiamo notare come i diversi casi d'uso siano subordinati tra di loro. Un player non può iniziare un gioco se non ha effettuato prima il login e per farlo deve essere registrato. 
 ### 7.2 Diagramma di sequenza
+Col diagramma di sequenza abbiamo modellato il comportamento del sistema e le interazioni tra i diversi componenti.<br>
+Abbiamo utilizzato il diagramma di sequenza soprattutto quando abbiamo iniziato a lavorare al piazzamento e, in seguito, al gioco. Ci è stato molto utile essendo la base sulla quale abbiamo poi sviluppato la connessione Server-Client per capire la tempistica dell'invio dei messaggi ed il loro contenuto. <br> Il diagramma di sequenza si è evoluto insieme al sistema e alle diverse fasi. Di seguito è riportato il diagramma di sequenza di tutto il sistema. 
 <img style="width: 750px;" src="Diagrammi%20UML/Diagramma%20di%20Sequenza.jpg">
  <br>
  
 ### 7.3 Diagramma delle attività
+Con il diagramma di attività è mostrato il comportamento del sistema nella fase che anticipa il gioco vero e proprio. <br>
+Nel modello è rappresentato sia il passaggio iniziale di login e registrazione, sia il delicato passaggio delle attese dei giocatori. Questo passaggio, cioè quello successivo alla scelta del gioco e che anticipa il gioco di per sè, inteso come susseguirsi di mosse al fine di colpire le barche avverdarie, è stata la parte più laboriosa del programma e, proprio per questo, ci è stato utile modellarla anche con questo diagramma oltre che col precedente. <br>
+Il diagramma è stato modellato dal punto di vista del primo Client che si collega al Server, ossia quello che per primo inizia il piazzamento ed il gioco. Entrambe le volte il segnale che gli permette di iniziare l'operazione arriva quando il Server, comunicando col secondon Client, sa che la fase precedente è terminata per entrambi i giocatori. Non deve essere possibile per il primo Client avanzare nelle fasi del gioco se anche il secondo Client non è pronto.<br>
 <img style="width: 700px;" src="Diagrammi%20UML/Diagramma%20delle%20Attività.jpg">
  <br>
  
 ### 7.4 Diagramma dei componenti
+Col diagramma dei componenti abbiamo voluto rappresentare come i diversi moduli del sistema si interfacciassero tra di loro. Per chiarezza abbiamo scomposto il client nei suoi diversi componenti cioè il livello logico, il livello GUI ed il modello.
 <img style="width: 720px;" src="Diagrammi%20UML/Diagramma%20dei%20Component.jpg">
  <br>
  
 ### 7.5 Diagramma di stato
+Attraverso questi diagrammi, abbiamo voluto rappresentare i diversi stati assunti dal modello del Client, che è rappresentato dalle caselle (Square) che compongono la griglia di gioco. Il valore di queste caselle è fondamentale per il corretto funzionamento del gioco. Qualsiasi errore nel loro settaggio potrebbe causare bug e malfunzionamenti, quindi abbiamo ritenuto necessario modellare le variazioni di stato tramite un diagramma di stato.<br>
+
+Il primo diagramma modella le celle del Player 1 e si riferisce alla griglia su cui il giocatore posiziona le sue barche. Ogni casella ha un valore che indica lo stato della cella.
+<br>
+Il secondo diagramma, situato sotto, rappresenta invece i valori delle caselle nella griglia del Player 1, ma in relazione all'avversario, cioè la griglia sulla destra. Il valore delle caselle cambia in base ai valori delle corrispondenti caselle nella griglia del Player 2, che è controllata dal Server. È attraverso il Server che le caselle cambiano stato: il client, a livello logico, richiede al Server di effettuare le modifiche, e solo dopo che il Server ha eseguito i controlli e ha dato il permesso, il client può aggiornare il valore delle caselle.
+<br>
+Questi diagrammi ci consentono di visualizzare in modo chiaro e organizzato le variazioni di stato delle caselle del gioco e le interazioni tra i giocatori e il Server, facilitando così lo sviluppo, il testing e la comprensione del funzionamento del sistema di gioco.
 <img style="width: 700px;" src="Diagrammi%20UML/DiagrammaStato1.jpg">
  <br>
 
