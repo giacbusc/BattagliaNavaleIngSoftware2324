@@ -290,7 +290,8 @@ Il modello Kano identifica tre categorie principali di requisiti:
   
 - Requisiti *attraenti*: Questi sono i requisiti che sorprendono e deliziano i clienti, anche se non sono necessari. Aggiungono un valore aggiunto al prodotto o al servizio e possono differenziarlo dalla concorrenza. La loro mancata soddisfazione non porta insoddisfazione al cliente.
   <img style="width: 690px;" src="resources/Kano">
- <br>
+  
+ 
 ## 7. Modelling
 Durante lo sviluppo del software abbiamo utilizzato dei diagrammi UML per la descrizione del sistema e di alcune sue parti. 
 ### 7.1 Diagramma dei casi d'uso
