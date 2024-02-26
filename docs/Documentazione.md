@@ -295,13 +295,13 @@ Il modello Kano identifica tre categorie principali di requisiti:
 ## 7. Modelling
 Durante lo sviluppo del software abbiamo utilizzato dei diagrammi UML per la descrizione del sistema e di alcune sue parti. 
 ### 7.1 Diagramma dei casi d'uso
-Utlizzato in una fase iniziale di ingegneria dei requisiti per capire come il cliente potesse interfacciarsi al sistema, la sua stesura ha aiutato a comprendere come sviluppare il sistema e a quali parti dare maggior rilevanza.
+Utlizzato in una fase iniziale di ingegneria dei requisiti per capire come il cliente potesse interfacciarsi al sistema, la sua stesura ha aiutato a comprendere come sviluppare il sistema e a quali parti dare maggior rilevanza.<br>
 <img style="width: 690px;" src="Diagrammi%20UML/Diagramma-casi-d'uso.jpg">
  <br>
  Da questo grafico possiamo notare come i diversi casi d'uso siano subordinati tra di loro. Un player non può iniziare un gioco se non ha effettuato prima il login e per farlo deve essere registrato. 
 ### 7.2 Diagramma di sequenza
 Col diagramma di sequenza abbiamo modellato il comportamento del sistema e le interazioni tra i diversi componenti.<br>
-Abbiamo utilizzato il diagramma di sequenza soprattutto quando abbiamo iniziato a lavorare al piazzamento e, in seguito, al gioco. Ci è stato molto utile essendo la base sulla quale abbiamo poi sviluppato la connessione Server-Client per capire la tempistica dell'invio dei messaggi ed il loro contenuto. <br> Il diagramma di sequenza si è evoluto insieme al sistema e alle diverse fasi. Di seguito è riportato il diagramma di sequenza di tutto il sistema. 
+Abbiamo utilizzato il diagramma di sequenza soprattutto quando abbiamo iniziato a lavorare al piazzamento e, in seguito, al gioco. Ci è stato molto utile essendo la base sulla quale abbiamo poi sviluppato la connessione Server-Client per capire la tempistica dell'invio dei messaggi ed il loro contenuto. <br> Il diagramma di sequenza si è evoluto insieme al sistema e alle diverse fasi. Di seguito è riportato il diagramma di sequenza di tutto il sistema.  <br>
 <img style="width: 750px;" src="Diagrammi%20UML/Diagramma%20di%20Sequenza.jpg">
  <br>
  
@@ -313,7 +313,7 @@ Il diagramma è stato modellato dal punto di vista del primo Client che si colle
  <br>
  
 ### 7.4 Diagramma dei componenti
-Col diagramma dei componenti abbiamo voluto rappresentare come i diversi moduli del sistema si interfacciassero tra di loro. Per chiarezza abbiamo scomposto il client nei suoi diversi componenti cioè il livello logico, il livello GUI ed il modello.
+Col diagramma dei componenti abbiamo voluto rappresentare come i diversi moduli del sistema si interfacciassero tra di loro. Per chiarezza abbiamo scomposto il client nei suoi diversi componenti cioè il livello logico, il livello GUI ed il modello.<br>
 <img style="width: 720px;" src="Diagrammi%20UML/Diagramma%20dei%20Component.jpg">
  <br>
  
@@ -324,7 +324,7 @@ Il primo diagramma modella le celle del Player 1 e si riferisce alla griglia su 
 <br>
 Il secondo diagramma, situato sotto, rappresenta invece i valori delle caselle nella griglia del Player 1, ma in relazione all'avversario, cioè la griglia sulla destra. Il valore delle caselle cambia in base ai valori delle corrispondenti caselle nella griglia del Player 2, che è controllata dal Server. È attraverso il Server che le caselle cambiano stato: il client, a livello logico, richiede al Server di effettuare le modifiche, e solo dopo che il Server ha eseguito i controlli e ha dato il permesso, il client può aggiornare il valore delle caselle.
 <br>
-Questi diagrammi ci consentono di visualizzare in modo chiaro e organizzato le variazioni di stato delle caselle del gioco e le interazioni tra i giocatori e il Server, facilitando così lo sviluppo, il testing e la comprensione del funzionamento del sistema di gioco.
+Questi diagrammi ci consentono di visualizzare in modo chiaro e organizzato le variazioni di stato delle caselle del gioco e le interazioni tra i giocatori e il Server, facilitando così lo sviluppo, il testing e la comprensione del funzionamento del sistema di gioco.<br>
 <img style="width: 700px;" src="Diagrammi%20UML/DiagrammaStato1.jpg">
  <br>
 
