@@ -210,27 +210,40 @@ public class Partita {
 					for (int j = 0; j < MAX_LENGTH; j++) {
 						if (player2[i][j].getNome().equals(nomeBarcaColpita)) {
 
-							if (i != xpos && j != ypos) {
 								player2[i][j].setStato(3);
-								spedire[0] = String.valueOf(i);
-								spedire[1] = String.valueOf(j);
-								spedire[2] = "3";
-								spedire[3] = String.valueOf(l);
+								String[] martin = new String[4];
+								martin[0] = String.valueOf(i);
+								martin[1] = String.valueOf(j);
+								martin[2] = "3";
+								martin[3] = String.valueOf(l);
 
-								celleAffondate.add(spedire);
-							}
+								celleAffondate.add(martin);
+							
 						}
 					}
 				}
-
+				
+				 for (String[] array : celleAffondate) {
+			            System.out.print("[ ");
+			            for (String str : array) {
+			                System.out.print(str + " ");
+			            }
+			            System.out.println("]");
+			        }
+				 
 				int contaAffondati = -1;
 				
+				System.out.println("grandezza arraylist: " + celleAffondate.size());
+				String martin[] = celleAffondate.get(0);
+				
+				System.out.println("celle affondate arraylist in posizione 0" + martin.toString());
 				while (true) {
 					byte[] replyAffondato = socketServer.recv(0);
 					String requestAffondato = new String(replyAffondato, ZMQ.CHARSET);
-					System.out.println("Messaggio ricevuto: " + requestAffondato);
-
-					if (requestAffondato.equals("AFFONDATO")) {
+					System.out.println("Messaggio ricevuto durante l'affondato: " + requestAffondato);
+					String checkCorrettezzaSerie = requestAffondato.substring(0, 4);
+					if (checkCorrettezzaSerie.equals("AFFO")) 
+					{
 						contaAffondati++;
 
 						if (contaAffondati == (l - 1) && contaBarcheP1 == 10) {
@@ -245,13 +258,13 @@ public class Partita {
 						}
 						spedireMex(celleAffondate.get(contaAffondati));
 
-						if (contaAffondati == celleAffondate.size()) {
+						if (contaAffondati == celleAffondate.size()-1 && contaBarcheP1!=10) {
 							INVIATO = true;
 							break;
 						}
-					} else if (requestAffondato.equals("MIAO")) {
+					} else if (checkCorrettezzaSerie.equals("MIAO")) {
 						String responseMessage = "MIAO";
-						socketServer.send(responseMessage.getBytes(), 0);
+						socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
 						System.out.println("Inviato IL MIAO DEL MARTIN: " + responseMessage);
 					}
 
@@ -310,27 +323,40 @@ public class Partita {
 					for (int j = 0; j < MAX_LENGTH; j++) {
 						if (player1[i][j].getNome().equals(nomeBarcaColpita)) {
 
-							if (i != xpos && j != ypos) {
 								player1[i][j].setStato(3);
-								spedire[0] = String.valueOf(i);
-								spedire[1] = String.valueOf(j);
-								spedire[2] = "3";
-								spedire[3] = String.valueOf(l);
+								String[] martin = new String[4];
+								martin[0] = String.valueOf(i);
+								martin[1] = String.valueOf(j);
+								martin[2] = "3";
+								martin[3] = String.valueOf(l);
 
-								celleAffondate.add(spedire);
-							}
+								celleAffondate.add(martin);
+							
 						}
 					}
 				}
-
+				
+				 for (String[] array : celleAffondate) {
+			            System.out.print("[ ");
+			            for (String str : array) {
+			                System.out.print(str + " ");
+			            }
+			            System.out.println("]");
+			        }
+				
 				int contaAffondati = -1;
+				System.out.println("grandezza arraylist: " + celleAffondate.size());
+				String martin[] = celleAffondate.get(0);
+				System.out.println("celle affondate arraylist in posizione 0" + martin.toString());
 
 				while (true) {
 					byte[] replyAffondato = socketServer.recv(0);
 					String requestAffondato = new String(replyAffondato, ZMQ.CHARSET);
-					System.out.println("Messaggio ricevuto: " + requestAffondato);
-
-					if (requestAffondato.equals("AFFONDATO")) {
+					System.out.println("Messaggio ricevuto durante l'affondato: " + requestAffondato);
+					String checkCorrettezzaSerie = requestAffondato.substring(0, 4);
+					
+					if (checkCorrettezzaSerie.equals("AFFO")) 
+					{
 						contaAffondati++;
 
 						if (contaAffondati == (l - 1) && contaBarcheP2 == 10) {
@@ -345,13 +371,13 @@ public class Partita {
 						}
 						spedireMex(celleAffondate.get(contaAffondati));
 
-						if (contaAffondati == celleAffondate.size()) {
+						if (contaAffondati == celleAffondate.size()-1 && contaBarcheP2!=10) {
 							INVIATO = true;
 							break;
 						}
-					} else if (requestAffondato.equals("MIAO")) {
+					} else if (checkCorrettezzaSerie.equals("MIAO")) {
 						String responseMessage = "MIAO";
-						socketServer.send(responseMessage.getBytes(), 0);
+						socketServer.send(responseMessage.getBytes(),  ZMQ.DONTWAIT);
 						System.out.println("Inviato IL MIAO DEL MARTIN: " + responseMessage);
 					}
 
@@ -412,7 +438,7 @@ public class Partita {
 				else
 					System.out.print(player2[i][j].getStato() + "\t");
 			}
-			System.out.println(); // Vai a capo dopo ogni riga
+			System.out.println(); // Vai a capo dopo ogni riga2
 		}
 	}
 
