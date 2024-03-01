@@ -1,10 +1,8 @@
-package BattagliaNavaleProject.BattagliaNavaleServer;
+package BattagliaNavaleProject.BattagliaNavaleServer.database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import BattagliaNavaleProject.BattagliaNavaleServer.database.ConnectionDb;
 
 public class ProvaDb {
 

@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.BattagliaNavaleServer;
+package BattagliaNavaleProject.BattagliaNavaleServer.Accessorio;
 
 import java.awt.Color;
 import javax.swing.JPanel;

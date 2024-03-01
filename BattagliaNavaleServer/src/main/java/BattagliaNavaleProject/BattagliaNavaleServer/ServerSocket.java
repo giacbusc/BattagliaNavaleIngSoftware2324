@@ -4,6 +4,9 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
+import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.InfoBoat;
+import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
+
 import java.util.ArrayList;
 
 public class ServerSocket implements InterfacciaServerPartita{
