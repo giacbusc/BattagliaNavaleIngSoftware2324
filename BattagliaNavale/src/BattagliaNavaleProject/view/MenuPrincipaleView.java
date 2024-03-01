@@ -16,6 +16,7 @@ public class MenuPrincipaleView extends JFrame {
 	private JButton pcSoloButton;
 	private JButton pcMultiButton;
 	private Observer obs;
+	private JPanel classifica;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run()
@@ -70,7 +71,8 @@ public class MenuPrincipaleView extends JFrame {
         logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundPanel.add(logoLabel);
         
-        JPanel classifica = new JPanel();
+        classifica = new JPanel();
+        classifica.setLayout(new FlowLayout());
 		classifica.setBounds(1100,100,280,600);
 		classifica.setOpaque(false);
 		classifica.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
@@ -359,5 +361,13 @@ public class MenuPrincipaleView extends JFrame {
 		pcSoloButton.addActionListener(act);
 	}
 
-
+	public void mostraClassifica(String user, int vitt, int pos)
+	{
+		//classificaLabel.setBounds(30,5,100,43);
+		String spazio = "      ";
+		JLabel lb = new JLabel(""+pos+""+user+""+spazio+""+vitt);
+		lb.setFont(new Font("Tahoma", Font.BOLD, 16));
+		classifica.add(lb);
+		
+	}
 }
