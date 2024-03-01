@@ -3,9 +3,15 @@ package BattagliaNavaleProject.control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
+import org.h2.tools.Server;
+import BattagliaNavaleProject.BattagliaNavaleServer.ServerSocket;
+import BattagliaNavaleProject.BattagliaNavaleServer.database.ConnectionDb;
 import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 import BattagliaNavaleProject.view.MenuPrincipaleView;
 import BattagliaNavaleProject.view.Observer;
@@ -25,6 +31,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 		menu.setVisible(true);
 		menu.addActionMulti(this);
 		menu.addActionSolo(this);
+		aggiungiClassifica();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -103,5 +110,32 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	public void chiudi() {
 		// TODO Auto-generated method stub
 		menu.dispose();
+	}
+	
+	private void aggiungiClassifica()
+	{
+		try {
+            ConnectionDb conn = new ConnectionDb();
+            Statement stmt = conn.getConnection().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT nickname, COUNT(*) AS NumeroVittorie FROM UTENTE JOIN PARTITA ON nickname = Vincitore GROUP BY nickname ORDER BY COUNT(*) DESC");
+
+            int posizione = 1;
+
+            while (rs.next()) {
+                String giocatore = rs.getString("nickname");
+                int numeroVittorie = rs.getInt("NumeroVittorie");
+
+                menu.mostraClassifica(giocatore, numeroVittorie, posizione);
+                posizione++;
+            }
+
+
+            // Chiudi le risorse
+            rs.close();
+            stmt.close();
+            conn.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 	}
 }

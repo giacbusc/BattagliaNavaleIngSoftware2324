@@ -104,6 +104,7 @@ public class FinePartitaView extends JFrame implements ActionListener {
 		menuButton.setBackground(new Color(0, 0, 0, 0));
 		menuButton.setOpaque(false);
 		menuButton.setBounds(455, 250, 538, 90);//275 70
+		menuButton.setVisible(true);
 		backgroundPanel.add(menuButton);
 
 
@@ -164,6 +165,7 @@ public class FinePartitaView extends JFrame implements ActionListener {
 		exitButton.setBackground(new Color(0, 0, 0, 0));
 		exitButton.setOpaque(false);
 		exitButton.setBounds(455, 409, 538, 90);
+		exitButton.setVisible(true);
 		backgroundPanel.add(exitButton);
 
 		exitButton.addMouseListener(new MouseListener()
