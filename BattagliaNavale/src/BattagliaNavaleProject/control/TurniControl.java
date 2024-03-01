@@ -192,9 +192,9 @@ public class TurniControl {
 						String filepath = "./music/Background_game_music.wav";
 						SoundEffect se = new SoundEffect();
 						se.playMusic2(filepath, false);
-						filepath = "./music/win.wav";
-						se = new SoundEffect();
-						se.playMusic(filepath);
+						String filepath2 = "./music/finalWin.wav";
+						SoundEffect se2 = new SoundEffect();
+						se2.playMusic(filepath2);
 						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO", tmp, obs);
 
 						DGGV.dispose();
