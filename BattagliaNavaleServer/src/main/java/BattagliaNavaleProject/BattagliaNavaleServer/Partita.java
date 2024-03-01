@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import org.zeromq.ZMQ;
 import org.zeromq.ZMQ.Socket;
 
+import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.InfoBoat;
+import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
 import BattagliaNavaleProject.BattagliaNavaleServer.database.ConnectionDb;
 
 public class Partita {

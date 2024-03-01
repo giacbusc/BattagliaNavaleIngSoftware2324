@@ -27,7 +27,7 @@ import javax.swing.border.Border;
 
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.BattagliaNavaleServer.Square;
+import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
 import BattagliaNavaleProject.control.DoubleGameGridControl;
 import BattagliaNavaleProject.control.TurniControl;
 

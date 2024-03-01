@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.BattagliaNavaleServer;
+package BattagliaNavaleProject.BattagliaNavaleServer.Accessorio;
 
 public enum InfoBoat {
 	Aircraft(4), Destroyer1(3), Destroyer2(3), Cruiser1(2), Cruiser2(2), Cruiser3(2), Submarine1(1), Submarine2(1),
