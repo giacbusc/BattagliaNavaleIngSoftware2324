@@ -18,10 +18,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.OverlayLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
@@ -172,8 +174,22 @@ public class DoubleGameGridView extends JFrame {
 		setVisible(true);
 		waitPanel.setVisible(false);
 		turnoPanel.setVisible(false);
+		contaAffondati(1,2);
 	}
-
+	public void contaAffondati(int n1, int n2) {
+		
+		JLabel contaLabel = new JLabel("Barche affondate: "+ n1+ "  ");
+		contaLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel contaLabel2= new JLabel("Barche affondate dall'avversario"+n2);
+		contaLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+		contaLabel.setForeground(Color.white);
+		contaLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		contaLabel2.setFont(new Font("Tahoma", Font.BOLD, 20));
+		shipsPanel.setLayout(new BoxLayout(shipsPanel, BoxLayout.Y_AXIS));
+		shipsPanel.add(contaLabel);
+		shipsPanel.add(contaLabel2);
+		
+	}
 	private void boatList(ArrayList<Integer> dim)
 	{	
 		panel= new JPanel[GRID_DIMENSION];
@@ -286,7 +302,7 @@ public class DoubleGameGridView extends JFrame {
 		dim=getDimNavi();
 		boatList(dim);
 		waitPanelCreation();
-		turnoPanelCreation();
+		//turnoPanelCreation();
 		//createIcon(a,b);
 		frame.pack();
 
@@ -393,8 +409,9 @@ public class DoubleGameGridView extends JFrame {
 		attesa.setHorizontalAlignment(SwingConstants.CENTER);
 		waitPanel.add(attesa);
 		waitPanel.setVisible(true);
+		
 	}
-	public void turnoPanelCreation() {
+	/*public void turnoPanelCreation() {
 		// TODO Auto-generated method stub
 		turnoPanel = new JPanel();
 		turnoPanel.setBackground(Color.white);
@@ -418,7 +435,7 @@ public class DoubleGameGridView extends JFrame {
 		turno.setVisible(true);
 		turnoPanel.setVisible(false);
 	}
-	
+	*/
 	public void createIcon(int a, int b){
 	    
 	        // Creazione di un frame

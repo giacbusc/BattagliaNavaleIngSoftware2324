@@ -14,12 +14,13 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.BattagliaNavaleServer.Square;
 import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 import BattagliaNavaleProject.view.AggiuntaListener;
 import BattagliaNavaleProject.view.DoubleGameGridView;
 import BattagliaNavaleProject.view.FinePartitaView;
 import BattagliaNavaleProject.view.Observer;
+
+import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
 
 public class TurniControl {
 	DoubleGameGridView DGGV;
