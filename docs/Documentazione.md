@@ -149,7 +149,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     </tr>
     <tr>
     <th>Giacomo Buscaglia</th>
-    <td>✅</td>
+    <td></td>
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
@@ -161,7 +161,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     </tr>
     <tr>
     <th>Luca Ciancio</th>
-    <td>✅</td>
+    <td></td>
     <td>✅</td>
     <td>✅</td>
     <td></td>
@@ -185,7 +185,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     </tr>
     <tr>
     <th>Giulia Signori</th>
-    <td>✅</td>
+    <td></td>
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
