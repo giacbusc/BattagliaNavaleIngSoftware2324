@@ -347,7 +347,7 @@ Un grande lavoro di refactoring è stato fatto anche per migliorare la percentua
 A sequito dei grafici estratti da Structure101 che rappresentano la struttura del sistema. <br>
 
   <img style="width: 690px;" src="resources/Structure101.jpeg"> 
-  <img style="width: 690px;" src="resources/Strusture101-2.jpeg">
+  <img style="width: 690px;" src="resources/Structure101-2.jpeg">
 ## 9. Software Design
 All'interno del nostro sistema abbiamo utilizzato diversi pattern a fronte di alcune problematiche:<br>
 **1.Singleton**
