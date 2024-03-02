@@ -145,6 +145,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
         <th>Sviluppo back-end</th>
         <th>Sviluppo front-end</th>
         <th>Test</th>
+       <th>Database</th>
     </tr>
     <tr>
     <th>Giacomo Buscaglia</th>
@@ -156,6 +157,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
       <td>✅</td>
     <td>✅</td>
     <td>✅</td>
+       <td>✅</td>
     </tr>
     <tr>
     <th>Luca Ciancio</th>
@@ -167,6 +169,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
+       <td></td>
     </tr>
     <tr>
     <th>Federica Gervasoni</th>
@@ -178,6 +181,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
+       <td></td>
     </tr>
     <tr>
     <th>Giulia Signori</th>
@@ -189,6 +193,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
+       <td>✅</td>
     </tr>
 </table>
 
