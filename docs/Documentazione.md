@@ -63,7 +63,7 @@ Realizzazione in Java del gioco Battaglia Navale, realizzato in due differenti m
 
 ### Guida rapida al gioco
 #### Scopo del gioco
-Lo scopo del gioco è localizzare tutte le unità della flotta navale nemica composta da diverse navi, in tutto 10: 
+Lo scopo del gioco è localizzare tutte le unità della flotta navale nemica composta da diverse navi, in tutto 10: <br>
 -1 portaerei da 4 caselle <br>
 -2 incrociatori da 3 caselle <br>
 -3 cacciatorpedinieri da 2 caselle <br>
@@ -152,7 +152,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
-    <td>✅</td>
+    <td></td>
       <td>✅</td>
     <td>✅</td>
     <td>✅</td>
@@ -162,7 +162,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
-    <td>✅</td>
+    <td></td>
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
@@ -173,7 +173,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
-    <td>✅</td>
+    <td></td>
      <td>✅</td>
     <td>✅</td>
     <td>✅</td>
@@ -185,7 +185,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
-    <td>✅</td>
+    <td></td>
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
@@ -348,12 +348,17 @@ A sequito dei grafici estratti da Structure101 che rappresentano la struttura de
 
   <img style="width: 690px;" src="resources/Structure101.jpeg"> 
   <img style="width: 1100px;" src="resources/Structure101-2.jpeg">
+  <br>
+  
 ## 9. Software Design
-All'interno del nostro sistema abbiamo utilizzato diversi pattern a fronte di alcune problematiche:<br>
-**1.Singleton**
+All'interno del nostro sistema abbiamo utilizzato diversi pattern a fronte di alcune problematiche:<br><br>
+
+**Singleton**
+
 Abbiamo utilizzato il pattern Singleton all'interno del server affinchè non fosse possibile istanziare, all'interno delle altre classi, la classe Singleton in modo ripetuto. <br>Attraverso il metodo *getInstance* del Server infatti facciamo in modo che ogni richiesta di istanziazione, qual'ora l'istanza del server non fosse nulla, si limiti alla sola restituzione dell'istanza già presente piuttosto che alla creazione di un'ulteriore istanza della classe Server.<br>
-**2:Observer**
-**3.Delegator**???
+<br>
+**Observer**
+
 
 ## 10. Software Testing
 Durante lo sviluppo il corretto funzionamento del codice è stato testato costantemente con test pratici di esecuzione del programma e delle sue funzionalità. Questo è stato effettuato inserendo controlli di stampa,debug con break point e attraverso test di JUnit. <br>
@@ -364,17 +369,17 @@ In alcuni casi, insieme alla correzione del bug è stato necessario fare anche d
 ## 11. Software Refactoring
 
 Il refactoring è un processo fondamentale nel ciclo di vita del software, in cui il codice viene esaminato e ottimizzato senza aggiungere nuove funzionalità, ma piuttosto migliorando la sua struttura interna per eliminare inefficienze, ridurre la complessità e migliorare la leggibilità e la manutenibilità nel tempo.
-Il team ha dedicato parte del suo tempo, soprattutto nella fase finale dello sviluppo, all'analisi del codice alla ricerca di aspetti migliorabili, tra questi:
--> eliminazione utilizzo improprio della gerarchia delle classi
--> evitare l'assenza di commenti per rendere più chiaro il codice e quindi più comprensibile e manutenibile
--> miglioramento della coesione e diminuzione dell'accoppiamento
--> eliminazione di elementi che ostacolino il cambiamento
--> ristrutturazioni delle classi qualora fossero troppo grandi: se una classe diventa troppo complessa o ha troppe responsabilità, può essere utile suddividerla in classi più piccole e coese. Questo favorisce una migliore organizzazione del codice e una maggiore facilità di manutenzione.
--> rinominazione variabili e metodi al fine di migliorare la comprensione del codice 
--> decomposizione di lunghe funzioni le quali possono essere difficili da comprendere e testare. Suddividere queste funzioni in sottofunzioni più piccole, ognuna con una singola responsabilità, rende il codice più chiaro e facilita la verifica e la manutenzione.
--> utilizzo di design pattern per migliorare la struttura e l'organizzazione del codice
+Il team ha dedicato parte del suo tempo, soprattutto nella fase finale dello sviluppo, all'analisi del codice alla ricerca di aspetti migliorabili, tra questi: <br>
+-> eliminazione utilizzo improprio della gerarchia delle classi <br>
+-> evitare l'assenza di commenti per rendere più chiaro il codice e quindi più comprensibile e manutenibile <br>
+-> miglioramento della coesione e diminuzione dell'accoppiamento <br>
+-> eliminazione di elementi che ostacolino il cambiamento <br>
+-> ristrutturazioni delle classi qualora fossero troppo grandi: se una classe diventa troppo complessa o ha troppe responsabilità, può essere utile suddividerla in classi più piccole e coese. Questo favorisce una migliore organizzazione del codice e una maggiore facilità di manutenzione. <br>
+-> rinominazione variabili e metodi al fine di migliorare la comprensione del codice <br>
+-> decomposizione di lunghe funzioni le quali possono essere difficili da comprendere e testare. Suddividere queste funzioni in sottofunzioni più piccole, ognuna con una singola responsabilità, rende il codice più chiaro e facilita la verifica e la manutenzione. <br>
+-> utilizzo di design pattern per migliorare la struttura e l'organizzazione del codice <br>
 
-Per verificare che il lavoro di refactoring, l'evoluzione del codice ed il miglioramento delle metriche, abbiamo utilizzato Structure 101.
+Per verificare che il lavoro di refactoring, l'evoluzione del codice ed il miglioramento delle metriche, abbiamo utilizzato Structure 101.<br>
 
 ## 12. Software Maintenance
 La manutenzione di un software rappresenta un processo fondamentale nell'assicurare il suo funzionamento ottimale e la sua continua adattabilità alle mutevoli esigenze degli utenti e dell'ambiente in cui opera. Tale processo si articola in diverse tipologie di intervento: la manutenzione correttiva, volta alla risoluzione tempestiva di errori e malfunzionamenti; la manutenzione adattiva, che si occupa di aggiornare il software per adeguarlo a modifiche nell'ambiente operativo o nei requisiti di sistema; la manutenzione perfettiva, finalizzata a implementare nuove funzionalità richieste dagli utenti o a ottimizzare le prestazioni dell'applicativo; infine, la manutenzione preventiva, che mira a prevenire futuri problemi e a migliorare la manutenibilità complessiva del software.
