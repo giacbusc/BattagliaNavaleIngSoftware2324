@@ -57,7 +57,7 @@ public class LoginControl implements ActionListener
         }
         }
     
-    private static boolean verificaCampi(LoginModel model)
+    public static boolean verificaCampi(LoginModel model)
     {
 		if(model.getUserName()=="" || model.getPassword()==""){
 			return false;
