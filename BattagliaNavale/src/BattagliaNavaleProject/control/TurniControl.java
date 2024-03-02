@@ -177,7 +177,7 @@ public class TurniControl {
 		// TODO Auto-generated method stub
 		Random random = new Random();
 
-		int red = random.nextInt(256); // 0-255
+		int red = random.nextInt(55) + 1; 
 		int green = red;
 		int blue = red;
 
