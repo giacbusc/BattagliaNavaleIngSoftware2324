@@ -284,11 +284,11 @@ Il modello Kano dei requisiti è un approccio utilizzato per classificare e comp
 
 Il modello Kano identifica tre categorie principali di requisiti:
 
-- Requisiti *must have*: Questi sono i requisiti essenziali che i clienti danno per scontati. La mancanza di tali requisiti può portare a una significativa insoddisfazione del cliente, la loro soddisfazione invece porta il cliente ad una situazione di nautralità per la soddisfazione.
+- Requisiti *must have*: Questi sono i requisiti essenziali che i clienti danno per scontati. La mancanza di tali requisiti può portare a una significativa insoddisfazione del cliente, la loro soddisfazione invece porta il cliente ad una situazione di nautralità per la soddisfazione. All'interno di questi riconosciamo la presenza di GUI ben eseguite che permettano il funzionamento del gioco senza bug e la presenza di una connessione funzionante tra i client ed il server.
 
-- Requisiti *unidimensionali*: Questi sono i requisiti che aumentano linearmente la soddisfazione del cliente in base al loro livello di soddisfazione. Maggiore è il livello di soddisfazione di questi requisiti, maggiore sarà la soddisfazione complessiva del cliente.
+- Requisiti *unidimensionali*: Questi sono i requisiti che aumentano linearmente la soddisfazione del cliente in base al loro livello di soddisfazione. Maggiore è il livello di soddisfazione di questi requisiti, maggiore sarà la soddisfazione complessiva del cliente. In questa categoria facciamo rientrare tutti i requisiti riferiti alla stabilità del gioco, la sua comprensibilità, e la qualità della sua rappresentazione.
   
-- Requisiti *attraenti*: Questi sono i requisiti che sorprendono e deliziano i clienti, anche se non sono necessari. Aggiungono un valore aggiunto al prodotto o al servizio e possono differenziarlo dalla concorrenza. La loro mancata soddisfazione non porta insoddisfazione al cliente.
+- Requisiti *attraenti*: Questi sono i requisiti che sorprendono e deliziano i clienti, anche se non sono necessari. Aggiungono un valore aggiunto al prodotto o al servizio e possono differenziarlo dalla concorrenza. La loro mancata soddisfazione non porta insoddisfazione al cliente. Tra questi troviamo ad esempio requisiti grafici ed estetici. <br>
   <img style="width: 690px;" src="resources/Kano">
   
  
@@ -328,8 +328,6 @@ Questi diagrammi ci consentono di visualizzare in modo chiaro e organizzato le v
 <img style="width: 700px;" src="Diagrammi%20UML/DiagrammaStato1.jpg">
  <br>
 
-
- 
 ## 8. Software Architecture
 ### 8.1 Struttura MVC
 Il software abbiamo deciso di basarlo sullo stile architetturale MVC (Model-View-Control):
@@ -339,14 +337,17 @@ Il software abbiamo deciso di basarlo sullo stile architetturale MVC (Model-View
 Esempio di utilizzo di MVC nel progetto:<br>
 durante il gioco un utente prova a colpire una barca dell'avversario sulla griglia a destra. L'utente cliccando da un input al programma che viene elaborato attraverso le classi di logica del control. Queste comunicano con il socket e verificano lo stato della casella. Nel momento in cui la casella viene controllata possiamo dire che lo stato della cella cambia. Può essere parte di una barca e quindi identificare che la barca è stata colpita, oppure che la barca è stata affondata. Lo stato della casella è all'interno del model e viene modificato dal control. Una modifica del model porta ad una modifica della View infatti la casella a seconda del suo stato cambia colore.<br>
 ### 8.2 Structure 101
-
 Durante la fase di implementazione e nella fase di refactoring abbiamo utilizzato Structure 101. <br>
 Structure101 è uno strumento di analisi e gestione della complessità del software. Esso fornisce una panoramica dettagliata dell'architettura del software, identificando dipendenze indesiderate, violazioni di regole di progettazione e altri problemi che possono compromettere la manutenibilità e la scalabilità del sistema nel tempo.
 Durante la fase di implementazione e nella fase di refactoring abbiamo utilizzato Structure 101
 Abbiamo, durante il refactoring, come spiegato al punto [11](https://github.com/buscst/BattagliaNavaleIngSoftware2324/edit/main/docs/Documentazione.md#11-refactoring) cercato di migliorare alcuni aspetti del codice,basandoci sulle percentuali fornite da Structure 101. <br>
 Attraverso l'implementazione di Structure 101 abbiamo notato che il codice presentava una percentuale di grasso troppo elevata e che quindi andava a nuocere alla qualità del sistema rendendolo meno manutenibile, più difficilmente testabili e meno comprensibile. <br>
-Abbiamo quindi decomposto le funzioni di modo che fossero meno ingombranti, e abbiamo raggiunto una percentuale di grasso pari a 0.
+Abbiamo quindi decomposto le funzioni di modo che fossero meno ingombranti, e abbiamo raggiunto una percentuale di grasso pari a 5%.<br>
+Un grande lavoro di refactoring è stato fatto anche per migliorare la percentuale di tangled del programma che al termine del lavoro p risultata dello 0%. <br>
+A sequito dei grafici estratti da Structure101 che rappresentano la struttura del sistema. <br>
 
+  <img style="width: 690px;" src="resources/Structure101.jpeg"> 
+  <img style="width: 690px;" src="resources/Strusture101-2.jpeg">
 ## 9. Software Design
 All'interno del nostro sistema abbiamo utilizzato diversi pattern a fronte di alcune problematiche:<br>
 **1.Singleton**
