@@ -137,7 +137,7 @@ public class DoubleGameGridView extends JFrame {
 		c = new GridBagConstraints();
 		c1 = new GridBagConstraints();
 		c2 = new GridBagConstraints();
-		c2.fill = GridBagConstraints.HORIZONTAL;
+		//c2.fill = GridBagConstraints.HORIZONTAL;
 		c3 = new GridBagConstraints();
 		c3.fill = GridBagConstraints.BOTH;
 		gridPanel =  new JPanel();
@@ -419,7 +419,7 @@ public class DoubleGameGridView extends JFrame {
 		waitPanel.setVisible(true);
 		
 	}
-	/*public void turnoPanelCreation() {
+	public void turnoPanelCreation() {
 		// TODO Auto-generated method stub
 		turnoPanel = new JPanel();
 		turnoPanel.setBackground(Color.white);
@@ -443,7 +443,7 @@ public class DoubleGameGridView extends JFrame {
 		turno.setVisible(true);
 		turnoPanel.setVisible(false);
 	}
-	*/
+	
 	public void createIcon(int a, int b){
 	    
 	        // Creazione di un frame
