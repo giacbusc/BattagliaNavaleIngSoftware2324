@@ -78,9 +78,9 @@ public class Square extends JPanel
 	{
 		this.setBackground(Color.gray);
 	}
-	public void setAffondato()
+	public void setAffondato(Color nero)
 	{
-		this.setBackground(Color.black);
+		this.setBackground(nero);
 	}
 	
 	public void setReset()

@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.sql.SQLException;
+import java.util.Random;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.swing.SwingWorker;
@@ -28,8 +29,11 @@ public class TurniControl {
 	private String indirizzo;
 	private int stato;
 	private int x;
+	public Color nero;
 	private int y;
 	private boolean r;
+	public int contabarchemio;
+	public int contabarcheavv;
 	private int lunghezza;
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
@@ -107,6 +111,10 @@ public class TurniControl {
 		lunghezza = arrayRisposta[3];
 		x = arrayRisposta[0];
 		y = arrayRisposta[1];
+		/*contabarchemio = arrayRisposta[4];
+		contabarcheavv=arrayRisposta[5];
+		DGGV.contaAffondati(contabarchemio,contabarcheavv);
+		*/
 		controllastato();
 
 	}
@@ -167,6 +175,16 @@ public class TurniControl {
 
 	private void verificaLunghezza() {
 		// TODO Auto-generated method stub
+		Random random = new Random();
+
+		int red = random.nextInt(256); // 0-255
+		int green = red;
+		int blue = red;
+
+		
+		nero = new Color(red, green, blue);
+		
+		
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
@@ -182,7 +200,7 @@ public class TurniControl {
 
 					String[] arrayStringhe = rispostamsg.split(",");
 					System.out.println();
-
+					
 					for (int i1 = 0; i1 < arrayStringhe.length; i1++)
 						arrayRisposta[i1] = Integer.parseInt(arrayStringhe[i1].trim());
 					System.out.println("Received msg 2 " + rispostamsg);
@@ -202,7 +220,7 @@ public class TurniControl {
 					}
 					x = arrayRisposta[0];
 					y = arrayRisposta[1];
-					DGGV.opponentBoard[x][y].setAffondato();
+					DGGV.opponentBoard[x][y].setAffondato(nero);
 
 				}
 

@@ -32,6 +32,7 @@ import org.zeromq.ZMQ;
 import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
 import BattagliaNavaleProject.control.DoubleGameGridControl;
 import BattagliaNavaleProject.control.TurniControl;
+import java.awt.Component;
 
 public class DoubleGameGridView extends JFrame {
 
@@ -136,6 +137,7 @@ public class DoubleGameGridView extends JFrame {
 		c = new GridBagConstraints();
 		c1 = new GridBagConstraints();
 		c2 = new GridBagConstraints();
+		c2.fill = GridBagConstraints.HORIZONTAL;
 		c3 = new GridBagConstraints();
 		c3.fill = GridBagConstraints.BOTH;
 		gridPanel =  new JPanel();
@@ -174,18 +176,25 @@ public class DoubleGameGridView extends JFrame {
 		setVisible(true);
 		waitPanel.setVisible(false);
 		turnoPanel.setVisible(false);
-		contaAffondati(1,2);
+		
 	}
 	public void contaAffondati(int n1, int n2) {
 		
-		JLabel contaLabel = new JLabel("Barche affondate: "+ n1+ "  ");
+		JLabel contaLabel = new JLabel("Barche affondate: "+ n1+ "");
+		JLabel spazio= new JLabel("   ");
+		contaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		contaLabel.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		contaLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		JLabel contaLabel2= new JLabel("Barche affondate dall'avversario"+n2);
+		JLabel contaLabel2= new JLabel("Barche affondate dall'avversario: "+n2);
+		contaLabel2.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		contaLabel2.setAlignmentX(Component.CENTER_ALIGNMENT);
 		contaLabel2.setHorizontalAlignment(SwingConstants.CENTER);
 		contaLabel.setForeground(Color.white);
-		contaLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		contaLabel2.setFont(new Font("Tahoma", Font.BOLD, 20));
+		contaLabel.setFont(new Font("Tahoma", Font.BOLD, 19));
+		contaLabel2.setFont(new Font("Tahoma", Font.BOLD, 19));
+		
 		shipsPanel.setLayout(new BoxLayout(shipsPanel, BoxLayout.Y_AXIS));
+		shipsPanel.add(spazio);
 		shipsPanel.add(contaLabel);
 		shipsPanel.add(contaLabel2);
 		
@@ -204,7 +213,6 @@ public class DoubleGameGridView extends JFrame {
 		c2.gridx = 0 ;
 		c2.gridy = 1;
 		c2.weightx = 2;
-		c2.fill = GridBagConstraints.HORIZONTAL;
 		gridPanel.add(shipsPanel,c2);
 		for(int i=0;i<dim.size();i++) 
 		{
@@ -275,7 +283,6 @@ public class DoubleGameGridView extends JFrame {
 		opponentBoardPanel = new JPanel();
 		yourBoard = new Square[GRID_DIMENSION][GRID_DIMENSION];
 		opponentBoard = new Square[GRID_DIMENSION][GRID_DIMENSION];
-		yourBoardPanel.setLayout(new GridLayout(GRID_DIMENSION+2, GRID_DIMENSION+2, 0, 0));
 		opponentBoardPanel.setLayout(new GridLayout(GRID_DIMENSION+2, GRID_DIMENSION+2, 0, 0));
 
 		grigliaView();
@@ -289,6 +296,7 @@ public class DoubleGameGridView extends JFrame {
 		c.weighty = 1.0;
 		c.fill= GridBagConstraints.BOTH;
 		gridPanel.add(yourBoardPanel, c);
+		yourBoardPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		opponentBoardPanel.setPreferredSize(new Dimension(600,600));
 		c1.ipadx = 35;
