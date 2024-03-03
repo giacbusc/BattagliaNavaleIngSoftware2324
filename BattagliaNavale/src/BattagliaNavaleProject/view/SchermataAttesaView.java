@@ -47,7 +47,7 @@ Observer obs;
 		        int x = (dimensioniSchermo.width - getWidth()) / 2;
 		        int y = (dimensioniSchermo.height - getHeight()) / 2;
 		        
-		        setBounds(x-(525/2),y-(200),520,400);
+		        setBounds(x-(650/2),y-(366/2),650,366);
 			
 	    	
 			
@@ -61,14 +61,15 @@ Observer obs;
 	            }
 	        };
 	        
-	        backgroundPanel.setBounds(100, 100, 516, 405);
+	        backgroundPanel.setBounds(100, 100, 650, 366);
 	        getContentPane().add(backgroundPanel);
 	    	backgroundPanel.setLayout(null);
 	    	
 	    	JLabel attesaserver = new JLabel(msg);
+	    	attesaserver.setHorizontalAlignment(SwingConstants.CENTER);
 	    	attesaserver.setAlignmentX(CENTER_ALIGNMENT);
 	    	attesaserver.setFont(new Font("Tahoma", Font.PLAIN, 35));
-			attesaserver.setBounds(29, 135, 450, 93);
+			attesaserver.setBounds(97, 118, 450, 93);
 			backgroundPanel.add(attesaserver, BorderLayout.CENTER);
 			
 		 }catch(Exception e)

@@ -35,18 +35,18 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 	JPanel[] arrayPanel = new JPanel[GRID_DIMENSION];
 	private int clickcount = 0;
 	boolean entra = false;
-	int x;
-	int y;
+	public int x;
+	public int y;
 	private int ataconta = 3;
 	public int[] arrayRisposta = new int[8];
 	int primo = 0;
-	int boatlenght;
+	public int boatlenght;
 	static String indirizzo;
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	public String rispostamsg;
 	private String username;
-	String[] arraymsg = new String[3];
+	public String[] arraymsg = new String[3];
 	int dim = 3;
 	private TornaMenuPrincipale tmp;
 	private Observer obs;
@@ -55,6 +55,17 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 	// Socket to talk to server
 
 	public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer bs) throws IOException {
+		
+		this.obs = obs;
+		this.tmp = tmp;
+		this.username = username;
+		grid = new DoubleGameGridView(username);
+		grid.addMouseGriglia(this);
+		grid.addMouseBarche(this);
+		socket.connect(indirizzo);
+	}
+	
+public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer bs, String indirizzo) throws IOException {
 		
 		this.obs = obs;
 		this.tmp = tmp;
@@ -243,7 +254,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	public void ricevi2msg(ZMQ.Socket socket, int x, int y) throws InterruptedException, IOException {
 
-		byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
+		/*byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
 		rispostamsg = new String(reply, ZMQ.CHARSET);
 
 		String[] arrayStringhe = rispostamsg.split(",");
@@ -251,11 +262,11 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 		for (int i = 0; i < arrayStringhe.length; i++)
 			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
-		System.out.println("Received msg 2 " + rispostamsg);
+		System.out.println("Received msg 2 " + rispostamsg);*/
 
 		// 0 1 2 3 4 5 6
-		// x{ y St N E S O
-		System.out.println("quello che ho mandato prima x: " + x + " quello che ricevo: " + arrayRisposta[0]);
+		// x y St N E S O
+		System.out.println("quello	 che ho mandato prima x: " + x + " quello che ricevo: " + arrayRisposta[0]);
 		System.out.println("quello che ho mandato prima y: " + y + " quello che ricevo: " + arrayRisposta[1]);
 		if (arrayRisposta[6] == 0) {
 			while (y != arrayRisposta[1]) {
@@ -288,7 +299,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 		}
 
 		if (arrayRisposta[3] == 0) {
-			while (x != arrayRisposta[0]) {
+			while (x != arrayRisposta[0]	) {
 				colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
 				//grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setColor();
 				arrayRisposta[0]--;
@@ -298,7 +309,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 		}
 		colorabianco();
 	}
-	private void colorebarca(Square square) {
+	public void colorebarca(Square square) {
 		String nome = arraymsg[2];
 		for (InfoBoat boat : InfoBoat.values()) {
 			if (boat.name().equalsIgnoreCase(nome)) {
@@ -322,7 +333,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	// tutto non cliccabile
 
-	private void colorabianco() throws InterruptedException, IOException {
+	public void colorabianco() throws InterruptedException, IOException {
 
 		// grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]].setBackground(Color.orange);
 		for (int i = 0; i < 10; i++) {
@@ -353,7 +364,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 		// ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 		// Socket to talk to server
 		primo = 1;
-		byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
+		/*byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
 		String rispostamsg = new String(reply, ZMQ.CHARSET);
 
 		String[] arrayStringhe = rispostamsg.split(",");
@@ -361,7 +372,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 		for (int i = 0; i < arrayStringhe.length; i++)
 			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
-		System.out.println("Received msg1" + rispostamsg);
+		System.out.println("Received msg1" + rispostamsg);*/
 
 		if (arrayRisposta[2] != -1) {
 			colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
