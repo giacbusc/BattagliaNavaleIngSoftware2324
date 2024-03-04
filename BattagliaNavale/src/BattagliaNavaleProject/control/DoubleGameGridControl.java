@@ -36,11 +36,11 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 	private int clickcount = 0;
 	boolean entra = false;
 	public int x;
-	public int y;
+	public  int y;
 	private int ataconta = 3;
 	public int[] arrayRisposta = new int[8];
 	int primo = 0;
-	public int boatlenght;
+	int boatlenght;
 	static String indirizzo;
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
@@ -254,7 +254,7 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 
 	public void ricevi2msg(ZMQ.Socket socket, int x, int y) throws InterruptedException, IOException {
 
-		/*byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
+		byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
 		rispostamsg = new String(reply, ZMQ.CHARSET);
 
 		String[] arrayStringhe = rispostamsg.split(",");
@@ -262,7 +262,7 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 
 		for (int i = 0; i < arrayStringhe.length; i++)
 			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
-		System.out.println("Received msg 2 " + rispostamsg);*/
+		System.out.println("Received msg 2 " + rispostamsg);
 
 		// 0 1 2 3 4 5 6
 		// x y St N E S O
@@ -364,7 +364,7 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 		// ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 		// Socket to talk to server
 		primo = 1;
-		/*byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
+		byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
 		String rispostamsg = new String(reply, ZMQ.CHARSET);
 
 		String[] arrayStringhe = rispostamsg.split(",");
@@ -372,7 +372,7 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 
 		for (int i = 0; i < arrayStringhe.length; i++)
 			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
-		System.out.println("Received msg1" + rispostamsg);*/
+		System.out.println("Received msg1" + rispostamsg);
 
 		if (arrayRisposta[2] != -1) {
 			colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
