@@ -1,4 +1,6 @@
-package BattagliaNavaleProject.BattagliaNavaleServer;
+package BattagliaNavaleProject.BattagliaNavaleServer.start;
+
+import BattagliaNavaleProject.BattagliaNavaleServer.ServerSocket;
 
 public class StartControl 
 {

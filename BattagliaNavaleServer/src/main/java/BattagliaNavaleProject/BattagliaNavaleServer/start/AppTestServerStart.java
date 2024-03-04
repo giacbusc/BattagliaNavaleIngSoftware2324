@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.BattagliaNavaleServer;
+package BattagliaNavaleProject.BattagliaNavaleServer.start;
 
 public class AppTestServerStart 
 {

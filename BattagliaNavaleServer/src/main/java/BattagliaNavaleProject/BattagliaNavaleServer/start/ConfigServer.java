@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.BattagliaNavaleServer;
+package BattagliaNavaleProject.BattagliaNavaleServer.start;
 import org.h2.tools.Server;
 
 import java.io.FileOutputStream;

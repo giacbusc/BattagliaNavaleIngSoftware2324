@@ -1,4 +1,4 @@
-package BattagliaNavaleProject.BattagliaNavaleServer;
+package BattagliaNavaleProject.BattagliaNavaleServer.start;
 
 import java.awt.Color;
 import java.awt.Dimension;
