@@ -111,10 +111,9 @@ public class TurniControl {
 		lunghezza = arrayRisposta[3];
 		x = arrayRisposta[0];
 		y = arrayRisposta[1];
-		/*contabarchemio = arrayRisposta[4];
-		contabarcheavv=arrayRisposta[5];
-		DGGV.contaAffondati(contabarchemio,contabarcheavv);
-		*/
+		contabarchemio = arrayRisposta[4];
+		contabarcheavv = arrayRisposta[5];
+		DGGV.contaAffondati(contabarchemio, contabarcheavv);
 		controllastato();
 
 	}
@@ -177,14 +176,12 @@ public class TurniControl {
 		// TODO Auto-generated method stub
 		Random random = new Random();
 
-		int red = random.nextInt(55) + 1; 
+		int red = random.nextInt(55) + 1;
 		int green = red;
 		int blue = red;
 
-		
 		nero = new Color(red, green, blue);
-		
-		
+
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
@@ -200,7 +197,7 @@ public class TurniControl {
 
 					String[] arrayStringhe = rispostamsg.split(",");
 					System.out.println();
-					
+
 					for (int i1 = 0; i1 < arrayStringhe.length; i1++)
 						arrayRisposta[i1] = Integer.parseInt(arrayStringhe[i1].trim());
 					System.out.println("Received msg 2 " + rispostamsg);

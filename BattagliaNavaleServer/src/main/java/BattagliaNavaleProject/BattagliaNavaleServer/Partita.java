@@ -13,7 +13,7 @@ import BattagliaNavaleProject.BattagliaNavaleServer.database.ConnectionDb;
 
 public class Partita {
 	int turno;
-	private String[] spedire = new String[4];
+	private String[] spedire = new String[6];
 	Square[][] player1;
 	Square[][] player2;
 	int MAX_LENGTH = 10;
@@ -419,6 +419,8 @@ public class Partita {
 	}
 
 	public void spedireMex(String[] spedire) {
+		spedire[4] = Integer.toString(contaBarcheP1);
+		spedire[5] = Integer.toString(contaBarcheP2);
 		ZMQ.Socket socketServer = isp.getSocketServer();
 		StringBuilder composta = new StringBuilder();
 		for (String e : spedire) {
