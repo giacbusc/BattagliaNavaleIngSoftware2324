@@ -213,7 +213,7 @@ public class Partita {
 						if (player2[i][j].getNome().equals(nomeBarcaColpita)) {
 
 								player2[i][j].setStato(3);
-								String[] martin = new String[4];
+								String[] martin = new String[6];
 								martin[0] = String.valueOf(i);
 								martin[1] = String.valueOf(j);
 								martin[2] = "3";
@@ -326,7 +326,7 @@ public class Partita {
 						if (player1[i][j].getNome().equals(nomeBarcaColpita)) {
 
 								player1[i][j].setStato(3);
-								String[] martin = new String[4];
+								String[] martin = new String[6];
 								martin[0] = String.valueOf(i);
 								martin[1] = String.valueOf(j);
 								martin[2] = "3";
