@@ -74,9 +74,9 @@ public class MenuPrincipaleView extends JFrame {
 
 
 		classifica = new JPanel();
-		classifica.setBounds(1100,100,280,600);
+		classifica.setBounds(1009,113,371,531);
 		classifica.setOpaque(false);
-		classifica.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+		classifica.setBorder(null);
 		backgroundPanel.add(classifica);
 		classifica.setLayout(new BoxLayout(classifica, BoxLayout.Y_AXIS));
 
@@ -89,7 +89,7 @@ public class MenuPrincipaleView extends JFrame {
 		}
 
 		JLabel lblNewLabel_2 = new JLabel("BATTAGLIA NAVALE ");
-		lblNewLabel_2.setForeground(Color.decode("#3380CC"));
+		lblNewLabel_2.setForeground(new Color(51, 128, 204));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 70));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(350, 0, 750, 85);
@@ -245,12 +245,13 @@ public class MenuPrincipaleView extends JFrame {
 		backgroundPanel.add(tutorialButton);
 
 		JPanel titolo = new JPanel();
-		titolo.setBounds(1100, 69, 278, 35);
+		titolo.setBounds(1007, 69, 371, 50);
 		backgroundPanel.add(titolo);
 		titolo.setOpaque(false);
 
 		JLabel classificaLabel = new JLabel("Classifica");
-		classificaLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		classificaLabel.setForeground(new Color(51, 128, 204));
+		classificaLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 		titolo.add(classificaLabel);
 
 		tutorialButton.addMouseListener(new MouseListener()
