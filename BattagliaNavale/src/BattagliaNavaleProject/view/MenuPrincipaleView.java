@@ -74,7 +74,7 @@ public class MenuPrincipaleView extends JFrame {
 
 
 		classifica = new JPanel();
-		classifica.setBounds(1009,113,371,531);
+		classifica.setBounds(1163,113,217,531);
 		classifica.setOpaque(false);
 		classifica.setBorder(null);
 		backgroundPanel.add(classifica);
@@ -245,7 +245,7 @@ public class MenuPrincipaleView extends JFrame {
 		backgroundPanel.add(tutorialButton);
 
 		JPanel titolo = new JPanel();
-		titolo.setBounds(1007, 69, 371, 50);
+		titolo.setBounds(1092, 69, 286, 50);
 		backgroundPanel.add(titolo);
 		titolo.setOpaque(false);
 
