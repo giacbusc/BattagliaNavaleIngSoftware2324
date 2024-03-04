@@ -38,7 +38,7 @@ public class TurniControl {
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	int[] arraymsg = new int[2];
-	int[] arrayRisposta = new int[4];
+	int[] arrayRisposta = new int[6];
 	private AggiuntaListener al;
 	private TornaMenuPrincipale tmp;
 	private int miaoconta;
