@@ -46,11 +46,15 @@ public class DoubleGameGridView extends JFrame {
 	private JPanel gridPanel;
 	public JLabel turno;
 	public JPanel waitPanel;
+	int vai;
 	private GridBagConstraints c;
 	private GridBagConstraints c1;
 	private GridBagConstraints c2;
 	private GridBagConstraints c3;
 	private ArrayList<Integer> dim;
+	public JLabel contaLabel;
+	public JLabel contaLabel2;
+	public JLabel spazio;
 	private int selectedShip;
 	private final Border topLeftBorder = BorderFactory.createMatteBorder(1, 1, 0, 0, Color.black);
 	private final Border topLeftBottomBorder = BorderFactory.createMatteBorder(1, 1, 1, 0, Color.black);
@@ -59,6 +63,7 @@ public class DoubleGameGridView extends JFrame {
 	private JPanel panel[];
 	private String username;	
 	public JPanel turnoPanel;
+	public JPanel shipsPanel2;
 	
 
 	/*public static void main(String[] args) {
@@ -170,6 +175,7 @@ public class DoubleGameGridView extends JFrame {
 		setVisible(true);
 		waitPanel.setVisible(false);
 		turnoPanel.setVisible(false);
+		creaAffondati();
 	}
 
 	private void boatList(ArrayList<Integer> dim)
@@ -249,14 +255,15 @@ public class DoubleGameGridView extends JFrame {
 		}
 		return dim;
 	}
-public void contaAffondati(int n1, int n2) {
+	
+	public void creaAffondati() {
 		
-		JLabel contaLabel = new JLabel("Barche affondate: "+ n1+ "");
-		JLabel spazio= new JLabel("   ");
+		contaLabel = new JLabel("Barche affondate: "+ 0+ "");
+		spazio= new JLabel("   ");
 		contaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		contaLabel.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		contaLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		JLabel contaLabel2= new JLabel("Barche affondate dall'avversario: "+n2);
+		contaLabel2= new JLabel("Barche affondate dall'avversario: "+0);
 		contaLabel2.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		contaLabel2.setAlignmentX(Component.CENTER_ALIGNMENT);
 		contaLabel2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -264,12 +271,22 @@ public void contaAffondati(int n1, int n2) {
 		contaLabel.setFont(new Font("Tahoma", Font.BOLD, 19));
 		contaLabel2.setFont(new Font("Tahoma", Font.BOLD, 19));
 		
-		shipsPanel.setLayout(new BoxLayout(shipsPanel, BoxLayout.Y_AXIS));
+		
+		shipsPanel.setBackground(Color.decode("#5C99D6"));
+		shipsPanel.setPreferredSize(new Dimension(100,100));
+		spazio.setVisible(false);
+		contaLabel.setVisible(false);
+		contaLabel2.setVisible(false);
 		shipsPanel.add(spazio);
 		shipsPanel.add(contaLabel);
 		shipsPanel.add(contaLabel2);
 		
+		
 	}
+	
+	
+	
+
 
 	public void createGrid()
 	{	
@@ -435,6 +452,8 @@ public void contaAffondati(int n1, int n2) {
 		turnoPanel.add(turno);
 		turno.setVisible(true);
 		turnoPanel.setVisible(false);
+		
+		
 	}
 	
 	public void createIcon(int a, int b){

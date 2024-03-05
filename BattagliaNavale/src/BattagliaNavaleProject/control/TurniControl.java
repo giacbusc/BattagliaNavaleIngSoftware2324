@@ -29,6 +29,8 @@ public class TurniControl {
 	private String indirizzo;
 	private int stato;
 	private int x;
+	boolean t=true;
+	int vai=0;
 	public Color nero;
 	private int y;
 	private boolean r;
@@ -113,7 +115,10 @@ public class TurniControl {
 		y = arrayRisposta[1];
 		contabarchemio = arrayRisposta[4];
 		contabarcheavv = arrayRisposta[5];
-		DGGV.contaAffondati(contabarchemio, contabarcheavv);
+		
+		DGGV.contaLabel.setText("Barche affondate: "+contabarchemio);
+		DGGV.contaLabel2.setText("Barche affondate dall'avversario: "+contabarcheavv);
+		
 		controllastato();
 
 	}

@@ -9,6 +9,7 @@ import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 import java.util.Arrays;
 
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.SwingWorker;
 import javax.swing.TransferHandler;
@@ -590,7 +591,13 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 
 				grid.turnoPanel.setVisible(true);
 				grid.shipsPanel.setBackground(Color.decode("#659feb"));
+
+				grid.shipsPanel.setLayout(new BoxLayout(grid.shipsPanel, BoxLayout.Y_AXIS));
+				grid.spazio.setVisible(true);
+				grid.contaLabel.setVisible(true);
+				grid.contaLabel2.setVisible(true);
 				turni.turno();
+				
 				
 				return null;
 			}
