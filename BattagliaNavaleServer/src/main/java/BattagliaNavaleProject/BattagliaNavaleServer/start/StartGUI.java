@@ -101,8 +101,9 @@ public class StartGUI extends JFrame {
 				String ip = new String(indirizzoField.getText());
 				
 				try {
-					StartControl.avvioSelection(ip);
 					dispose();
+					StartControl.avvioSelection(ip);
+					
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -128,8 +129,9 @@ public class StartGUI extends JFrame {
 		btnAvviaServerLocale.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					StartControl.avvioSelection("LOCALE");
 					dispose();
+					StartControl.avvioSelection("LOCALE");
+					
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -1,8 +1,11 @@
 package BattagliaNavaleProject.control;
 
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,6 +34,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 		menu.setVisible(true);
 		menu.addActionMulti(this);
 		menu.addActionSolo(this);
+		menu.addActionTutorial(this);
 		aggiungiClassifica();
 	}
 	@Override
@@ -43,9 +47,11 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	    SoundEffect s = new SoundEffect();
 	    s.playMusic(filepath);
 
-		if(e.getSource() instanceof JButton ) {
+		if(e.getSource() instanceof JButton ) 
+		{
 			JButton clickedButton= (JButton) e.getSource();
 			
+			System.out.println("SONO IL GETTEXT: " + clickedButton.getText());
 			if(clickedButton.getText().equals("  ")) {
 			
 				System.out.println("tanti pc");
@@ -64,6 +70,19 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			
+			if(clickedButton.getText().equals("   "))
+			{
+				System.out.println("tutorial");
+				String path = "../tutorial/tutorial.html";
+				File htmlFile = new File(path);
+				try {
+					Desktop.getDesktop().browse(htmlFile.toURI());
+				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}

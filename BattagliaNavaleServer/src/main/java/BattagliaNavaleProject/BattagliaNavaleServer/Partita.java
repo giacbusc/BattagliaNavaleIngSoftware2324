@@ -169,6 +169,8 @@ public class Partita {
 			spedire[1] = y;
 			spedire[2] = "4"; // ha colpito l'acqua
 			player2[xpos][ypos].setStato(4);
+			spedire[4] = Integer.toString(contaBarcheP1);
+			spedire[5] = Integer.toString(contaBarcheP2);
 			INVIATO = true;
 			spedireMex(spedire);
 
@@ -182,6 +184,8 @@ public class Partita {
 				spedire[1] = y;
 				spedire[2] = "2";
 				player2[xpos][ypos].setStato(2);
+				spedire[4] = Integer.toString(contaBarcheP1);
+				spedire[5] = Integer.toString(contaBarcheP2);
 				INVIATO = true;
 				spedireMex(spedire);
 			} else { // è affondata
@@ -197,6 +201,8 @@ public class Partita {
 				spedire[2] = "3";
 				spedire[3] = String.valueOf(l);
 				player2[xpos][ypos].setStato(3);
+				spedire[4] = Integer.toString(contaBarcheP1);
+				spedire[5] = Integer.toString(contaBarcheP2);
 				spedireMex(spedire);
 
 				ArrayList<String[]> celleAffondate = new ArrayList<String[]>();
@@ -213,7 +219,7 @@ public class Partita {
 						if (player2[i][j].getNome().equals(nomeBarcaColpita)) {
 
 								player2[i][j].setStato(3);
-								String[] martin = new String[6];
+								String[] martin = new String[4];
 								martin[0] = String.valueOf(i);
 								martin[1] = String.valueOf(j);
 								martin[2] = "3";
@@ -290,6 +296,8 @@ public class Partita {
 			spedire[1] = y;
 			spedire[2] = "4"; // ha colpito l'acqua
 			player1[xpos][ypos].setStato(4);
+			spedire[4] = Integer.toString(contaBarcheP2);
+			spedire[5] = Integer.toString(contaBarcheP1);
 			INVIATO = true;
 			spedireMex(spedire);
 
@@ -303,6 +311,8 @@ public class Partita {
 				spedire[1] = y;
 				spedire[2] = "2";
 				player1[xpos][ypos].setStato(2);
+				spedire[4] = Integer.toString(contaBarcheP2);
+				spedire[5] = Integer.toString(contaBarcheP1);
 				INVIATO = true;
 				spedireMex(spedire);
 			} else { // è affondata
@@ -318,6 +328,8 @@ public class Partita {
 				spedire[2] = "3";
 				spedire[3] = String.valueOf(l);
 				player1[xpos][ypos].setStato(3);
+				spedire[4] = Integer.toString(contaBarcheP2);
+				spedire[5] = Integer.toString(contaBarcheP1);
 				spedireMex(spedire);
 
 				ArrayList<String[]> celleAffondate = new ArrayList<String[]>();
@@ -326,7 +338,7 @@ public class Partita {
 						if (player1[i][j].getNome().equals(nomeBarcaColpita)) {
 
 								player1[i][j].setStato(3);
-								String[] martin = new String[6];
+								String[] martin = new String[4];
 								martin[0] = String.valueOf(i);
 								martin[1] = String.valueOf(j);
 								martin[2] = "3";
@@ -419,8 +431,6 @@ public class Partita {
 	}
 
 	public void spedireMex(String[] spedire) {
-		spedire[4] = Integer.toString(contaBarcheP1);
-		spedire[5] = Integer.toString(contaBarcheP2);
 		ZMQ.Socket socketServer = isp.getSocketServer();
 		StringBuilder composta = new StringBuilder();
 		for (String e : spedire) {

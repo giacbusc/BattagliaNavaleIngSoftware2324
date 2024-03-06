@@ -15,6 +15,7 @@ public class MenuPrincipaleView extends JFrame {
 	private static String userName;
 	private JButton pcSoloButton;
 	private JButton pcMultiButton;
+	private JButton tutorialButton;
 	private Observer obs;
 	private JPanel classifica;
 	public static void main(String[] args) {
@@ -236,7 +237,8 @@ public class MenuPrincipaleView extends JFrame {
 		tutorialTextLabel.setBounds(630,495,200,50);
 		backgroundPanel.add(tutorialTextLabel);
 
-		final JButton tutorialButton = new JButton("");
+		tutorialButton = new JButton("   ");
+		tutorialButton.setName("tutorial");
 		tutorialButton.setBackground(new Color(0, 0, 0, 0));
 		tutorialButton.setOpaque(false);
 		//tutorialButton.setBorderPainted(false);
@@ -364,6 +366,12 @@ public class MenuPrincipaleView extends JFrame {
 	{
 		pcSoloButton.addActionListener(act);
 	}
+	
+	public void addActionTutorial(ActionListener act)
+	{
+		tutorialButton.addActionListener(act);
+	}
+
 
 	public void mostraClassifica(String user, int vitt, int pos)
 	{
