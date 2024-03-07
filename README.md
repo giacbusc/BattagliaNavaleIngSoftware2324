@@ -9,7 +9,7 @@
 
 ### Progetto a cura di:
 [Buscaglia Giacomo, matricola 1078804](https://github.com/buscst)<br>
-[Ciancio Luca, matricola1079291](https://github.com/LucaCiancio)<br>
+[Ciancio Luca, matricola 1079291](https://github.com/LucaCiancio)<br>
 [Gervasoni Federica, matricola 1078966](https://github.com/fgervasoni7) <br>
 [Signori Giulia, matricola 1078801](https://github.com/giessse)<br>
 
