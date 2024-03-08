@@ -382,6 +382,8 @@ Il team ha dedicato parte del suo tempo, soprattutto nella fase finale dello svi
 -> utilizzo di design pattern per migliorare la struttura e l'organizzazione del codice <br>
 
 Per verificare che il lavoro di refactoring, l'evoluzione del codice ed il miglioramento delle metriche, abbiamo utilizzato Structure 101.<br>
+Per migliorare la qualità del codice abbiamo sfruttato il plugin SpotBugs. <br>
+SpotBugs è uno strumento di analisi statica del codice per Java che individua potenziali bug, vulnerabilità e pratiche non ottimali nel codice sorgente. Analizza il codice alla ricerca di pattern sospetti e fornisce segnalazioni per migliorare la qualità e la sicurezza del  software.<br>
 
 ## 12. Software Maintenance
 La manutenzione di un software rappresenta un processo fondamentale nell'assicurare il suo funzionamento ottimale e la sua continua adattabilità alle mutevoli esigenze degli utenti e dell'ambiente in cui opera. Tale processo si articola in diverse tipologie di intervento: la manutenzione correttiva, volta alla risoluzione tempestiva di errori e malfunzionamenti; la manutenzione adattiva, che si occupa di aggiornare il software per adeguarlo a modifiche nell'ambiente operativo o nei requisiti di sistema; la manutenzione perfettiva, finalizzata a implementare nuove funzionalità richieste dagli utenti o a ottimizzare le prestazioni dell'applicativo; infine, la manutenzione preventiva, che mira a prevenire futuri problemi e a migliorare la manutenibilità complessiva del software.
