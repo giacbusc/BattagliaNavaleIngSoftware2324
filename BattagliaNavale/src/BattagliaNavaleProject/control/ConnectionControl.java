@@ -14,15 +14,12 @@ import BattagliaNavaleProject.view.SchermataInizialeView;
 import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 
 public class ConnectionControl {
-	static String indirizzo;
+	private static String indirizzo;
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
-	String[] arrayMsg = null;
-	private static LoginModel model;
-	static private SchermataAttesaControl sac;
-	private String userName;
 	Observer obs;
-	TornaMenuPrincipale tmp;
+	private DoubleGameGridControl DGGC;
+
 
 	/*
 	 * public ConnectionControl(SchermataAttesaView sav, String userName) throws
@@ -58,9 +55,7 @@ public class ConnectionControl {
 
 	public ConnectionControl(SchermataAttesaControl sac, String userName, Observer obs, TornaMenuPrincipale tmp)
 			throws IOException, InterruptedException {
-		this.tmp = tmp;
-		this.sac = sac;
-		this.userName = userName;
+	
 		this.obs = obs;
 
 		try {
@@ -114,7 +109,7 @@ public class ConnectionControl {
 							SoundEffect se = new SoundEffect();
 
 							se.playMusic2(filepath,false);
-							DoubleGameGridControl DGGC = new DoubleGameGridControl(userName, tmp, obs);
+							DGGC = new DoubleGameGridControl(userName, tmp, obs);
 
 							sac.chiudi();
 						} catch (IOException e) {

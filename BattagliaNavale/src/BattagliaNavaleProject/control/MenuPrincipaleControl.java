@@ -25,6 +25,9 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	private SchermataAttesaControl sac;
 	private String username;
 	private Observer obs;
+	private ConnectionControl c;
+	private MenuPrincipaleControl mp;
+	private SelezioneIndirizzoControl sic;
 
 	public MenuPrincipaleControl(String username, Observer obs) throws IOException, SQLException {
 		menu= new MenuPrincipaleView(username,obs);
@@ -42,7 +45,6 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 		// TODO Auto-generated method stub
 		//String tcp= "tcp://192.168.1.226:5545";
 		String local="tcp://localhost:5545";
-		String[] parti = local.split(":");
 		String filepath = "./music/sceltaMenu3.wav";
 	    SoundEffect s = new SoundEffect();
 	    s.playMusic(filepath);
@@ -56,7 +58,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 			
 				System.out.println("tanti pc");
 			
-				SelezioneIndirizzoControl sic = new SelezioneIndirizzoControl(username,this,obs);
+				sic = new SelezioneIndirizzoControl(username,this,obs);
 			}
 			else if(clickedButton.getText().equals("")) {
 				//ConnectionControl.setIndirizzo(local);
@@ -113,7 +115,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	
 	public void creaConnectionControl() throws IOException, InterruptedException
 	{
-		 ConnectionControl c = new ConnectionControl(sac, menu.getUsername(), menu.getObserver(), this);
+		 c = new ConnectionControl(sac, menu.getUsername(), menu.getObserver(), this);
 	}
 	 
 	public void setConnectionIndirizzo(String indirizzo)
@@ -123,7 +125,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	@Override
 	public void torna(String username, Observer obs) throws IOException, SQLException {
 		// TODO Auto-generated method stub
-		MenuPrincipaleControl mp = new MenuPrincipaleControl(username, obs);
+		mp = new MenuPrincipaleControl(username, obs);
 	}
 	@Override
 	public void chiudi() {
@@ -137,7 +139,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
             ConnectionDb conn = new ConnectionDb();
             Statement stmt = conn.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT nickname, COUNT(*) AS NumeroVittorie FROM UTENTE JOIN PARTITA ON nickname = Vincitore GROUP BY nickname ORDER BY COUNT(*) DESC");
-
+            
             int posizione = 1;
 
             while (rs.next()) {
@@ -147,11 +149,10 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
                 menu.mostraClassifica(giocatore, numeroVittorie, posizione);
                 posizione++;
             }
-
-
+            
             // Chiudi le risorse
-            rs.close();
             stmt.close();
+            rs.close();
             conn.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();

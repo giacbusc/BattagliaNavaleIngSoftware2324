@@ -25,7 +25,7 @@ public class ClassificaControl extends JFrame {
             ConnectionDb conn = new ConnectionDb();
             Statement stmt = conn.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT NICKNAME, COUNT(*) AS NumeroVittorie FROM PARTITA WHERE GIOCATOREVINCITORE IS NOT NULL GROUP BY GIOCATOREVINCITORE ORDER BY COUNT(*) DESC");
-
+            stmt.close();
             classificaText.append("Classifica:\n");
             int posizione = 1;
             boolean utenteTrovato = false;
@@ -44,15 +44,12 @@ public class ClassificaControl extends JFrame {
 
                 posizione++;
             }
-
+            rs.close();
             // Se l'utente corrente non è presente nella classifica, aggiungilo alla fine
             if (!utenteTrovato) {
                 classificaText.append(posizione).append(". ").append(username).append(" - Vittorie: 0").append("\n");
             }
 
-            // Chiudi le risorse
-            rs.close();
-            stmt.close();
             conn.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();

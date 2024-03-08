@@ -42,19 +42,19 @@ public class DoubleGameGridView extends JFrame {
 	private JPanel centralTopPanel;
 	public Square[][] yourBoard;
 	public Square[][] opponentBoard;
-	public JPanel shipsPanel;
+	private JPanel shipsPanel;
 	private JPanel gridPanel;
 	public JLabel turno;
-	public JPanel waitPanel;
+	private JPanel waitPanel;
 	int vai;
 	private GridBagConstraints c;
 	private GridBagConstraints c1;
 	private GridBagConstraints c2;
 	private GridBagConstraints c3;
 	private ArrayList<Integer> dim;
-	public JLabel contaLabel;
-	public JLabel contaLabel2;
-	public JLabel spazio;
+	private JLabel contaLabel;
+	private JLabel contaLabel2;
+	private JLabel spazio;
 	private int selectedShip;
 	private final Border topLeftBorder = BorderFactory.createMatteBorder(1, 1, 0, 0, Color.black);
 	private final Border topLeftBottomBorder = BorderFactory.createMatteBorder(1, 1, 1, 0, Color.black);
@@ -62,9 +62,9 @@ public class DoubleGameGridView extends JFrame {
 	private final Border topLeftBottomRightBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
 	private JPanel panel[];
 	private String username;	
-	public JPanel turnoPanel;
+	private JPanel turnoPanel;
 	public JPanel shipsPanel2;
-	
+
 
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -161,10 +161,10 @@ public class DoubleGameGridView extends JFrame {
 		centralTopPanel.setBackground(Color.decode("#5C99D6"));
 		centralTopPanel.setPreferredSize(new Dimension(50, 50));
 		getContentPane().add(centralTopPanel, BorderLayout.NORTH);
-		
+
 
 		centralTopPanel.add(usernameLabel);
-	
+
 		createGrid();
 
 		getContentPane().add(gridPanel, BorderLayout.CENTER);
@@ -255,9 +255,9 @@ public class DoubleGameGridView extends JFrame {
 		}
 		return dim;
 	}
-	
+
 	public void creaAffondati() {
-		
+
 		contaLabel = new JLabel("Barche affondate: "+ 0+ "");
 		spazio= new JLabel("   ");
 		contaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -270,8 +270,8 @@ public class DoubleGameGridView extends JFrame {
 		contaLabel.setForeground(Color.white);
 		contaLabel.setFont(new Font("Tahoma", Font.BOLD, 19));
 		contaLabel2.setFont(new Font("Tahoma", Font.BOLD, 19));
-		
-		
+
+
 		shipsPanel.setBackground(Color.decode("#5C99D6"));
 		shipsPanel.setPreferredSize(new Dimension(100,100));
 		spazio.setVisible(false);
@@ -280,12 +280,12 @@ public class DoubleGameGridView extends JFrame {
 		shipsPanel.add(spazio);
 		shipsPanel.add(contaLabel);
 		shipsPanel.add(contaLabel2);
-		
-		
+
+
 	}
-	
-	
-	
+
+
+
 
 
 	public void createGrid()
@@ -390,12 +390,6 @@ public class DoubleGameGridView extends JFrame {
 			opponentBoard[i][j].setBorder(topLeftRightBorder);
 		}
 
-		else if(j == GRID_DIMENSION -1)
-		{
-			yourBoard[i][j].setBorder(topLeftRightBorder);
-			opponentBoard[i][j].setBorder(topLeftRightBorder);
-		}
-
 		else if(i == GRID_DIMENSION-1)
 		{
 			yourBoard[i][j].setBorder(topLeftBottomBorder);
@@ -452,26 +446,26 @@ public class DoubleGameGridView extends JFrame {
 		turnoPanel.add(turno);
 		turno.setVisible(true);
 		turnoPanel.setVisible(false);
-		
-		
+
+
 	}
-	
+
 	public void createIcon(int a, int b){
-	    
-	        // Creazione di un frame
-	        
-	        
-	        // Creazione di un'icona
-	        ImageIcon icon = new ImageIcon("/docs/resources/iconabarca.jpg"); // Sostituisci "path_to_your_image_file.jpg" con il percorso del tuo file immagine
-	        
-	        // Creazione di una JLabel con l'icona
-	        JLabel label = new JLabel(icon);
-	        // Aggiunta della JLabel al frame
-	        opponentBoard[a][b].getRootPane().add(label, opponentBoard[a][b].getLayout());
-	        
-	        // Visualizzazione del frame
-	        opponentBoard[a][b].revalidate();
-	        opponentBoard[a][b].repaint();
+
+		// Creazione di un frame
+
+
+		// Creazione di un'icona
+		ImageIcon icon = new ImageIcon("/docs/resources/iconabarca.jpg"); // Sostituisci "path_to_your_image_file.jpg" con il percorso del tuo file immagine
+
+		// Creazione di una JLabel con l'icona
+		JLabel label = new JLabel(icon);
+		// Aggiunta della JLabel al frame
+		opponentBoard[a][b].getRootPane().add(label, opponentBoard[a][b].getLayout());
+
+		// Visualizzazione del frame
+		opponentBoard[a][b].revalidate();
+		opponentBoard[a][b].repaint();
 	}
 
 	/*public void mostra() {
@@ -486,12 +480,12 @@ public class DoubleGameGridView extends JFrame {
 	public void setPanel(JPanel[] panel) {
 		this.panel = panel;
 	}
-	
+
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return username;
 	}
-	
+
 	public void addMouseBarche(MouseListener act)
 	{
 		ArrayList<Integer> dim = getDimNavi();
@@ -501,7 +495,7 @@ public class DoubleGameGridView extends JFrame {
 		}
 		System.out.println("sono entrato");
 	}
-	
+
 	public void removeMouseBarche(MouseListener act)
 	{
 		ArrayList<Integer> dim = getDimNavi();
@@ -517,24 +511,22 @@ public class DoubleGameGridView extends JFrame {
 		{
 			for(int j = 0; j < GRID_DIMENSION; j++)
 			{
-				if(yourBoard[i][j].getName().equals("yourBoard"));
-					yourBoard[i][j].addMouseListener(act);
+				yourBoard[i][j].addMouseListener(act);
 			}
 		}
 	}
-	
+
 	public void removeMouseMiaGrigilia(MouseListener act)
 	{
 		for(int i = 0; i<GRID_DIMENSION; i++)
 		{
 			for(int j = 0; j < GRID_DIMENSION; j++)
 			{
-				if(yourBoard[i][j].getName().equals("yourBoard"));
-					yourBoard[i][j].removeMouseListener(act);
+				yourBoard[i][j].removeMouseListener(act);
 			}
 		}
 	}
-	
+
 	public void addListenerOpponentGriglia(MouseListener act, int i, int j)
 	{
 		opponentBoard[i][j].addMouseListener(act);
@@ -546,15 +538,41 @@ public class DoubleGameGridView extends JFrame {
 			yourBoard[i][j].addMouseListener(act);
 		}
 	}
-	
+
 	public void removeMouseListener(MouseListener act, int i, int j)
 	{
 		yourBoard[i][j].removeMouseListener(act);
 	}
-	
-	
+
+
 	public void removeListenerOpponent(MouseListener act, int i, int j)
 	{
 		opponentBoard[i][j].removeMouseListener(act);
 	}
+
+	public JPanel getShipsPanel() {
+		return shipsPanel;
+	}
+
+	public JPanel getWaitPanel() {
+		return waitPanel;
+	}
+
+	public JPanel getTurnoPanel() {
+		return turnoPanel;
+	}
+
+	public JLabel getContaLabel() {
+		return contaLabel;
+	}
+
+	public JLabel getContaLabel2() {
+		return contaLabel2;
+	}
+
+	public JLabel getSpazio() {
+		return spazio;
+	}
+
+
 }

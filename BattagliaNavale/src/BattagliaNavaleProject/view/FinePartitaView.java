@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class FinePartitaView extends JFrame implements ActionListener {
-	private static String userName;
-	private static String msg;
+	private String userName;
+	private String msg;
 	private JButton menuButton;
 	private JButton exitButton;
 	MenuPrincipaleView menu;

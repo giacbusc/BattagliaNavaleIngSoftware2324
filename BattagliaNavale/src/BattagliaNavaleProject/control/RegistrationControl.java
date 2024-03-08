@@ -15,8 +15,9 @@ import BattagliaNavaleProject.view.RegistrationView;
 
 public class RegistrationControl implements ActionListener {
 	
-	RegistrationModel model;
+	private RegistrationModel model;
     private RegistrationView view;
+    private LoginControl log;
     
  
     public RegistrationControl( ){
@@ -53,6 +54,7 @@ public class RegistrationControl implements ActionListener {
 		pstmt.setString(1, nickname);
 
 		ResultSet rs = pstmt.executeQuery();
+		pstmt.close();
         if (rs.next()) {
        	 return false;
          }
@@ -121,7 +123,8 @@ public class RegistrationControl implements ActionListener {
 		pstmt.setString(2, user.getSurname());
 		pstmt.setString(3, user.getNickname());
 		pstmt.setString(4, user.getPassword());
-		boolean resultSet = pstmt.execute();
+		pstmt.execute();
+		pstmt.close();
 		return true;
 
       }
@@ -133,7 +136,7 @@ public class RegistrationControl implements ActionListener {
 	
 	public void openLogin() {
 		  
-        LoginControl log = new LoginControl();
+        log = new LoginControl();
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 	        @Override
 	        protected Void doInBackground() throws Exception {

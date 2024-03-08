@@ -13,12 +13,12 @@ import BattagliaNavaleProject.view.SchermataAttesaView;
 
 public class SchermataAttesaControl {
 	
-	public boolean r=true;
+	private boolean r=true;
 	static String indirizzo;
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
-	String[] arrayMsg = null;
-	SchermataAttesaView sv;
+	private SchermataAttesaView sv;
+	private DoubleGameGridControl DGGC;
 	Observer obs;
 	TornaMenuPrincipale tmp;
 	
@@ -55,7 +55,7 @@ public class SchermataAttesaControl {
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
 				se.playMusic2(filepath,true);
-				DoubleGameGridControl dggc= new DoubleGameGridControl(user, tmp, obs);
+				DGGC = new DoubleGameGridControl(user, tmp, obs);
 				sv.dispose();
 				r=false;
 			}
@@ -76,4 +76,8 @@ public class SchermataAttesaControl {
 	{
 		sv.dispose();
 	}
+	public boolean isR() {
+		return r;
+	}
+	
 }

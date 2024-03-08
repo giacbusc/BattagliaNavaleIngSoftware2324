@@ -22,6 +22,7 @@ public class SelezioneIndirizzoControl implements ActionListener {
 	private String ind;
 	private TornaMenuPrincipale tmp;
 	private Observer obs;
+	private ConnectionControl c;
 	public SelezioneIndirizzoControl(String username, TornaMenuPrincipale tmp, Observer obs)
 	{	
 		this.obs = obs;
@@ -86,7 +87,7 @@ public class SelezioneIndirizzoControl implements ActionListener {
 	
 	public void creaConnectionControl() throws IOException, InterruptedException
 	{
-		 ConnectionControl c = new ConnectionControl(sac, username, obs, tmp);
+		 c = new ConnectionControl(sac, username, obs, tmp);
 	}
 	
 	public void setConnectionIndirizzo(String indirizzo)

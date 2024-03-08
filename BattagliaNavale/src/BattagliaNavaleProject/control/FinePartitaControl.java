@@ -15,8 +15,6 @@ import BattagliaNavaleProject.view.Observer;
 public class FinePartitaControl  implements ActionListener{
 	private FinePartitaView fpv;
 	private String user;
-	private String messaggio;
-	private ServerSocket s;
 	Observer obs;
 	private TornaMenuPrincipale tmp;
 	
@@ -24,7 +22,6 @@ public class FinePartitaControl  implements ActionListener{
 		this.obs = obs;
 		this.tmp = tmp;
 		this.user=userName;
-		this.messaggio = messaggio;
 		fpv = new FinePartitaView(user, messaggio);
 		fpv.setVisible(true);
 		fpv.aggiungiListenerMenu(this);
@@ -56,13 +53,14 @@ public class FinePartitaControl  implements ActionListener{
 
 				}
 				if(clickedButton.getText().equals(".")) {
-					System.exit(0);
+					//System.exit(0);
 					fpv.dispose();
+					throw new RuntimeException();
 				}
 			}
 
 		}catch(Exception e3) {
-			e3.printStackTrace();	
+			System.err.println("Fine Partita");	
 		}
 	}
 

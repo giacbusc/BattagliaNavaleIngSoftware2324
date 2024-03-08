@@ -25,17 +25,13 @@ import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
 
 public class TurniControl {
 	DoubleGameGridView DGGV;
-	final int GRID_DIMENSION = 10;
-	private String indirizzo;
+	static final int GRID_DIMENSION = 10;
 	private int stato;
 	private int x;
-	boolean t=true;
-	int vai=0;
-	public Color nero;
+	private Color nero;
 	private int y;
-	private boolean r;
-	public int contabarchemio;
-	public int contabarcheavv;
+	private int contabarchemio;
+	private int contabarcheavv;
 	private int lunghezza;
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
@@ -45,13 +41,14 @@ public class TurniControl {
 	private TornaMenuPrincipale tmp;
 	private int miaoconta;
 	private Observer obs;
+	private Random random = new Random();
+	private FinePartitaControl sfp, fsv;
 
 	public TurniControl(String indirizzo, DoubleGameGridView DGGV, AggiuntaListener al, TornaMenuPrincipale tmp,
 			Observer obs) {
 		// TODO Auto-generated constructor stub
 		this.obs = obs;
 		this.tmp = tmp;
-		this.indirizzo = indirizzo;
 		this.DGGV = DGGV;
 		this.al = al;
 
@@ -116,8 +113,8 @@ public class TurniControl {
 		contabarchemio = arrayRisposta[4];
 		contabarcheavv = arrayRisposta[5];
 		
-		DGGV.contaLabel.setText("Barche affondate: "+contabarchemio);
-		DGGV.contaLabel2.setText("Barche affondate dall'avversario: "+contabarcheavv);
+		DGGV.getContaLabel().setText("Barche affondate: "+contabarchemio);
+		DGGV.getContaLabel2().setText("Barche affondate dall'avversario: "+contabarcheavv);
 		
 		controllastato();
 
@@ -162,7 +159,7 @@ public class TurniControl {
 					String filepath = "./music/waterSplash.wav";
 					SoundEffect se = new SoundEffect();
 					se.playMusic(filepath);
-					DGGV.turnoPanel.setVisible(false);
+					DGGV.getTurnoPanel().setVisible(false);
 					try {
 						cicloattesa();
 					} catch (InterruptedException e) {
@@ -179,7 +176,6 @@ public class TurniControl {
 
 	private void verificaLunghezza() {
 		// TODO Auto-generated method stub
-		Random random = new Random();
 
 		int red = random.nextInt(55) + 1;
 		int green = red;
@@ -216,7 +212,7 @@ public class TurniControl {
 						String filepath2 = "./music/finalWin.wav";
 						SoundEffect se2 = new SoundEffect();
 						se2.playMusic(filepath2);
-						FinePartitaControl fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO", tmp, obs);
+						fsv = new FinePartitaControl(DGGV.getUsername(), "HAI VINTO", tmp, obs);
 
 						DGGV.dispose();
 					}
@@ -246,13 +242,13 @@ public class TurniControl {
 
 	private void cicloattesa() throws InterruptedException, IOException, SQLException {
 		// TODO Auto-generated method stub
-		DGGV.turnoPanel.setVisible(false);
+		DGGV.getTurnoPanel().setVisible(false);
 		boolean r = true;
 		do {
 			toglilistener();
 			Thread.sleep(500);
 			String sendMsg = "MIAO" + miaoconta;
-			DGGV.shipsPanel.setBackground(Color.decode("#5C99D6"));
+			DGGV.getShipsPanel().setBackground(Color.decode("#5C99D6"));
 
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 			System.out.println("inviata attesa del turno " + sendMsg);
@@ -263,8 +259,8 @@ public class TurniControl {
 
 			if (rispostaMsg.equals("GIOCA")) {
 
-				DGGV.turnoPanel.setVisible(true);
-				DGGV.shipsPanel.setBackground(Color.decode("#659feb"));
+				DGGV.getTurnoPanel().setVisible(true);
+				DGGV.getShipsPanel().setBackground(Color.decode("#659feb"));
 				turno();
 				r = false;
 			}
@@ -279,7 +275,7 @@ public class TurniControl {
 				filepath = "./music/gameover.wav";
 				se = new SoundEffect();
 				se.playMusic(filepath);
-				FinePartitaControl sfp = new FinePartitaControl(DGGV.getUsername(), "HAI PERSO", tmp, obs);
+				sfp= new FinePartitaControl(DGGV.getUsername(), "HAI PERSO", tmp, obs);
 
 			}
 

@@ -15,7 +15,7 @@ public class DoubleGameGridTest {
 
 	String username = "lucaciancio";
 	String indirizzo = "tcp://192.168.60.206:5555";
-	@Test public void Test1() throws IOException, InterruptedException
+	@Test public void test1() throws IOException, InterruptedException
 	{
 		
 
@@ -24,115 +24,96 @@ public class DoubleGameGridTest {
 		
 		BattagliaNavaleProject.control.DoubleGameGridControl DGGC = new DoubleGameGridControl(username, null,null, indirizzo);
 
-		DGGC.arraymsg[0] = "0";
-		DGGC.arraymsg[1] = "0";
-		DGGC.arraymsg[2] = "0";
+		String[] arraymsg = {"0", "0", "Submarine1"};
+		DGGC.setArraymsg(arraymsg);
+		int[] arrayRisposta = {0, 0, 0, -1, -1, -1, -1,-1};
+		DGGC.setArrayRisposta(arrayRisposta);
 		DGGC.colorabianco();
 
 		assertEquals(Color.white,DGGC.grid.yourBoard[0][0].getColor());
 
 	}
 	
-	@Test public void Test2() throws IOException, InterruptedException
+	@Test public void test2() throws IOException, InterruptedException
 	{
 		DoubleGameGridControl DGGC = new DoubleGameGridControl(username, null, null, indirizzo);
 		
-		DGGC.arraymsg[0] = "0";
-		DGGC.arraymsg[1] = "0";
-		DGGC.arraymsg[2] = "Submarine1";
-		DGGC.arrayRisposta[0] = 0;
-		DGGC.arrayRisposta[1] = 0;
-		DGGC.arrayRisposta[2] = 0;
-		DGGC.colorebarca(DGGC.grid.yourBoard[DGGC.arrayRisposta[0]][DGGC.arrayRisposta[1]]);
+		String[] arraymsg = {"0", "0", "Submarine1"};
+		DGGC.setArraymsg(arraymsg);
+		int[] arrayRisposta = {0, 0, 0, -1, -1, -1, -1};
+		DGGC.setArrayRisposta(arrayRisposta);
+		DGGC.colorebarca(DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)]);
 		
-		assertEquals(Color.decode("#00E6AC"), DGGC.grid.yourBoard[DGGC.arrayRisposta[0]][DGGC.arrayRisposta[1]].getColor());
+		assertEquals(Color.decode("#00E6AC"), DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)].getColor());
 	}
 	
-	@Test public void Test3() throws IOException, InterruptedException
+	@Test public void test3() throws IOException, InterruptedException
 	{
 		DoubleGameGridControl DGGC = new DoubleGameGridControl(username, null, null, indirizzo);
 
 		
-		DGGC.arraymsg[0] = "0";
-		DGGC.arraymsg[1] = "0";
-		DGGC.arraymsg[2] = "Cruiser1";
-		DGGC.arrayRisposta[0] = 0;
-		DGGC.arrayRisposta[1] = 0;
-		DGGC.arrayRisposta[2] = 0;
-		DGGC.colorebarca(DGGC.grid.yourBoard[DGGC.arrayRisposta[0]][DGGC.arrayRisposta[1]]);
+		String[] arraymsg = {"0", "0", "Cruiser1"};
+		DGGC.setArraymsg(arraymsg);
+		int[] arrayRisposta = {0, 0, 0, -1, -1, -1, -1};
+		DGGC.setArrayRisposta(arrayRisposta);
+		DGGC.colorebarca(DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)]);
 		
-		assertEquals(Color.decode("#9AFF6B"), DGGC.grid.yourBoard[DGGC.arrayRisposta[0]][DGGC.arrayRisposta[1]].getColor());
+		assertEquals(Color.decode("#9AFF6B"), DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)].getColor());
 	}
 	
-	@Test public void Test4() throws IOException, InterruptedException
+	@Test public void test4() throws IOException, InterruptedException
+	{
+		DoubleGameGridControl DGGC = new DoubleGameGridControl(username, null, null, indirizzo);
+		String[] arraymsg = {"0", "0", "Destroyer1"};
+		DGGC.setArraymsg(arraymsg);		
+		int[] arrayRisposta = {0, 0, 0, -1, -1, -1, -1};
+		DGGC.setArrayRisposta(arrayRisposta);
+		DGGC.colorebarca(DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)]);
+		
+		assertEquals(Color.decode("#FFC20A"), DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)].getColor());
+	}
+	
+	@Test public void test5() throws IOException, InterruptedException
 	{
 		DoubleGameGridControl DGGC = new DoubleGameGridControl(username, null, null, indirizzo);
 		
-		DGGC.arraymsg[0] = "0";
-		DGGC.arraymsg[1] = "0";
-		DGGC.arraymsg[2] = "Destroyer1";
-		DGGC.arrayRisposta[0] = 0;
-		DGGC.arrayRisposta[1] = 0;
-		DGGC.arrayRisposta[2] = 0;
-		DGGC.colorebarca(DGGC.grid.yourBoard[DGGC.arrayRisposta[0]][DGGC.arrayRisposta[1]]);
+		String[] arraymsg = {"0", "0", "Aircraft"};
+		DGGC.setArraymsg(arraymsg);
+		int[] arrayRisposta = {0, 0, 0, -1, -1, -1, -1};
+		DGGC.setArrayRisposta(arrayRisposta);
+		DGGC.colorebarca(DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)]);
 		
-		assertEquals(Color.decode("#FFC20A"), DGGC.grid.yourBoard[DGGC.arrayRisposta[0]][DGGC.arrayRisposta[1]].getColor());
+		assertEquals(Color.decode("#D147D1"), DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)].getColor());
 	}
 	
-	@Test public void Test5() throws IOException, InterruptedException
-	{
-		DoubleGameGridControl DGGC = new DoubleGameGridControl(username, null, null, indirizzo);
-		
-		DGGC.arraymsg[0] = "0";
-		DGGC.arraymsg[1] = "0";
-		DGGC.arraymsg[2] = "Aircraft";
-		DGGC.arrayRisposta[0] = 0;
-		DGGC.arrayRisposta[1] = 0;
-		DGGC.arrayRisposta[2] = 0;
-		DGGC.colorebarca(DGGC.grid.yourBoard[DGGC.arrayRisposta[0]][DGGC.arrayRisposta[1]]);
-		
-		assertEquals(Color.decode("#D147D1"), DGGC.grid.yourBoard[DGGC.arrayRisposta[0]][DGGC.arrayRisposta[1]].getColor());
-	}
-	
-	@Test public void Test6() throws IOException, InterruptedException
+	@Test public void test6() throws IOException, InterruptedException
 	{
 		//Per fare questo test bisogna commentare le righe del metodo ricevimsg() nella classe DoubleGameGridControl
-		//dalla 367 alla 375
+		//dalla 373 alla 382
 		DoubleGameGridControl DGGC = new DoubleGameGridControl(username, null, null, indirizzo);
 		
-		DGGC.arraymsg[0] = "0";
-		DGGC.arraymsg[1] = "0";
-		DGGC.arraymsg[2] = "Cruiser1";
-		DGGC.arrayRisposta[0] = 0;
-		DGGC.arrayRisposta[1] = 0;
-		DGGC.arrayRisposta[2] = 0;
-		DGGC.arrayRisposta[3] = - 1;
-		DGGC.arrayRisposta[4] = - 1;
-		DGGC.arrayRisposta[5] = 0;
-		DGGC.arrayRisposta[6] = - 1;
-		
+		String[] arraymsg = {"0", "0", "Cruiser1"};
+		DGGC.setArraymsg(arraymsg);
+		int[] arrayRisposta = {0, 0, 0, -1, -1, 0, -1};
+		DGGC.setArrayRisposta(arrayRisposta);
 		DGGC.ricevimsg(null);
-		assertEquals(Color.gray, DGGC.grid.yourBoard[1][DGGC.arrayRisposta[1]].getColor());
+		assertEquals(Color.gray, DGGC.grid.yourBoard[1][DGGC.getArrayRisposta(1)].getColor());
 	}
 	
 	@Test public void Test7() throws IOException, InterruptedException
 	{
 		//Per fare questo test bisogna commentare le righe del metodo ricevi2msg() nella classe DoubleGameGridControl
-		//dalla 257 alla 265
+		//dalla 264 alla 272
 		DoubleGameGridControl DGGC = new DoubleGameGridControl(username, null, null, indirizzo);
 		
-		DGGC.arraymsg[2] = "Destroyer1";
-		DGGC.arrayRisposta[0] = 2;
-		DGGC.arrayRisposta[1] = 0;
-		DGGC.arrayRisposta[2] = 0;
-		DGGC.arrayRisposta[3] = 0;
-		DGGC.arrayRisposta[4] = - 1;
-		DGGC.arrayRisposta[5] = -1;
-		DGGC.arrayRisposta[6] = - 1;
-		DGGC.x = 0;
-		DGGC.y = 0;
+		String[] arraymsg = {"0", "0", "Destroyer1"};
+		DGGC.setArraymsg(arraymsg);	
+		int[] arrayRisposta = {3, 0, 0, 0, -1, -1,-1,0};
+		DGGC.setArrayRisposta(arrayRisposta);
+		DGGC.setX(0);
+		DGGC.setY(0);
 		
-		DGGC.ricevi2msg(null, DGGC.x, DGGC.y);
-		assertEquals(Color.decode("#FFC20A"),DGGC.grid.yourBoard[DGGC.arrayRisposta[0]][DGGC.arrayRisposta[1]].getColor());
+		DGGC.ricevi2msg(null, DGGC.getX(), DGGC.getY());
+		assertEquals(Color.white,DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)].getColor());
 	}
 }

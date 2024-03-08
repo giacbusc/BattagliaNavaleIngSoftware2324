@@ -32,7 +32,7 @@ public class SchemataAttesaTest {
          String rispostaMsg="OK POS2";
          control.attesa(username);
          
-         assertFalse(control.r);
+         assertFalse(control.isR());
     }
  
 }

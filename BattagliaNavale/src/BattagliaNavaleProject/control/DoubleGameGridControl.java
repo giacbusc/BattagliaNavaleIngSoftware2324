@@ -28,7 +28,7 @@ import BattagliaNavaleProject.view.Observer;
 public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	private static final int GRID_DIMENSION = 10;
-	public TurniControl turni;
+	private TurniControl turni;
 	boolean salta = false;
 	public DoubleGameGridView grid;
 	JPanel clickedPanel;
@@ -36,41 +36,37 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 	JPanel[] arrayPanel = new JPanel[GRID_DIMENSION];
 	private int clickcount = 0;
 	boolean entra = false;
-	public int x;
-	public  int y;
+	private int x;
+	private  int y;
 	private int ataconta = 3;
-	public int[] arrayRisposta = new int[8];
+	private int[] arrayRisposta = new int[8];
 	int primo = 0;
 	int boatlenght;
 	static String indirizzo;
 	static ZContext context = new ZContext();
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	public String rispostamsg;
-	private String username;
-	public String[] arraymsg = new String[3];
-	int dim = 3;
+	private String[] arraymsg = new String[3];
 	private TornaMenuPrincipale tmp;
 	private Observer obs;
 	// System.out.println("Connecting to th server");
 
 	// Socket to talk to server
 
-	public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer bs) throws IOException {
-		
+	public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer obs) throws IOException {
+
 		this.obs = obs;
 		this.tmp = tmp;
-		this.username = username;
 		grid = new DoubleGameGridView(username);
 		grid.addMouseGriglia(this);
 		grid.addMouseBarche(this);
 		socket.connect(indirizzo);
 	}
-	
-public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer bs, String indirizzo) throws IOException {
-		
+
+	public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer obs, String indirizzo) throws IOException {
+
 		this.obs = obs;
 		this.tmp = tmp;
-		this.username = username;
 		grid = new DoubleGameGridView(username);
 		grid.addMouseGriglia(this);
 		grid.addMouseBarche(this);
@@ -82,7 +78,12 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 		if(e.getSource()instanceof Square) {
 			Square clickedSquare= (Square) e.getSource();
 			if(clickedSquare.getName().equals("yourBoard")) {
-				gestioneClick(e);
+				try {
+					gestioneClick(e);
+				} catch (InterruptedException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			else if(clickedSquare.getName().equals("opponentBoard")) {
 				try {
@@ -95,11 +96,16 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 			}
 		}
 		else if(e.getSource()instanceof JPanel) {
-			gestioneClick(e);
+			try {
+				gestioneClick(e);
+			} catch (InterruptedException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
-	public void gestioneClick(MouseEvent e) {
+	public void gestioneClick(MouseEvent e) throws InterruptedException, IOException {
 
 		assegnaPanel();
 		System.out.println("click");
@@ -186,7 +192,7 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 
 			}
 
-		} catch (Exception e3) {
+		} catch (RuntimeException e3) {
 			e3.printStackTrace();
 		}
 
@@ -255,7 +261,7 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 
 	public void ricevi2msg(ZMQ.Socket socket, int x, int y) throws InterruptedException, IOException {
 
-		byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
+		/*byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
 		rispostamsg = new String(reply, ZMQ.CHARSET);
 
 		String[] arrayStringhe = rispostamsg.split(",");
@@ -263,7 +269,7 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 
 		for (int i = 0; i < arrayStringhe.length; i++)
 			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
-		System.out.println("Received msg 2 " + rispostamsg);
+		System.out.println("Received msg 2 " + rispostamsg);*/
 
 		// 0 1 2 3 4 5 6
 		// x y St N E S O
@@ -364,7 +370,7 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 
 		// ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 		// Socket to talk to server
-		primo = 1;
+		/*primo = 1;
 		byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
 		String rispostamsg = new String(reply, ZMQ.CHARSET);
 
@@ -373,7 +379,7 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 
 		for (int i = 0; i < arrayStringhe.length; i++)
 			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
-		System.out.println("Received msg1" + rispostamsg);
+		System.out.println("Received msg1" + rispostamsg);*/
 
 		if (arrayRisposta[2] != -1) {
 			colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
@@ -385,21 +391,21 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 			if (boat.name().equalsIgnoreCase(nome)) {
 				boatlenght = boat.getLunghezza();
 			}
-	
+
 		}
 		if (boatlenght != 1) {
-				togliPanel();
+			togliPanel();
+		}
+		if (boatlenght == 1) {
+			// clickcount--;
+			salta = true;
+			aggiungiPanel();
+			if (arrayRisposta[7] == 1) {
+				System.out.println("Mando ata dal receive");
+				terminaPosizionamento();
 			}
-			if (boatlenght == 1) {
-				// clickcount--;
-				salta = true;
-				aggiungiPanel();
-				if (arrayRisposta[7] == 1) {
-					System.out.println("Mando ata dal receive");
-					terminaPosizionamento();
-				}
 
-			}
+		}
 		coloragrigio();
 		errorePosizionamento();
 		if (vai == true) {
@@ -557,7 +563,7 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 
 	public void terminaPosizionamento() throws InterruptedException, IOException {
 
-		
+
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
@@ -565,8 +571,8 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 				boolean r = true;
 				do {
 					ataconta++;
-					grid.waitPanel.setVisible(true);
-					grid.waitPanel.setForeground(Color.DARK_GRAY);
+					grid.getWaitPanel().setVisible(true);
+					grid.getWaitPanel().setForeground(Color.DARK_GRAY);
 					Thread.sleep(500);
 					String sendMsg = "ATA"+ataconta;
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), ZMQ.DONTWAIT);
@@ -577,8 +583,8 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 					String rispostaMsg = new String(byteMsg, ZMQ.CHARSET);
 
 					if (rispostaMsg.equals("GIOCA")) {
-						grid.waitPanel.setVisible(false);
-						
+						grid.getWaitPanel().setVisible(false);
+
 
 						r = false;
 					}
@@ -586,19 +592,19 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 				} while (r == true);
 
 				creazioneTurni();
-				
+
 				System.out.println("inizio turno");
 
-				grid.turnoPanel.setVisible(true);
-				grid.shipsPanel.setBackground(Color.decode("#659feb"));
+				grid.getTurnoPanel().setVisible(true);
+				grid.getShipsPanel().setBackground(Color.decode("#659feb"));
 
-				grid.shipsPanel.setLayout(new BoxLayout(grid.shipsPanel, BoxLayout.Y_AXIS));
-				grid.spazio.setVisible(true);
-				grid.contaLabel.setVisible(true);
-				grid.contaLabel2.setVisible(true);
+				grid.getShipsPanel().setLayout(new BoxLayout(grid.getShipsPanel(), BoxLayout.Y_AXIS));
+				grid.getSpazio().setVisible(true);
+				grid.getContaLabel().setVisible(true);
+				grid.getContaLabel2().setVisible(true);
 				turni.turno();
-				
-				
+
+
 				return null;
 			}
 		};
@@ -607,8 +613,8 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 		// grid.waitPanelCreation();
 
 	}
-	
-	
+
+
 
 	public void creazioneTurni()
 	{
@@ -655,4 +661,39 @@ public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer 
 		// TODO Auto-generated method stub
 		v.removeListenerOpponent(this, i, j);
 	}
+	
+	public void setArrayRisposta(int[] arrayRisposta) {
+		this.arrayRisposta = arrayRisposta;
+	}
+
+	public void setArraymsg(String[] arraymsg) {
+		this.arraymsg = arraymsg;
+	}
+
+	public int getArrayRisposta(int i) {
+		return arrayRisposta[i];
+	}
+
+	public String getArraymsg(int i) {
+		return arraymsg[i];
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+	
 }
+
+

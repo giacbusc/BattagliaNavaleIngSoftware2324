@@ -176,7 +176,6 @@ public class MenuPrincipaleView extends JFrame {
 
 		pcMultiButton = new JButton("  ");
 		pcMultiButton.setName("Multi");
-		pcMultiButton.setBackground(new Color(0, 0, 255));
 		pcMultiButton.setBackground(new Color(0, 0, 0, 0));
 		pcMultiButton.setOpaque(false);
 		pcMultiButton.setPreferredSize(new Dimension(170, 50));
