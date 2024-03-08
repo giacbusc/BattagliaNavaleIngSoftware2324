@@ -1,0 +1,54 @@
+@options
+@packages
+-classpath
+'/Users/giacomobuscaglia/.m2/repository/org/zeromq/jeromq/0.5.3/jeromq-0.5.3.jar:/Users/giacomobuscaglia/.m2/repository/eu/neilalexander/jnacl/1.0.0/jnacl-1.0.0.jar:/Users/giacomobuscaglia/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'1.7'
+-sourcepath
+'/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'BattagliaNavaleServer 0.0.1-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/7/docs/api' '/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'BattagliaNavaleServer 0.0.1-SNAPSHOT API'
+BattagliaNavaleProject.BattagliaNavaleServer
+BattagliaNavaleProject.BattagliaNavaleServer.database
+BattagliaNavaleProject.BattagliaNavaleServer.start
+BattagliaNavaleProject.BattagliaNavaleServer.Accessorio
+/Users/giacomobuscaglia/.m2/repository/org/zeromq/jeromq/0.5.3/jeromq-0.5.3.jar = 1704987623072
+/Users/giacomobuscaglia/.m2/repository/eu/neilalexander/jnacl/1.0.0/jnacl-1.0.0.jar = 1704987623053
+/Users/giacomobuscaglia/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar = 1700476791347
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/src/main/java = 1709908815000
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/tag-search-index.js = 1709909631767
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/overview-tree.html = 1709909631754
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/module-search-index.js = 1709909631766
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/index.html = 1709909631756
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/package-search-index.js = 1709909631766
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/jquery-ui.overrides.css = 1709909631790
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/serialized-form.html = 1709909631729
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/index-all.html = 1709909631776
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/allpackages-index.html = 1709909631766
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/member-search-index.js = 1709909631767
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/script.js = 1709909631780
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/stylesheet.css = 1709909631780
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/overview-summary.html = 1709909631777
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/help-doc.html = 1709909631779
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/element-list = 1709909631704
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/allclasses-index.html = 1709909631765
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/type-search-index.js = 1709909631766
+/Users/giacomobuscaglia/Documents/GitHub/BattagliaNavale/BattagliaNavaleServer/target/apidocs/search.js = 1709909631782
