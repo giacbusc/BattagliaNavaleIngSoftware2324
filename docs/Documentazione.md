@@ -359,7 +359,7 @@ Abbiamo utilizzato il pattern Singleton all'interno del server affinchè non fos
 <br>
 **Observer**
 
-Abbiamo utilizzato il pattern Observer per ridurre l'interdipendenza tra classi, ad esempio nel pacchetto view così da evitare che delle classi della view richiamasse la schermata che le generava. Prendiamo come esempio Login il quale viene generato da Schermata Iniziale: non vogliamo che cliccando sul tasto back Login richiami la classe che lo ha generato, usiamo quindi il metodo update attraverso il quale istanziamo una nuova schermata iniziale. <br>
+Abbiamo utilizzato  il concetto di design pattern Observer per gestire eventi e comunicazioni tra le classi in modo efficiente e disaccoppiato e quindi per ridurre l'interdipendenza tra classi, ad esempio nel pacchetto view così da evitare che delle classi della view richiamassero la schermata che le generava. Prendiamo come esempio Login il quale viene generato da Schermata Iniziale: non vogliamo che cliccando sul tasto back Login richiami la classe che lo ha generato, usiamo quindi il metodo update attraverso il quale istanziamo una nuova schermata iniziale. <br>
 Un altro esempio d'uso è il passaggio dalla schermata di fine partita aL Menu principale.
 
 ## 10. Software Testing
