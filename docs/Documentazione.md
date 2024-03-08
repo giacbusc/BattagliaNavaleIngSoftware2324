@@ -139,7 +139,6 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
         <th></th>
         <th>Documentazione</th>
         <th>UML</th>
-        <th>Progettazione</th>
        <th>Server</th>
        <th>Client</th>
         <th>Sviluppo back-end</th>
@@ -152,7 +151,6 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <td></td>
     <td>✅</td>
     <td>✅</td>
-    <td>✅</td>
     <td></td>
       <td>✅</td>
     <td>✅</td>
@@ -162,7 +160,6 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <tr>
     <th>Luca Ciancio</th>
     <td></td>
-    <td>✅</td>
     <td>✅</td>
     <td></td>
     <td>✅</td>
@@ -175,7 +172,6 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <th>Federica Gervasoni</th>
     <td>✅</td>
     <td>✅</td>
-    <td>✅</td>
     <td></td>
      <td>✅</td>
     <td>✅</td>
@@ -186,7 +182,6 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <tr>
     <th>Giulia Signori</th>
     <td></td>
-    <td>✅</td>
     <td>✅</td>
     <td>✅</td>
     <td></td>
@@ -364,6 +359,7 @@ Abbiamo utilizzato il pattern Singleton all'interno del server affinchè non fos
 <br>
 **Observer**
 
+Abbiamo utilizzato il pattern Observer per ridurre l'interdipendenza tra classi, ad esempio nel pacchetto view così da evitare che delle classi della view richiamasse la schermata che le generava. Prendiamo come esempio Login il quale viene generato da Schermata Iniziale: non vogliamo che cliccando sul tasto back Login richiami la classe che lo ha generato, usiamo quindi il metodo update attraverso il quale istanziamo una nuova schermata iniziale.
 
 ## 10. Software Testing
 Durante lo sviluppo il corretto funzionamento del codice è stato testato costantemente con test pratici di esecuzione del programma e delle sue funzionalità. Questo è stato effettuato inserendo controlli di stampa,debug con break point e attraverso test di JUnit. <br>
