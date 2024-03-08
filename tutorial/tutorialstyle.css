@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #cfe2f3; /* Tonalità di azzurro */
+}
+
+header {
+    background-color: #0077b6; /* Tonalità di azzurro */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 36px;
+    margin: 0;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+h2 {
+    color: #0077b6; /* Tonalità di azzurro */
+}
+
+footer {
+    background-color: #0077b6; /* Tonalità di azzurro */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    
+}
+
+.image-scroll {
+    width: 100%;
+    overflow-x: auto; /* Abilita lo scorrimento orizzontale */
+    white-space: nowrap; /* Impedisce il ritorno a capo degli elementi */
+    margin-top: 20px;
+    position: relative; /* Per posizionare le frecce */
+}
+
+.image-container {
+    display: inline-block; /* Posiziona le immagini orizzontalmente */
+}
+
+.image-container img {
+    max-width: 100%; /* Assicura che le immagini non superino la larghezza del contenitore */
+    height: auto; /* Mantiene le proporzioni */
+    display: inline-block; /* Assicura che le immagini siano disposte orizzontalmente */
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    opacity: 0; /* Inizialmente nascosto */
+    transition: opacity 0.3s ease;
+}
+
+.arrow.left {
+    left: 0;
+}
+
+.arrow.right {
+    right: 0;
+}
+
+.image-scroll:hover .arrow {
+    opacity: 1; /* Mostra quando si passa sopra il contenitore */
+}

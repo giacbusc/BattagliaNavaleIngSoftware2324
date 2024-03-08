@@ -14,13 +14,19 @@
   <property name="hide-externals" value="true" />
   <classpath>
     <classpathentry kind="lib" path="BattagliaNavale/target/classes" module="BattagliaNavale" displaymodule="BattagliaNavale" />
+    <classpathentry kind="lib" path="BattagliaNavaleServer/target/test-classes" module="BattagliaNavaleServer" displaymodule="BattagliaNavaleServer" />
+    <classpathentry kind="lib" path="BattagliaNavaleServer/target/classes" module="BattagliaNavaleServer" displaymodule="BattagliaNavaleServer" />
   </classpath>
   <pom-root-files />
   <modules>
-    <module name="BattagliaNavale" kind="ide-project" />
+    <module name="BattagliaNavaleServer" kind="ide-project" />
+    <module name="BattagliaNavale" kind="ide-project">
+      <requires name="BattagliaNavaleServer" kind="ide-project" />
+    </module>
   </modules>
   <modules-in-scope>
     <module name="BattagliaNavale" />
+    <module name="BattagliaNavaleServer" />
   </modules-in-scope>
   <excludes>
     <exclude expression="*.*&amp;amp;*" active="true" />
