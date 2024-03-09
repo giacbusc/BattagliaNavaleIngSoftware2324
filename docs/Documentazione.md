@@ -48,7 +48,8 @@
     - 7.2 Diagramma di Sequenza
     - 7.3 Diagramma di Attività
     - 7.4 Diagramma dei Conponenti
-    - 7.5 Diagramma di Stato
+    - 7.5 Diagramma delle Classi
+    - 7.6 Diagramma di Stato
 - __8. Software Architecture__
   - 8.1 Struttura MVC
   - 8.2 Structure 101
@@ -250,6 +251,7 @@ Di seguito sono riportati i requisiti che costituiscono i Must Have del progetto
 * Terminati i posizionamenti delle barche, il turno deve passare a colui che si era connesso per primo. <br>
 * In questa fase la mia grilia non deve essere cliccabile, così come la grilia dell'avversario quando non è il mio turno <br>
 * Deve essere presente un pannello che indichi quando è il turno del client
+* Deve essere presente un pannello che ci faccia capire l'avanzamento del gioco indicando il numero di parche affondate da me e dal mio avversario 
 * Il client ora deve cercare di colpire una barca dell'avversario cliccando sulla griglia alla sua destra. <br>
 * Cliccata una cella bisogna verificare quale sia il suo stato nella griglia dell'avversario e settare la cella in base a questo:
 * * se la cella cliccata contiene una barca di lunghezza 1 la cella diventa nera perchè affondata
@@ -316,8 +318,13 @@ Il diagramma è stato modellato dal punto di vista del primo Client che si colle
 Col diagramma dei componenti abbiamo voluto rappresentare come i diversi moduli del sistema si interfacciassero tra di loro. Per chiarezza abbiamo scomposto il client nei suoi diversi componenti cioè il livello logico, il livello GUI ed il modello.<br>
 <img style="width: 720px;" src="Diagrammi%20UML/Diagramma%20dei%20Component.jpg">
  <br>
- 
-### 7.5 Diagramma di stato
+### 7.5 Diagramma delle classi
+In questo diagramma sono rappresentate non le classi di java, ma sono classi che nascono per rappresentare il funzionamento base del programma; quest'ultimo è bastao infatti sullo scambio di messaggi tra server e client, lo scambio di messaggi ha l'unico scopo di far procedere il gioco, il quale è basato sulle caselle e sui loro stati ( come abbiamo visto anche negli altri UML questi passsaggi sono il fulcro del nostro sistema). Nelle classi messaggio infatti racchiudiamo tutti i possibili usi dei messaggi da parte degli interlocutori. Le coordinate sono i campi che principalmente ci si scambia, da una parte il client invia al server le coordinate cliccate, dall'altra il server, dopo vari controlli invia le coordinate della casella che cambia stato, o che è in una posizione errata. Il server può inviare anche, nella prima fase di posizionamento, valori booleani riferiti agli spazi adiacenti alla casella cliccata che stanno ad indicare come poter posizionare la barca dopo aver eseguito un primo click. <br>
+I messaggi del server però possono anche essere messaggi di attesa, cioè messaggi con lo scopo di far rimanere un client in attesa ad esempio della fine del posizionamento da parte dell'avversario. <br>
+Il client invece è collegato alla casella infatti è il client che, dopo aver ricevuto messaggio di conferma (errore non segnalato nell'apposito campo) può modificare lo stato della casella e la visione di essa all'interno della griglia GUI. La modifica dello stato della casella implica sempre una variazione di gui (se la casella da vuota contiene una barca cambia colore, se la casella di una barca passa da colpita ad affondata viene aggiornato il colore.) <br>
+<img style="width: 720px;" src="Diagrammi%20UML/DiagrammaClassi.jpg">
+
+### 7.6 Diagramma di stato
 Attraverso questi diagrammi, abbiamo voluto rappresentare i diversi stati assunti dal modello del Client, che è rappresentato dalle caselle (Square) che compongono la griglia di gioco. Il valore di queste caselle è fondamentale per il corretto funzionamento del gioco. Qualsiasi errore nel loro settaggio potrebbe causare bug e malfunzionamenti, quindi abbiamo ritenuto necessario modellare le variazioni di stato tramite un diagramma di stato.<br>
 
 Il primo diagramma modella le celle del Player 1 e si riferisce alla griglia su cui il giocatore posiziona le sue barche. Ogni casella ha un valore che indica lo stato della cella.

@@ -79,8 +79,7 @@ public class Partita {
 				String numeroMIAOprecedente = mexprecedente.substring(4);
 				int numprecedente = Integer.parseInt(numeroMIAOprecedente);
 
-				System.out.println("miao attuale: " + numattuale);
-				System.out.println("miao precedente: " + numprecedente);
+				
 				if (messaggioMiao.equals("MIAO") && INVIATO == true) {
 					if (numattuale > numprecedente) {
 						String responseMessage = "GIOCA";
@@ -242,9 +241,7 @@ public class Partita {
 				int contaAffondati = -1;
 				
 				System.out.println("grandezza arraylist: " + celleAffondate.size());
-				String martin[] = celleAffondate.get(0);
 				
-				System.out.println("celle affondate arraylist in posizione 0" + martin.toString());
 				while (true) {
 					byte[] replyAffondato = socketServer.recv(0);
 					String requestAffondato = new String(replyAffondato, ZMQ.CHARSET);
@@ -273,7 +270,7 @@ public class Partita {
 					} else if (checkCorrettezzaSerie.equals("MIAO")) {
 						String responseMessage = "MIAO";
 						socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
-						System.out.println("Inviato IL MIAO DEL MARTIN: " + responseMessage);
+						System.out.println("Inviato messaggio speciale: " + responseMessage);
 					}
 
 				}
@@ -360,9 +357,7 @@ public class Partita {
 				
 				int contaAffondati = -1;
 				System.out.println("grandezza arraylist: " + celleAffondate.size());
-				String martin[] = celleAffondate.get(0);
-				System.out.println("celle affondate arraylist in posizione 0" + martin.toString());
-
+				
 				while (true) {
 					byte[] replyAffondato = socketServer.recv(0);
 					String requestAffondato = new String(replyAffondato, ZMQ.CHARSET);
@@ -392,7 +387,7 @@ public class Partita {
 					} else if (checkCorrettezzaSerie.equals("MIAO")) {
 						String responseMessage = "MIAO";
 						socketServer.send(responseMessage.getBytes(),  ZMQ.DONTWAIT);
-						System.out.println("Inviato IL MIAO DEL MARTIN: " + responseMessage);
+						System.out.println("Inviato messaggio speciale: " + responseMessage);
 					}
 
 				}

@@ -20,11 +20,11 @@ public class ConfigServer {
             // Genera l'indirizzo del server per i client
              serverAddress = "tcp://" + indirizzoIP;
            
-            System.out.println("Server H2 avviato. I client possono connettersi all'indirizzo: " + serverAddress);
+            System.out.println("Server avviato. I client possono connettersi all'indirizzo: " + serverAddress);
 
 
         } catch (Exception e) {
-            System.err.println("Errore durante l'avvio del server H2: " + e.getMessage());
+            System.err.println("Errore durante l'avvio del server: " + e.getMessage());
         }
 		return serverAddress;
      }
