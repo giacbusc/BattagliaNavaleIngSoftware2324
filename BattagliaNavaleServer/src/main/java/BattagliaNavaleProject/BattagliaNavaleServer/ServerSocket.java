@@ -9,7 +9,7 @@ import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
 
 import java.util.ArrayList;
 
-public class ServerSocket implements InterfacciaServerPartita{
+public class ServerSocket implements InterfacciaServerPartita {
 	final static int MAX_LENGTH = 10;
 	private Square[][] player1 = new Square[MAX_LENGTH][MAX_LENGTH];
 	private Square[][] player2 = new Square[MAX_LENGTH][MAX_LENGTH];
@@ -23,7 +23,6 @@ public class ServerSocket implements InterfacciaServerPartita{
 	private ZMQ.Socket socketServer;
 	private int turno = 0;
 	private static ServerSocket instance = null;
-
 
 	private ServerSocket() {
 		socketServer = context.createSocket(SocketType.REP);
@@ -42,7 +41,7 @@ public class ServerSocket implements InterfacciaServerPartita{
 			int maxClients = 2;
 
 			for (int clientIndex = 0; clientIndex < maxClients; clientIndex++) {
-				System.out.println("In attesa di ricevere una mail...");
+				System.out.println("In attesa di un giocatore..");
 				String request = socketServer.recvStr(0);
 				System.out.println("Messaggio ricevuto: " + request);
 				String[] authInfo = request.split("\\|");
@@ -61,7 +60,7 @@ public class ServerSocket implements InterfacciaServerPartita{
 					System.out.println("Inviato: " + responseMessage);
 				} else if (request.equals("attesa")) {
 					Thread.sleep(500);
-					String responseMessage = "MARTIN IN GABBIA";
+					String responseMessage = "in attesa";
 					socketServer.send(responseMessage.getBytes(), 0);
 					System.out.println("stampa " + responseMessage);
 					clientIndex--;
@@ -123,40 +122,34 @@ public class ServerSocket implements InterfacciaServerPartita{
 					System.out.println("Inviato: " + responseMessage);
 					piazzamentoBarca(turno);
 					System.out.println("inizio giocooooo");
-					
-					
-					while(true)
-					{
+
+					while (true) {
 						reply = socketServer.recv(0);
 						messaggio = new String(reply, ZMQ.CHARSET);
 						System.out.println("ricevuto: " + messaggio);
 						String messaggioATA2 = messaggio.substring(0, 3);
 						String numeroATA = messaggio.substring(3);
 						int numattuale = Integer.parseInt(numeroATA);
-						System.out.println("num attuale: "+numattuale);
+						System.out.println("num attuale: " + numattuale);
 						String numeroATAprecedente = ataprecedente.substring(3);
 						int numprecedente = Integer.parseInt(numeroATAprecedente);
-						System.out.println("num precedente: "+numprecedente);
-						
-						if (messaggioATA2.equals("ATA") && numattuale > numprecedente ) 
-						{
-							r=false;
+						System.out.println("num precedente: " + numprecedente);
+
+						if (messaggioATA2.equals("ATA") && numattuale > numprecedente) {
+							r = false;
 							responseMessage = "GIOCA";
 							socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
 							System.out.println("Inviato AL PLAYER 1: " + responseMessage);
 							Partita a = new Partita(this);
 							a.inizioGioco();
 							break;
-						}
-						else
-						{
+						} else {
 							responseMessage = "ATA";
 							socketServer.send(responseMessage.getBytes(), ZMQ.DONTWAIT);
 							System.out.println("Inviato AL PLAYER 2: " + responseMessage);
 
 						}
-					}	
-					
+					}
 
 				}
 			}
@@ -176,7 +169,6 @@ public class ServerSocket implements InterfacciaServerPartita{
 	}
 
 	private void piazzamentoBarca(int turno) {
-		System.out.println("il martin dice shhhhh");
 		int countB = 0; // contatore barche
 		mexprec[2] = "firstPosition";
 		System.out.println("inizio piazzamento ");
@@ -218,15 +210,14 @@ public class ServerSocket implements InterfacciaServerPartita{
 				String fiocco2 = riempiCelle(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l,
 						Integer.valueOf(mexprec[0]).intValue(), Integer.valueOf(mexprec[1]).intValue(), turno,
 						nomeBarca);
-				System.out.println("CONTAAAA DEL 2 CLICK: " + countB);
 				System.out.println("check nome2 " + nomeBarca);
 				if (countB == 9) {
 					fiocco2 = fiocco2 + "1";// Per indicare che il posizionamento è terminato al client
 
-					System.out.println("hihihihihihihi " + fiocco2);
+					System.out.println("inviato " + fiocco2);
 				} else {
 					fiocco2 = fiocco2 + "0";
-					System.out.println("hihihihihihihihi " + fiocco2);
+					System.out.println("inviato " + fiocco2);
 				}
 
 				socketServer.send(fiocco2.getBytes(), 0);
@@ -236,7 +227,6 @@ public class ServerSocket implements InterfacciaServerPartita{
 			} else { // primo click
 				String fiocco = controllaCella(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), l, turno);
 				dividimex = fiocco.split(",");
-				System.out.println("CONTAAAA: " + countB);
 
 				if (l == 1 && countB == 9) {
 					fiocco = fiocco + "1";// Per indicare che il posizionamento è terminato al client
@@ -245,7 +235,7 @@ public class ServerSocket implements InterfacciaServerPartita{
 					fiocco = fiocco + "0";
 				}
 				socketServer.send(fiocco.getBytes(), 0);
-				System.out.println("Inviato fiocco: " + fiocco);
+				System.out.println("Inviato: " + fiocco);
 
 				if (l > 1 && dividimex[6].equals("-1") && dividimex[3].equals("-1") && dividimex[4].equals("-1")
 						&& dividimex[5].equals("-1")) {
@@ -255,19 +245,19 @@ public class ServerSocket implements InterfacciaServerPartita{
 					if (turno == 1) {
 						aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), turno, 0,
 								nomeBarca);
-						System.out.println("nome Barca " + nomeBarca);
+
 					} else {
 						aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), turno, 0,
 								nomeBarca);
-						System.out.println("nome Barca " + nomeBarca);
+
 					}
 				} else {
 					aggiornaGriglia(Integer.valueOf(x).intValue(), Integer.valueOf(y).intValue(), turno, 1, nomeBarca);
-					System.out.println("nome Barca " + nomeBarca);
+
 					if (l == 1) {
 						countB++;
 					}
-					System.out.println("check nome " + nomeBarca);
+
 				}
 
 				stampaGriglia(turno);
@@ -736,7 +726,7 @@ public class ServerSocket implements InterfacciaServerPartita{
 	public ArrayList<String> getConnectedclients() {
 		return connectedClients;
 	}
-	
+
 	public static ServerSocket getInstance() {
 		if (instance == null)
 			instance = new ServerSocket();
