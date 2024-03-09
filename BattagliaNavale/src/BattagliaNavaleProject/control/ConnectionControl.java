@@ -62,14 +62,13 @@ public class ConnectionControl {
 			ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 			// Socket to talk to server
 			socket.connect(indirizzo);
-			String request = "Hello"; System.out.println("Sending Hello ");
-			  socket.send(request.getBytes(ZMQ.CHARSET), 0);
-			  
-			  byte[] reply = socket.recv(0); System.out.println( "Received " + new
-			  String(reply, ZMQ.CHARSET) + " ");
+
 			/*
-			 * instauro la connessione con il server; gestisco l'attesa del secondo client e l'avvio del gioco 
-			 * inteso come apertura della griglia
+			 * String request = "Hello"; System.out.println("Sending Hello ");
+			 * socket.send(request.getBytes(ZMQ.CHARSET), 0);
+			 * 
+			 * byte[] reply = socket.recv(0); System.out.println( "Received " + new
+			 * String(reply, ZMQ.CHARSET) + " ");
 			 */
 
 			String sendMsg = userName;
@@ -94,7 +93,7 @@ public class ConnectionControl {
 
 			else if (rispostaMsg.equals("WAIT")) {
 
-				while (true) {//resto qua fino a che non arrivo un messaggio dal server
+				while (true) {
 					sendMsg = "attesa";
 					System.out.println(sendMsg);
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
@@ -102,7 +101,7 @@ public class ConnectionControl {
 					System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
 					rispostaMsg = new String(byteMsg, ZMQ.CHARSET);
 
-					if (rispostaMsg.equals("OK POS1")) {//inizio posizionamento del primo client 
+					if (rispostaMsg.equals("OK POS1")) {
 						try {
 
 							String filepath = "./music/Background_game_music.wav";
@@ -135,6 +134,8 @@ public class ConnectionControl {
 		} finally {
 		}
 	}
+
+	
 
 	public Observer getObserver() {
 		return obs;
