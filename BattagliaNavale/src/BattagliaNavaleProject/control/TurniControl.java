@@ -62,6 +62,7 @@ public class TurniControl {
 	 * array risposta x y stato lunghezza N E S O
 	 */
 	public void turno() {
+		//con questa funzione permetto al giocatore di cliccare la griglia
 		miaoconta = 0;
 		// rendo la griglia cliccabile
 		for (int i = 0; i < GRID_DIMENSION; i++) {
@@ -77,25 +78,30 @@ public class TurniControl {
 	}
 
 	public void colpoClick(MouseEvent e) throws IOException {
+		//gestione del click
 
 		if (e.getSource() instanceof Square) {
-
+			
 			Square clickedSquare = (Square) e.getSource();
 
 			arraymsg[1] = clickedSquare.gety();
 			arraymsg[0] = clickedSquare.getx();
 			String msgserver = ("" + arraymsg[0] + "," + arraymsg[1] + ",");
 			System.out.println("Inviato " + msgserver);
-
+			/*
+			 * invio al server la cella che ho cliccato
+			 */
 			socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
-			ricevi();
+			ricevi();//aspetto una risposta
 
 		}
 	}
 
 	private void ricevi() throws IOException {
-		// TODO Auto-generated method stub
-		//
+		/*
+		 * la risposta contiene le coordinate della cella che ho cliccato, lo stato che assume (in base a come sono posizionate le navi avversarie)
+		 * ricevo dei contatori che utilizzo nel pannello apposito
+		 */
 		byte[] byteMsg = socket.recv(0);
 		System.out.println("Received " + new String(byteMsg, ZMQ.CHARSET) + " ");
 		String rispostamsg = new String(byteMsg, ZMQ.CHARSET);
@@ -115,13 +121,15 @@ public class TurniControl {
 		
 		DGGV.getContaLabel().setText("Barche affondate: "+contabarchemio);
 		DGGV.getContaLabel2().setText("Barche affondate dall'avversario: "+contabarcheavv);
-		
+		//in base allo stato faccio cose diverse
 		controllastato();
 
 	}
 
 	private void controllastato() {
-		// TODO Auto-generated method stub
+		/*
+		 * se è colpito cambio stato e poi attendo turno avversario
+		 */
 		if (stato == 2) {
 			DGGV.opponentBoard[x][y].setColpito();
 			SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
@@ -146,11 +154,12 @@ public class TurniControl {
 		}
 		if (stato == 3) {
 
-			// DGGV.opponentBoard[x][y].setAffondato();
-
-			verificaLunghezza();
+			verificaLunghezza();//evito di appesantire wuesto metodo
 
 		} else if (stato == 4) {
+			/*
+			 * se ho colpito acqua vado in attesa del turno e la casella diventa blu
+			 */
 			SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 				@Override
 				protected Void doInBackground() throws Exception {
@@ -176,7 +185,9 @@ public class TurniControl {
 
 	private void verificaLunghezza() {
 		// TODO Auto-generated method stub
-
+		/*
+		 * con diversi neri coloro le barche affondate cosi da distinguerle un minimo
+		 */
 		int red = random.nextInt(55) + 1;
 		int green = red;
 		int blue = red;
@@ -186,6 +197,9 @@ public class TurniControl {
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
+				/*
+				 * devo cambaire stato ad ogni cella della braca affondata
+				 */
 				for (int i = 0; i < lunghezza; i++) {
 					String sendMsg = "AFFONDATO";
 					DGGV.createIcon(arrayRisposta[0], arrayRisposta[0]);
@@ -241,7 +255,9 @@ public class TurniControl {
 	}
 
 	private void cicloattesa() throws InterruptedException, IOException, SQLException {
-		// TODO Auto-generated method stub
+		/*
+		 * funzione che gestisce le attese del client mentre l'avverdario gioca
+		 */
 		DGGV.getTurnoPanel().setVisible(false);
 		boolean r = true;
 		do {

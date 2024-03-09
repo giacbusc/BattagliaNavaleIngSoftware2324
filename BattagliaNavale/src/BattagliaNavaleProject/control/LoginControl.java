@@ -74,13 +74,13 @@ public class LoginControl implements ActionListener {
 
 				if (clickedButton.getText().equals("Login")) {
 					try {
-						if (checkUser(model)) {
+						if (checkUser(model)) {//controllo credenziali nel db
 							gui.showMessage("Login succesfully!");
 							ConnectionDb conn = new ConnectionDb();
 							conn.closeConnection();
-							openMenu();
+							openMenu();// se i controlli vado bene apro ilmenu
 
-						} else {
+						} else {//trovo errori negli inserimenti
 							gui.showMessage("Invalid username and/or password!");
 						}
 					} catch (SQLException | IOException e1) {
@@ -88,7 +88,7 @@ public class LoginControl implements ActionListener {
 						e1.printStackTrace();
 					}
 
-				}
+				}//se voglio tornare indietro devo chiudere la schermata
 				if (clickedButton.getText().equals("Back")) {
 					close();
 				}
@@ -105,12 +105,10 @@ public class LoginControl implements ActionListener {
 	}
 
 	public void openMenu() throws IOException, SQLException {
-
+		//se vanno bene i dati apro il menu
 		model = gui.getUserModel();
 		menu = new MenuPrincipaleControl(model.getUserName(), gui.getObserver());
-		// MenuPrincipaleView menu = new MenuPrincipaleView(model.getUserName());
-		// menu.setVisible(true);
-
+		
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 
 			@Override

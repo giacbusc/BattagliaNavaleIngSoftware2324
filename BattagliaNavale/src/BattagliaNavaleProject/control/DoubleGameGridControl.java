@@ -55,7 +55,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	public DoubleGameGridControl(String username, TornaMenuPrincipale tmp, Observer obs) throws IOException {
 
-		this.obs = obs;
+		this.obs = obs; 
 		this.tmp = tmp;
 		grid = new DoubleGameGridView(username);
 		grid.addMouseGriglia(this);
@@ -74,7 +74,12 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 	}
 
 	public void mouseClicked(MouseEvent e)
+	//in questa funzione entriamo ogni volta che viene cliccata la griglia
 	{
+		/*
+		 * // se viene cliccata una square della yourboard sono in fase posizionamento 
+		 * questa fase è gestita da DoubleGameGridControl
+		 */
 		if(e.getSource()instanceof Square) {
 			Square clickedSquare= (Square) e.getSource();
 			if(clickedSquare.getName().equals("yourBoard")) {
@@ -85,6 +90,10 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 					e1.printStackTrace();
 				}
 			}
+			/*
+			 * se clicco una square avversaria è perchè ho attivato i listener quindi sono nella fase di gioco a turni,
+			 *  gestita dalla classe turni
+			 */
 			else if(clickedSquare.getName().equals("opponentBoard")) {
 				try {
 					System.out.println("Ho cliccato la opponent board ");
@@ -94,7 +103,9 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 					e1.printStackTrace();
 				}
 			}
-		}
+		} /*
+		se ho cliccato un panel allora sto posizionando le barche, fase 1 
+		*/
 		else if(e.getSource()instanceof JPanel) {
 			try {
 				gestioneClick(e);
@@ -108,14 +119,26 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 	public void gestioneClick(MouseEvent e) throws InterruptedException, IOException {
 
 		assegnaPanel();
-		System.out.println("click");
+		//con questa funzione ho assegnato ai panel i nomi delle barche
 
 		try {
-
+			/*
+			 * entro nella funzione solo 
+			 * 1 non è una square (prima seleziono la barca)
+			 * 2 il clickcount è diverso da 0 
+			 * entra è stato settato a true (non è il primo click in assoluto)
+			 * 
+			 */
 			if (!(e.getSource() instanceof Square) || clickcount != 0 || entra == true) {
 				clickcount++;
 				entra = true;
-
+				/*
+				 * invio il secondo messaggio di posizionamento quando il click count è a 1 
+				 * il clickcount si azzera quando invio il primo messaggio, il primo click dopo l'invio è il click che termica il posizionamento
+				 * invio messaggio per verificare che la posizione scelta sia esatta
+				 * 
+				 * 
+				 */
 				if (e.getSource() instanceof Square && clickcount == 1 && salta == false) {
 
 					System.out.println(clickcount);
@@ -141,7 +164,11 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 					}
 
 				}
-
+				/*
+				 * se ho cliccato un panel allora poi devo cliccare la griglia, accendo i listener della griglia
+				 * devo identificare che barca ho cliccato per poterlo dire al server
+				 * 
+				 */
 				if (e.getSource() instanceof JPanel && clickcount == 1) {
 
 					clickedPanel = (JPanel) e.getSource();
@@ -158,18 +185,25 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 					}
 				}
-
+				/*
+				 * gestione delle eccezioni
+				 * 
+				 */
 				if (!(e.getSource() instanceof Square) && clickcount == 2 && salta == false) {
 
 					clickcount = 1;
 				}
-
+				/*
+				 * invio primo messaggio
+				 * il clickcount è a 2 perchè è il secondo click dopo aver selezionato la barca
+				 * 
+				 */
 				if (e.getSource() instanceof Square && clickcount == 2) {
 					Square clickedSquare = (Square) e.getSource();
 					System.out.println("sono la square: " + clickcount + clickedSquare.getx() + clickedSquare.gety());
 					if (clickedSquare.getName().equals("yourBoard")) {
 
-						// clickedSquare.setBackground(Color.gray); //da togliere
+						
 						arraymsg[1] = "" + clickedSquare.gety();
 						arraymsg[0] = "" + clickedSquare.getx();
 						System.out.println("barca" + arraymsg[2]);
@@ -177,11 +211,11 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 						x = clickedSquare.getx();
 						y = clickedSquare.gety();
 						clickcount = 0;
-
+						//azzero il clickcount 
 						String msgserver = ("" + arraymsg[0] + "," + arraymsg[1] + "," + arraymsg[2]);
 
 						System.out.println("ho inviato primo msg: " + msgserver);
-
+						//invio del messaggio al server: barca e coordinate casella
 						socket.send(msgserver.getBytes(ZMQ.CHARSET), 0);
 
 						ricevimsg(socket);
@@ -197,7 +231,12 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 		}
 
 	}
-
+	/*
+	 * funzione chiamata sopra in gestione click per assegnazione del nome alla barca
+	 * chiamo questa fuznione quando seleziono la barca infatti contiene le istruzioni che ne gestiscono la visualizzazione
+	 * quando una barca viene cliccata deve sparire
+	 * 
+	 */
 	public void assegnabarca(JPanel clickedPanel) {
 		if (clickedPanel.getName().equals("Aircraft")) {
 			arraymsg[2] = clickedPanel.getName();
@@ -261,20 +300,15 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	public void ricevi2msg(ZMQ.Socket socket, int x, int y) throws InterruptedException, IOException {
 
-		/*byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
-		rispostamsg = new String(reply, ZMQ.CHARSET);
-
-		String[] arrayStringhe = rispostamsg.split(",");
-		System.out.println();
-
-		for (int i = 0; i < arrayStringhe.length; i++)
-			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
-		System.out.println("Received msg 2 " + rispostamsg);*/
-
-		// 0 1 2 3 4 5 6
-		// x y St N E S O
+		
+		/*
+		 * ricevo il secondo messaggio che mi indica in quale direzione devo posizionare la barca rispetto alla casella inserita
+		 * colore le caselle in quella direzione facendo attenzione alla lunghezzaq della barca
+		 */
 		System.out.println("quello	 che ho mandato prima x: " + x + " quello che ricevo: " + arrayRisposta[0]);
 		System.out.println("quello che ho mandato prima y: " + y + " quello che ricevo: " + arrayRisposta[1]);
+		
+		//controllo ovest
 		if (arrayRisposta[6] == 0) {
 			while (y != arrayRisposta[1]) {
 				colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
@@ -285,6 +319,8 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 			}
 
 		}
+		//controllo sud
+		
 		if (arrayRisposta[5] == 0) {
 			while (x != arrayRisposta[0]) {
 				colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
@@ -294,7 +330,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 			}
 		}
-
+		//controllo est
 		if (arrayRisposta[4] == 0) {
 			while (y != arrayRisposta[1]) {
 				colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
@@ -304,7 +340,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 			}
 		}
-
+		//controllo nord
 		if (arrayRisposta[3] == 0) {
 			while (x != arrayRisposta[0]	) {
 				colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
@@ -314,6 +350,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 			}
 		}
+		//una volta colorato tutte le caselle di grigio devo colorare di bianco tutte le caselle che non sono nella direzione cliccata
 		colorabianco();
 	}
 	public void colorebarca(Square square) {
@@ -368,34 +405,35 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	public void ricevimsg(ZMQ.Socket socket) throws InterruptedException, IOException {
 
-		// ZMQ.Socket socket = context.createSocket(SocketType.REQ);
-		// Socket to talk to server
-		/*primo = 1;
-		byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
-		String rispostamsg = new String(reply, ZMQ.CHARSET);
 
-		String[] arrayStringhe = rispostamsg.split(",");
-		System.out.println();
-
-		for (int i = 0; i < arrayStringhe.length; i++)
-			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
-		System.out.println("Received msg1" + rispostamsg);*/
-
+		/*
+		 *  // 0 1 2 3 4 5 6
+			// x y St N E S O formato della risposta del server
+			 
+		 * devo verificare la loro risposta, a seconda dei valori dei campi capisco se devo o non devo colorare di grigio
+		 * se devo farlo vuol dire che l'utente può posizionare di lì la barca
+		 * in questa funzione gestitsco gli errori del primo posizionamento (se la casella selezionata non va bene non la coloro e devo solezionarne un'altra)
+		 */
+		
+		//coloro la casella selezionata solo se non ho errori
 		if (arrayRisposta[2] != -1) {
 			colorebarca(grid.yourBoard[arrayRisposta[0]][arrayRisposta[1]]);
 
 		}
 
 		String nome = arraymsg[2];
+		//mi serve sapere la lunghezza della barca
 		for (InfoBoat boat : InfoBoat.values()) {
 			if (boat.name().equalsIgnoreCase(nome)) {
 				boatlenght = boat.getLunghezza();
 			}
 
 		}
+		//se non è una barca da 1 allora devo rendere i pannelli non cliccabili perchè il posiizionamento non è finito
 		if (boatlenght != 1) {
 			togliPanel();
 		}
+		//se ho una barca da uno rendo il panel cliccabile  e controllo se il server ha inviato un messaggio di fine posizionamento
 		if (boatlenght == 1) {
 			// clickcount--;
 			salta = true;
@@ -406,8 +444,10 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 			}
 
 		}
+		//per le barche con lunghezza maggiore di 1 gestisco il posizonamento specificando col griglio le direzioni in cui può mettere la barca
 		coloragrigio();
 		errorePosizionamento();
+		//una volta colorati le caselle rendo non cliccabili tutte quelle che non sono grigie; non posso mettere la barca in altre posizoni
 		if (vai == true) {
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
@@ -426,6 +466,9 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 	}
 
 	public void errorePosizionamento() {
+		/*
+		 * se la barca era in una posizione errata la ri inserisco nel panel, e ricomincio il posizionamento (griglia non cliccabile e panel cliccabili)
+		 */
 		if (arrayRisposta[3] != 0 && arrayRisposta[4] != 0 && arrayRisposta[5] != 0 && arrayRisposta[6] != 0
 				&& !(arraymsg[2].contains("Submarine"))) {
 			clickedPanel.setVisible(true);
@@ -455,7 +498,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 		if (!(arraymsg[2].contains("Submarine"))) {
 			togliPanel();
 		}
-
+		//coloro di grigio a ovest
 		if (arrayRisposta[6] == 0) {
 
 			for (int i = 1; i < boatlenght; i++) {
@@ -464,6 +507,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 				}
 			}
 		}
+		//coloro di grigio ad sud
 		if (arrayRisposta[5] == 0) {
 			for (int i = 1; i < boatlenght; i++) {
 				if (grid.yourBoard[arrayRisposta[0] + i][arrayRisposta[1]].getStato() == 0) {
@@ -471,7 +515,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 				}
 			}
 		}
-
+		//colori di grigio ad est
 		if (arrayRisposta[4] == 0) {
 			for (int i = 1; i < boatlenght; i++) {
 				if (grid.yourBoard[arrayRisposta[0]][arrayRisposta[1] + i].getStato() == 0) {
@@ -479,7 +523,7 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 				}
 			}
 		}
-
+		//coloro di grigio a nord
 		if (arrayRisposta[3] == 0) {
 			for (int i = 1; i < boatlenght; i++) {
 				if (grid.yourBoard[arrayRisposta[0] - i][arrayRisposta[1]].getStato() == 0) {
@@ -563,7 +607,10 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	public void terminaPosizionamento() throws InterruptedException, IOException {
 
-
+		/*
+		 * quando il server indica che sono state posizionate tutte le barche invio ATA cioè Attesa avvversario
+		 * passo alla fase di turni quando il server mi risveglia dall'attesa
+		 */
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {

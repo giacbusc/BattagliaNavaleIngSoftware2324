@@ -42,8 +42,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		//String tcp= "tcp://192.168.1.226:5545";
+		
 		String local="tcp://localhost:5545";
 		String filepath = "./music/sceltaMenu3.wav";
 	    SoundEffect s = new SoundEffect();
@@ -52,20 +51,25 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 		if(e.getSource() instanceof JButton ) 
 		{
 			JButton clickedButton= (JButton) e.getSource();
-			
 			System.out.println("SONO IL GETTEXT: " + clickedButton.getText());
-			if(clickedButton.getText().equals("  ")) {
+			/*
+			 * //se clicco su questo tasto allora voglio giocare su più pc e quindi non gioco in locale
+			 *  ma aspetto che un altro client si connetta per giocare
 			
-				System.out.println("tanti pc");
+			 */
+			if(clickedButton.getText().equals("  ")) {
 			
 				sic = new SelezioneIndirizzoControl(username,this,obs);
 			}
 			else if(clickedButton.getText().equals("")) {
-				//ConnectionControl.setIndirizzo(local);
+				/*
+				 * gioco in locale su un unico pc
+				
+				 */
 				setConnectionIndirizzo(local);
 				DoubleGameGridControl.setIndirizzo(local);
 				SchermataAttesaControl.setIndirizzo(local);
-				System.out.println("un pc");
+				
 				try {
 					open();
 				} catch (IOException e1) {
@@ -78,7 +82,10 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 			}
 			
 			if(clickedButton.getText().equals("   "))
-			{
+		{
+				/*
+				 * ho cliccato su tutorial, mi si apre il link
+				 */
 				System.out.println("tutorial");
 				String path = "../tutorial/tutorial.html";
 				File htmlFile = new File(path);
@@ -95,7 +102,7 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	}
 
 	public void open( ) throws IOException, InterruptedException {
-		// TODO Auto-generated method stub
+		//apertura della schermata di attesa del secondo client 
 		sac= new SchermataAttesaControl("ATTESA AVVERSARIO", menu.getUsername(),menu.getObserver(), this);
 		menu.dispose();
 		//ConnectionControl c = new ConnectionControl(sin, userName);
