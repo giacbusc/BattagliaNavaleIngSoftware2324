@@ -22,15 +22,16 @@ Il project Plan del progetto si trovva nella cartella docs della repository.<br>
 ### Documentazione
 La documentazione del progetto è racchiusa in unico file chiamato [Documentazione](https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Documentazione.md).<br>
 All'interno della documentazione si trova:<br>
--la [specifica dei requisiti](https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Documentazione.md#6-requirement-engineering)<br>
--la descrizionde del modello di sviluppo utilizzata<br>
--la specifica della gestione della configurazione<br>
--la specifica dell'organizzazione del team e delle varie fasi dello sviluppo<br>
--la descrizione della struttura e dei design<br>
--la rappresentazione tramite modelli del software e delle sue funzionalità<br>
--il piano di test <br>
--una specifica per la menutenzione del software <br>
-
+<ol>
+<li>la [specifica dei requisiti](https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Documentazione.md#6-requirement-engineering)</li>
+<li>la descrizionde del modello di sviluppo utilizzata</li>
+<li>la specifica della gestione della configurazione</li>
+<li>la specifica dell'organizzazione del team e delle varie fasi dello sviluppo</li>
+<li>la descrizione della struttura e dei design</li>
+<li>la rappresentazione tramite modelli del software e delle sue funzionalità</li>
+<li>il piano di test</li>
+<li>una specifica per la menutenzione del software</li>
+</ol>
 
 ### UML
 Per una documentazione migliore e maggiormente esplicativa delle diverse funzionalità del software abbiamo realizzato vari diagrammi UML, questi si trovano sia all'interno della [documentazione](https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Documentazione.md#7-modelling) stessa ma anche in una loro cartella all'interno della cartella UML nei documenti della repository.<br>
