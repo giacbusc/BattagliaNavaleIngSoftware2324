@@ -41,7 +41,7 @@ Il file "Server.jar" servirà per avviare il server di gioco.
 Il file "Player.jar" servirà per avviare il gioco lato client.
 
 #### Avvio del gioco su un unico pc (server locale)
-Come prima cosa avviare il  file "Server.jar" (esso dovrà essere aperto una sola volta). Una volta aperta la schermata di scelta dell'indirizzo selezione "Avviare server in locale". 
+Come prima cosa avviare il  file "Server.jar" (esso dovrà essere aperto una sola volta). Una volta aperta la schermata di scelta dell'indirizzo selezionare "Avviare server in locale". 
 Fatto questo i player potranno connettersi. Avviare quindi per due volte il file "Player.jar" così da avere due giocatori. Una volta registrato/loggato verrà visualizzato il menù principale dove dovrà essere selezionata la modalità di gioco "Gioca su un solo pc".
 Questo passaggio va ripetuto per entrambi i giocatori. 
 Fatto questo la griglia si avvierà per il primo player e il gioco può avere inizio.
