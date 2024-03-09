@@ -300,11 +300,21 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	public void ricevi2msg(ZMQ.Socket socket, int x, int y) throws InterruptedException, IOException {
 
+		byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
+		rispostamsg = new String(reply, ZMQ.CHARSET);
+
+		String[] arrayStringhe = rispostamsg.split(",");
+		System.out.println();
+
+		for (int i = 0; i < arrayStringhe.length; i++)
+			arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
+		System.out.println("Received msg 2 " + rispostamsg);
 		
 		/*
 		 * ricevo il secondo messaggio che mi indica in quale direzione devo posizionare la barca rispetto alla casella inserita
 		 * colore le caselle in quella direzione facendo attenzione alla lunghezzaq della barca
 		 */
+		
 		System.out.println("quello	 che ho mandato prima x: " + x + " quello che ricevo: " + arrayRisposta[0]);
 		System.out.println("quello che ho mandato prima y: " + y + " quello che ricevo: " + arrayRisposta[1]);
 		
@@ -405,7 +415,18 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 
 	public void ricevimsg(ZMQ.Socket socket) throws InterruptedException, IOException {
 
+		//ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+				// Socket to talk to server
+				primo = 1;
+				byte[] reply = socket.recv(0);// lo 0 blocca l'esecuzione della funzione finche non si riceve qualcosa
+				String rispostamsg = new String(reply, ZMQ.CHARSET);
 
+				String[] arrayStringhe = rispostamsg.split(",");
+				System.out.println();
+
+				for (int i = 0; i < arrayStringhe.length; i++)
+					arrayRisposta[i] = Integer.parseInt(arrayStringhe[i].trim());
+				System.out.println("Received msg1" + rispostamsg);
 		/*
 		 *  // 0 1 2 3 4 5 6
 			// x y St N E S O formato della risposta del server
