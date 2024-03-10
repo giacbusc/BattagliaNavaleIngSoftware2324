@@ -24,6 +24,7 @@ import javax.swing.border.Border;
 
 import org.zeromq.ZMQ;
 
+import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Griglia;
 import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
 import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
 import BattagliaNavaleProject.control.DoubleGameGridControl;
@@ -289,7 +290,8 @@ public class DoubleGameGridView extends JFrame {
 
 
 	public void createGrid()
-	{	
+	{	Griglia g= new Griglia("yourboard");
+		Griglia go= new Griglia("oppponentboard");
 		yourBoardPanel = new JPanel();
 		opponentBoardPanel = new JPanel();
 		yourBoard = new Square[GRID_DIMENSION][GRID_DIMENSION];
@@ -362,11 +364,12 @@ public class DoubleGameGridView extends JFrame {
 				}
 				else
 				{
-					yourBoard[i][j]= new Square(i,j,0);
+					yourBoard[i][j]= new Square(i,j,0, "yourboard");
+					
 					//yourBoard[i][j].addMouseListener(this);//
 					yourBoard[i][j].setName("yourBoard");//
 					yourBoardPanel.add(yourBoard[i][j]);
-					opponentBoard[i][j]= new Square(i,j,0);
+					opponentBoard[i][j]= new Square(i,j,0, "opponentboard");
 
 					opponentBoard[i][j].setName( "opponentBoard" ); //
 					opponentBoardPanel.add(opponentBoard[i][j]);

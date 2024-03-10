@@ -9,15 +9,18 @@ public class Square extends JPanel
 	
 	public int x, y, stato;
 	public String nome;
+	Griglia g;
 	
 	
-	public Square(int x, int y, int stato)
+	public Square(int x, int y, int stato, Griglia g)
 	{
 		
 		setBackground(Color.white);
+		this.g= g;
 		this.x = x;
 		this.y = y;
 		this.stato = stato;
+		g.addSquare(this);
 	}
 
 	public Square(int x, int y, int stato, String nome) {
