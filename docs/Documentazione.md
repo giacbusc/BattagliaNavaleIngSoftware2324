@@ -33,7 +33,7 @@
     - 7.1 Diagramma di Stato
     - 7.2 Diagramma di Sequenza
     - 7.3 Diagramma di Attività
-    - 7.4 Diagramma dei Conponenti
+    - 7.4 Diagramma dei Componenti
     - 7.5 Diagramma delle Classi
     - 7.6 Diagramma di Stato
 - __8. Software Architecture__
