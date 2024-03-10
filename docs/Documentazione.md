@@ -15,20 +15,6 @@
 ## Indice
 - __0. Il progetto__
 - __1. Project plan__
-  - 1.1 Introduzione
-  - 1.2 Modello di processo
-  - 1.3 Organizzazione del progetto
-  - 1.4 Standards, linee guida e procedure
-  - 1.5 Attività di gestione
-  - 1.6 Rischi
-  - 1.7 Membri
-  - 1.8 Metodi e tecniche
-  - 1.9 Garanzie di qualità
-  - 1.10 Package di lavoro
-  - 1.11 Risorse
-  - 1.12 Budget e pianificazione
-  - 1.13 Cambiamenti
-  - 1.14 Consegna
 - __2. Software lifecycle__
 - __3. Configuration Management__
   - 3.1 Struttura del progetto
@@ -150,7 +136,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <tr>
     <th>Giacomo Buscaglia</th>
     <td></td>
-    <td>✅</td>
+    <td></td>
     <td>✅</td>
     <td></td>
       <td>✅</td>
@@ -161,7 +147,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <tr>
     <th>Luca Ciancio</th>
     <td></td>
-    <td>✅</td>
+    <td></td>
     <td></td>
     <td>✅</td>
     <td>✅</td>
@@ -183,7 +169,7 @@ Anche se non esite una distinzione tra i ruoli scritta, le diverse fasi del prog
     <tr>
     <th>Giulia Signori</th>
     <td></td>
-    <td>✅</td>
+    <td></td>
     <td>✅</td>
     <td></td>
     <td>✅</td>
@@ -209,13 +195,17 @@ L'interpretazione dell'output e l'immissione dell'input è facilitata dalla pres
 
 2.Rispetto alla manutenibilità e all'interazione con l'ambiente, ci aspettiamo che rispetti le seguenti qualità:
 - **Testabilità**: le funzionalità incluse sono testabili in qualunque momento tramite test manuali implementati attraverso l'utilizzo di JUnit
-- Manutenibilità: il software è stato sviluppato con l'obbiettivo di essere chiaro, cosi da permettere l'individualizzazione e la risoluzione di eventuali errori. A questo fine il team si è impegnato a eseguire una suddivisione del codice nelle diverse parti: il server ed il client sono divisi e inoltre vi è una distinzione tra le classi di logica, di modello e di interfaccia che permette una gestione migliore del codice.
+- **Manutenibilità**: il software è stato sviluppato con l'obbiettivo di essere chiaro, cosi da permettere l'individualizzazione e la risoluzione di eventuali errori. A questo fine il team si è impegnato a eseguire una suddivisione del codice nelle diverse parti: il server ed il client sono divisi e inoltre vi è una distinzione tra le classi di logica, di modello e di interfaccia che permette una gestione migliore del codice.
 - **Flessibilità**: il software si presenza incline all'implementazione di nuove funzionalità
 - **Riusabilità**: Sono state sfruttate e scritte librerie che possono essere riutilizzate in altri ambiti in quanto sono state sviluppate in modo indipendente dal contesto del gioco. <br>
 3. Infine,in riferimento alle qualità legate alla transizione del codice distinguiamo le qualità di:
 - **Portabilità**: Il gioco è eseguibile sui più diffusi sistemi operativi desktop (Windows, Linux, MacOS) dotati di una connessione internet.
 - **Riusabilità**: il codice è stato scritto in modo modulare, per poter essere riutilizzabile in futuro.
 <br>
+
+Abbiamo dedicato particolare attenzione alla **stabilita** e alla **tolleranza ai guasti**, soprattutto durante la fase di posizionamento degli elementi. Un notevole sforzo è stato fatto per garantire che, anche in presenza di azioni non corrette sull'interfaccia di gioco, il sistema rimanga stabile e non comprometta l'esperienza di gioco. <br>
+
+Inoltre, abbiamo implementato una logica ariticolata per gestire l'invio e la ricezione di messaggi, affrontando con successo la sfida della velocità di connessione, che in fase di test ha mostrato essere un ostacolo in quanto portava allo scambio di messaggi. Abbiamo introdotto rigidi controlli sia sull'invio che sulla ricezione dei messaggi, garantendo che non possano essere scambiati in modo improprio e mantenendo così la stabilità del programma. <br>
 
 ## 6. Requirement Engineering
 I requisiti sono stati decisi in fase di elicitazione, durante la quale abbiamo utilizzato linguaggio formali e semiformali, cioè la descrizione in linguaggio naturale e la descrizione degli scenari attarverso diagrammmi UML (ad esempio lo use case lo abbiamo utilizzato per comprendere come l'utente potesse interagire col sistema). Abbiamo quindi redatto, a partire dai requisiti elicitati un documento identificato come Specifica dei Requisiti, il quale è stato alla base dell'attività di Validazione, necessaria per capire se stessimo costruendo nel modo giusto il nostro sistema. <br> 
@@ -364,10 +354,6 @@ All'interno del nostro sistema abbiamo utilizzato diversi pattern a fronte di al
 
 Abbiamo utilizzato il pattern Singleton all'interno del server affinchè non fosse possibile istanziare, all'interno delle altre classi, la classe Singleton in modo ripetuto. <br>Attraverso il metodo *getInstance* del Server infatti facciamo in modo che ogni richiesta di istanziazione, qual'ora l'istanza del server non fosse nulla, si limiti alla sola restituzione dell'istanza già presente piuttosto che alla creazione di un'ulteriore istanza della classe Server.<br>
 <br>
-**Observer**
-
-Abbiamo utilizzato  il concetto di design pattern Observer per gestire eventi e comunicazioni tra le classi in modo efficiente e disaccoppiato e quindi per ridurre l'interdipendenza tra classi, ad esempio nel pacchetto view così da evitare che delle classi della view richiamassero la schermata che le generava. Prendiamo come esempio Login il quale viene generato da Schermata Iniziale: non vogliamo che cliccando sul tasto back Login richiami la classe che lo ha generato, usiamo quindi il metodo update attraverso il quale istanziamo una nuova schermata iniziale. <br>
-Un altro esempio d'uso è il passaggio dalla schermata di fine partita aL Menu principale.
 
 ## 10. Software Testing
 Durante lo sviluppo il corretto funzionamento del codice è stato testato costantemente con test pratici di esecuzione del programma e delle sue funzionalità. Questo è stato effettuato inserendo controlli di stampa,debug con break point e attraverso test di JUnit. <br>
