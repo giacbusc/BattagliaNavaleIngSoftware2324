@@ -209,7 +209,50 @@ Inoltre, abbiamo implementato una logica ariticolata per gestire l'invio e la ri
 
 ## 6. Requirement Engineering
 I requisiti sono stati decisi in fase di elicitazione, durante la quale abbiamo utilizzato linguaggio formali e semiformali, cioè la descrizione in linguaggio naturale e la descrizione degli scenari attarverso diagrammmi UML (ad esempio lo use case lo abbiamo utilizzato per comprendere come l'utente potesse interagire col sistema). Abbiamo quindi redatto, a partire dai requisiti elicitati un documento identificato come Specifica dei Requisiti, il quale è stato alla base dell'attività di Validazione, necessaria per capire se stessimo costruendo nel modo giusto il nostro sistema. <br> 
-Di seguito sono riportati i requisiti che costituiscono i Must Have del progetto, nel dettaglio.
+Abbiamo definito i requisiti sulla base del modello MoSCoW. <br>
+Abbiamo scelto di utilizzare il modello MoSCoW per la gestione dei requisiti perché ci consente di prioritarli in modo efficace. Questo modello ci aiuta a stabilire chiaramente quali requisiti sono assolutamente necessari (Must), quali sarebbe preferibile includere (Should), quali sarebbero desiderabili ma non cruciali (Could), e quali possono essere posticipati o eliminati (Won't). <br> Ci offre anche la flessibilità necessaria per adattarci alle esigenze in evoluzione del progetto, garantendo che ci concentreremo sulle funzionalità più critiche e significative per il successo complessivo del progetto.
+
+
+Di seguito sono riportati i requisiti che costituiscono i Must Have del progetto, nel dettaglio ed i requisiti di Should Have che sono stati implementati nel tempo a disposizione.<br> 
+<table>
+    <tr>
+        <th>MUST HAVE</th>
+        <th>SHOULD HAVE</th>
+        <th>COULD HAVE</th>
+        <th>WON'T</th>
+    </tr>
+    <tr>
+    <td>Gioco Multiplayer</td>
+    <td>Classifica generale utenti</td>
+    <td>GUI implementata con animazioni</td>
+    <td>Applicazione Mobile</td>
+    </tr>
+     <tr>
+    <td>Implementazione GUI</td>
+    <td>Torneo Multiplayer</td>
+    <td>Cambio della grafica delle Navi tramite un sistema 'shop'</td>
+    <td>Web App</td>
+    </tr>
+    <tr>
+    <td>Login e Registrazione Utente</td>
+    <td>Implementazione suono</td>
+    <td>Livelli di difficoltà</td>
+    <td>Versione alternativa del gioco con potenziamenti per i colpi</td>
+    </tr>
+    <tr>
+    <td>Utenti connessi Wireless</td>
+    <td>Gioco MultiLingua</td>
+    <td>Gioco Single Player vs CPU</td>
+    <td></td>
+    </tr>
+    <tr>
+    <td></td>
+    <td>Tutorial del gioco</td> 
+        <td></td>
+    <td></td>
+    </tr>
+</table>
+
 
 ### 6.1 Specifica dei Requisiti
 #### 6.1.1 Schermata Iniziale e Accesso
