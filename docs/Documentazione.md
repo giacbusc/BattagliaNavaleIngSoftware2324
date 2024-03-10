@@ -398,6 +398,14 @@ All'interno del nostro sistema abbiamo utilizzato diversi pattern a fronte di al
 Abbiamo utilizzato il pattern Singleton all'interno del server affinchè non fosse possibile istanziare, all'interno delle altre classi, la classe Singleton in modo ripetuto. <br>Attraverso il metodo *getInstance* del Server infatti facciamo in modo che ogni richiesta di istanziazione, qual'ora l'istanza del server non fosse nulla, si limiti alla sola restituzione dell'istanza già presente piuttosto che alla creazione di un'ulteriore istanza della classe Server.<br>
 <br>
 
+**Abstraction Occurence**
+
+Abbiamo applicato il design pattern Abstraction Occurrence nella creazione della griglia di gioco e delle caselle (square) che la compongono. In questo pattern, noi abbiamo utilizzato l'astrazione per definire le caratteristiche comuni di una casella di gioco, come ad esempio il suo stato (vuoto, occupato da una nave, colpito, etc.), e abbiamo implementato le diverse occorrenze di questa astrazione per rappresentare le caselle nelle due griglie separate del giocatore e dell'avversario. <br>
+
+Ciò significa che ogni casella (square) che compone la griglia è stata creata come un'istanza specifica di un'astrazione generale, ma con implementazioni specifiche che determinano a quale griglia appartiene (griglia del giocatore o dell'avversario). Questo ci ha permesso di gestire in modo efficiente le operazioni e le interazioni all'interno della griglia di gioco, garantendo che ciascuna casella sia associata alla giusta griglia e che il comportamento generale delle caselle sia coerente in tutto il gioco. <br>
+
+
+
 ## 10. Software Testing
 Durante lo sviluppo il corretto funzionamento del codice è stato testato costantemente con test pratici di esecuzione del programma e delle sue funzionalità. Questo è stato effettuato inserendo controlli di stampa,debug con break point e attraverso test di JUnit. <br>
 Nel momento in cui ci si è trovavi davanti un errore si è proceduto alla sua correzione, nel caso chiedendo anche agli altri membri un aiuto.<br>
