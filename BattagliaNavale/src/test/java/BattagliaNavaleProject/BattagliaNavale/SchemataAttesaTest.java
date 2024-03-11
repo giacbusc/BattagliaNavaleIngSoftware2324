@@ -13,10 +13,10 @@ public class SchemataAttesaTest {
     @Test
     public void testGetIndirizzo() throws IOException, InterruptedException {
         BattagliaNavaleProject.control.SchermataAttesaControl control = new BattagliaNavaleProject.control.SchermataAttesaControl("msg", "username", null, null);
-        assertNull(control.getIndirizzo());
+        assertNull(control.getIndirizzo());// non ho ancora settato l'indirizzo me lo aspetto nullo
         
         control.setIndirizzo("tcp://192.168.60.206:5555");
-        assertEquals("tcp://192.168.60.206:5555", control.getIndirizzo());
+        assertEquals("tcp://192.168.60.206:5555", control.getIndirizzo());// m aspetto che in control io abbia passato lo stesso indirizzo settato nella schermata control
     }
 
     @Test
@@ -32,7 +32,7 @@ public class SchemataAttesaTest {
          String rispostaMsg="OK POS2";
          control.attesa(username);
          
-         assertFalse(control.isR());
+         assertFalse(control.isR());// r è falso infatti la risposta è okpos2
     }
  
 }

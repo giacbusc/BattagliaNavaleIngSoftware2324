@@ -17,7 +17,7 @@ public class RegistrationTest {
 		rm.setName("Federica");
 		rm.setSurname("Gervasoni");
 		rm.setPassword("1234");
-		assertFalse(rc.verificaCampi(rm));
+		assertFalse(rc.verificaCampi(rm));// mi aspetto falso perchè il nickname è vuoto
 	}
 	
 	@Test public void Test2() {
@@ -35,7 +35,7 @@ public class RegistrationTest {
 		rm.setName("Federica");
 		rm.setSurname("Gervasoni");
 		rm.setPassword("1234");
-		assertTrue(rc.verificaNameSurname(rm));
+		assertTrue(rc.verificaNameSurname(rm));// ho inserito nel modo corretto i dati mi aspetto vero
 	}
 	
 	@Test public void Test4() throws SQLException {
@@ -44,7 +44,7 @@ public class RegistrationTest {
 		rm.setName("!!");
 		rm.setSurname("Zenni");
 		rm.setPassword("1234");
-		assertFalse(rc.verificaNameSurname(rm));
+		assertFalse(rc.verificaNameSurname(rm));// il nome non può contenere caratteri speciali quindi mi aspetto false
 	}
 	
 }

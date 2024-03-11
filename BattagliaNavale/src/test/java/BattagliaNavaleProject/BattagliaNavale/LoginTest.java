@@ -20,7 +20,7 @@ public class LoginTest {
 		LoginModel lm=new LoginModel();
 		lm.setPassword("");
 		lm.setUserName("fedegerva");
-		assertFalse(lc.verificaCampi(lm));
+		assertFalse(lc.verificaCampi(lm));// mi aspetto falso perchè non ho messo la password
 
 	}
 
@@ -31,6 +31,6 @@ public class LoginTest {
 		lm.setUserName("fedegerva");;
 
 		lm.setPassword("1234");
-		assertTrue(lc.checkUser(lm));
+		assertTrue(lc.checkUser(lm));// mi aspetto vero perchè ho inserito i campi corretti
 	}
 }
