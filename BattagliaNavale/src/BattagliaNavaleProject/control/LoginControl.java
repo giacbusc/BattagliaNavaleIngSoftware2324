@@ -33,13 +33,13 @@ public class LoginControl implements ActionListener {
 		ConnectionDb conn1 = new ConnectionDb();
 		System.out.println(conn1.getConnection());
 		String sql = "SELECT * FROM utente WHERE nickname =? AND password = ?";
-
+		//istruzioni per il database
 		PreparedStatement pstmt = conn1.getConnection().prepareStatement(sql);
 		pstmt.setString(1, model.getUserName().trim());
 		pstmt.setString(2, model.getPassword());
 
 		ResultSet rs = pstmt.executeQuery();
-		
+		//faccio una verifica nel database
 		if (rs.next() && verificaCampi(model)) {
 			
 			pstmt.close();
@@ -69,6 +69,9 @@ public class LoginControl implements ActionListener {
 
 			model = gui.getUserModel();
 			System.out.println(model.getUserName());
+			/*
+			 * verifico quale click su quale tasto abbia chiamato la funzione 
+			 */
 			if (e.getSource() instanceof JButton) {
 				JButton clickedButton = (JButton) e.getSource();
 
@@ -122,7 +125,7 @@ public class LoginControl implements ActionListener {
 		worker.execute();
 
 	}
-
+	//chiudo il login e torno al menu principale
 	public void close() {
 		gui.dispose();
 		gui.getObserver().update();
