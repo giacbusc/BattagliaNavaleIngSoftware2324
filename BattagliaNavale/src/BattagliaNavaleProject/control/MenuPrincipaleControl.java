@@ -5,20 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
-import org.h2.tools.Server;
-import BattagliaNavaleProject.BattagliaNavaleServer.ServerSocket;
 import BattagliaNavaleProject.BattagliaNavaleServer.database.ConnectionDb;
 import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 import BattagliaNavaleProject.view.MenuPrincipaleView;
 import BattagliaNavaleProject.view.Observer;
-import BattagliaNavaleProject.view.SelezioneIndirizzoView;
 
 public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipale{
 	private MenuPrincipaleView menu;
@@ -42,11 +38,11 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		String local="tcp://localhost:5545";
 		String filepath = "./music/sceltaMenu3.wav";
-	    SoundEffect s = new SoundEffect();
-	    s.playMusic(filepath);
+		SoundEffect s = new SoundEffect();
+		s.playMusic(filepath);
 
 		if(e.getSource() instanceof JButton ) 
 		{
@@ -55,21 +51,21 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 			/*
 			 * //se clicco su questo tasto allora voglio giocare su più pc e quindi non gioco in locale
 			 *  ma aspetto che un altro client si connetta per giocare
-			
+
 			 */
 			if(clickedButton.getText().equals("  ")) {
-			
+
 				sic = new SelezioneIndirizzoControl(username,this,obs);
 			}
 			else if(clickedButton.getText().equals("")) {
 				/*
 				 * gioco in locale su un unico pc
-				
+
 				 */
 				setConnectionIndirizzo(local);
 				DoubleGameGridControl.setIndirizzo(local);
 				SchermataAttesaControl.setIndirizzo(local);
-				
+
 				try {
 					open();
 				} catch (IOException e1) {
@@ -80,9 +76,9 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 					e1.printStackTrace();
 				}
 			}
-			
+
 			if(clickedButton.getText().equals("   "))
-		{
+			{
 				/*
 				 * ho cliccato su tutorial, mi si apre il link
 				 */
@@ -96,35 +92,34 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 					e1.printStackTrace();
 				}
 			}
-			
-			
-	}
+
+
+		}
 	}
 
 	public void open( ) throws IOException, InterruptedException {
 		//apertura della schermata di attesa del secondo client 
 		sac= new SchermataAttesaControl("ATTESA AVVERSARIO", menu.getUsername(),menu.getObserver(), this);
 		menu.dispose();
-		//ConnectionControl c = new ConnectionControl(sin, userName);
-		
-		
-		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-	        @Override
-	        protected Void doInBackground() throws Exception {
-	            // Esegui le operazioni di connessione qui
-	        	creaConnectionControl();
-	            return null;
-	        }
-	    };
 
-	    worker.execute();
+
+		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+			@Override
+			protected Void doInBackground() throws Exception {
+				// Esegui le operazioni di connessione qui
+				creaConnectionControl();
+				return null;
+			}
+		};
+
+		worker.execute();
 	}
-	
+
 	public void creaConnectionControl() throws IOException, InterruptedException
 	{
-		 c = new ConnectionControl(sac, menu.getUsername(), menu.getObserver(), this);
+		c = new ConnectionControl(sac, menu.getUsername(), menu.getObserver(), this);
 	}
-	 
+
 	public void setConnectionIndirizzo(String indirizzo)
 	{
 		ConnectionControl.setIndirizzo(indirizzo);
@@ -139,30 +134,31 @@ public class MenuPrincipaleControl implements ActionListener, TornaMenuPrincipal
 		// TODO Auto-generated method stub
 		menu.dispose();
 	}
-	
+
+	//metodo per creare e visualizzare la classifica all'interno del menu principale
 	private void aggiungiClassifica()
 	{
 		try {
-            ConnectionDb conn = new ConnectionDb();
-            Statement stmt = conn.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT nickname, COUNT(*) AS NumeroVittorie FROM UTENTE JOIN PARTITA ON nickname = Vincitore GROUP BY nickname ORDER BY COUNT(*) DESC");
-            
-            int posizione = 1;
+			ConnectionDb conn = new ConnectionDb();
+			Statement stmt = conn.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT nickname, COUNT(*) AS NumeroVittorie FROM UTENTE JOIN PARTITA ON nickname = Vincitore GROUP BY nickname ORDER BY COUNT(*) DESC");
 
-            while (rs.next()) {
-                String giocatore = rs.getString("nickname");
-                int numeroVittorie = rs.getInt("NumeroVittorie");
+			int posizione = 1;
 
-                menu.mostraClassifica(giocatore, numeroVittorie, posizione);
-                posizione++;
-            }
-            
-            // Chiudi le risorse
-            stmt.close();
-            rs.close();
-            conn.closeConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+			while (rs.next()) {
+				String giocatore = rs.getString("nickname");
+				int numeroVittorie = rs.getInt("NumeroVittorie");
+
+				menu.mostraClassifica(giocatore, numeroVittorie, posizione);
+				posizione++;
+			}
+
+			// Chiudi le risorse
+			stmt.close();
+			rs.close();
+			conn.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

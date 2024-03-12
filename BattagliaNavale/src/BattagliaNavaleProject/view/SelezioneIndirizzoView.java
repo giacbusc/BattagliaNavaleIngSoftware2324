@@ -1,31 +1,22 @@
 package BattagliaNavaleProject.view;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingWorker;
 
 public class SelezioneIndirizzoView extends JFrame {
 
@@ -33,14 +24,7 @@ public class SelezioneIndirizzoView extends JFrame {
 	private final JButton indirizzoButton;
 	private final JButton backButton;
 	public JTextField indirizzoField;
-
-	/*
-	 * public static void main(String[] args) { EventQueue.invokeLater(new
-	 * Runnable() { public void run() { try { SelezioneIndirizzoView frame = new
-	 * SelezioneIndirizzoView(username); //LoginControl cont = new
-	 * LoginControl(frame); frame.setVisible(true); } catch (Exception e) {
-	 * e.printStackTrace(); } } }); }
-	 */
+	
 	public SelezioneIndirizzoView(String username) {
 		// TODO Auto-generated constructor stub
 		this.username = username;
@@ -202,11 +186,12 @@ public class SelezioneIndirizzoView extends JFrame {
 		setVisible(true);
 	}
 
+	//Metodo per aggiungere un action listener al tasto per selezionare l'indirizzo
 	public void aggiungiListenerNext(ActionListener act) {
 		// TODO Auto-generated method stub
 		indirizzoButton.addActionListener(act);
 	}
-
+	//Metodo per aggiungere un action listener al tasto back
 	public void aggiungiListenerBack(ActionListener act) {
 		// TODO Auto-generated method stub
 		backButton.addActionListener(act);

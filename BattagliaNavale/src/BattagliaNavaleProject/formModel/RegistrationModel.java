@@ -1,5 +1,8 @@
 package BattagliaNavaleProject.formModel;
 
+//Questa classe è il model del Register e viene utilizzato per permette alla classe 
+//RegistrationControl di recuperare i dati e alla classe RegistrationView di impostarli
+//in base a quello che scrive  l'utente
 public class RegistrationModel {
 	private String name;
 	private String surname;

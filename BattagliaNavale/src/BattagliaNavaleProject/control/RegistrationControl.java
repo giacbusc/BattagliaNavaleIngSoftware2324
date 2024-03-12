@@ -27,6 +27,7 @@ public class RegistrationControl implements ActionListener {
         view.addActionBack(this);
     }
     
+    //metodo che verifica se tutti i campi hanno al loro interno qualcosa
     public boolean verificaCampi(RegistrationModel user){
 		if(user.getName().isEmpty() || user.getSurname().isEmpty() || user.getNickname().isEmpty() || user.getPassword().isEmpty()){
 			return false;
@@ -35,6 +36,7 @@ public class RegistrationControl implements ActionListener {
 		return true;
 	}
     
+    //metodo che verifica sei il nome e il cognome è composto da sole lettere
     public boolean verificaNameSurname(RegistrationModel user){
 		if(!(( user.getName()).matches("[a-zA-Z]+") || !user.getSurname().matches("[a-zA-Z]+"))) {
 			return false;
@@ -43,6 +45,7 @@ public class RegistrationControl implements ActionListener {
 		return true;
 	}
     
+    //metodo che verifica se il nickname è già presente all'interno del database
     public boolean verificaNickname(RegistrationModel user) throws SQLException
 	{
 		ConnectionDb conn = new ConnectionDb();
@@ -64,6 +67,7 @@ public class RegistrationControl implements ActionListener {
  		}
 		
 	}
+    
     public void actionPerformed(ActionEvent e) {
         
         try {
@@ -71,12 +75,12 @@ public class RegistrationControl implements ActionListener {
             if(e.getSource() instanceof JButton ) {
                 JButton clickedButton= (JButton) e.getSource();
                 
+                //Se l'utente preme il pulsante Back viene chiamato il metodo close presente in questa classe
                 if(clickedButton.getText().equals("Back")) {
-                	System.out.println("martin");
                     close();
                 }
                 
-                
+                //Se l'utente preme il pulsante Save viene verificata la correttezza dei dati
                 if(clickedButton.getText().equals("Save")) 
                 {   
                     model = view.getUser();
@@ -85,12 +89,14 @@ public class RegistrationControl implements ActionListener {
                     {
                         if(checkUser(model)) 
                         {
+                        	//Se i dati sono corretti allora viene aperta la finestra di login
                             view.showMessage("Registration complete!");
                             openLogin();
                             
                         } 
                         else 
                         {
+                        	//Se i dati non sono corretti l'utente deve re-inserirli
                             view.showMessage("Incorrect data entered, please re-enter it!");
                         }     
                     } 
@@ -105,14 +111,14 @@ public class RegistrationControl implements ActionListener {
         }
         
         catch (Exception ex) {
-            view.showMessage(ex.getMessage()); // <-- Questa è la riga modificata
-            ex.printStackTrace(); // <-- Aggiunta per visualizzare il messaggio di errore
+            view.showMessage(ex.getMessage());
+            ex.printStackTrace(); 
             
         }
     }
         
 
-    
+    //Metodo che inserisce all'interno del database i dati dell'utente che ha appena effettuato la registrazione
     public boolean checkUser(RegistrationModel user) throws Exception {
  
     	String sql = "INSERT INTO UTENTE VALUES (?,?,?,?)";
@@ -134,13 +140,14 @@ public class RegistrationControl implements ActionListener {
 		return view;
 	}
 	
+	//Metodo utilizzato per aprire la finestra di Login
 	public void openLogin() {
 		  
         log = new LoginControl();
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 	        @Override
 	        protected Void doInBackground() throws Exception {
-	            // Esegui le operazioni di connessione qui
+	            //Chiudiamo qui la finestra di registrazione
 	        	view.dispose(); 
 	            return null;
 	        }

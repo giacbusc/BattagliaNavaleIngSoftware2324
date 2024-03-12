@@ -1,5 +1,8 @@
 package BattagliaNavaleProject.formModel;
 
+//Questa classe è il model del Login e viene utilizzato per permette alla classe 
+//LoginControl di recuperare i dati e alla classe LoginView di impostarli in base a quello che scrive 
+//l'utente
 public class LoginModel {
 	
 	private String userName;

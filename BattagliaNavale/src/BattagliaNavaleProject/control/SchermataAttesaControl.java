@@ -7,7 +7,6 @@ import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
 import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
-import BattagliaNavaleProject.view.DoubleGameGridView;
 import BattagliaNavaleProject.view.Observer;
 import BattagliaNavaleProject.view.SchermataAttesaView;
 
@@ -30,6 +29,8 @@ public class SchermataAttesaControl {
 		sv.setVisible(true);
 		
 		if(msg.equals("ATTESA POSIZIONAMENTO")) {
+			//Se il messaggio che viene passato nel momento della chiamata al costruttore di questa classe
+			//è uguale a ATTESA POSIZIONAMENTO, allora viene chiamato il metodo attesa
     		attesa(username);
     	}
 	}
@@ -40,6 +41,8 @@ public class SchermataAttesaControl {
 		//  Socket to talk to server
 		socket.connect(indirizzo);
 
+		//Viene effettuato un ciclo in cui è presente un attesa fino a quando non viene ricevuto dal server
+		//il messaggio OK POS2
 		do {
 			Thread.sleep(200);
 			String sendMsg = "CODA";
@@ -51,7 +54,7 @@ public class SchermataAttesaControl {
 			String rispostaMsg= new String(byteMsg, ZMQ.CHARSET);
 
 			if(rispostaMsg.equals("OK POS2")) {
-
+				//Viene aperta la schermata della griglia di gioco
 				String filepath = "./music/Background_game_music.wav";
 				SoundEffect se = new SoundEffect();
 				se.playMusic2(filepath,true);

@@ -1,10 +1,7 @@
 package BattagliaNavaleProject.view;
 import javax.swing.*;
 
-import BattagliaNavaleProject.control.ConnectionControl;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -18,25 +15,7 @@ public class MenuPrincipaleView extends JFrame {
 	private JButton tutorialButton;
 	private Observer obs;
 	private JPanel classifica;
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run()
-			{
-				try 
-				{
-					MenuPrincipaleView frame = new MenuPrincipaleView(userName,null);
-					frame.setVisible(true);
-				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-
-	}
-
-
+	//Classe che gestisce la visualizzazione del menu principale
 	public MenuPrincipaleView(String userName, Observer obs) throws IOException, SQLException 
 	{
 		this.userName = userName;
@@ -72,22 +51,12 @@ public class MenuPrincipaleView extends JFrame {
 		logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		backgroundPanel.add(logoLabel);
 
-
-
 		classifica = new JPanel();
 		classifica.setBounds(1163,113,217,531);
 		classifica.setOpaque(false);
 		classifica.setBorder(null);
 		backgroundPanel.add(classifica);
 		classifica.setLayout(new BoxLayout(classifica, BoxLayout.Y_AXIS));
-
-		//ImageIcon icon2 = new ImageIcon("2.png");
-		JLabel infoPlayerLabel = null;
-		try {
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		JLabel lblNewLabel_2 = new JLabel("BATTAGLIA NAVALE ");
 		lblNewLabel_2.setForeground(new Color(51, 128, 204));
@@ -121,8 +90,6 @@ public class MenuPrincipaleView extends JFrame {
 		pcSoloButton.setOpaque(false);
 		pcSoloButton.setBounds(461, 154, 538, 90);//275 70
 		backgroundPanel.add(pcSoloButton);
-
-		//pcSoloButton.addActionListener(new MenuPrincipaleControl(this));
 
 
 		pcSoloButton.addMouseListener(new MouseListener()
@@ -181,9 +148,6 @@ public class MenuPrincipaleView extends JFrame {
 		pcMultiButton.setPreferredSize(new Dimension(170, 50));
 		pcMultiButton.setBounds(461, 317, 538, 90);
 		backgroundPanel.add(pcMultiButton);
-
-
-		//pcMultiButton.addActionListener(new MenuPrincipaleControl(this));
 
 		pcMultiButton.addMouseListener(new MouseListener()
 		{
@@ -299,51 +263,6 @@ public class MenuPrincipaleView extends JFrame {
 			}
 
 		});
-		/*
-	    JButton classificaButton = new JButton("Classifica");
-        classificaButton.setPreferredSize(new Dimension(350, 90));
-        classificaButton.setBackground(new Color(0, 0, 0, 0));
-        classificaButton.setOpaque(false);
-        classificaButton.setBounds(550, 640, 350, 90);
-        backgroundPanel.add(classificaButton);
-
-        classificaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Chiudi il frame attuale
-                dispose();
-
-                // Apri il frame della classifica
-                try {
-                    ClassificaControl classificaFrame = new ClassificaControl(userName, obs);
-                    classificaFrame.setVisible(true);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-
-			@Override
-
-        });
-		 */
-
-
-		/*JPanel radioPanel= new JPanel();
-	    radioPanel.setBounds(800,435,100,100);
-	    radioPanel.setOpaque(false);
-
-	    ButtonGroup languageGroup = new ButtonGroup();
-	    JRadioButton itaRadioButton = new JRadioButton("ITA");
-	    itaRadioButton.setOpaque(false);
-	    languageGroup.add(itaRadioButton);
-	    radioPanel.add(itaRadioButton);
-
-        JRadioButton engRadioButton = new JRadioButton("ENG");
-        languageGroup.add(engRadioButton);
-        engRadioButton.setOpaque(false);
-        radioPanel.add(engRadioButton);
-
-        backgroundPanel.add(radioPanel);*/
 
 	}
 
@@ -356,25 +275,25 @@ public class MenuPrincipaleView extends JFrame {
 	{
 		return obs;
 	}
+	//Metodo che aggiunge un action listener al pulsante per avviare la partita su pc diversi
 	public void addActionMulti(ActionListener act)
 	{
 		pcMultiButton.addActionListener(act);
 	}
-
+	//Metodo che aggiunge un action listener al pulsante per avviare la partita sullo stesso pc
 	public void addActionSolo(ActionListener act)
 	{
 		pcSoloButton.addActionListener(act);
 	}
-	
+	//Metodo che aggiunge un action listener al pulsante per il tutorial
 	public void addActionTutorial(ActionListener act)
 	{
 		tutorialButton.addActionListener(act);
 	}
 
-
+	//Metodo che viene utilizzato per mostrare la classifica sulla schermata
 	public void mostraClassifica(String user, int vitt, int pos)
 	{
-		//classificaLabel.setBounds(30,5,100,43);
 		String spazio = "      ";
 		JLabel lb = new JLabel(""+pos+") "+user+""+spazio+""+vitt);
 		lb.setHorizontalAlignment(SwingConstants.CENTER);

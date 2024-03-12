@@ -18,7 +18,6 @@ public class SchermataInizialeControl implements ActionListener, Observer{
 		schermata.setVisible(true);
 		schermata.addActionLog(this);
 		schermata.addActionReg(this);
-		//view.addRecListener(this);
 	}
 			
 	@Override
@@ -32,15 +31,16 @@ public class SchermataInizialeControl implements ActionListener, Observer{
 				JButton clickedButton= (JButton) e.getSource();
 				
 				if(clickedButton.getName().equals("Login")) {
-
+					//Se viene premuto il pulsante Login, viene aperta la finestra di Login 
+					//e viene chiusa questa schermata
 					openLogin();
 
 				}
 
 
 				else if(clickedButton.getName().equals("Register")) 
-				{   
-
+				{   //Se viene premuto il pulsante Register, viene aperta la finestra di registrazione 
+					//e viene chiusa questa schermata
 					openRegistration();
 				}
 			}
@@ -48,11 +48,12 @@ public class SchermataInizialeControl implements ActionListener, Observer{
 
 		catch (Exception ex) {
 
-			ex.printStackTrace(); // <-- Aggiunta per visualizzare il messaggio di errore
+			ex.printStackTrace(); 
 
 		}
 
 	}
+	//Metodo per aprire la finestra di login 
 	public void openLogin() {
 
 		LoginControl login = new LoginControl();
@@ -60,7 +61,7 @@ public class SchermataInizialeControl implements ActionListener, Observer{
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
-				// Esegui le operazioni di connessione qui
+				//Qui viene chiusa la schermata
 				schermata.dispose(); 
 				return null;
 			}
@@ -69,7 +70,7 @@ public class SchermataInizialeControl implements ActionListener, Observer{
 		worker.execute(); 
 
 	}
-
+	//Metodo per aprire la finestra di registrazione
 	public void openRegistration() {
 
 		RegistrationControl reg = new RegistrationControl();
@@ -78,7 +79,7 @@ public class SchermataInizialeControl implements ActionListener, Observer{
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
-				// Esegui le operazioni di connessione qui
+				//Qui viene chiusa la schermata
 				schermata.dispose(); 
 				return null;
 			}
@@ -87,6 +88,8 @@ public class SchermataInizialeControl implements ActionListener, Observer{
 		worker.execute(); 
 	}
 
+	//metodo che viene chiamato dalle classi LoginControl, RegistrationControl e ConnectionControl
+	//per riaprire la schermata iniziale
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub

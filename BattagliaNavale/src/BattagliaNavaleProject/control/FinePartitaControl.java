@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
 
-import BattagliaNavaleProject.BattagliaNavaleServer.ServerSocket;
 import BattagliaNavaleProject.view.FinePartitaView;
 import BattagliaNavaleProject.view.Observer;
+
 public class FinePartitaControl  implements ActionListener{
 	private FinePartitaView fpv;
 	private String user;
@@ -28,13 +28,16 @@ public class FinePartitaControl  implements ActionListener{
 		fpv.aggiungiListenerExit(this);
 	}
 
+	//Questo metodo actionPerfomerd gestisce la selezione dell'utente nel momento in cui finisce la partita
+	//L'utente avrà due opzioni collegate a due diversi pulsanti
 	public void actionPerformed (ActionEvent e ) {
 		// TODO Auto-generated method stub
 		try {
 			if(e.getSource() instanceof JButton ) {
 				JButton clickedButton= (JButton) e.getSource();
 
-				if(clickedButton.getText().equals("")) 
+				//Se viene cliccato questo bottone l'utente tornerà al menu principale
+				if(clickedButton.getName().equals("menu")) 
 				{   
 					tmp.torna(user, obs);
 					
@@ -52,7 +55,8 @@ public class FinePartitaControl  implements ActionListener{
 					worker.execute(); 
 
 				}
-				if(clickedButton.getText().equals(".")) {
+				//Se l'utente clicca questo bottone il gioco verrà chiuso
+				if(clickedButton.getName().equals("esci")) {
 					//System.exit(0);
 					fpv.dispose();
 					throw new RuntimeException();

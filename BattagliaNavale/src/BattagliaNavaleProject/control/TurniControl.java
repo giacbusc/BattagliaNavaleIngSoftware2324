@@ -2,13 +2,10 @@ package BattagliaNavaleProject.control;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.util.Random;
 
-import javax.sound.sampled.LineUnavailableException;
 import javax.swing.SwingWorker;
 
 import org.zeromq.SocketType;
@@ -18,7 +15,6 @@ import org.zeromq.ZMQ;
 import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 import BattagliaNavaleProject.view.AggiuntaListener;
 import BattagliaNavaleProject.view.DoubleGameGridView;
-import BattagliaNavaleProject.view.FinePartitaView;
 import BattagliaNavaleProject.view.Observer;
 
 import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
@@ -202,7 +198,6 @@ public class TurniControl {
 				 */
 				for (int i = 0; i < lunghezza; i++) {
 					String sendMsg = "AFFONDATO";
-					DGGV.createIcon(arrayRisposta[0], arrayRisposta[0]);
 					socket.send(sendMsg.getBytes(ZMQ.CHARSET), ZMQ.DONTWAIT);
 					System.out.println(sendMsg);
 

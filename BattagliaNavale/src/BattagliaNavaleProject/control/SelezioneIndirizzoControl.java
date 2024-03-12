@@ -8,9 +8,6 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
 
-import org.h2.tools.Server;
-
-import BattagliaNavaleProject.BattagliaNavaleServer.ServerSocket;
 import BattagliaNavaleProject.view.Observer;
 import BattagliaNavaleProject.view.SelezioneIndirizzoView;
 
@@ -23,6 +20,8 @@ public class SelezioneIndirizzoControl implements ActionListener {
 	private TornaMenuPrincipale tmp;
 	private Observer obs;
 	private ConnectionControl c;
+	//Questa classe viene creata nel momento in cui l'utente vuole giocare su più pc differenti.
+	//In questo caso sarà necessario selezionare l'indirizzo a cui collegarsi
 	public SelezioneIndirizzoControl(String username, TornaMenuPrincipale tmp, Observer obs)
 	{	
 		this.obs = obs;
@@ -40,21 +39,23 @@ public class SelezioneIndirizzoControl implements ActionListener {
 		if(e.getSource() instanceof JButton)
 		{
 			JButton clickedButton= (JButton) e.getSource();
+			//Se l'utente clicca il pulsante Gioca viene impostato l'indirizzo nella classe DoubleGameGridControl
+			//e nella SchermataAttesaControl
 			if(clickedButton.getText().equals("Gioca"))
-			{ 	System.out.println("gioca cliccato");
-				System.out.println(ind+siv.indirizzoField.getText());
+			{	
 				DoubleGameGridControl.setIndirizzo(ind+siv.indirizzoField.getText());
-				//ConnectionControl.setIndirizzo(tcp);
 				setConnectionIndirizzo(ind+siv.indirizzoField.getText());
 				SchermataAttesaControl.setIndirizzo(ind+siv.indirizzoField.getText());
-				System.out.println("tanti pc");
+
 				try {
+					//metodo per iniziare la connessione e chiudere questa schermata
 					open();
 				} catch (IOException | InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
+			//Se l'utente clicca il pulsante Back viene chiamato il metodo close
 			else if(clickedButton.getText().equals("Back"))
 			{
 				try {
@@ -66,35 +67,38 @@ public class SelezioneIndirizzoControl implements ActionListener {
 			}
 		}
 	}
-	
+
+	//Metodo che chiude questa schermata, crea una nuova instanza della classe SchermataAttesaControl
+	//e una nuova istanza della classe ConnectionControl
 	public void open() throws IOException, InterruptedException
 	{
 		sac= new SchermataAttesaControl("ATTESA AVVERSARIO", username ,obs, tmp);
 		siv.dispose();
 		tmp.chiudi();
-		
-		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-	        @Override
-	        protected Void doInBackground() throws Exception {
-	            // Esegui le operazioni di connessione qui
-	        	creaConnectionControl();
-	            return null;
-	        }
-	    };
 
-	    worker.execute();
+		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+			@Override
+			protected Void doInBackground() throws Exception {
+				//Qui viene chiamato il metodo che crea la classe ConnectionControl
+				creaConnectionControl();
+				return null;
+			}
+		};
+
+		worker.execute();
 	}
-	
+
 	public void creaConnectionControl() throws IOException, InterruptedException
 	{
-		 c = new ConnectionControl(sac, username, obs, tmp);
+		c = new ConnectionControl(sac, username, obs, tmp);
 	}
-	
+
 	public void setConnectionIndirizzo(String indirizzo)
 	{
 		ConnectionControl.setIndirizzo(indirizzo);
 	}
-	
+
+	//Metodo che chiude la schermata attuale e riapre la schermata del menu principale
 	public void close() throws IOException, SQLException
 	{
 		tmp.torna(username, obs);

@@ -1,19 +1,13 @@
 package BattagliaNavaleProject.view;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,16 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingWorker;
 
-
-import BattagliaNavaleProject.control.MenuPrincipaleControl;
-import BattagliaNavaleProject.control.SchermataInizialeControl;
 import BattagliaNavaleProject.formModel.LoginModel;
 
 import java.awt.Dimension;
 
-public class LoginView extends JFrame implements Observer {
+public class LoginView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel usernameLabel, passwordLabel;
@@ -43,28 +33,10 @@ public class LoginView extends JFrame implements Observer {
 	private LoginModel model;
 	private JButton backButton;
 	private Observer obs;
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginView frame = new LoginView();
-					//LoginControl cont = new LoginControl(frame);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
-
-
+	//Classe che gestisce la visualizzazione della schermata di login
 	public LoginView() 
 	{
-		//LoginModel model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		Dimension dimensioniSchermo = Toolkit.getDefaultToolkit().getScreenSize();
@@ -102,7 +74,6 @@ public class LoginView extends JFrame implements Observer {
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(650, 366);
-		//setLocationRelativeTo(null);
 
 
 		ImageIcon icon = new ImageIcon("../docs/resources/Logo.png");
@@ -230,10 +201,12 @@ public class LoginView extends JFrame implements Observer {
 
 		});
 	}
+	//Metodo che aggiunge un action listener al pulsante login
 	public void addActionLogin(ActionListener act)
 	{
 		loginButton.addActionListener(act);
 	}
+	//Metodo che aggiunge un action listener al pulsante back
 	public void addActionBack(ActionListener act)
 	{
 		backButton.addActionListener(act);
@@ -263,15 +236,4 @@ public class LoginView extends JFrame implements Observer {
 	{
 		return obs;
 	}
-
-
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
-
-
-
 }

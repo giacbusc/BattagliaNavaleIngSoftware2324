@@ -14,32 +14,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
-import org.zeromq.ZMQ;
-
 import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Griglia;
 import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
-import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
-import BattagliaNavaleProject.control.DoubleGameGridControl;
-import BattagliaNavaleProject.control.TurniControl;
 
 public class DoubleGameGridView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static final int GRID_DIMENSION = 10;
-	private static final int Square_SIZE = 60;
 	private JFrame frame;
 	public JPanel yourBoardPanel;
 	public JPanel opponentBoardPanel;
-	private int a;
-	private int b;
 	private JPanel centralTopPanel;
 	public Square[][] yourBoard;
 	public Square[][] opponentBoard;
@@ -56,7 +46,6 @@ public class DoubleGameGridView extends JFrame {
 	private JLabel contaLabel;
 	private JLabel contaLabel2;
 	private JLabel spazio;
-	private int selectedShip;
 	private final Border topLeftBorder = BorderFactory.createMatteBorder(1, 1, 0, 0, Color.black);
 	private final Border topLeftBottomBorder = BorderFactory.createMatteBorder(1, 1, 1, 0, Color.black);
 	private final Border topLeftRightBorder = BorderFactory.createMatteBorder(1, 1, 0, 1, Color.black);
@@ -66,75 +55,12 @@ public class DoubleGameGridView extends JFrame {
 	private JPanel turnoPanel;
 	public JPanel shipsPanel2;
 
-
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run()
-			{
-				try 
-				{
-					DoubleGameGridView frame = new DoubleGameGridView();
-					frame.setVisible(true);
-				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-
-
-
-
-	}*/
-
-	/*public DoubleGameGridGUI()
-	{
-		socket = this.socket;
-		this.frame = new JFrame("Battaglia Navale");
-		setSize(1400,788);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//centralPanel = new JPanel(new BorderLayout());
-		c = new GridBagConstraints();
-		c1 = new GridBagConstraints();
-		c2 = new GridBagConstraints();
-		gridPanel =  new JPanel();
-		centralTopPanel = new JPanel();
-		JPanel backgroundPanel = new JPanel();
-		/*final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoGriglia.jpg");
-		Image image = sfondo.getImage();
-        final Image scaledImage = image.getScaledInstance(1450, 816, Image.SCALE_SMOOTH);
-
-		JPanel backgroundPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(scaledImage, 0, 0, getWidth(), getHeight(), this);
-            }
-        };*/
-	//getContentPane().add(backgroundPanel);
-
-	/*centralTopPanel.setBackground(Color.BLUE);
-		centralTopPanel.setPreferredSize(new Dimension(50, 50));
-		getContentPane().add(centralTopPanel, BorderLayout.NORTH);
-
-		createGrid();
-
-		getContentPane().add(gridPanel, BorderLayout.CENTER);
-
-
-		frame.pack();
-		setLocationRelativeTo(null);
-		setVisible(true);
-	}*/
-
 	public DoubleGameGridView(String username) throws IOException 
 	{
 		this.username = username;
 		this.frame = new JFrame("Battaglia Navale");
 		setSize(1400,788);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//centralPanel = new JPanel(new BorderLayout());
 		c = new GridBagConstraints();
 		c1 = new GridBagConstraints();
 		c2 = new GridBagConstraints();
@@ -142,19 +68,6 @@ public class DoubleGameGridView extends JFrame {
 		c3.fill = GridBagConstraints.BOTH;
 		gridPanel =  new JPanel();
 		centralTopPanel = new JPanel();
-		JPanel backgroundPanel = new JPanel();
-		/*final ImageIcon sfondo = new ImageIcon("../docs/resources/SfondoGriglia.jpg");
-		Image image = sfondo.getImage();
-        final Image scaledImage = image.getScaledInstance(1450, 816, Image.SCALE_SMOOTH);
-
-		JPanel backgroundPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(scaledImage, 0, 0, getWidth(), getHeight(), this);
-            }
-        };*/
-		//getContentPane().add(backgroundPanel);
 
 		JLabel usernameLabel = new JLabel(username);
 		usernameLabel.setForeground(Color.white);
@@ -162,7 +75,6 @@ public class DoubleGameGridView extends JFrame {
 		centralTopPanel.setBackground(Color.decode("#5C99D6"));
 		centralTopPanel.setPreferredSize(new Dimension(50, 50));
 		getContentPane().add(centralTopPanel, BorderLayout.NORTH);
-
 
 		centralTopPanel.add(usernameLabel);
 
@@ -178,14 +90,14 @@ public class DoubleGameGridView extends JFrame {
 		turnoPanel.setVisible(false);
 		creaAffondati();
 	}
-
+	
+	//Metodo che crea il pannello delle barche,
+	//crea le barche in base alla loro lunghezza e infine le posiziona sopra il pannello
 	private void boatList(ArrayList<Integer> dim)
 	{	
 		panel= new JPanel[GRID_DIMENSION];
-		selectedShip = 0;
 		shipsPanel = new JPanel();
 		shipsPanel.setLayout(new FlowLayout());
-		JLabel selectorLabel;
 		int boatLength;
 		shipsPanel.setBackground(Color.decode("#5C99D6"));
 		shipsPanel.setPreferredSize(new Dimension(100,100));
@@ -257,6 +169,7 @@ public class DoubleGameGridView extends JFrame {
 		return dim;
 	}
 
+	//Meotodo che crea il pannello per contare le barche affondate
 	public void creaAffondati() {
 
 		contaLabel = new JLabel("Barche affondate: "+ 0+ "");
@@ -284,50 +197,48 @@ public class DoubleGameGridView extends JFrame {
 
 
 	}
-
-
-
-
-
+	
+	//Metodo che crea le griglie
 	public void createGrid()
 	{	Griglia g= new Griglia("yourboard");
-		Griglia go= new Griglia("oppponentboard");
-		yourBoardPanel = new JPanel();
-		opponentBoardPanel = new JPanel();
-		yourBoard = new Square[GRID_DIMENSION][GRID_DIMENSION];
-		opponentBoard = new Square[GRID_DIMENSION][GRID_DIMENSION];
-		yourBoardPanel.setLayout(new GridLayout(GRID_DIMENSION+2, GRID_DIMENSION+2, 0, 0));
-		opponentBoardPanel.setLayout(new GridLayout(GRID_DIMENSION+2, GRID_DIMENSION+2, 0, 0));
+	Griglia go= new Griglia("opponentboard");
+	yourBoardPanel = new JPanel();
+	opponentBoardPanel = new JPanel();
+	yourBoard = new Square[GRID_DIMENSION][GRID_DIMENSION];
+	opponentBoard = new Square[GRID_DIMENSION][GRID_DIMENSION];
+	yourBoardPanel.setLayout(new GridLayout(GRID_DIMENSION+2, GRID_DIMENSION+2, 0, 0));
+	opponentBoardPanel.setLayout(new GridLayout(GRID_DIMENSION+2, GRID_DIMENSION+2, 0, 0));
 
-		grigliaView();
-		gridPanel.setLayout(new GridBagLayout());
+	grigliaView();
+	gridPanel.setLayout(new GridBagLayout());
 
-		yourBoardPanel.setPreferredSize(new Dimension(600,600));
-		c.ipadx = 35;
-		c.gridx = 0;
-		c.gridy = 0;
-		c.weightx = 1.0;
-		c.weighty = 1.0;
-		c.fill= GridBagConstraints.BOTH;
-		gridPanel.add(yourBoardPanel, c);
+	yourBoardPanel.setPreferredSize(new Dimension(600,600));
+	c.ipadx = 35;
+	c.gridx = 0;
+	c.gridy = 0;
+	c.weightx = 1.0;
+	c.weighty = 1.0;
+	c.fill= GridBagConstraints.BOTH;
+	gridPanel.add(yourBoardPanel, c);
 
-		opponentBoardPanel.setPreferredSize(new Dimension(600,600));
-		c1.ipadx = 35;
-		c1.gridx = 1;
-		c1.gridy = 0;
-		c1.weightx = 1.0;
-		c1.weighty = 1.0;
-		c1.fill= GridBagConstraints.BOTH;
-		gridPanel.add(opponentBoardPanel,c1);
-		//getContentPane().add(yourBoardPanel, BorderLayout.WEST);
-		dim=getDimNavi();
-		boatList(dim);
-		waitPanelCreation();
-		turnoPanelCreation();
-		//createIcon(a,b);
-		frame.pack();
+	opponentBoardPanel.setPreferredSize(new Dimension(600,600));
+	c1.ipadx = 35;
+	c1.gridx = 1;
+	c1.gridy = 0;
+	c1.weightx = 1.0;
+	c1.weighty = 1.0;
+	c1.fill= GridBagConstraints.BOTH;
+	gridPanel.add(opponentBoardPanel,c1);
+	//getContentPane().add(yourBoardPanel, BorderLayout.WEST);
+	dim=getDimNavi();
+	boatList(dim);
+	waitPanelCreation();
+	turnoPanelCreation();
+	//createIcon(a,b);
+	frame.pack();
 
 	}
+	//Metodo che viene chiamato per gestire l'aggiunta delle lettere e dei numeri all'esterno della griglia 
 	public void grigliaView()
 	{
 
@@ -365,13 +276,10 @@ public class DoubleGameGridView extends JFrame {
 				else
 				{
 					yourBoard[i][j]= new Square(i,j,0, "yourboard");
-					
-					//yourBoard[i][j].addMouseListener(this);//
-					yourBoard[i][j].setName("yourBoard");//
+					yourBoard[i][j].setName("yourBoard");
 					yourBoardPanel.add(yourBoard[i][j]);
 					opponentBoard[i][j]= new Square(i,j,0, "opponentboard");
-
-					opponentBoard[i][j].setName( "opponentBoard" ); //
+					opponentBoard[i][j].setName( "opponentBoard" ); 
 					opponentBoardPanel.add(opponentBoard[i][j]);
 
 					setBordi(i, j);
@@ -379,6 +287,8 @@ public class DoubleGameGridView extends JFrame {
 			}
 		}
 	}
+	
+	//Metodo che si occupa di aggiungere i bordi in base alla posizione delle celle
 	public void setBordi(int i, int j)
 	{
 		if(i == GRID_DIMENSION-1 && j == GRID_DIMENSION -1 )
@@ -404,6 +314,7 @@ public class DoubleGameGridView extends JFrame {
 			opponentBoard[i][j].setBorder(topLeftBorder);
 		}
 	}
+	//Metodo che crea un pannello che indicherà a video quando è il turno dell'avversario
 	public void waitPanelCreation() {
 		// TODO Auto-generated method stub
 		waitPanel = new JPanel();
@@ -426,6 +337,7 @@ public class DoubleGameGridView extends JFrame {
 		waitPanel.add(attesa);
 		waitPanel.setVisible(true);
 	}
+	//Metodo che crea un pannello che indicherà a video quando è il turno dell'utente
 	public void turnoPanelCreation() {
 		// TODO Auto-generated method stub
 		turnoPanel = new JPanel();
@@ -453,30 +365,6 @@ public class DoubleGameGridView extends JFrame {
 
 	}
 
-	public void createIcon(int a, int b){
-
-		// Creazione di un frame
-
-
-		// Creazione di un'icona
-		ImageIcon icon = new ImageIcon("/docs/resources/iconabarca.jpg"); // Sostituisci "path_to_your_image_file.jpg" con il percorso del tuo file immagine
-
-		// Creazione di una JLabel con l'icona
-		JLabel label = new JLabel(icon);
-		// Aggiunta della JLabel al frame
-		opponentBoard[a][b].getRootPane().add(label, opponentBoard[a][b].getLayout());
-
-		// Visualizzazione del frame
-		opponentBoard[a][b].revalidate();
-		opponentBoard[a][b].repaint();
-	}
-
-	/*public void mostra() {
-		// TODO Auto-generated method stub
-		yourBoardPanel.addMouseListener(DGGC);//
-
-	}
-	 */
 	public JPanel[] getPanel() {
 		return panel;
 	}
@@ -489,6 +377,7 @@ public class DoubleGameGridView extends JFrame {
 		return username;
 	}
 
+	//Metodo per aggiungere i listener alle barche
 	public void addMouseBarche(MouseListener act)
 	{
 		ArrayList<Integer> dim = getDimNavi();
@@ -496,9 +385,8 @@ public class DoubleGameGridView extends JFrame {
 		{
 			panel[i].addMouseListener(act);
 		}
-		System.out.println("sono entrato");
 	}
-
+	//Metodo per rimuovere i listener dalle barche
 	public void removeMouseBarche(MouseListener act)
 	{
 		ArrayList<Integer> dim = getDimNavi();
@@ -507,7 +395,7 @@ public class DoubleGameGridView extends JFrame {
 			panel[i].removeMouseListener(act);
 		}
 	}
-
+	//Metodo per aggiungere i listener alla griglia dell'utente
 	public void addMouseGriglia(MouseListener act)
 	{
 		for(int i = 0; i<GRID_DIMENSION; i++)
@@ -518,7 +406,7 @@ public class DoubleGameGridView extends JFrame {
 			}
 		}
 	}
-
+	//Metodo per rimuovere i listener dalla griglia dell'utente
 	public void removeMouseMiaGrigilia(MouseListener act)
 	{
 		for(int i = 0; i<GRID_DIMENSION; i++)
@@ -530,10 +418,12 @@ public class DoubleGameGridView extends JFrame {
 		}
 	}
 
+	//Metodo per aggiungere i listener alla griglia dell'avversario
 	public void addListenerOpponentGriglia(MouseListener act, int i, int j)
 	{
 		opponentBoard[i][j].addMouseListener(act);
 	}
+	//Metodo per rimuovere i listener dalla griglia dell'avversario
 	public void addListenerCasellaVuota(MouseListener act, int i, int j)
 	{
 		if(yourBoard[i][j].getStato()!=1)
@@ -541,13 +431,13 @@ public class DoubleGameGridView extends JFrame {
 			yourBoard[i][j].addMouseListener(act);
 		}
 	}
-
+	//Metodo per rimuovere i listener da una determinata cella nella griglia dell'utente
 	public void removeMouseListener(MouseListener act, int i, int j)
 	{
 		yourBoard[i][j].removeMouseListener(act);
 	}
 
-
+	//Metodo per rimuovere i listener da una determinata cella nella griglia dell'avversario
 	public void removeListenerOpponent(MouseListener act, int i, int j)
 	{
 		opponentBoard[i][j].removeMouseListener(act);

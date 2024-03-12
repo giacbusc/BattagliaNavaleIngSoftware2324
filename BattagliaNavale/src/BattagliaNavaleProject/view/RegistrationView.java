@@ -3,11 +3,9 @@ package BattagliaNavaleProject.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-//import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -23,10 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingWorker;
 
-import BattagliaNavaleProject.control.LoginControl;
-import BattagliaNavaleProject.control.RegistrationControl;
 import BattagliaNavaleProject.formModel.RegistrationModel;
 
 
@@ -44,6 +39,7 @@ public class RegistrationView extends JFrame  implements Observer{
 	private JButton backbutton;
 	private RegistrationModel model;
 
+	//Classe che gestisce la visualizzazione della schermata di registration
 	public RegistrationView() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -172,7 +168,7 @@ public class RegistrationView extends JFrame  implements Observer{
 
 		backbutton = new JButton("Back");
 		backbutton.setContentAreaFilled(false);
-		backbutton.setBounds(528, 284, 108, 25);
+		backbutton.setBounds(507, 284, 108, 25);
 		backbutton.setBackground(new Color(0, 0, 0, 0));
 		backbutton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		backgroundPanel.add(backbutton);
@@ -222,11 +218,7 @@ public class RegistrationView extends JFrame  implements Observer{
 		});
 	}
 
-	public void addActionReg(ActionListener act)
-	{
-		btnRegistration.addActionListener(act);
-	}
-
+	//Metodo per aggiungere un action listener al bottone back
 	public void addActionBack(ActionListener act)
 	{
 		backbutton.addActionListener(act);
@@ -240,27 +232,11 @@ public class RegistrationView extends JFrame  implements Observer{
 	public void showMessage(String msg){
 		JOptionPane.showMessageDialog(this, msg);
 	}
-
+	
+	//Metodo per aggiungere un action listener al bottone registration
 	public void addRecListener(ActionListener log) {
 		btnRegistration.addActionListener(log);
 	}
-
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegistrationView frame = new RegistrationView();
-					frame.setVisible(true);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
 
 	public void setObserver(Observer obs)
 	{

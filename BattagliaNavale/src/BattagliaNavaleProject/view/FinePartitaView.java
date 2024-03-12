@@ -15,27 +15,8 @@ public class FinePartitaView extends JFrame implements ActionListener {
 	private JButton menuButton;
 	private JButton exitButton;
 	MenuPrincipaleView menu;
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run()
-			{
-				try 
-				{
-					FinePartitaView frame = new FinePartitaView("miao", "HAI VINTO");
-				    frame.setVisible(true);
-			}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-		
-	}
-	*/
-
 	
+	//Classe che gestisce la visualizzazione del menu di fine partita
 	public FinePartitaView(String userName, String messaggio) throws IOException, SQLException 
 	{
 		this.userName = userName;
@@ -56,13 +37,23 @@ public class FinePartitaView extends JFrame implements ActionListener {
         getContentPane().add(backgroundPanel);
 		backgroundPanel.setLayout(null);
 		
+		
 		final JLabel userLabel = new JLabel(userName);
 		userLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 		userLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		userLabel.setBounds(530, 30, 425, 40);
 		backgroundPanel.add(userLabel);
 		
+		ImageIcon icon = new ImageIcon("../docs/resources/Logo.png");
+		Image image = icon.getImage();
+		Image scaledImage = image.getScaledInstance(160, 160, Image.SCALE_SMOOTH);
+		ImageIcon scaledIcon = new ImageIcon(scaledImage);
 		
+		JLabel logoLabel = new JLabel(scaledIcon);
+		logoLabel.setPreferredSize(new Dimension(200,200));
+		logoLabel.setBounds(0, 0, 200, 200);
+		logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		backgroundPanel.add(logoLabel);
 		
 		final JLabel lblNewLabel_3 = new JLabel("Vuoi giocare ancora?");
         lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -76,25 +67,11 @@ public class FinePartitaView extends JFrame implements ActionListener {
         lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundPanel.add(lblNewLabel_4);
         
-        ImageIcon icon = new ImageIcon("../docs/resources/Logo.png");
-        Image image = icon.getImage();
-        Image scaledImage = image.getScaledInstance(160, 160, Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(scaledImage);
-        
         final JLabel pcSoloLabel= new JLabel("TORNA AL MENU");
         pcSoloLabel.setHorizontalAlignment(SwingConstants.CENTER);
         pcSoloLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
         pcSoloLabel.setBounds(545,286,367,80);
         backgroundPanel.add(pcSoloLabel);
-        
-        
-       //ImageIcon icon2 = new ImageIcon("2.png");
-        JLabel infoPlayerLabel = null;
-		try {
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
        
         JLabel lblNewLabel_2 = new JLabel(msg);
         lblNewLabel_2.setForeground(new Color(0, 128, 255));
@@ -179,7 +156,7 @@ public class FinePartitaView extends JFrame implements ActionListener {
         pcMutliLabel.setBounds(588,482,306,76);
         backgroundPanel.add(pcMutliLabel);
         
-	    exitButton = new JButton("  ");
+	    exitButton = new JButton();
 	    exitButton.setName("esci");
 	    exitButton.setBackground(new Color(0, 0, 255));
 	    exitButton.setBackground(new Color(0, 0, 0, 0));
@@ -187,9 +164,6 @@ public class FinePartitaView extends JFrame implements ActionListener {
 	    exitButton.setPreferredSize(new Dimension(170, 50));
 	    exitButton.setBounds(533, 469, 407, 106);
 	    backgroundPanel.add(exitButton);
-	    
-	    
-	   //pcMultiButton.addActionListener(new MenuPrincipaleControl(this));
 	    
 	    exitButton.addMouseListener(new MouseListener()
 	    {
@@ -244,22 +218,19 @@ public class FinePartitaView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 	}
-	    
+	//Metodo utilizzato per aggiungere un action listener al pulsante menu
 	public void aggiungiListenerMenu(ActionListener act)
 	{
 		menuButton.addActionListener(act);
 	}
-
+	//Metodo utilizzato per aggiungere un action listener al pulsante exit
 	public void aggiungiListenerExit(ActionListener act)
 	{
 		exitButton.addActionListener(act);
 	}
 
-
-
-	
 	                    
-	}
+}
 
 	
 

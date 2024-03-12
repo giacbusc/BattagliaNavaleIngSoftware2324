@@ -29,7 +29,7 @@ public class DoubleGameGridTest {
 		int[] arrayRisposta = {0, 0, 0, -1, -1, -1, -1,-1};
 		DGGC.setArrayRisposta(arrayRisposta);
 		DGGC.colorabianco();
-
+		//Verifica se la cella selezionata viene colorata di bianco
 		assertEquals(Color.white,DGGC.grid.yourBoard[0][0].getColor());
 
 	}
@@ -43,7 +43,7 @@ public class DoubleGameGridTest {
 		int[] arrayRisposta = {0, 0, 0, -1, -1, -1, -1};
 		DGGC.setArrayRisposta(arrayRisposta);
 		DGGC.colorebarca(DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)]);
-		
+		//Verifica se quando viene inserito un sottomarino, la griglia si colora del colore corretto
 		assertEquals(Color.decode("#00E6AC"), DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)].getColor());
 	}
 	
@@ -57,7 +57,7 @@ public class DoubleGameGridTest {
 		int[] arrayRisposta = {0, 0, 0, -1, -1, -1, -1};
 		DGGC.setArrayRisposta(arrayRisposta);
 		DGGC.colorebarca(DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)]);
-		
+		//Verifica se quando viene inserito una barca cruiser, la griglia si colora del colore corretto
 		assertEquals(Color.decode("#9AFF6B"), DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)].getColor());
 	}
 	
@@ -69,7 +69,7 @@ public class DoubleGameGridTest {
 		int[] arrayRisposta = {0, 0, 0, -1, -1, -1, -1};
 		DGGC.setArrayRisposta(arrayRisposta);
 		DGGC.colorebarca(DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)]);
-		
+		//Verifica se quando viene inserito una barca destroyer, la griglia si colora del colore corretto
 		assertEquals(Color.decode("#FFC20A"), DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)].getColor());
 	}
 	
@@ -82,7 +82,7 @@ public class DoubleGameGridTest {
 		int[] arrayRisposta = {0, 0, 0, -1, -1, -1, -1};
 		DGGC.setArrayRisposta(arrayRisposta);
 		DGGC.colorebarca(DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)]);
-		
+		//Verifica se quando viene inserito una barca aircraft, la griglia si colora del colore corretto
 		assertEquals(Color.decode("#D147D1"), DGGC.grid.yourBoard[DGGC.getArrayRisposta(0)][DGGC.getArrayRisposta(1)].getColor());
 	}
 	
@@ -97,6 +97,9 @@ public class DoubleGameGridTest {
 		int[] arrayRisposta = {0, 0, 0, -1, -1, 0, -1};
 		DGGC.setArrayRisposta(arrayRisposta);
 		DGGC.ricevimsg(null);
+		//Verifica se il metodo ricevi msg funziona correttamente
+		//Verifica perciò che le celle vicino alle celle selezionate si colorino di grigio per indicare
+		//che la barca può essere posizionata in quei punti
 		assertEquals(Color.gray, DGGC.grid.yourBoard[1][DGGC.getArrayRisposta(1)].getColor());
 	}
 	

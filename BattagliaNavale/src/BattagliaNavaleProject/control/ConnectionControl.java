@@ -6,11 +6,7 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-import BattagliaNavaleProject.formModel.LoginModel;
-import BattagliaNavaleProject.view.DoubleGameGridView;
 import BattagliaNavaleProject.view.Observer;
-import BattagliaNavaleProject.view.SchermataAttesaView;
-import BattagliaNavaleProject.view.SchermataInizialeView;
 import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 
 public class ConnectionControl {
@@ -19,38 +15,6 @@ public class ConnectionControl {
 	static ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 	Observer obs;
 	private DoubleGameGridControl DGGC;
-
-	/*
-	 * public ConnectionControl(SchermataAttesaView sav, String userName) throws
-	 * IOException { this.sav = sav; this.userName = userName;
-	 * 
-	 * try { System.out.println("Connecting to th server");
-	 * 
-	 * // Socket to talk to server socket.connect("tcp://172.16.128.218:5545");
-	 * 
-	 * 
-	 * for (int requestNbr = 0; requestNbr != 10; requestNbr++) { String request =
-	 * "Hello"; System.out.println("Sending Hello " + requestNbr);
-	 * socket.send(request.getBytes(ZMQ.CHARSET), 0);
-	 * 
-	 * byte[] reply = socket.recv(0); System.out.println( "Received " + new
-	 * String(reply, ZMQ.CHARSET) + " " + requestNbr ); }
-	 * 
-	 * }finally {}
-	 * 
-	 * String sendMsg = model.getUserName();
-	 * 
-	 * byte[] byteMsg = socket.recv(0); String rispostaMsg= new String(byteMsg,
-	 * ZMQ.CHARSET);
-	 * 
-	 * if(rispostaMsg.equals("OK")) { DoubleGameGridView DGG = new
-	 * DoubleGameGridView(socket); } else if(rispostaMsg.equals("ERROR")) { //Qui
-	 * dobbiamo chiamare una funzione che faccia uscire a video nella schermata di
-	 * attesa che qualcosa //è andato storto nella connessione
-	 * System.out.println("C'è stato un errore nella connessione."); } else
-	 * if(rispostaMsg.equals("DUPL")) { SchermataInizialeView scv= new
-	 * SchermataInizialeView(); sav.close(socket); } }
-	 */
 
 	public ConnectionControl(SchermataAttesaControl sac, String userName, Observer obs, TornaMenuPrincipale tmp)
 			throws IOException, InterruptedException {
@@ -63,14 +27,6 @@ public class ConnectionControl {
 			// Socket to talk to server
 			socket.connect(indirizzo);
 
-			/*
-			 * String request = "Hello"; System.out.println("Sending Hello ");
-			 * socket.send(request.getBytes(ZMQ.CHARSET), 0);
-			 * 
-			 * byte[] reply = socket.recv(0); System.out.println( "Received " + new
-			 * String(reply, ZMQ.CHARSET) + " ");
-			 */
-
 			String sendMsg = userName;
 			socket.send(sendMsg.getBytes(ZMQ.CHARSET), 0);
 			System.out.println(sendMsg);
@@ -79,20 +35,21 @@ public class ConnectionControl {
 			String rispostaMsg = new String(byteMsg, ZMQ.CHARSET);
 
 			if (rispostaMsg.equals("OK")) {
+				//Se si riceve dal server OK viene aperta una schermata di attesa posizionamento
 				sac.chiudi();
 				sac = new SchermataAttesaControl("ATTESA POSIZIONAMENTO", userName, obs, tmp);
 			} else if (rispostaMsg.equals("ERROR")) {
-				// Qui dobbiamo chiamare una funzione che faccia uscire a video nella schermata
-				// di attesa che qualcosa
-				// è andato storto nella connessione
 				System.out.println("C'è stato un errore nella connessione.");
 			} else if (rispostaMsg.equals("DUPL")) {
+				//Se si riceve dal server DUPL viene aperta una nuova schermata iniziale
+				//DUPL viene inviato dal server nel momento in cui due utenti effettuano il login 
+				//con lo stesso account
 				obs.update();
 				sac.chiudi();
 			}
 
 			else if (rispostaMsg.equals("WAIT")) {
-
+				//Se si riceve WAIT l'utente aspetterà che un altro utente si connetta al server per giocare
 				while (true) {
 					sendMsg = "attesa";
 					System.out.println(sendMsg);
@@ -103,7 +60,8 @@ public class ConnectionControl {
 
 					if (rispostaMsg.equals("OK POS1")) {
 						try {
-
+							//Nel momento in cui si riceve OK POS1 significa che il secondo utente si è connesso
+							//perciò al primo utente si aprirà la griglia per posizionare le navi
 							String filepath = "./music/Background_game_music.wav";
 							SoundEffect se = new SoundEffect();
 
@@ -113,14 +71,10 @@ public class ConnectionControl {
 							sac.chiudi();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
-							// dario
 							e.printStackTrace();
 						}
 						break;
 					} else if (rispostaMsg.equals("ERROR")) {
-						// Qui dobbiamo chiamare una funzione che faccia uscire a video nella schermata
-						// di attesa che qualcosa
-						// è andato storto nella connessione
 						System.out.println("C'è stato un errore nella connessione.");
 					} else if (rispostaMsg.equals("DUPL")) {
 						obs.update();

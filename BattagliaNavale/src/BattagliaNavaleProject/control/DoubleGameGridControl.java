@@ -1,18 +1,13 @@
 package BattagliaNavaleProject.control;
 
 import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.io.IOException;
-import java.util.Arrays;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.SwingWorker;
-import javax.swing.TransferHandler;
 
 import org.zeromq.SocketType;
 import org.zeromq.ZContext;
@@ -20,7 +15,6 @@ import org.zeromq.ZMQ;
 
 import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.InfoBoat;
 import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
-import BattagliaNavaleProject.doubleGameGridModel.SoundEffect;
 import BattagliaNavaleProject.view.AggiuntaListener;
 import BattagliaNavaleProject.view.DoubleGameGridView;
 import BattagliaNavaleProject.view.Observer;
@@ -49,7 +43,6 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 	private String[] arraymsg = new String[3];
 	private TornaMenuPrincipale tmp;
 	private Observer obs;
-	// System.out.println("Connecting to th server");
 
 	// Socket to talk to server
 
@@ -677,8 +670,6 @@ public class DoubleGameGridControl implements MouseListener, AggiuntaListener{
 			}
 		};
 		worker.execute();
-
-		// grid.waitPanelCreation();
 
 	}
 
