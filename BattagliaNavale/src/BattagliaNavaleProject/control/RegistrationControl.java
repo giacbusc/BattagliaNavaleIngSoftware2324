@@ -144,6 +144,7 @@ public class RegistrationControl implements ActionListener {
 	public void openLogin() {
 		  
         log = new LoginControl();
+        log.getView().setObserver(this.getView().getObserver());
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 	        @Override
 	        protected Void doInBackground() throws Exception {
