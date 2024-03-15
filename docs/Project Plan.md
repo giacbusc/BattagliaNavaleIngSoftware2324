@@ -30,19 +30,19 @@
   - 1.14 Consegna
 
 ## 1. Project plan
-Il seguente project plan fa riferimento al progetto di Ingegneria del Software dei membri sopra citati, basato sullo sviluppo del gioco di Battaglia Navale in due differenti modalità: multiplayer e single player. 
-Il gioco consiste nel posizionare le proprie navi (ce ne sono di diverse grandezze) nella griglia e successivamente cercare di colpire le navi dell'avversario. <br>
-Ogni giocatore ha a disposizione un turno nel quale poter effettuare la propria mossa; se il colpo andasse a segno il turno non viene passato. <br>
+Il seguente project plan fa riferimento al progetto di Ingegneria del Software dei membri sopra citati, basato sullo sviluppo del gioco di Battaglia Navale in due differenti modalità: multiplayer sullo stesso pc e multiplayer su pc differenti collegati ad una rete locale. 
+Il gioco consiste nel posizionare le proprie navi (di diverse grandezze) sulla griglia e successivamente cercare di colpire le navi dell'avversario. <br>
+Ogni giocatore ha a disposizione un turno nel quale poter effettuare la propria mossa, successivamente il turno passerà al giocatore avversario. <br>
 Il giocatore che vince è colui che affonda per primo tutte le navi del suo avversario.
 
 ### 1.1 Background e Introduzione
-Il nostro lavoro è iniziato con un'attenta analisi dei requisiti, che è stata il fulcro dei primi incontro. I requisiti non sono dettati da un finanziatore o da utenti esterni, ma sono stati identificati dai membri del team. <br>
-Durante la prima riunione operativa si è deciso di sviluppare un software per un gioco, chiamato "Battaglia Navale", il quale verrà proposto agli utenti in duplice modalità: single player (contro la CPU) e multiplayer (con la connessione di più client tramite server). A seguito verrano illustrate nel dettaglio le funzionalità che verranno implementate e quelle che abbiamo considerato come possibili sviluppi futuri dell'app (1.2 modello MoSCoW) <br>
+Il nostro lavoro è iniziato con un'attenta analisi dei requisiti, che è stata il fulcro dei primi incontri. I requisiti non sono dettati da un finanziatore o da utenti esterni, ma sono stati identificati dai membri del team. <br>
+Durante la prima riunione operativa si è deciso di sviluppare un software per un gioco, chiamato "Battaglia Navale", il quale verrà proposto agli utenti in duplice modalità: una versione multiplayer locale (sullo stesso pc) e una versione multiplayer su pc differenti (collegati alla stessa rete). A seguito verrano illustrate nel dettaglio le funzionalità che verranno implementate e quelle che abbiamo considerato come possibili sviluppi futuri dell'app (1.2 modello MoSCoW) <br>
 Ci siamo posti come deadline per il primo prototipo il 30/12/2023 mentre per la versione finale il 18/01/2024.<br>
 
 ### 1.2 Modello di processo
 La fase iniziale dello sviluppo è stata dedicata alla definizione dei requisiti del software richiesti da parte del committente. Dal momento che la produzione del gioco non è stata commissionata bensì è stata un'idea spontanea, i requisiti sono stati definiti in base a quello che era ritenuto importante per il team e alla conoscenza del gioco dal quale il software ha origine.<br>
-La fase di lavoro dedicata all'iongegneria dei requisiti ha occupato la maggior parte delle risorse in quanto su questo abbiamo basato tutto il lavoro eseguito successivamente. <br> 
+La fase di lavoro dedicata all'ingegneria dei requisiti ha occupato la maggior parte delle risorse in quanto su questo abbiamo basato tutto il lavoro eseguito successivamente. <br> 
 In particolare ci siamo soffermati sulla *fattiblità*, valutata sia in termini di tempo, che di conoscenze, in quanto essendo un progetto potenzialmente aperto a molte implementazioni, abbiamo ritenuto importanti fissare da subito quali implementazioni potessero risultare infattibili (e quindi lasciate ad un possibile futuro, in caso chiedendo per il loro sviluppo una consulenza da parte di terzi). <br>
 Abbiamo definito i requisiti sulla base del modello MoSCoW come segue:
 <table>
@@ -96,8 +96,8 @@ Al termine di questa fase viene presentata una prima versione di gioco detta "al
 #### Manutenzione 
 Questa fase si occupa della correzione di eventuali bug che si sono presentati dopo la consegna del software. <br>
 Spesso infatti è solo con l'uso effettivo del sistema che si verificano errori e che nascono richieste di miglioramenti.
-Come piattaforma di Version Control System si è scelto di sfruttare GitHub che ci ha permesso di sfruttare le funzionalità di:< br >
--project con issue tracking, funzionalità la quale è stata fondamentale per la comunicazione tra i membri del team; è attraverso la creazione della Kanban board sche abbiamo gestito i vari issues e le varie attività da portare a termine <br> 
+Come piattaforma di Version Control System si è scelto di sfruttare GitHub che ci ha permesso di sfruttare le funzionalità di:<br>
+-project con issue tracking, funzionalità la quale è stata fondamentale per la comunicazione tra i membri del team; è attraverso la creazione della Kanban board che abbiamo gestito i vari issues e le varie attività da portare a termine <br> 
 -branch: attraverso la loro creazione abbiamo potuto gestire l'implementazione di diverse parti di codice in modo simultaneo e parallelo alla versione alpha del codice alla quale le modifiche sono state applicate solo su revisione di altri membri (anche questo è stato gestito con github)<br>
 
 
@@ -111,7 +111,7 @@ I lavori sono stati assegnati in base alle capacità personali, così da suddivi
 Il gioco è composto da due applicativi separati: <br>
 
 Server: Gestisce l'andamento del gioco multiplayer effettuando la connesione di più client (non possiede un'interfaccia grafica) <br>
-Client: Gestisce l'interfaccia grafica e l'interazione con l'utente, sia nelle fasi iniziali (registrazione, login, scelta della modalità di gioco) che nello svolgimento del gioco in versione single player <br>
+Client: Gestisce l'interfaccia grafica e l'interazione con l'utente, sia nelle fasi iniziali (registrazione, login, scelta della modalità di gioco) che nello svolgimento del gioco <br>
 Sia server che client sono scritti in Java, in un progetto maven, e per la comunicazione utilizzano H2Database per quanto riguarda la fase di registrazione e di login ed i socket per la gestione della connessione client e server nelle fasi del gioco.  <br>
 Per la grafica si è deciso di utilizzare la libreria JavaSwing ed è stata sviluppata interamente con linguaggio Java.
 
@@ -134,7 +134,7 @@ Non vi è stata una componente di aiuto esterno nella progettazione e nello svil
 La prima fase della progettazione è stata dedicata alla creazione di UML diagrams, ad esempio siamo partiti dal realizzare lo use case diagrams in modo da comprendere le funzionalità necessarie per la nostra applicazione. <br>
 A questo punto, il lavoro è iniziato dalla strutturazione del progetto con la realizzazione del modello MCV e la suddivisione dei diversi packages. Abbiamo lavorato secondo il modello XP, soprattuto nella fase iniziale infatti abbiamo sfruttato il pair programming. <br>
 La fase di documentazione non si è esaurita con l'ingegneria dei requisiti ma è proseguita in tutta la prima fase di lavoro, aggiornandola nel mentre in quanto, scontrandoci con limiti della programmazione (tempistici più che altro), abbiamo modificato i nostri obiettivi iniziali. <br>
-La documentazione però non è stata abbandonata con l'inizio della fase di implementazione, ma è continuata, è stta assegnata ad un componente del gruppo il quale si è incaricato di supervisionare il lavoro, modificando quando necessario e aggiornando in modo puntuale la documentazione di progetto, che è quindi sempre stata riferita alla versione più recente. In questo modo abbiamo tenuto traccia di tutte le possibili variazioni rese necessartie e che non erano state previste in fase di progettazione.<br>
+La documentazione però non è stata abbandonata con l'inizio della fase di implementazione, ma è continuata, è stata assegnata ad un componente del gruppo il quale si è incaricato di supervisionare il lavoro, modificando quando necessario e aggiornando in modo puntuale la documentazione di progetto, che è quindi sempre stata riferita alla versione più recente. In questo modo abbiamo tenuto traccia di tutte le possibili variazioni rese necessarie e che non erano state previste in fase di progettazione.<br>
 La fase di implementazione è stata quella più corposa ed è stata svolta in parallelo con quella di test, i timebox scelti sono stati volutamente molto brevi, così come le diverse mansioni affidate ai componenti del gruppo. In questo modo la fase di test e rilevamento di errori è stata facilitata, permettendoci di non continuare a lavorare su una versione del software mal funzionante ma avendo sempre a disposizione la versione migliore e più aggiornata. <br>
 Questo ci è stato possibile anche e soprattutto attraverso l'utilizzo dei branch, che con github ci hanno permesso di lavorare parallelamente al codice principale e di fare il merge a quest'ultimo solo una volta accertato che il codice creato era ben funzionante. <br>
 
@@ -147,7 +147,7 @@ Il fatto di avere due moduli separati per la parte client e server permette di a
 
 ### 1.10 Package di lavoro
 Il progetto del software è realizzato su maven e abbiamo gestito la sua struttura attraverso la configurazione di 2 moduli: client e server. <br>
-Il modulo del client è composto da quella parte di codice adibita alla visualizzazione del modello (ad esempio le classi *view* e *GUI*) e all'input/output da e verso l'utente. Tutta la parte del progetto che si occupa del gioco single player è implementata del modulo client in quanto si svolge in locale e non necessita collegamenti al server per funzionare. <br>
+Il modulo del client è composto da quella parte di codice adibita alla visualizzazione del modello (ad esempio le classi *view*) e all'input/output da e verso l'utente. <br>
 Il modulo del server invece ha la funzione di controller e gestisce il modello, il codice di questo modulo è quello che permette la connessione tra i client nel gioco. <br>
 Per quanto riguarda la suddivisione del lavoro all'interno del gruppo dopo la fase iniziale di ingegneria dei requisiti, durante la quale abbiamo collaborato ci siamo basati sulla struttura del progetto, lavorando, divisi in coppie, su un modulo per coppia, per poi collaborare nella creazione di parti comuni e ovviamente una volta terminato il lavoro assegnato si è collaborato per portare a termine il lavoro. <br>
 
