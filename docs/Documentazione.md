@@ -46,7 +46,7 @@
 
   
 ## Il progetto
-Realizzazione in Java del gioco Battaglia Navale, realizzato in due differenti modalità: multiplayer online e giocatore singolo contro la CPU. 
+Realizzazione in Java del gioco Battaglia Navale, realizzato in due differenti modalità: in locale su uno stesso pc oppure su pc diversi connessi alla stessa rete locale
 
 ### Guida rapida al gioco
 #### Scopo del gioco
@@ -59,9 +59,9 @@ Le navi non si possono toccare e possono essere disposte solo in orizzontale ed 
 
 #### Svolgimento del gioco
 I giocatori devono posizionare le proprie navi sulla propria griglia, composta da 10 righe e da 10 colonne. Una volta posizionate le navi, il gioco procede a turni.
-Il giocatore di turno "spara un colpo" selezionando sulla griglia dell'opponent la casella che si vuole colpire (la quale ha una specifica coordinata).
-Nel momento in cui il colpo va a segno, cioè il gioocatore ha colpito oppure affondato una nave, il turno non viene passato ed il giocatore può tentare un altro colpo. 
-Altrimenti, se il colpo non va a segno, il turno viene passato al giocatore avversario. 
+Il giocatore di turno "spara un colpo" selezionando sulla griglia dell'avversario la casella che si vuole colpire (la quale ha una specifica coordinata).
+Nel caso in cui il colpo va a segno, cioè il gioocatore ha colpito oppure affondato una nave, la griglia si colora rispettivamente di rosso o di nero, altrimenti la griglia si colorerà di blu per simboleggiare che il colpo è stato mancato.
+Successivamente il turno passerà al giocatore avversario.
 A vincere è il primo giocatore che affonda tutte le navi dell'avversario.
 
 ## 1. Project plan
@@ -196,7 +196,7 @@ L'interpretazione dell'output e l'immissione dell'input è facilitata dalla pres
 2.Rispetto alla manutenibilità e all'interazione con l'ambiente, ci aspettiamo che rispetti le seguenti qualità:
 - **Testabilità**: le funzionalità incluse sono testabili in qualunque momento tramite test manuali implementati attraverso l'utilizzo di JUnit
 - **Manutenibilità**: il software è stato sviluppato con l'obbiettivo di essere chiaro, cosi da permettere l'individualizzazione e la risoluzione di eventuali errori. A questo fine il team si è impegnato a eseguire una suddivisione del codice nelle diverse parti: il server ed il client sono divisi e inoltre vi è una distinzione tra le classi di logica, di modello e di interfaccia che permette una gestione migliore del codice.
-- **Flessibilità**: il software si presenza incline all'implementazione di nuove funzionalità
+- **Flessibilità**: il software si presenta incline all'implementazione di nuove funzionalità
 - **Riusabilità**: Sono state sfruttate e scritte librerie che possono essere riutilizzate in altri ambiti in quanto sono state sviluppate in modo indipendente dal contesto del gioco. <br>
 3. Infine,in riferimento alle qualità legate alla transizione del codice distinguiamo le qualità di:
 - **Portabilità**: Il gioco è eseguibile sui più diffusi sistemi operativi desktop (Windows, Linux, MacOS) dotati di una connessione internet.
@@ -205,7 +205,7 @@ L'interpretazione dell'output e l'immissione dell'input è facilitata dalla pres
 
 Abbiamo dedicato particolare attenzione alla **stabilita** e alla **tolleranza ai guasti**, soprattutto durante la fase di posizionamento degli elementi. Un notevole sforzo è stato fatto per garantire che, anche in presenza di azioni non corrette sull'interfaccia di gioco, il sistema rimanga stabile e non comprometta l'esperienza di gioco. <br>
 
-Inoltre, abbiamo implementato una logica ariticolata per gestire l'invio e la ricezione di messaggi, affrontando con successo la sfida della velocità di connessione, che in fase di test ha mostrato essere un ostacolo in quanto portava allo scambio di messaggi. Abbiamo introdotto rigidi controlli sia sull'invio che sulla ricezione dei messaggi, garantendo che non possano essere scambiati in modo improprio e mantenendo così la stabilità del programma. <br>
+Inoltre, abbiamo implementato una logica ariticolata per gestire l'invio e la ricezione di messaggi, affrontando con successo la sfida della velocità di connessione, che in fase di test ha mostrato essere un ostacolo in quanto portava ad uno scambio di messaggi errato. Abbiamo introdotto rigidi controlli sia sull'invio che sulla ricezione dei messaggi, garantendo che non possano essere scambiati in modo improprio e mantenendo così la stabilità del programma. <br>
 
 ## 6. Requirement Engineering
 I requisiti sono stati decisi in fase di elicitazione, durante la quale abbiamo utilizzato linguaggio formali e semiformali, cioè la descrizione in linguaggio naturale e la descrizione degli scenari attarverso diagrammmi UML (ad esempio lo use case lo abbiamo utilizzato per comprendere come l'utente potesse interagire col sistema). Abbiamo quindi redatto, a partire dai requisiti elicitati un documento identificato come Specifica dei Requisiti, il quale è stato alla base dell'attività di Validazione, necessaria per capire se stessimo costruendo nel modo giusto il nostro sistema. <br> 
@@ -271,7 +271,7 @@ Di seguito sono riportati i requisiti che costituiscono i Must Have del progetto
 
 #### 6.1.3 Posizionamento
 * Una volta eseguito l'accesso e decisa la modalità di gioco, si apre una schermata di attesa. Questa rimane visibile fino al momento in cui non si connette al server un secondo client (il quale deve avere un username diverso dal primo).<br>
-* Una volta connessi due client al primo dei due si apre la griglia di gioco, mentre il secondo rimane in attesa che il primo effettui il posizionamento delle barche nella griglia. <br>
+* Una volta connessi due client al primo dei due si apre la griglia di gioco, mentre il secondo rimane in attesa fino a che il primo non termina il posizionamento delle barche sulla griglia. <br>
 * Il posizionamento delle barche inizia con la scelta della barca, una volta selezionata questa viene tolta dal pannello sottostante alla griglia e va posizionata in un punto. <br> 
 * Non deve essere possibile selezionare due barche di fila in questo momento. <br>
 * Supponiamo che il primo click che si effettua sulla griglia inidichi un estremo della barca.<br>
@@ -284,10 +284,10 @@ Di seguito sono riportati i requisiti che costituiscono i Must Have del progetto
 * Terminati i posizionamenti delle barche, il turno deve passare a colui che si era connesso per primo. <br>
 * In questa fase la mia grilia non deve essere cliccabile, così come la grilia dell'avversario quando non è il mio turno <br>
 * Deve essere presente un pannello che indichi quando è il turno del client
-* Deve essere presente un pannello che ci faccia capire l'avanzamento del gioco indicando il numero di parche affondate da me e dal mio avversario 
+* Deve essere presente un pannello che ci faccia capire l'avanzamento del gioco indicando il numero di barche affondate da me e dal mio avversario 
 * Il client ora deve cercare di colpire una barca dell'avversario cliccando sulla griglia alla sua destra. <br>
 * Cliccata una cella bisogna verificare quale sia il suo stato nella griglia dell'avversario e settare la cella in base a questo:
-* * se la cella cliccata contiene una barca di lunghezza 1 la cella diventa nera perchè affondata
+  * se la cella cliccata contiene una barca di lunghezza 1 la cella diventa nera perchè affondata
   * se la cella cliccata contiene una barca di lunghezza maggiore di 1 diventa colpita, si effettua il controllo sullon stato delle caselle della barca, se sono tutte colpite allora la barca diventa affondata
   * se la cella colpita non contiene barche diventa blu, indicando che è stata colpita l'acqua
 * Quando sono state affondate tutte le barche il gioco termina e compare la schermata finale
@@ -298,14 +298,14 @@ I requisiti specificati nel punto 6.1 sono quelli che abbiamo concordato essere 
 Seguendo la classificazione Moscow, come già anticipato nel project plan, abbiamo etichettato anche altri vari requisiti, giudicati dal team come non fondamentali.<br>
 ### 6.2.1 Should Have
 I requisiti ritenuti importanti ma non necessari, i quali abbiamo deciso di lasciare alla fine nel caso fosse stato possibile implementarli nel tempo a disposizione sono:
-* Visualizzazione di una classifica generale degli utenti tenendo in considerazione delle vittorie e delle sconfitte
+* Visualizzazione di una classifica generale degli utenti tenendo in considerazione delle vittorie
 * Implementazione di suoni interattivi durante il gioco, e come sottofondo. Ad esempio associare un suono all'esito del colpo.
 * Rendere possibile la connessione di più di due giocatori per permettere di giocare un torneo invece che singole partite
 * Inserire un tutorial che aiuti la comprensione del gioco e migliori l'usabilità
 * Permettere la scelta della lingua delle schermate iniziali attarverso un bottone nella GUI
 ### 6.2.2 Could Have
 I requisiti ritenuti come secondari ed omettibili, si trovano tra i could have. Non sono stati implementati e vengono lasciati come requisiti futuri, implementabili in versioni successive del gioco:
-* Rendere le navi più grafiche attraverso l'utilizzo di icone, le quali possono essere modificate dall'utente
+* Personalizzazione grafica delle navi da parte dell'utente
 * Possibilità di scegliere il livello di difficoltà del gioco, inteso come grandezza della griglia sulla quale posizionare le navi
 * Implementazione gioco single Player contro la CPU
 * Animazioni grafiche
@@ -342,8 +342,9 @@ Abbiamo utilizzato il diagramma di sequenza soprattutto quando abbiamo iniziato 
  
 ### 7.3 Diagramma delle attività
 Con il diagramma di attività è mostrato il comportamento del sistema nella fase che anticipa il gioco vero e proprio. <br>
-Nel modello è rappresentato sia il passaggio iniziale di login e registrazione, sia il delicato passaggio delle attese dei giocatori. Questo passaggio, cioè quello successivo alla scelta del gioco e che anticipa il gioco di per sè, inteso come susseguirsi di mosse al fine di colpire le barche avverdarie, è stata la parte più laboriosa del programma e, proprio per questo, ci è stato utile modellarla anche con questo diagramma oltre che col precedente. <br>
-Il diagramma è stato modellato dal punto di vista del primo Client che si collega al Server, ossia quello che per primo inizia il piazzamento ed il gioco. Entrambe le volte il segnale che gli permette di iniziare l'operazione arriva quando il Server, comunicando col secondon Client, sa che la fase precedente è terminata per entrambi i giocatori. Non deve essere possibile per il primo Client avanzare nelle fasi del gioco se anche il secondo Client non è pronto.<br>
+Nel modello è rappresentato sia il passaggio iniziale di login e registrazione, sia il delicato passaggio delle attese dei giocatori. Questo passaggio, cioè quello successivo alla scelta del gioco e che anticipa il gioco di per sè, inteso come susseguirsi di mosse al fine di colpire le barche avversarie, è stata la parte più laboriosa del programma e, proprio per questo, ci è stato utile modellarla anche con questo diagramma oltre che col precedente. <br>
+Il diagramma è stato modellato dal punto di vista del primo Client che si collega al Server, ossia quello che per primo inizia il piazzamento ed il gioco. Entrambe le volte il segnale che gli permette di iniziare l'operazione arriva quando il Server, comunicando col secondo
+Client, sa che la fase precedente è terminata per entrambi i giocatori. Non deve essere possibile per il primo Client avanzare nelle fasi del gioco se anche il secondo Client non è pronto.<br>
 <img style="width: 700px;" src="Diagrammi%20UML/Diagramma%20delle%20Attività.jpg">
  <br>
  
@@ -370,20 +371,19 @@ Questi diagrammi ci consentono di visualizzare in modo chiaro e organizzato le v
 
 ## 8. Software Architecture
 ### 8.1 Struttura MVC
-Il software abbiamo deciso di basarlo sullo stile architetturale MVC (Model-View-Control):
--VIEW: la view è l'insieme delle gui che gestiscono l'interfaccia utente e attraverso le quali vengono inseriti gli input. Attraverso l'interfaccia l'utente durante il gioco manipola i dati. Tale manipolazione è realizzata del Control. (Ad esempio attraverso i click sulla caselle della griglia cambio lo stato della griglia.)
--MODEL: rappresenta i dati e gestisce le loro modifiche. Il model gestisce poi la visualizzazione dell'interfaccia utente attraverso il controller.
+Abbiamo deciso di basare il software sullo stile architetturale MVC (Model-View-Control):
+<br>-VIEW: la view è l'insieme delle gui che gestiscono l'interfaccia utente e attraverso le quali vengono inseriti gli input. Attraverso l'interfaccia l'utente durante il gioco manipola i dati. Tale manipolazione è realizzata dal Control. (Ad esempio attraverso i click sulla caselle della griglia cambio lo stato della griglia.)
+<br>-MODEL: rappresenta i dati e gestisce le loro modifiche. Il model gestisce poi la visualizzazione dell'interfaccia utente attraverso il controller.
 <br>
 Esempio di utilizzo di MVC nel progetto:<br>
-durante il gioco un utente prova a colpire una barca dell'avversario sulla griglia a destra. L'utente cliccando da un input al programma che viene elaborato attraverso le classi di logica del control. Queste comunicano con il socket e verificano lo stato della casella. Nel momento in cui la casella viene controllata possiamo dire che lo stato della cella cambia. Può essere parte di una barca e quindi identificare che la barca è stata colpita, oppure che la barca è stata affondata. Lo stato della casella è all'interno del model e viene modificato dal control. Una modifica del model porta ad una modifica della View infatti la casella a seconda del suo stato cambia colore.<br>
+Durante il gioco un utente prova a colpire una barca dell'avversario sulla griglia a destra. L'utente cliccando da un input al programma che viene elaborato attraverso le classi di logica del control. Queste comunicano con il socket e verificano lo stato della casella. Nel momento in cui la casella viene controllata possiamo dire che lo stato della cella cambia. Può essere parte di una barca e quindi identificare che la barca è stata colpita, oppure che la barca è stata affondata. Lo stato della casella è all'interno del Model e viene modificato dal Control. Una modifica del Model porta ad una modifica della View infatti la casella a seconda del suo stato cambia colore.<br>
 ### 8.2 Structure 101
 Durante la fase di implementazione e nella fase di refactoring abbiamo utilizzato Structure 101. <br>
 Structure101 è uno strumento di analisi e gestione della complessità del software. Esso fornisce una panoramica dettagliata dell'architettura del software, identificando dipendenze indesiderate, violazioni di regole di progettazione e altri problemi che possono compromettere la manutenibilità e la scalabilità del sistema nel tempo.
-Durante la fase di implementazione e nella fase di refactoring abbiamo utilizzato Structure 101
 Abbiamo, durante il refactoring, come spiegato al punto [11](https://github.com/buscst/BattagliaNavaleIngSoftware2324/edit/main/docs/Documentazione.md#11-refactoring) cercato di migliorare alcuni aspetti del codice,basandoci sulle percentuali fornite da Structure 101. <br>
-Attraverso l'implementazione di Structure 101 abbiamo notato che il codice presentava una percentuale di grasso troppo elevata e che quindi andava a nuocere alla qualità del sistema rendendolo meno manutenibile, più difficilmente testabili e meno comprensibile. <br>
+Attraverso l'implementazione di Structure 101 abbiamo notato che il codice presentava una percentuale di grasso troppo elevata (circa il 20%) e che quindi andava a nuocere alla qualità del sistema rendendolo meno manutenibile, più difficilmente testabile e meno comprensibile. <br>
 Abbiamo quindi decomposto le funzioni di modo che fossero meno ingombranti, e abbiamo raggiunto una percentuale di grasso pari a 5%.<br>
-Un grande lavoro di refactoring è stato fatto anche per migliorare la percentuale di tangled del programma che al termine del lavoro p risultata dello 0%. <br>
+Un grande lavoro di refactoring è stato fatto anche per migliorare la percentuale di tangled del programma (inizialmente al 70%) che al termine del lavoro è risultata dello 0%. <br>
 A sequito dei grafici estratti da Structure101 che rappresentano la struttura del sistema. <br>
 
   <img style="width: 690px;" src="resources/Structure101.jpeg"> 
@@ -408,7 +408,7 @@ Ciò significa che ogni casella (square) che compone la griglia è stata creata 
 
 ## 10. Software Testing
 Durante lo sviluppo il corretto funzionamento del codice è stato testato costantemente con test pratici di esecuzione del programma e delle sue funzionalità. Questo è stato effettuato inserendo controlli di stampa,debug con break point e attraverso test di JUnit. <br>
-Nel momento in cui ci si è trovavi davanti un errore si è proceduto alla sua correzione, nel caso chiedendo anche agli altri membri un aiuto.<br>
+Nel momento in cui ci si è trovati davanti un errore si è proceduto alla sua correzione, nel caso chiedendo anche agli altri membri un aiuto.<br>
 In seguito alla revisione del bug e del codice errato si è poi ripetuto il test per verificarne l'esito. <br>
 In alcuni casi, insieme alla correzione del bug è stato necessario fare anche delle modifiche più sostanziali al programma con un conseguente refactoring del codice per adattarlo alle nuove funzionalità. Queste modifiche essendo più invasive hanno spesso richiesto la creazione di un branch sul quale effettuare il lavoro. <br>
 
@@ -425,9 +425,9 @@ Il team ha dedicato parte del suo tempo, soprattutto nella fase finale dello svi
 -> decomposizione di lunghe funzioni le quali possono essere difficili da comprendere e testare. Suddividere queste funzioni in sottofunzioni più piccole, ognuna con una singola responsabilità, rende il codice più chiaro e facilita la verifica e la manutenzione. <br>
 -> utilizzo di design pattern per migliorare la struttura e l'organizzazione del codice <br>
 
-Per verificare che il lavoro di refactoring, l'evoluzione del codice ed il miglioramento delle metriche, abbiamo utilizzato Structure 101.<br>
+Per verificare il lavoro di refactoring, l'evoluzione del codice ed il miglioramento delle metriche, abbiamo utilizzato Structure 101.<br>
 Per migliorare la qualità del codice abbiamo sfruttato il plugin SpotBugs. <br>
-SpotBugs è uno strumento di analisi statica del codice per Java che individua potenziali bug, vulnerabilità e pratiche non ottimali nel codice sorgente. Analizza il codice alla ricerca di pattern sospetti e fornisce segnalazioni per migliorare la qualità e la sicurezza del  software.<br>
+SpotBugs è uno strumento di analisi statica del codice per Java che individua potenziali bug, vulnerabilità e pratiche non ottimali nel codice sorgente. Analizza il codice alla ricerca di pattern sospetti e fornisce segnalazioni per migliorare la qualità e la sicurezza del software.<br>
 
 ## 12. Software Maintenance
 La manutenzione di un software rappresenta un processo fondamentale nell'assicurare il suo funzionamento ottimale e la sua continua adattabilità alle mutevoli esigenze degli utenti e dell'ambiente in cui opera. Tale processo si articola in diverse tipologie di intervento: la manutenzione correttiva, volta alla risoluzione tempestiva di errori e malfunzionamenti; la manutenzione adattiva, che si occupa di aggiornare il software per adeguarlo a modifiche nell'ambiente operativo o nei requisiti di sistema; la manutenzione perfettiva, finalizzata a implementare nuove funzionalità richieste dagli utenti o a ottimizzare le prestazioni dell'applicativo; infine, la manutenzione preventiva, che mira a prevenire futuri problemi e a migliorare la manutenibilità complessiva del software.
