@@ -55,7 +55,7 @@ Lo scopo del gioco è localizzare tutte le unità della flotta navale nemica com
 -2 incrociatori da 3 caselle <br>
 -3 cacciatorpedinieri da 2 caselle <br>
 -4 sottomarini da 1 casella. <br>
-Le navi non si possono toccare e possono essere disposte solo in orizzontale ed in verticale. 
+Una volta posizionate le navi non possono più essere spostatee inoltre possono essere disposte solo in orizzontale ed in verticale. 
 
 #### Svolgimento del gioco
 I giocatori devono posizionare le proprie navi sulla propria griglia, composta da 10 righe e da 10 colonne. Una volta posizionate le navi, il gioco procede a turni.
