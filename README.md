@@ -42,16 +42,16 @@ Il file "Server.jar" servirà per avviare il server di gioco.
 Il file "Player.jar" servirà per avviare il gioco lato client.
 
 #### Avvio del gioco su un unico pc (server locale)
-Come prima cosa avviare il  file "Server.jar" (esso dovrà essere aperto una sola volta). All'apertura della schermata di scelta dell'indirizzo selezionare "Avviare server in locale". 
+Come prima cosa avviare il  file "[Server.jar](https://github.com/giacbusc/BattagliaNavaleIngSoftware2324/blob/main/BattagliaNavaleServer/Server.jar)" (esso dovrà essere aperto una sola volta). All'apertura della schermata di scelta dell'indirizzo selezionare "Avviare server in locale". 
 Fatto questo i player potranno connettersi. Avviare quindi per due volte il file "Player.jar" così da avere due giocatori. Una volta registrato/loggato verrà visualizzato il menù principale dove dovrà essere selezionata la modalità di gioco "Gioca su un solo pc". 
 Fatto questo apparirà la griglia del primo player e il gioco avrà inizio.
 
 #### Avvio del gioco su più pc (server tcp)
-Come prima cosa avviare il file "Server.jar". Esso dovrà essere avviato solo una volta e solamente su una macchina (questa macchina non dovrà essere necessariamente anche un player seppur possibile senza alcun tipo di problema).
+Come prima cosa avviare il file "[Server.jar](https://github.com/giacbusc/BattagliaNavaleIngSoftware2324/blob/main/BattagliaNavaleServer/Server.jar)". Esso dovrà essere avviato solo una volta e solamente su una macchina (questa macchina non dovrà essere necessariamente anche un player seppur possibile senza alcun tipo di problema).
 L'indirizzo da mettere, per comodità, potrà essere l'IP privato del dispositivo che vogliamo funga da server (seguito anche dalla porta, per comodità utilizzare 5555).
 Di conseguenza si ricorda che tutti i pc (sia server che player) dovranno essere connessi alla stessa rete internet!
 
-Il file "Player.jar" invece dovrà essere aperto sui pc interessati a giocare alla battaglia navale. Una volta aperto il menù cliccare quindi su "Gioca su più pc" e immettere l'indirizzo del server (avviato in precedenza).
+Il file "[Player.jar](https://github.com/giacbusc/BattagliaNavaleIngSoftware2324/blob/main/BattagliaNavale/BattagliaNavale.jar)" invece dovrà essere aperto sui pc interessati a giocare alla battaglia navale. Una volta aperto il menù cliccare quindi su "Gioca su più pc" e immettere l'indirizzo del server (avviato in precedenza).
 Una volta che due player saranno connessi al server il gioco potrà avere inizio.
 
 
