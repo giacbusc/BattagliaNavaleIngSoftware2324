@@ -1,4 +1,4 @@
-package test.java.BattagliaNavaleProject.BattagliaNavale;
+package BattagliaNavaleProject.start;
 
 
 import BattagliaNavaleProject.control.SchermataInizialeControl;

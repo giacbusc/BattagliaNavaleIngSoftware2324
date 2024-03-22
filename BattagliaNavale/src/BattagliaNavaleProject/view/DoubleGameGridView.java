@@ -24,6 +24,7 @@ import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Griglia;
 import BattagliaNavaleProject.BattagliaNavaleServer.Accessorio.Square;
 
 public class DoubleGameGridView extends JFrame {
+	
 
 	private static final long serialVersionUID = 1L;
 	private static final int GRID_DIMENSION = 10;
@@ -57,6 +58,7 @@ public class DoubleGameGridView extends JFrame {
 
 	public DoubleGameGridView(String username) throws IOException 
 	{
+		this.setResizable(false);
 		this.username = username;
 		this.frame = new JFrame("Battaglia Navale");
 		setSize(1400,788);
