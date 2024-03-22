@@ -37,6 +37,9 @@ All'interno della documentazione si trova:<br>
 Per una documentazione migliore e maggiormente esplicativa delle diverse funzionalità del software abbiamo realizzato vari diagrammi UML, questi si trovano sia all'interno della [documentazione](https://github.com/buscst/BattagliaNavaleIngSoftware2324/blob/main/docs/Documentazione.md#7-modelling) stessa ma anche in una loro cartella all'interno della cartella UML nei documenti della repository.<br>
 
 ### Installazione e Avviamento
+
+ATTENZIONE: Per evitare problematiche è vivamente consigliato avviare il progetto da eclipse tramite le varie classi main apposite (AppTestServerStart per il server e AppTestClient per il client)
+
 Come prima cosa vanno scaricati i due jar, essenziali per il funzionamento dell'applicazione. 
 Il file "Server.jar" servirà per avviare il server di gioco. 
 Il file "Player.jar" servirà per avviare il gioco lato client.
