@@ -89,8 +89,9 @@ Il repository è strutturato nel seguente modo:
    - *main*: Contiene le versione alpha del codice
    - *beta*: Contiene la versione beta del codice (su questo branch sono state eseguite la maggior parte delle azioni)
  - __cartelle__:
-    - *code*:
-    - *docs*: Contiene la documentazione del progetto
+    - *code*: Battaglia Navale (client) <br>
+              Battaglia Navale Server
+    - *docs*: Contiene la documentazione del progetto, il project plan, la cartella "resources" contente i vari contenuti multimediali che sono stati utilizzati, e la cartella contenente i diagrammi Uml
 
 Durante lo sviluppo del progetto sono stati creati diversi branch a partire dal master per implementare modifiche o per correggere errori quando riscontrati.<br>
 Al termine dell'implementazione di tali modifiche, previa revisione di qualche altro componente delle modifiche eseguite attraverso una pull request, è stato effettuato il merge al branch master.
